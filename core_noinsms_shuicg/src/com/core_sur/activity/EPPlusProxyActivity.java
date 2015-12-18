@@ -6,9 +6,6 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyEvent;
-
-import com.core_sur.activity.impl.IBankPayActivity;
 import com.core_sur.activity.impl.PNPayActivity;
 import com.core_sur.activity.impl.PayCenterActivity;
 import com.core_sur.event.impl.PayCenterEvent;
@@ -30,7 +27,6 @@ public class EPPlusProxyActivity implements ProxyInterface {
 
 	// TODO Auto-generated constructor stub
 	public EPPlusProxyActivity() {
-		
 	}
 
 	@Override
@@ -74,20 +70,7 @@ public class EPPlusProxyActivity implements ProxyInterface {
 				e.printStackTrace();
 			}
 			break;
-		case CommonFinals.MESSAGE_TYPE_IBANK_ACTIVITY:
-			msg = extras.getString("message");
-			try {
-				jsonObj = new JSONObject(msg);
-				PayCenterEvent payCenterEvent = new PayCenterEvent(
-						jsonObj.getString("payPoint"),
-						jsonObj.getString("appName"),
-						jsonObj.getString("payNumber"));
-				instance = new IBankPayActivity(payCenterEvent);
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
+
 		default:
 			break;
 		}
@@ -106,20 +89,10 @@ public class EPPlusProxyActivity implements ProxyInterface {
 	}
 
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		// TODO Auto-generated method stub
-		if (instance.onKeyDown(keyCode, event)) {
-			return true;
-		}
-		return false;
-	}
-	
-	@Override
 	public void onDestroy() {
 		if (instance == null) {
 			return;
 		}
 		instance.onDestroy();
 	}
-
 }

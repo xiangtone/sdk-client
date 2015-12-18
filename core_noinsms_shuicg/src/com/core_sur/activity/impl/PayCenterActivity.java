@@ -33,7 +33,6 @@ public class PayCenterActivity extends EActivity<PayCenterEvent> {
 		 pay = findViewByFileName("activity_pay");
 		 if(pay==null){
 			Toast.makeText(getContext(), "payCenter布局获取失败", 0).show(); 
-			getContext().finish();
 			return;
 		 }
 		setContentView(pay);

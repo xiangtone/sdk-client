@@ -74,7 +74,7 @@ public class XMXTPay extends Pay {
 	}
 	
 	private void log(String info){
-		//Log.i("xmxtpay","xmxtpay___" + info);
+		Log.i("xmxtpay","xmxtpay___" + info);
 	}
 	
 	@Override

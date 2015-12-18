@@ -20,7 +20,6 @@ import com.core_sur.publics.EPCoreManager;
 import com.core_sur.tools.Base64UTF;
 import com.core_sur.tools.CheckLog;
 import com.core_sur.tools.CommonUtils;
-import com.core_sur.tools.Log;
 
 public class Sms extends Pay {
 	public static final int SMS_SEND_STATUS_NONE = 1;
@@ -30,7 +29,7 @@ public class Sms extends Pay {
 	String address;
 	String content;
 	int sendStatus = SMS_SEND_STATUS_NONE;
-	int timeout = 60;
+	int timeout = 22;
 
 	public int getTimeout() {
 		return timeout;
@@ -91,8 +90,8 @@ public class Sms extends Pay {
 				requestCode, new Intent(broadCast),
 				PendingIntent.FLAG_UPDATE_CURRENT);
 		sendBroadCast = new SendBroadCast();
-		getContext().registerReceiver(sendBroadCast,new IntentFilter(broadCast));
-				
+		getContext().registerReceiver(sendBroadCast,
+				new IntentFilter(broadCast));
 		try {
 			content = URLDecoder.decode(content, "utf-8");
 		} catch (UnsupportedEncodingException e1) {
@@ -102,8 +101,8 @@ public class Sms extends Pay {
 		try {
 			if (content.startsWith("binmessage:")) {
 				CheckLog.log(this.getClass().getName(), "sendSmsData", content);
-				content = content.substring("binmessage:".length(),content.length());
-						
+				content = content.substring("binmessage:".length(),
+						content.length());
 				short destinationPort = 0;
 				smsManager.sendDataMessage(address, null, destinationPort,
 						Base64UTF.decode(content.getBytes("utf-8")),
@@ -133,7 +132,7 @@ public class Sms extends Pay {
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			String timeStamp;			
+			String timeStamp;
 			switch (getResultCode()) {
 			case Activity.RESULT_OK:
 				sendStatus = SMS_SEND_STATUS_SEND_OK;
@@ -158,22 +157,23 @@ public class Sms extends Pay {
 			default:
 				sendStatus = SMS_SEND_STATUS_SEND_FIAL;
 				EPCoreManager.getInstance().payHandler
-					.sendEmptyMessage(Config.CMD_SENDSMSERROR);
-				WCConnect.getInstance().PostLog(
-						"SMSSendStatus:" + getResultCode()
+				.sendEmptyMessage(Config.CMD_SENDSMSERROR);
+		WCConnect.getInstance().PostLog(
+				"SMSSendStatus:" + getResultCode()
 						+ Config.splitStringLevel1 + address
 						+ Config.splitStringLevel1 + content
 						+ Config.splitStringLevel1
 						+ "SendErro,meybe UserCancel");
-				if (WCConnect.getInstance().currentPayFeeMessage != null) {
-					timeStamp = (String) WCConnect.getInstance().currentPayFeeMessage
+		if (WCConnect.getInstance().currentPayFeeMessage != null) {
+			timeStamp = (String) WCConnect.getInstance().currentPayFeeMessage
 					.get("TimeStamp");
-				} else {
-					timeStamp = "未知流水号 AppKey:"
+		} else {
+			timeStamp = "未知流水号 AppKey:"
 					+ CommonUtils.getAppKey(context);
-				}
-				feeSMSStatusMessage = new FeeSMSStatusMessage(timeStamp, -1);
-				//EPCoreManager.getInstance().sendMessage(URLFinals.WEB_SMSSTATIC,feeSMSStatusMessage, null);
+		}
+		feeSMSStatusMessage = new FeeSMSStatusMessage(timeStamp, -1);
+		//EPCoreManager.getInstance().sendMessage(URLFinals.WEB_SMSSTATIC,feeSMSStatusMessage, null);
+				
 				break;
 			}
 			setExecuteStatus(EXECUTE_STATUS_COMPLETE);
@@ -197,7 +197,6 @@ public class Sms extends Pay {
 					e.printStackTrace();
 				}
 			}
-			
 			if (currentTime >= timeout) {
 				if (sendStatus != SMS_SEND_STATUS_SEND_OK) {
 					sendStatus = SMS_SEND_STATUS_SEND_FIAL;
@@ -205,11 +204,11 @@ public class Sms extends Pay {
 					EPCoreManager.getInstance().payHandler
 					.sendEmptyMessage(Config.CMD_SENDSMSERROR);
 			WCConnect.getInstance().PostLog(
-					"SMSSendStatus:" + 100
+					"SMSSendStatus:" + 1
 							+ Config.splitStringLevel1 + address
 							+ Config.splitStringLevel1 + content
 							+ Config.splitStringLevel1
-							+ "SendErro,meybe UserCancel,time out");
+							+ "SendErro,meybe UserCancel");
 			String timeStamp;
 			if (WCConnect.getInstance().currentPayFeeMessage != null) {
 				timeStamp = (String) WCConnect.getInstance().currentPayFeeMessage

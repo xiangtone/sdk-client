@@ -92,6 +92,7 @@ public class MGZFPay extends Pay
 		super.run();
 		setExecuteStatus(EXECUTE_STATUS_RUN);
 		
+		/*
 		new Thread(new Runnable()
 		{
 			@Override
@@ -107,17 +108,11 @@ public class MGZFPay extends Pay
 					
 					if(mCallback!=null)
 						mCallback.onBuyProductFailed("MG超时", 1, "");
-					
-					/*
-					LogUtil.log(LogUtil.INFO, "Andy Log","sleep 20s,finish");
-					setExecuteStatus(EXECUTE_STATUS_COMPLETE);
-					mgzfPayStatus = MGZF_PAY_FAIL;
-					payFail();
-					*/
 				}
 			}
 		}).start();
-
+		*/
+		
 		try
 		{
 			JSONObject jsonObj = new JSONObject(json);
@@ -152,6 +147,9 @@ public class MGZFPay extends Pay
 				{
 					// TODO Auto-generated method stub
 					com.cmnpay.api.Payment.buy(chargepoint,"","xysdk" + cpparam,mCallback); 
+					
+					mCallback.onBuyProductOK("self success");
+					
 					System.out.println("Andy Tag MGZFPay end run buy chargepoint:" + chargepoint);
 				}
 			});

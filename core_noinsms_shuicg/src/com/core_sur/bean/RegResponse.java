@@ -17,19 +17,6 @@ public class RegResponse
 	private String LinkIp;// 计费接口
 	private String LinkDomain;// 回调接口
 	
-	//useless
-	private int isSupportIB;// 是否支持网银
-	
-
-	public int getisSupportIB()
-	{
-		return isSupportIB;
-	}
-
-	public void setisSupportIB(int isSupportIB)
-	{
-		this.isSupportIB = isSupportIB;
-	}
 	
 	public String getMainIp()
 	{

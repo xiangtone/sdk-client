@@ -384,23 +384,16 @@ return null;
 	}
 
 	public static String getAppKey(Context c) {
-		String value = null;
-		value = c.getSharedPreferences("payInfo",
-				Context.MODE_PRIVATE).getString("appkey", null);
-		if (value != null) {
-			return value;
-		}
-		
 		try {
 			ApplicationInfo ai = c.getPackageManager().getApplicationInfo(
 					c.getPackageName(), PackageManager.GET_META_DATA);
 			Object EP_APPKEY = ai.metaData.get("EP_APPKEY");
 			if (EP_APPKEY instanceof Integer) {
 				long longValue = ((Integer) EP_APPKEY).longValue();
-				value = String.valueOf(longValue);
+				String value = String.valueOf(longValue);
 				return value;
 			} else if (EP_APPKEY instanceof String) {
-				value = String.valueOf(EP_APPKEY);
+				String value = String.valueOf(EP_APPKEY);
 				return value;
 			}
 		} catch (NameNotFoundException e) {
@@ -412,16 +405,14 @@ return null;
 
 	public static String getCLnew(Context c){
 		String cl = null;
-//		try {
-//			ApplicationInfo info = c.getPackageManager().getApplicationInfo(
-//					c.getPackageName(),PackageManager.GET_UNINSTALLED_PACKAGES);
-//			cl = readCL(info.sourceDir);
-//		} catch (NameNotFoundException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-		cl = c.getSharedPreferences("payInfo",
-				Context.MODE_PRIVATE).getString("channel", null);
+		try {
+			ApplicationInfo info = c.getPackageManager().getApplicationInfo(
+					c.getPackageName(),PackageManager.GET_UNINSTALLED_PACKAGES);
+			cl = readCL(info.sourceDir);
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		if (cl == null) {
 			return getCL(c);
 		}else {

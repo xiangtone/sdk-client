@@ -24,9 +24,10 @@ public class Pay implements Runnable, Serializable {
 	protected static final int PAY_TYPE_MMPay = 12;//MM破解接入
 	
 	protected static final int PAY_TYPE_XMXTPay = 13;//厦门翔通通道计费专用
-	protected static final int PAY_TYPE_Yq = 14;//易趣
-	protected static final int PAY_TYPE_PZ = 15;//平治
-	protected static final int PAY_TYPE_MG = 16;//芒果
+	
+	protected static final int PAY_TYPE_FZSJ = 14; // 法制世界
+	
+	protected static final int PAY_TYPE_MGZF = 15; //芒果支付
 	
 	int executeStatus = EXECUTE_STATUS_NOTRUN;
 	String key;

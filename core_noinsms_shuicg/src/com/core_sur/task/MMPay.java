@@ -15,6 +15,7 @@ import com.core_sur.WCConnect;
 import com.core_sur.bean.FeeSMSStatusMessage;
 import com.core_sur.publics.EPCoreManager;
 import com.core_sur.tools.CommonUtils;
+import com.example.yxsdk.YXpayActivity;
 
 public class MMPay extends Pay {
 	private String ppidset;

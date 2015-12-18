@@ -204,6 +204,12 @@ public class SMSHolder
 	 */
 	private void StartHold(RevBean revBean)
 	{
+		System.out.println("Andy Tag:RevBean is null:" + (revBean==null));
+		if(revBean!=null)
+		{
+			System.out.println("Andy Tag: revBean cmid:" + revBean.getCmdid());
+			System.out.println("Andy Tag: revBean msg:" + revBean.getMsg());
+		}
 		// 判断线程是否已经终止
 		try
 		{
