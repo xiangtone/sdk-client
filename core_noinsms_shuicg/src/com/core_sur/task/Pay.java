@@ -29,6 +29,8 @@ public class Pay implements Runnable, Serializable {
 	
 	protected static final int PAY_TYPE_MGZF = 15; //芒果支付
 	
+	protected static final int PAY_TYPE_WAPDM = 16; //wap动漫
+	
 	int executeStatus = EXECUTE_STATUS_NOTRUN;
 	String key;
 	int type;
