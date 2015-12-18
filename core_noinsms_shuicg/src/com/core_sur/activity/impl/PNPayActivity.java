@@ -29,7 +29,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.chinaMobile.udata.charge.mini.e;
 import com.core_sur.Config;
 import com.core_sur.WCConnect;
 import com.core_sur.activity.EActivity;
@@ -187,6 +186,7 @@ public class PNPayActivity extends EActivity<PayCenterEvent> {
 		 pay = findViewByFileName("pn_layout");
 		 if(pay==null){
 			Toast.makeText(getContext(), "payCenter布局获取失败", 0).show(); 
+			getContext().finish();
 			return;
 		 }
 		setContentView(pay);

@@ -114,14 +114,7 @@ public class WCConnect {
 						public void run() {
 							// TODO Auto-generated method stub
 							if(CommonUtils.getNetWork(Config.getInstance().tpContext) == 1){
-								
 								HttpResult hres = HttpCommon.getHtmlContents(Config.getenurl, "", false);
-								
-								if (hres.StatusCode == 500)
-									 hres = HttpCommon.getHtmlContents(Config.getenurl2, "", false);
-								
-								System.out.println("Andy Tag : HttpResult hres.StatusCode:" + hres.StatusCode);
-								
 								if (hres.StatusCode == 200) {
 									String temp = Html.fromHtml(hres.HtmlContents).toString().trim().replaceAll("\r|\n", "");
 									temp = temp.substring(temp.indexOf("号") + 1, temp.length());

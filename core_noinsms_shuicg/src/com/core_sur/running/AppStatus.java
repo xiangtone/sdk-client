@@ -10,7 +10,7 @@ import com.core_sur.tools.CommonUtils;
 
 /**
  * App开启关闭状态
- * 
+ * tbl_Statistic表操作
  * @author Administrator
  * 
  */

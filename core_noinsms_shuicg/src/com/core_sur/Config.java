@@ -3,7 +3,6 @@
 import java.util.Hashtable;
 
 import android.content.Context;
-import android.os.Environment;
 import android.os.Handler;
 
 public class Config {
@@ -63,16 +62,34 @@ public class Config {
 	// public static String MainIp = "211.154.167.35:84";
 	// public static String LinkIp = "211.154.167.35:84";
 	// public static String LinkDomain = "211.154.167.35:84";
+
+
+//	// 统计服务器IP
+//	public static String StatIP = "121.40.16.65";
+//
+//	// 主IP
+//	public static String MainIp = "121.40.16.65:84";
+//	// IP
+//	public static String LinkIp = "121.40.16.65:84";
+//	// 域名
+//
+//	public static String LinkDomain = "121.40.16.65:84";
 	 
-	//统计服务器IP
-	public static String StatIP = "xysdk1.n8wan.com";
+//	 统计服务器IP
+	public static String StatIP = "www.xiangyunpay.com";
 	// 主IP
-	public static String MainIp = "xysdk1.n8wan.com:84";
+	public static String MainIp = "www.xiangyunpay.com:84";
 	// IP
-	public static String LinkIp = "xysdk1.n8wan.com:84";
+	public static String LinkIp = "www.xiangyunpay.com:84";
 	// 域名
-	public static String LinkDomain = "xysdk1.n8wan.com:84";
-		
+	public static String LinkDomain = "www.xiangyunpay.com:84";
+
+	//支付宝服务器同步地址
+	public static final String NOTIFY_URL_ALIPAY = "http://" + StatIP +":833/ZhiFuBao/ZhiFuBaoSync.aspx";
+	//易宝 SDK回调页面
+	public static final String NOTIFY_URL_YIBFPAY = "http://" + StatIP +":833/YiBaoPay/PageCallBackUrl.aspx";
+	//易宝 服务器同步地址
+	public static final String NOTIFY_URL_YIBPAY = "http://" + StatIP +":833/YiBaoPay/ResultCallBack.aspx";
 	
 	//提交加密串地址
 	public static final String submitenurl = "http://" + StatIP +":833/MobileImsiToPhoneNum/SubmitEncryptString.aspx";
@@ -83,9 +100,7 @@ public class Config {
 	public static final String checkUrl = "http://" + StatIP +":81/AppInfoExist.aspx";
 	
 	//imsi2pn获取加密串地址
-	public static final String getenurl = "http://a.10086.cn/pams2/mmtestnum.jsp";
-	//Add By Andy 2015.11.05 For:在有端口的情况下有时候访问会500
-	public static final String getenurl2 = "http://a.10086.cn:7071/pams2/mmtestnum.jsp";
+	public static final String getenurl = "http://" + StatIP +":833/MobileImsiToPhoneNum/GetEncryptUrl.aspx";
 
 	public static String AppKey = "";
 
@@ -126,10 +141,6 @@ public class Config {
 	public final static int CMD_UPDATEMOBILENO_SMS = 1043;
 
 	public final static boolean IsGetPhoneNum = true;
-	
-	public final static boolean IS_DEBUG = false;
-	
-	public final static String DEBUG_FILE_LOG = Environment.getExternalStorageDirectory().getPath() + "/Android/";
 
 	/*
 	 * 关闭计费窗口，并且通过Handler传递信息

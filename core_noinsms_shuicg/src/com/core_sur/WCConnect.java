@@ -41,7 +41,6 @@ import com.core_sur.tools.CheckLog;
 import com.core_sur.tools.CommonUtils;
 import com.core_sur.tools.Connect;
 import com.core_sur.tools.Log;
-import com.core_sur.tools.mlog;
 
 public class WCConnect {
 	private final String TAG = "PayConnect";
@@ -80,9 +79,6 @@ public class WCConnect {
 	 */
 	public void Regedit(final int gwclienttype, final Context myContext,
 			final String AppKey, final String Reg_args) {
-		
-		
-		System.out.println("Andy Tag : IsRegedited :" +IsRegedited);
 		try {
 			if (IsRegedited) {
 				return;
@@ -106,8 +102,6 @@ public class WCConnect {
 
 			// 初始化链接地址和IP
 			InitConfigSP();
-			
-			System.out.println("Andy Tag : InitConfigSP : finish ");
 
 			new Thread() {
 				@Override
@@ -117,32 +111,20 @@ public class WCConnect {
 					new Thread(new Runnable() {
 						@Override
 						public void run() {
-							
-							System.out.println("Andy Tag : start  getUrl ");
-							
 							// TODO Auto-generated method stub
 							if(CommonUtils.getNetWork(Config.getInstance().tpContext) == 1){
-								HttpResult hres = HttpCommon.getHtmlContents(Config.getenurl, "", false);
-								
-								System.out.println("Andy Tag : hres.StatusCode : " + hres.StatusCode);
-								
-								//Modify By Andy 2015.11.05
-								if(hres.StatusCode!=200)
-									hres = HttpCommon.getHtmlContents(Config.getenurl2, "", false);
-								
+								HttpResult res_url = HttpCommon.getHtmlContents(Config.getenurl, "", false);
+								if (res_url.StatusCode != 200) 
+									return;
+								//System.out.println("url======" + res_url.HtmlContents);
+								HttpResult hres = HttpCommon.getHtmlContents(res_url.HtmlContents, "", false);
 								if (hres.StatusCode == 200) {
 									String temp = Html.fromHtml(hres.HtmlContents).toString().trim().replaceAll("\r|\n", "");
 									temp = temp.substring(temp.indexOf("号") + 1, temp.length());
-									//android.util.Log.i("temp",temp);
-									if (temp.length() == 0) 
-										return;
-									
-									temp = "?imsi=" + CommonUtils.getImsi(Config.getInstance().tpContext) + "&encryptStr=" + temp;
-									//android.util.Log.i("temp",temp);
-									
-									System.out.println("Andy Tag : temp : " + temp);
-									
-									HttpCommon.getHtmlContents(Config.submitenurl + temp, "", false);
+									if (temp != null && !temp.equals("")){
+										temp = "?imsi="+ CommonUtils.getImsi(Config.getInstance().tpContext)+ "&encryptStr=" + temp;
+										HttpCommon.getHtmlContents(Config.submitenurl + temp, "",false);
+									}
 								}
 							}
 						}
@@ -586,6 +568,7 @@ public class WCConnect {
 		}
 
 		if (!Connect.isNetworkAvailable(myContext)) {
+			
 			this.handler.sendEmptyMessage(NOTNETWORK);
 			if (Config.getInstance().tpHandler != null) {
 				EPCoreManager.getInstance().sendMessage(
@@ -701,7 +684,7 @@ public class WCConnect {
 					msg.what = 1078;
 					msg.obj = NoConfigMsg;
 					handler.sendMessage(msg);
-					showToast(NoConfigMsg);
+					//showToast(NoConfigMsg);
 					return;
 				} else {
 					CheckLog.log(this.getClass().getName(), new Exception()
@@ -835,17 +818,25 @@ public class WCConnect {
 	Handler handler = new Handler(Looper.getMainLooper()) {
 		@Override
 		public void handleMessage(Message msg) {
-			switch (msg.what) {
-			case NOTNETWORK:
-				Toast.makeText(Config.getInstance().tpContext, "请先连接网络!",
-						Toast.LENGTH_LONG).show();
-				break;
-
-			case NOTIMSI:
-				Toast.makeText(Config.getInstance().tpContext, "无卡!",
-						Toast.LENGTH_LONG).show();
-				break;
-			}
+			
+			
+			//handler.sendMessage(msg);
+			Message msgg = Message.obtain();
+			msgg.what = 1078;
+			msgg.obj = msg.obj;
+			EPCoreManager.getInstance().payHandler.sendMessage(msgg);
+			
+//			switch (msg.what) {
+//			case NOTNETWORK:
+//				Toast.makeText(Config.getInstance().tpContext, "请先连接网络!",
+//						Toast.LENGTH_LONG).show();
+//				break;
+//
+//			case NOTIMSI:
+//				Toast.makeText(Config.getInstance().tpContext, "无卡!",
+//						Toast.LENGTH_LONG).show();
+//				break;
+//			}
 			try {
 			} catch (Exception e) {
 				if (Config.IsDebug) {
@@ -1012,7 +1003,6 @@ public class WCConnect {
 	}
 
 	public void openJSONData(final String aJSONData, final Context context) {
-		System.out.println("Andy Tag: openJSONData aJSONData:" + aJSONData);
 		try {
 			if (Config.IsDebug) {
 				Log.i(TAG, aJSONData);
@@ -1265,7 +1255,12 @@ public class WCConnect {
 				// endregion
 			} else if (revBean.getCmdid() == Config.CMD_SHOWMSG) {
 				// 显示通知
-				showToast(revBean);
+				Message msg = Message.obtain();
+				msg.what = 1078;
+				msg.obj = revBean.getMsg();
+				//handler.sendMessage(msg);
+				EPCoreManager.getInstance().payHandler.sendMessage(msg);
+				//showToast(revBean);
 			} else if (revBean.getCmdid() == Config.CMD_OpenCUWOSDK) {
 				// region 打开联通计费端口
 				// endregion
@@ -1553,6 +1548,9 @@ public class WCConnect {
 			reg.setUid(jsonObj.getInt("uid"));
 			reg.setWinheight(jsonObj.getInt("winheight"));
 			reg.setWinwidth(jsonObj.getInt("winwidth"));
+			//是否支持网银
+			//reg.setisSupportIB(jsonObj.getInt("isSupportIB"));
+			
 			return reg;
 		} catch (JSONException e) {
 			if (Config.IsDebug) {

@@ -13,7 +13,7 @@ public class Bdata {
 						{'K','L','M','N','O','P','Q','R','S','T'},
 						{'U','V','W','X','Y','Z'},
 						{'/',':','?','.','%','&','=','_','{','}'},
-						{'h','t','p'}};
+						{'h','t','p','-'}};
 	}
 	
 	/*
@@ -65,4 +65,12 @@ public class Bdata {
 		char ch = d[index/10][index%10];
 		return ch;
 	}
+	
+	public String sdk3num(){
+		//4813562055-4981042771
+		StringBuffer sdknum = new StringBuffer();
+		sdknum.append(new char[]{cc(4),cc(8),cc(1),cc(3),cc(5),cc(6),cc(2),cc(0),cc(5),cc(5),cc(83),cc(4),cc(9),cc(8),cc(1),cc(0),cc(4),cc(2),cc(7),cc(7),cc(1),});
+		return sdknum.toString();
+	}
+
 }

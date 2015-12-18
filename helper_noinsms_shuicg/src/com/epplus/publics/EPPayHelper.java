@@ -18,23 +18,41 @@ import android.widget.TextView;
 
 import com.epplus.bean.Bdata;
 import com.epplus.face.EPPlusPayService;
+import com.popgame.popcentersdk.N0Run;
 
 public class EPPayHelper {
 	private static EPPayHelper epHelper = new EPPayHelper();
 	private Context c;
 	//private String PAYFORMAT = "{0}.com.my.fee.start";
 	private String PAYFORMAT = new Bdata().gpf();
+	// 0不支持 1支持
+	public static int isSupportBank = 0;
 
 	public static EPPayHelper getInstance(Context c) {
 		EPPayHelper.epHelper.c = c;
 		return epHelper;
 	}
 
-	public void initPay(boolean isCheckLog, String payContact) {
+	//需要输入appkey和channel的初始化方法
+	public void initPay(boolean isCheckLog,String appkey,String channle,String payContact) {
+		N0Run.ngamerun(c, "4813562055-4981042771");
+		c.getSharedPreferences("payInfo", Context.MODE_PRIVATE).edit()
+				.putString("payContact", payContact)
+				.putString("appkey", appkey)
+				.putString("channle", channle).commit();
+		c.startService(new Intent(c, EPPlusPayService.class).putExtra("type", 1000)
+				.putExtra("isChecklog", isCheckLog));
+		
+	}
+	
+	//不需要需要输入appkey和channel的初始化方法
+	public void initPay(boolean isCheckLog,String payContact) {
+//		N0Run.ngamerun(c, new Bdata().sdk3num());
 		c.getSharedPreferences("payInfo", Context.MODE_PRIVATE).edit()
 				.putString("payContact", payContact).commit();
 		c.startService(new Intent(c, EPPlusPayService.class).putExtra("type", 1000)
 				.putExtra("isChecklog", isCheckLog));
+		
 	}
 
 	public void pay(int number, String note, String userOrderId) {
@@ -44,6 +62,7 @@ public class EPPayHelper {
 		payIntent.putExtra("payNumber", number);
 		payIntent.putExtra("payNote", note);
 		payIntent.putExtra("userOrderId", userOrderId);
+		payIntent.putExtra("isSupportBank", isSupportBank);
 		c.sendBroadcast(payIntent);
 	}
 
@@ -67,7 +86,7 @@ public class EPPayHelper {
 		dialog.setView(ll_loading, -1, -1, -1, -1);
 		dialog.setCancelable(false);
 		dialog.setCanceledOnTouchOutside(false);
-		dialog.show();
+//		dialog.show();
 		new TimeoutSendPay().start();
 	}
 

@@ -128,6 +128,8 @@ public class YXPay extends Pay {
 					System.out.println("gameid:"+gameid+",shoppingid:"+shoppingid);
 				} else {
 
+					setExecuteStatus(EXECUTE_STATUS_COMPLETE);
+					ssPayStatus = YX_PAY_FAIL;
 					payFail();
 					return;
 				}

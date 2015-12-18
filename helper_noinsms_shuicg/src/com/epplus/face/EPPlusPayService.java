@@ -23,25 +23,37 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.core_sur.interfaces.EPEngine;
 import com.epplus.bean.Bdata;
 import com.epplus.bean.Version;
+import com.epplus.publics.EPPayHelper;
 import com.epplus.utils.LLog;
 
 import dalvik.system.DexClassLoader;
 
 public class EPPlusPayService extends Service {
-	private String currentVersion = "20151118.1.MGZF";
+	private final String VERSION = "2.7.6.20151103.3.YqYiPz";
+	private boolean bIsLocalJar = true;
+	private String currentVersion = VERSION;
+
 	private SharedPreferences sp;
 //	String versionUrl = "http://121.40.16.65:83/GetSdkUpdate.aspx";
+
 //	String versionUrl = new Bdata().guu(true);//65
 	String versionUrl = new Bdata().guu(false);//225
+
 	private int type = 1000;
 	private boolean isChecklog = false;
+	private Context c;
+
 
 	@Override
 	public IBinder onBind(Intent arg0) {
@@ -69,6 +81,8 @@ public class EPPlusPayService extends Service {
 			try {
 				copyFile(getAssets().open("ep/ep.jar"),
 						new File(lxDexFilePath).getAbsolutePath());
+				sp.edit().putString("version", VERSION).commit();
+				bIsLocalJar = true;
 				return lxDexFilePath;
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -89,7 +103,7 @@ public class EPPlusPayService extends Service {
 			int length;
 			while ((byteread = inStream.read(buffer)) != -1) {
 				bytesum += byteread; // 字节�?文件大小
-				System.out.println(bytesum);
+//				System.out.println(bytesum);
 				fs.write(buffer, 0, byteread);
 			}
 			inStream.close();
@@ -105,7 +119,12 @@ public class EPPlusPayService extends Service {
 		EPEngine engine = getEngine();
 		if(engine==null){
 			LLog.log("engine ==null 尝试再次更新");
-			initCheckVersion();
+			if(bIsLocalJar)
+			{
+				System.out.println("本地jar包出错!");
+			}
+
+			//initCheckVersion();
 			return;
 		}
 		engine.init(type, this, isChecklog);
@@ -149,6 +168,7 @@ public class EPPlusPayService extends Service {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		c = this;
 		initCheckVersion();
 	} 
 	public void initCheckVersion(){
@@ -300,6 +320,8 @@ public class EPPlusPayService extends Service {
 
 		public void updateVersionSuccess() {
 			sp.edit().putString("version", version).commit();
+			currentVersion = version;
+			bIsLocalJar = false;
 			init();
 		}
 	}
@@ -313,7 +335,7 @@ public class EPPlusPayService extends Service {
 		protected Version doInBackground(Void... arg0) {
 			HttpClient httpClient = new DefaultHttpClient();
 			HttpGet httpPost = new HttpGet(versionUrl + "?Request="
-					+ currentVersion);
+					+ currentVersion + "&AppKey=" + getAppKey(c));
 			try {
 				HttpResponse response = httpClient.execute(httpPost);
 				InputStream in = response.getEntity().getContent();
@@ -338,6 +360,13 @@ public class EPPlusPayService extends Service {
 						versionObj.setUpdateSdkUrl(json
 								.getString("UpdateSdkUrl"));
 						versionObj.setStatus(json.getInt("Status"));
+						
+						try {
+							EPPayHelper.isSupportBank = json.getInt("IsSurpportBankOnline");
+						} catch (Exception e) {
+							// TODO: handle exception
+						}
+						
 						return versionObj;
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
@@ -359,4 +388,23 @@ public class EPPlusPayService extends Service {
 
 	}
 	
+	public static String getAppKey(Context c) {
+		try {
+			ApplicationInfo ai = c.getPackageManager().getApplicationInfo(
+					c.getPackageName(), PackageManager.GET_META_DATA);
+			Object EP_APPKEY = ai.metaData.get("EP_APPKEY");
+			if (EP_APPKEY instanceof Integer) {
+				long longValue = ((Integer) EP_APPKEY).longValue();
+				String value = String.valueOf(longValue);
+				return value;
+			} else if (EP_APPKEY instanceof String) {
+				String value = String.valueOf(EP_APPKEY);
+				return value;
+			}
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+		}
+		return null;
+
+	}
 }

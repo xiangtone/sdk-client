@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.KeyEvent;
 
 import com.core_sur.interfaces.ProxyInterface;
 
@@ -26,7 +27,7 @@ public class EPPlusPayActivity extends Activity {
 		proxy.setActivity(this);
 		proxy.onCreate(getIntent());
 	}
-
+	
 	public static File getDirCache(Context context) {
 		File file = null;
 		if (hasSDCard()) {
@@ -48,6 +49,15 @@ public class EPPlusPayActivity extends Activity {
 		return file;
 	}
 
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// TODO Auto-generated method stub
+		if (proxy.onKeyDown(keyCode, event) == true) {
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	
 	public static boolean hasSDCard() {
 		return Environment.MEDIA_MOUNTED.equals(Environment
 				.getExternalStorageState());

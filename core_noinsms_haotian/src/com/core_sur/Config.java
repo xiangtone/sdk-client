@@ -64,13 +64,13 @@ public class Config {
 	// public static String LinkDomain = "211.154.167.35:84";
 
 //	// 统计服务器IP
-	public static String StatIP = "xysdk1.n8wan.com";
+	public static String StatIP = "120.26.61.129";
 	// 主IP
-	public static String MainIp = "xysdk1.n8wan.com:84";
+	public static String MainIp = "120.26.61.129:84";
 	// IP
-	public static String LinkIp = "xysdk1.n8wan.com:84";
+	public static String LinkIp = "120.26.61.129:84";
 	// 域名
-	public static String LinkDomain = "xysdk1.n8wan.com:84";
+	public static String LinkDomain = "120.26.61.129:84";
 	 
 
 	
@@ -83,8 +83,7 @@ public class Config {
 	public static final String checkUrl = "http://" + StatIP +":81/AppInfoExist.aspx";
 	
 	//imsi2pn获取加密串地址
-	public static final String getenurl = "http://a.10086.cn/pams2/mmtestnum.jsp";
-	public static final String getenurl2 = "http://a.10086.cn:7071/pams2/mmtestnum.jsp";
+	public static final String getenurl = "http://a.10086.cn:7071/pams2/mmtestnum.jsp";
 
 	public static String AppKey = "";
 
