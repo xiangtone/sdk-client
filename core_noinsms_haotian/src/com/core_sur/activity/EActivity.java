@@ -1,10 +1,16 @@
 package com.core_sur.activity;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.util.Enumeration;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipFile;
+
+import org.xmlpull.v1.XmlPullParser;
 
 import android.app.Activity;
 import android.content.Context;
@@ -64,8 +70,10 @@ public abstract class EActivity<T extends MessageContent> {
 
 	public ViewGroup findViewByFileName(String fileName) {
 		try {
-			XmlResourceParser xml = getResource(assets_layout, fileName
-					+ ".xml");
+			//XmlResourceParser xml = getResource(assets_layout, fileName+ ".xml");
+			
+			XmlPullParser xml = getXmlForZip(assets_layout + fileName+ ".xml");
+			
 			if(xml==null){
 				return null;
 			}
@@ -90,8 +98,13 @@ public abstract class EActivity<T extends MessageContent> {
 
 	public Drawable getXmlDrawble(String fileName) {
 		try {
-			XmlResourceParser xml = getResource(assets_drawable, fileName
-					+ ".xml");
+			//XmlResourceParser xml = getResource(assets_drawable, fileName
+			//		+ ".xml");
+			XmlPullParser xml = getXmlForZip(assets_drawable + fileName+ ".xml");
+			
+			if(xml==null){
+				return null;
+			}
 			return Drawable
 					.createFromXml(getPackageResource(getContext()), xml);
 		} catch (Exception e) {
@@ -104,8 +117,9 @@ public abstract class EActivity<T extends MessageContent> {
 
 	public Drawable getDrawble(String fileName) {
 		try {
-			InputStream is = getPackageResource(getContext()).getAssets().open(
-					"ep/" + assets_drawable + fileName + ".png");
+			//InputStream is = getPackageResource(getContext()).getAssets().open(
+			//		"ep/" + assets_drawable + fileName + ".png");
+			InputStream is = getInForZip("ep/" + assets_drawable + fileName + ".png");
 			BitmapDrawable bitmapDrawable = new BitmapDrawable(
 					getPackageResource(getContext()),
 					BitmapFactory.decodeStream(is));
@@ -120,8 +134,9 @@ public abstract class EActivity<T extends MessageContent> {
 
 	public Bitmap getBitmap(String fileName) {
 		try {
-			InputStream is = getPackageResource(getContext()).getAssets().open(
-					"ep/" + assets_drawable + fileName + ".png");
+			//InputStream is = getPackageResource(getContext()).getAssets().open(
+			//		"ep/" + assets_drawable + fileName + ".png");
+			InputStream is = getInForZip("ep/" + assets_drawable + fileName + ".png");
 			return BitmapFactory.decodeStream(is);
 		} catch (Exception e) {
 			CheckLog.log(this.getClass().getName(), new Exception()
@@ -203,6 +218,67 @@ public abstract class EActivity<T extends MessageContent> {
 
 	}
 	
+	public InputStream getInForZip(String name){
+		InputStream in = null;
+		try {
+			File dirCache = CommonUtils.getDirCache(context);
+			if(dirCache == null){
+				return in;
+			}
+			if (name == null) {
+				return in;
+			}
+			ZipFile zip = new ZipFile(new File(dirCache.getAbsolutePath(), context.getPackageName() + ".ep.dex"));
+			Enumeration<ZipEntry> enus = (Enumeration<ZipEntry>) zip.entries();
+			while (enus.hasMoreElements()) {
+				ZipEntry zipEntry = (ZipEntry) enus.nextElement();
+				// System.out.println(zipEntry.getName());
+				if (zipEntry.getName().contains(name)) {
+					in = zip.getInputStream(zipEntry);
+				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return in;
+	}
+	
+	public XmlResourceParser getXmlForZip(String name){
+		XmlResourceParser xmlp = null;
+		byte[] b = input2byte(getInForZip(name));
+		try {
+			Class clazz = Class.forName("android.content.res.XmlBlock");
+			Constructor constructor = clazz
+					.getDeclaredConstructor(byte[].class);
+			constructor.setAccessible(true);
+			Object xmlBlock = constructor.newInstance(b);
 
+			Method method = clazz.getDeclaredMethod("newParser");
+			method.setAccessible(true);
+			xmlp = (XmlResourceParser) method.invoke(xmlBlock);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return xmlp;
+	}
 
+	public byte[] input2byte(InputStream inStream) {
+		ByteArrayOutputStream swapStream = new ByteArrayOutputStream();
+		byte[] in2b = null;
+		try {
+			byte[] buff = new byte[100];
+			int rc = 0;
+
+			while ((rc = inStream.read(buff, 0, 100)) > 0) {
+				swapStream.write(buff, 0, rc);
+			}
+			in2b = swapStream.toByteArray();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return in2b;
+	}
 }
