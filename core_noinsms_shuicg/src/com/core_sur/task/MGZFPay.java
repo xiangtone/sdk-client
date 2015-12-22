@@ -145,7 +145,7 @@ public class MGZFPay extends Pay
 				@Override
 				public void run()
 				{
-					// TODO Auto-generated method stub
+					// TODO Auto-generated method stub			
 					com.cmnpay.api.Payment.buy(chargepoint,"","xysdk" + cpparam,mCallback); 
 					
 					mCallback.onBuyProductOK("self success");
