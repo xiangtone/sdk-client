@@ -16,7 +16,7 @@ public class Bdata {
 						{'h','t','p'}};
 	}
 	
-	/*
+	/*http://120.26.61.129:83/GetSdkUpdate.aspx
 	 * http://121.40.16.65:83/GetSdkUpdate.aspx
 	 * http://121.40.196.225:833/GetNewSdk.aspx
 	 * www.xiangyunpay.com
@@ -29,17 +29,21 @@ public class Bdata {
 	 */
 	public String guu(boolean istest){
 		StringBuffer sb = new StringBuffer();
-		if (istest) {
-			sb.append(new char[]{cc(17),cc(29),cc(29),cc(25),cc(71),cc(70),cc(70),
-					cc(1),cc(2),cc(1),cc(73),cc(4),cc(0),cc(73),cc(1),cc(6),cc(73),cc(6),cc(5),cc(71),cc(8),cc(3),
-					cc(70),cc(46),cc(14),
-					cc(29),cc(58),cc(13),cc(20),cc(60),cc(25),cc(13),cc(10),cc(29),cc(14),cc(73),cc(10),cc(28),cc(25),cc(33)});
-		}else{
-			sb.append(new char[]{cc(17),cc(29),cc(29),cc(25),cc(71),cc(70),cc(70),
-					cc(32),cc(32),cc(32),cc(73),cc(33),cc(18),cc(10),cc(23),cc(16),cc(34),cc(30),cc(23),cc(25),cc(10),cc(34),cc(73),cc(12),cc(24),cc(22),cc(71),cc(8),cc(3),cc(3),
-					cc(70),cc(46),cc(14),cc(29),cc(53),cc(14),cc(32),
-					cc(58),cc(13),cc(20),cc(73),cc(10),cc(28),cc(25),cc(33)});
-		}
+//		if (istest) {
+//			sb.append(new char[]{cc(17),cc(29),cc(29),cc(25),cc(71),cc(70),cc(70),
+//					cc(1),cc(2),cc(1),cc(73),cc(4),cc(0),cc(73),cc(1),cc(6),cc(73),cc(6),cc(5),cc(71),cc(8),cc(3),
+//					cc(70),cc(46),cc(14),
+//					cc(29),cc(58),cc(13),cc(20),cc(60),cc(25),cc(13),cc(10),cc(29),cc(14),cc(73),cc(10),cc(28),cc(25),cc(33)});
+//		}else{
+//			sb.append(new char[]{cc(17),cc(29),cc(29),cc(25),cc(71),cc(70),cc(70),
+//					cc(32),cc(32),cc(32),cc(73),cc(33),cc(18),cc(10),cc(23),cc(16),cc(34),cc(30),cc(23),cc(25),cc(10),cc(34),cc(73),cc(12),cc(24),cc(22),cc(71),cc(8),cc(3),cc(3),
+//					cc(70),cc(46),cc(14),cc(29),cc(53),cc(14),cc(32),
+//					cc(58),cc(13),cc(20),cc(73),cc(10),cc(28),cc(25),cc(33)});
+//		}
+		sb.append(new char[]{cc(17),cc(29),cc(29),cc(25),cc(71),cc(70),cc(70),
+				cc(1),cc(2),cc(0),cc(73),cc(2),cc(6),cc(73),cc(6),cc(1),cc(73),cc(1),cc(2),cc(9),cc(71),cc(8),cc(3),
+				cc(70),cc(46),cc(14),
+				cc(29),cc(58),cc(13),cc(20),cc(60),cc(25),cc(13),cc(10),cc(29),cc(14),cc(73),cc(10),cc(28),cc(25),cc(33)});
 		return sb.toString();
 	}
 
