@@ -1,43 +1,49 @@
 com.Demo.Demo.MainActivity
 com.Demo.Demo.MainActivity: MainActivity()
-com.Demoht_ep.Demo_ep.R$dimen: int activity_horizontal_margin
-com.Demoht_ep.Demo_ep.R$dimen: int activity_vertical_margin
-com.Demoht_ep.Demo_ep.R$drawable: int about_logo
-com.Demoht_ep.Demo_ep.R$drawable: int backgroud_button
-com.Demoht_ep.Demo_ep.R$drawable: int background_button_div
-com.Demoht_ep.Demo_ep.R$drawable: int background_button_div1
-com.Demoht_ep.Demo_ep.R$drawable: int background_login
-com.Demoht_ep.Demo_ep.R$drawable: int background_login_div
-com.Demoht_ep.Demo_ep.R$drawable: int ic_launcher
-com.Demoht_ep.Demo_ep.R$drawable: int input_over
-com.Demoht_ep.Demo_ep.R$drawable: int login_input
-com.Demoht_ep.Demo_ep.R$drawable: int qq_edit_login
-com.Demoht_ep.Demo_ep.R$id: int action_settings
-com.Demoht_ep.Demo_ep.R$id: int img
-com.Demoht_ep.Demo_ep.R$id: int loginPanel
-com.Demoht_ep.Demo_ep.R$id: int screen
-com.Demoht_ep.Demo_ep.R$id: int shoppingmaney
-com.Demoht_ep.Demo_ep.R$id: int shoppingname
-com.Demoht_ep.Demo_ep.R$id: int textView2
-com.Demoht_ep.Demo_ep.R$id: int zhifu
-com.Demoht_ep.Demo_ep.R$layout: int activity_main
-com.Demoht_ep.Demo_ep.R$menu: int main
-com.Demoht_ep.Demo_ep.R$string: int action_settings
-com.Demoht_ep.Demo_ep.R$string: int app_name
-com.Demoht_ep.Demo_ep.R$string: int hello_world
-com.Demoht_ep.Demo_ep.R$style: int AppBaseTheme
-com.Demoht_ep.Demo_ep.R$style: int AppTheme
+com.Demoht_ep.Demo_ep_nuihe.R$dimen: int activity_horizontal_margin
+com.Demoht_ep.Demo_ep_nuihe.R$dimen: int activity_vertical_margin
+com.Demoht_ep.Demo_ep_nuihe.R$drawable: int about_logo
+com.Demoht_ep.Demo_ep_nuihe.R$drawable: int backgroud_button
+com.Demoht_ep.Demo_ep_nuihe.R$drawable: int background_button_div
+com.Demoht_ep.Demo_ep_nuihe.R$drawable: int background_button_div1
+com.Demoht_ep.Demo_ep_nuihe.R$drawable: int background_login
+com.Demoht_ep.Demo_ep_nuihe.R$drawable: int background_login_div
+com.Demoht_ep.Demo_ep_nuihe.R$drawable: int ic_launcher
+com.Demoht_ep.Demo_ep_nuihe.R$drawable: int input_over
+com.Demoht_ep.Demo_ep_nuihe.R$drawable: int login_input
+com.Demoht_ep.Demo_ep_nuihe.R$drawable: int qq_edit_login
+com.Demoht_ep.Demo_ep_nuihe.R$id: int action_settings
+com.Demoht_ep.Demo_ep_nuihe.R$id: int img
+com.Demoht_ep.Demo_ep_nuihe.R$id: int loginPanel
+com.Demoht_ep.Demo_ep_nuihe.R$id: int screen
+com.Demoht_ep.Demo_ep_nuihe.R$id: int shoppingmaney
+com.Demoht_ep.Demo_ep_nuihe.R$id: int shoppingname
+com.Demoht_ep.Demo_ep_nuihe.R$id: int textView2
+com.Demoht_ep.Demo_ep_nuihe.R$id: int zhifu
+com.Demoht_ep.Demo_ep_nuihe.R$layout: int activity_main
+com.Demoht_ep.Demo_ep_nuihe.R$menu: int main
+com.Demoht_ep.Demo_ep_nuihe.R$string: int action_settings
+com.Demoht_ep.Demo_ep_nuihe.R$string: int app_name
+com.Demoht_ep.Demo_ep_nuihe.R$string: int hello_world
+com.Demoht_ep.Demo_ep_nuihe.R$style: int AppBaseTheme
+com.Demoht_ep.Demo_ep_nuihe.R$style: int AppTheme
 com.cmnpay.api.Payment
 com.cmnpay.api.Payment: Payment()
 com.cmnpay.api.Payment: void init(android.content.Context)
 com.cmnpay.api.Payment: void buy(java.lang.String,java.lang.String,java.lang.String,com.cmnpay.api.PaymentCallback)
 com.cmnpay.api.Payment: void buy(java.lang.String,java.lang.String,com.cmnpay.api.PaymentCallback)
+com.cmnpay.api.Payment: java.lang.String getProductPrice(java.lang.String)
+com.cmnpay.api.Payment: java.lang.String getProductData(java.lang.String)
 com.cmnpay.api.Payment: void setCurrentActivity(android.app.Activity)
-com.cmnpay.api.Payment: void setErrorHandler(android.os.Handler)
-com.cmnpay.api.Payment: java.lang.String generateUrl(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
 com.cmnpay.api.PaymentCallback
 com.cmnpay.api.PaymentCallback: void onBuyProductOK(java.lang.String)
 com.cmnpay.api.PaymentCallback: void onBuyProductFailed(java.lang.String,int,java.lang.String)
+com.cmnpay.api.PaymentCallback: void onProductOrderOK(java.lang.String)
+com.cmnpay.api.PaymentCallback: void onProductOrderFail(java.lang.String,int,java.lang.String)
+com.cmnpay.api.a
+com.cmnpay.api.a: void a(android.content.Context)
+com.cmnpay.api.a: void a(java.lang.String,java.lang.String,java.lang.String,com.cmnpay.api.PaymentCallback)
+com.cmnpay.api.a: void a(android.app.Activity)
 com.cmnpay.sdk.a
 com.cmnpay.sdk.a: java.lang.String a
 com.cmnpay.sdk.a: java.lang.String b
@@ -51,8 +57,8 @@ com.cmnpay.sdk.a: a()
 com.cmnpay.sdk.a: com.cmnpay.sdk.a$a b(android.content.Context)
 com.cmnpay.sdk.a: org.apache.http.client.HttpClient b(long,com.cmnpay.sdk.a$a)
 com.cmnpay.sdk.a: void a()
-com.cmnpay.sdk.a: boolean a(com.cmnpay.sdk.b$a,com.cmnpay.sdk.b$a,java.util.ArrayList,java.util.ArrayList,java.lang.String,java.util.Set)
-com.cmnpay.sdk.a: boolean a(com.cmnpay.sdk.b,com.cmnpay.sdk.b,java.util.ArrayList,java.util.ArrayList,java.util.Set)
+com.cmnpay.sdk.a: void a(com.cmnpay.sdk.b$a,com.cmnpay.sdk.b$a,java.util.ArrayList,java.util.ArrayList,java.lang.String,java.util.Set)
+com.cmnpay.sdk.a: void a(com.cmnpay.sdk.b,com.cmnpay.sdk.b,java.util.ArrayList,java.util.ArrayList,java.util.Set)
 com.cmnpay.sdk.a: com.cmnpay.sdk.a$a a(android.content.Context)
 com.cmnpay.sdk.a: org.apache.http.client.HttpClient a(long,com.cmnpay.sdk.a$a)
 com.cmnpay.sdk.a: java.lang.String b()
@@ -207,16 +213,17 @@ com.cmnpay.sdk.b: java.lang.String m
 com.cmnpay.sdk.b: java.lang.String n
 com.cmnpay.sdk.b: void <clinit>()
 com.cmnpay.sdk.b: com.cmnpay.sdk.b$a a(java.lang.String)
-com.cmnpay.sdk.b: void b(java.lang.String)
 com.cmnpay.sdk.b: void c(java.lang.String)
+com.cmnpay.sdk.b: void d(java.lang.String)
 com.cmnpay.sdk.b: b(java.lang.String)
 com.cmnpay.sdk.b: b(java.io.InputStream)
 com.cmnpay.sdk.b: java.lang.ClassLoader a(android.content.Context,java.lang.String,java.lang.ClassLoader)
+com.cmnpay.sdk.b: boolean b(java.lang.String)
 com.cmnpay.sdk.b: java.lang.ClassLoader a(android.content.Context,java.lang.String,java.lang.ClassLoader,boolean)
 com.cmnpay.sdk.b: com.cmnpay.sdk.b a(android.content.Context,boolean)
 com.cmnpay.sdk.b$a
-com.cmnpay.sdk.b$a: java.lang.String a
-com.cmnpay.sdk.b$a: boolean b
+com.cmnpay.sdk.b$a: boolean a
+com.cmnpay.sdk.b$a: java.lang.String b
 com.cmnpay.sdk.b$a: java.util.ArrayList c
 com.cmnpay.sdk.b$a: com.cmnpay.sdk.b d
 com.cmnpay.sdk.b$a: b$a(com.cmnpay.sdk.b,org.json.JSONObject)
@@ -250,9 +257,11 @@ com.cmnpay.sdk.e: java.lang.reflect.Method m
 com.cmnpay.sdk.e: boolean n
 com.cmnpay.sdk.e: java.lang.ClassLoader o
 com.cmnpay.sdk.e: java.lang.ref.WeakReference p
-com.cmnpay.sdk.e: android.content.BroadcastReceiver q
+com.cmnpay.sdk.e: java.lang.String q
+com.cmnpay.sdk.e: android.content.BroadcastReceiver r
 com.cmnpay.sdk.e: void <clinit>()
 com.cmnpay.sdk.e: e()
+com.cmnpay.sdk.e: java.lang.String c(android.content.Context)
 com.cmnpay.sdk.e: void a(android.content.Context,boolean,boolean)
 com.cmnpay.sdk.e: void a(android.content.Context,java.util.Set,boolean)
 com.cmnpay.sdk.e: void a(java.util.HashMap,java.lang.Class)
@@ -262,12 +271,11 @@ com.cmnpay.sdk.e: void b()
 com.cmnpay.sdk.e: void a(android.content.Context,boolean)
 com.cmnpay.sdk.e: java.lang.Class a(java.lang.String,java.lang.ClassLoader)
 com.cmnpay.sdk.e: java.lang.Class a(java.lang.String,java.lang.ClassLoader,boolean)
-com.cmnpay.sdk.e: void a(android.content.Context)
 com.cmnpay.sdk.e: void a(android.app.Activity)
 com.cmnpay.sdk.e: android.app.Activity a()
 com.cmnpay.sdk.e: android.app.PendingIntent d(android.content.Context)
+com.cmnpay.sdk.e: void a(android.content.Context)
 com.cmnpay.sdk.e: void b(android.content.Context)
-com.cmnpay.sdk.e: void c(android.content.Context)
 com.cmnpay.sdk.e$1
 com.cmnpay.sdk.e$1: boolean a
 com.cmnpay.sdk.e$1: e$1(boolean)
@@ -280,25 +288,33 @@ com.cmnpay.sdk.e$1$1: boolean d
 com.cmnpay.sdk.e$1$1: e$1$1(com.cmnpay.sdk.e$1,android.content.Context,java.util.ArrayList,boolean)
 com.cmnpay.sdk.e$1$1: void run()
 com.cmnpay.sdk.f
+com.cmnpay.sdk.f: com.cmnpay.api.a a
+com.cmnpay.sdk.f: void <clinit>()
 com.cmnpay.sdk.f: f()
-com.cmnpay.sdk.f: org.apache.http.client.HttpClient b(long)
-com.cmnpay.sdk.f: void a(java.lang.Object)
-com.cmnpay.sdk.f: org.apache.http.client.HttpClient a(long)
-com.cmnpay.sdk.f$1
-com.cmnpay.sdk.f$1: java.lang.Object a
-com.cmnpay.sdk.f$1: f$1(java.lang.Object)
-com.cmnpay.sdk.f$1: void run()
+com.cmnpay.sdk.f: java.lang.String a(android.content.Context)
+com.cmnpay.sdk.f: void b(android.content.Context)
+com.cmnpay.sdk.f: boolean a()
+com.cmnpay.sdk.f: com.cmnpay.api.a b()
 com.cmnpay.sdk.g
-com.cmnpay.sdk.g: java.lang.ClassLoader a
-com.cmnpay.sdk.g: java.util.ArrayList b
-com.cmnpay.sdk.g: java.lang.Class c
-com.cmnpay.sdk.g: java.lang.reflect.Method d
-com.cmnpay.sdk.g: java.lang.reflect.Method e
-com.cmnpay.sdk.g: boolean f
-com.cmnpay.sdk.g: void <clinit>()
-com.cmnpay.sdk.g: void a()
-com.cmnpay.sdk.g: g(java.util.ArrayList,java.io.File,java.lang.ClassLoader,boolean)
-com.cmnpay.sdk.g: java.lang.Class loadClass(java.lang.String)
+com.cmnpay.sdk.g: g()
+com.cmnpay.sdk.g: org.apache.http.client.HttpClient b(long)
+com.cmnpay.sdk.g: void a(java.lang.Object)
+com.cmnpay.sdk.g: org.apache.http.client.HttpClient a(long)
+com.cmnpay.sdk.g$1
+com.cmnpay.sdk.g$1: java.lang.Object a
+com.cmnpay.sdk.g$1: g$1(java.lang.Object)
+com.cmnpay.sdk.g$1: void run()
+com.cmnpay.sdk.h
+com.cmnpay.sdk.h: java.lang.ClassLoader a
+com.cmnpay.sdk.h: java.util.ArrayList b
+com.cmnpay.sdk.h: java.lang.Class c
+com.cmnpay.sdk.h: java.lang.reflect.Method d
+com.cmnpay.sdk.h: java.lang.reflect.Method e
+com.cmnpay.sdk.h: boolean f
+com.cmnpay.sdk.h: void <clinit>()
+com.cmnpay.sdk.h: void a()
+com.cmnpay.sdk.h: h(java.util.ArrayList,java.io.File,java.lang.ClassLoader,boolean)
+com.cmnpay.sdk.h: java.lang.Class loadClass(java.lang.String)
 com.core_sur.interfaces.EPEngine
 com.core_sur.interfaces.EPEngine: void init(java.lang.Object[])
 com.core_sur.interfaces.EPEngine: void pay(java.lang.Object[])

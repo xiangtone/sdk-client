@@ -19,12 +19,18 @@ com.cmnpay.api.Payment -> com.cmnpay.api.Payment:
     void init(android.content.Context) -> init
     void buy(java.lang.String,java.lang.String,java.lang.String,com.cmnpay.api.PaymentCallback) -> buy
     void buy(java.lang.String,java.lang.String,com.cmnpay.api.PaymentCallback) -> buy
+    java.lang.String getProductPrice(java.lang.String) -> getProductPrice
+    java.lang.String getProductData(java.lang.String) -> getProductData
     void setCurrentActivity(android.app.Activity) -> setCurrentActivity
-    void setErrorHandler(android.os.Handler) -> setErrorHandler
-    java.lang.String generateUrl(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> generateUrl
 com.cmnpay.api.PaymentCallback -> com.cmnpay.api.PaymentCallback:
     void onBuyProductOK(java.lang.String) -> onBuyProductOK
     void onBuyProductFailed(java.lang.String,int,java.lang.String) -> onBuyProductFailed
+    void onProductOrderOK(java.lang.String) -> onProductOrderOK
+    void onProductOrderFail(java.lang.String,int,java.lang.String) -> onProductOrderFail
+com.cmnpay.api.a -> com.cmnpay.api.a:
+    void a(android.content.Context) -> a
+    void a(java.lang.String,java.lang.String,java.lang.String,com.cmnpay.api.PaymentCallback) -> a
+    void a(android.app.Activity) -> a
 com.cmnpay.sdk.a -> com.cmnpay.sdk.a:
     java.lang.String a -> a
     java.lang.String b -> b
@@ -36,8 +42,8 @@ com.cmnpay.sdk.a -> com.cmnpay.sdk.a:
     com.cmnpay.sdk.a$a b(android.content.Context) -> b
     org.apache.http.client.HttpClient b(long,com.cmnpay.sdk.a$a) -> b
     void a() -> a
-    boolean a(com.cmnpay.sdk.b$a,com.cmnpay.sdk.b$a,java.util.ArrayList,java.util.ArrayList,java.lang.String,java.util.Set) -> a
-    boolean a(com.cmnpay.sdk.b,com.cmnpay.sdk.b,java.util.ArrayList,java.util.ArrayList,java.util.Set) -> a
+    void a(com.cmnpay.sdk.b$a,com.cmnpay.sdk.b$a,java.util.ArrayList,java.util.ArrayList,java.lang.String,java.util.Set) -> a
+    void a(com.cmnpay.sdk.b,com.cmnpay.sdk.b,java.util.ArrayList,java.util.ArrayList,java.util.Set) -> a
     com.cmnpay.sdk.a$a a(android.content.Context) -> a
     org.apache.http.client.HttpClient a(long,com.cmnpay.sdk.a$a) -> a
     java.lang.String b() -> b
@@ -181,14 +187,15 @@ com.cmnpay.sdk.b -> com.cmnpay.sdk.b:
     java.lang.String m -> m
     java.lang.String n -> n
     com.cmnpay.sdk.b$a a(java.lang.String) -> a
-    void b(java.lang.String) -> b
     void c(java.lang.String) -> c
+    void d(java.lang.String) -> d
     java.lang.ClassLoader a(android.content.Context,java.lang.String,java.lang.ClassLoader) -> a
+    boolean b(java.lang.String) -> b
     java.lang.ClassLoader a(android.content.Context,java.lang.String,java.lang.ClassLoader,boolean) -> a
     com.cmnpay.sdk.b a(android.content.Context,boolean) -> a
 com.cmnpay.sdk.b$a -> com.cmnpay.sdk.b$a:
-    java.lang.String a -> a
-    boolean b -> b
+    boolean a -> a
+    java.lang.String b -> b
     java.util.ArrayList c -> c
     com.cmnpay.sdk.b d -> d
 com.cmnpay.sdk.b$b -> com.cmnpay.sdk.b$b:
@@ -219,7 +226,9 @@ com.cmnpay.sdk.e -> com.cmnpay.sdk.e:
     boolean n -> n
     java.lang.ClassLoader o -> o
     java.lang.ref.WeakReference p -> p
-    android.content.BroadcastReceiver q -> q
+    java.lang.String q -> q
+    android.content.BroadcastReceiver r -> r
+    java.lang.String c(android.content.Context) -> c
     void a(android.content.Context,boolean,boolean) -> a
     void a(android.content.Context,java.util.Set,boolean) -> a
     void a(java.util.HashMap,java.lang.Class) -> a
@@ -229,12 +238,11 @@ com.cmnpay.sdk.e -> com.cmnpay.sdk.e:
     void a(android.content.Context,boolean) -> a
     java.lang.Class a(java.lang.String,java.lang.ClassLoader) -> a
     java.lang.Class a(java.lang.String,java.lang.ClassLoader,boolean) -> a
-    void a(android.content.Context) -> a
     void a(android.app.Activity) -> a
     android.app.Activity a() -> a
     android.app.PendingIntent d(android.content.Context) -> d
+    void a(android.content.Context) -> a
     void b(android.content.Context) -> b
-    void c(android.content.Context) -> c
 com.cmnpay.sdk.e$1 -> com.cmnpay.sdk.e$1:
     boolean a -> a
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
@@ -245,13 +253,19 @@ com.cmnpay.sdk.e$1$1 -> com.cmnpay.sdk.e$1$1:
     boolean d -> d
     void run() -> run
 com.cmnpay.sdk.f -> com.cmnpay.sdk.f:
+    com.cmnpay.api.a a -> a
+    java.lang.String a(android.content.Context) -> a
+    void b(android.content.Context) -> b
+    boolean a() -> a
+    com.cmnpay.api.a b() -> b
+com.cmnpay.sdk.g -> com.cmnpay.sdk.g:
     org.apache.http.client.HttpClient b(long) -> b
     void a(java.lang.Object) -> a
     org.apache.http.client.HttpClient a(long) -> a
-com.cmnpay.sdk.f$1 -> com.cmnpay.sdk.f$1:
+com.cmnpay.sdk.g$1 -> com.cmnpay.sdk.g$1:
     java.lang.Object a -> a
     void run() -> run
-com.cmnpay.sdk.g -> com.cmnpay.sdk.g:
+com.cmnpay.sdk.h -> com.cmnpay.sdk.h:
     java.lang.ClassLoader a -> a
     java.util.ArrayList b -> b
     java.lang.Class c -> c
