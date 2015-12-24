@@ -140,6 +140,18 @@ public class MGZFPay2 extends Pay
 							mgzfPayStatus = MGZF_PAY_FAIL;
 							payFail("arg0:" + arg0 + ";arg1:" + arg1 +";arg2:" + arg2);
 						}
+
+						@Override
+						public void onProductOrderFail(String arg0, int arg1, String arg2) {
+							// TODO Auto-generated method stub
+							
+						}
+
+						@Override
+						public void onProductOrderOK(String arg0) {
+							// TODO Auto-generated method stub
+							
+						}
 					});
 					
 					LogUtil.log(LogUtil.INFO, "Andy run2 ", "Payment.buy start");

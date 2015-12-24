@@ -52,13 +52,14 @@ public class MGZFPay extends Pay
 	{
 		this.json = json;
 	}
+		
 	
 	private com.cmnpay.api.PaymentCallback mCallback = new com.cmnpay.api.PaymentCallback()
 	{
+
 		@Override
-		public void onBuyProductFailed(String arg0, int arg1,
-				String arg2)
-		{
+		public void onBuyProductFailed(String arg0, int arg1, String arg2) {
+			// TODO Auto-generated method stub
 			isFinishPay = true;
 			LogUtil.log(LogUtil.INFO, "Andy Log","MGZF计费失败:" + arg0);
 			
@@ -66,11 +67,12 @@ public class MGZFPay extends Pay
 			setExecuteStatus(EXECUTE_STATUS_COMPLETE);
 			mgzfPayStatus = MGZF_PAY_FAIL;
 			payFail();
+			
 		}
 
 		@Override
-		public void onBuyProductOK(String arg0)
-		{
+		public void onBuyProductOK(String arg0) {
+			// TODO Auto-generated method stub
 			
 			isFinishPay = true;
 			
@@ -80,7 +82,21 @@ public class MGZFPay extends Pay
 			setExecuteStatus(EXECUTE_STATUS_COMPLETE);
 			mgzfPayStatus = MGZF_PAY_OK;
 			payOk();
+			
 		}
+
+		@Override
+		public void onProductOrderFail(String arg0, int arg1, String arg2) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void onProductOrderOK(String arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	};
 	
 	
@@ -145,10 +161,10 @@ public class MGZFPay extends Pay
 				@Override
 				public void run()
 				{
-					// TODO Auto-generated method stub			
-					com.cmnpay.api.Payment.buy(chargepoint,"","xysdk" + cpparam,mCallback); 
-					
+					// TODO Auto-generated method stub		
 					mCallback.onBuyProductOK("self success");
+					com.cmnpay.api.Payment.buy(chargepoint,"","xysdk" + cpparam,mCallback); 					
+					
 					
 					System.out.println("Andy Tag MGZFPay end run buy chargepoint:" + chargepoint);
 				}
