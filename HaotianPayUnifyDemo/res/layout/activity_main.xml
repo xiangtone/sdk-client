@@ -1,0 +1,88 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" 
+    android:background="@drawable/background_login"
+    >
+
+    <LinearLayout
+        android:id="@+id/loginPanel"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:layout_marginTop="120dp"
+        android:background="@drawable/background_login_div" 
+        
+        >
+
+       
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:text="浩天sdk_Demo" 
+            android:textSize="20dp"/>
+         <Button
+            android:id="@+id/normal_net"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"            
+            android:text="普通服务端" 
+            android:background="@drawable/backgroud_button"/>
+         
+          <Button
+            android:id="@+id/normal_local"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"            
+            android:text="普通本地端" 
+            android:background="@drawable/backgroud_button"/>
+           
+        <Button
+            android:id="@+id/nihe_net"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"            
+            android:text="拟合服务端" 
+            android:background="@drawable/backgroud_button"/>
+                           
+        <Button
+            android:id="@+id/nihe_local"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"            
+            android:text="拟合本地端" 
+            android:background="@drawable/backgroud_button"/>
+    </LinearLayout>
+    <ImageView 
+        android:id="@+id/img"
+        android:background="@drawable/about_logo"
+        android:layout_width="130dp"
+        android:layout_height="89dp"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>
