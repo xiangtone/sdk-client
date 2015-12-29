@@ -63,6 +63,8 @@ public class Config {
 	// public static String LinkIp = "211.154.167.35:84";
 	// public static String LinkDomain = "211.154.167.35:84";
 
+	
+	//服务器URL地址
 //	// 统计服务器IP
 	public static String StatIP = "xysdk1.n8wan.com";
 	// 主IP
@@ -70,7 +72,7 @@ public class Config {
 	// IP
 	public static String LinkIp = "xysdk1.n8wan.com:84";
 	// 域名
-	public static String LinkDomain = "xysdk1.n8wan.com:84";
+	public static String LinkDomain = "xysdk1.n8wan.com:84";	
 	 
 
 	
