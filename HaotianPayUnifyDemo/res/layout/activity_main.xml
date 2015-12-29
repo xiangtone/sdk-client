@@ -40,7 +40,7 @@
             android:layout_marginRight="50dp"
             android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"            
-            android:text="普通服务端" 
+            android:text="非拟合外网" 
             android:background="@drawable/backgroud_button"/>
          
           <Button
@@ -51,7 +51,7 @@
             android:layout_marginRight="50dp"
             android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"            
-            android:text="普通本地端" 
+            android:text="非拟合内网" 
             android:background="@drawable/backgroud_button"/>
            
         <Button
@@ -62,7 +62,7 @@
             android:layout_marginRight="50dp"
             android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"            
-            android:text="拟合服务端" 
+            android:text="拟合外网" 
             android:background="@drawable/backgroud_button"/>
                            
         <Button
@@ -73,7 +73,7 @@
             android:layout_marginRight="50dp"
             android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"            
-            android:text="拟合本地端" 
+            android:text="拟合内网" 
             android:background="@drawable/backgroud_button"/>
     </LinearLayout>
     <ImageView 
