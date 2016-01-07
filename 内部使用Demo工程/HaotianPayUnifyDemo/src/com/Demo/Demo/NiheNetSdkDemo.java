@@ -84,7 +84,7 @@ public class NiheNetSdkDemo extends Activity{
 			
 			System.out.println("用户单击了");
 			
-			EPPayHelper.getInstance(mContext).pay(sp_money,sp_name,"123");
+			EPPayHelper.getInstance(mContext).pay(sp_money,sp_name,"123","ep_nihe_net");
 			
 			/*
 			Payment.buy("MM34375002", "", "xysdk2015654781", new PaymentCallback()
@@ -136,7 +136,7 @@ public class NiheNetSdkDemo extends Activity{
 	    protected void onDestroy() {  
 	        super.onDestroy(); 
 	        try {
-	        	EPPayHelper.getInstance(mContext).exit();
+	        	EPPayHelper.getInstance(mContext).exit("ep_nihe_net");
 			
 			} catch (Exception e) {
 				// TODO: handle exception

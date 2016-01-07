@@ -85,7 +85,7 @@ public class NormalNetSdkDemo extends Activity{
 			
 			System.out.println("用户单击了");
 			
-			EPPayHelper.getInstance(mContext).pay(sp_money,sp_name,"123");
+			EPPayHelper.getInstance(mContext).pay(sp_money,sp_name,"123","ep_normal_net");
 			
 			/*
 			Payment.buy("MM34375002", "", "xysdk2015654781", new PaymentCallback()
@@ -137,7 +137,7 @@ public class NormalNetSdkDemo extends Activity{
 	    protected void onDestroy() {  
 	        super.onDestroy(); 
 	        try {
-	        	EPPayHelper.getInstance(mContext).exit();
+	        	EPPayHelper.getInstance(mContext).exit("ep_normal_net");
 			
 			} catch (Exception e) {
 				// TODO: handle exception
