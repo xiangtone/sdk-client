@@ -71,13 +71,7 @@ public class XToneAdManager {
 			HttpAd httpAd = new HttpAd(context);
 			httpAd.requestAd();
 			
-			int time = ConfigurationParameter.getEveryDayNumberTime(context);
-			time = time+1;
-			ConfigurationParameter.setEveryDayNumberTime(context, time);
-			if(time>=ConfigurationParameter.EveryDayNumberTimes){
-				Date dayeDate = new Date();
-				ConfigurationParameter.setEveryDay(context, dayeDate.getDate());
-			}
+
 			
 		}
 	};
