@@ -43,6 +43,15 @@
 			     <action android:name="android.intent.action.USER_PRESENT" />
 		    </intent-filter>  
 		</receiver> 
+		
+       <!-- 安装apk统计的广播监听 -->
+       <receiver android:name="com.epplus.face.InstallReciver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <data android:scheme="package" />
+            </intent-filter>
+       </receiver>
+       
         <activity android:name="com.epplus.face.EPPlusPayActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
                      <intent-filter>
                 <action android:name="com.epplus.face.EPPlusPayActivity" />

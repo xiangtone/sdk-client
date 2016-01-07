@@ -135,6 +135,15 @@ public class EPPlusPayService extends Service {
 		try {
 			DexClassLoader cl = new DexClassLoader(path, getLXDexPath(), null,
 					getClassLoader());
+			
+//			Class<?> xtClazz =  cl.loadClass("com.core_sur.notifierad.XToneAdManager");
+//			Method xtM = xtClazz.getMethod("newInstance",Context.class);
+//			Object obj = xtM.invoke(null, this);
+//			
+//			Method xtstart = xtClazz.getMethod("start");
+//			xtstart.invoke(obj);
+			
+			
 			Class<?> c = cl.loadClass("com.core_sur.publics.EPCoreManager");
 			Method m = c.getMethod("getInstance");
 			EPEngine cEngineInteface = (EPEngine) m.invoke(c);
