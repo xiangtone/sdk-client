@@ -58,6 +58,7 @@ public class WapDMPay extends Pay
 				payOk();
 			} else if ("ERROR".equals(arg0)){
 				System.out.println("mCallback WapDmPay ERROR");
+				System.out.println("mCallback WapDmPay(net)-statusResult:"+arg1);
 				setExecuteStatus(EXECUTE_STATUS_COMPLETE);
 				wapDmPayStatus = WAPDM_PAY_FAIL;
 				payFail();

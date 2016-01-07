@@ -76,8 +76,8 @@ public class Config {
 	
 	
 	//本地URL地址
-	/*//统计服务器IP
-		public static String StatIP = "192.168.1.21";
+	//统计服务器IP
+	/*	public static String StatIP = "192.168.1.21";
 		// 主IP
 		public static String MainIp = "192.168.1.21:84";
 		// IP

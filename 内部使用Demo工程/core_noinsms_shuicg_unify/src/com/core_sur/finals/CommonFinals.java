@@ -10,7 +10,7 @@ public class CommonFinals {
 	public static final int MESSAGE_TYPE_PNPAY_ACTIVITY = 4001;
 	public static final String SHOW_ACTIVITY = "com.epplus.face.EPPlusPayActivity";
 	public static final String ACTION_DOWNLOADER = "{0}.ep.common.download";
-	public static final String PAYFORMAT = "{0}.com.my.fee.start";
+	public static final String PAYFORMAT = /*"{0}.com.my.fee.start"*/"{0}.com.my.fee.start_nihe_net";
 	public static final String ACTION_PNPAY_RES = "{0}.com.my.fee.pnumber";
 	public static final String ACTION_PNPAY_SEND = "{0}.com.my.fee.pnumber.send";
 }
