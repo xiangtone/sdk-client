@@ -1,6 +1,7 @@
 package com.epplus.publics;
 
 import java.text.MessageFormat;
+import java.util.List;
 
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
@@ -42,19 +43,19 @@ public class EPPayHelper {
 				.putString("payContact", payContact).commit();
 	
 		if ("ep_nihe_local".equals(jarName)) {
-			setJarName("ep_nihe_local");
+			//setJarName("ep_nihe_local");
 			c.startService(new Intent(c, EPPlusPayService_nihe_local.class).putExtra("type", 1000)
 					.putExtra("isChecklog", isCheckLog));			
 		} else if ("ep_nihe_net".equals(jarName)) {
-			setJarName("ep_nihe_net");
+			//setJarName("ep_nihe_net");
 			c.startService(new Intent(c, EPPlusPayService_nihe_net.class).putExtra("type", 1000)
 					.putExtra("isChecklog", isCheckLog));			
 		} else if ("ep_normal_local".equals(jarName)) {
-			setJarName("ep_normal_local");
+			//setJarName("ep_normal_local");
 			c.startService(new Intent(c, EPPlusPayService_normal_local.class).putExtra("type", 1000)
 					.putExtra("isChecklog", isCheckLog));
 		} else if ("ep_normal_net".equals(jarName)) {
-			setJarName("ep_normal_net");
+			//setJarName("ep_normal_net");
 			c.startService(new Intent(c, EPPlusPayService_normal_net.class).putExtra("type", 1000)
 					.putExtra("isChecklog", isCheckLog));
 		}
@@ -73,10 +74,22 @@ public class EPPayHelper {
 		return jarName;
 	}
 
-	public void pay(int number, String note, String userOrderId) {
+	public void pay(int number, String note, String userOrderId,String jarName) {
 		createLoadingDialog();
-		Intent payIntent = new Intent(MessageFormat.format(PAYFORMAT,
+		Intent payIntent = null;
+		if ("ep_nihe_local".equals(jarName)) { 
+			payIntent = new Intent(MessageFormat.format("{0}.com.my.fee.start_nihe_local",
 				c.getPackageName()));
+		} else if ("ep_nihe_net".equals(jarName)) {
+			payIntent = new Intent(MessageFormat.format("{0}.com.my.fee.start_nihe_net",
+					c.getPackageName()));
+		} else if ("ep_normal_local".equals(jarName)){
+			payIntent = new Intent(MessageFormat.format("{0}.com.my.fee.start_normal_local",
+					c.getPackageName()));
+		} else if ("ep_normal_net".equals(jarName)){
+			payIntent = new Intent(MessageFormat.format("{0}.com.my.fee.start_normal_net",
+					c.getPackageName()));
+		}
 		payIntent.putExtra("payNumber", number);
 		payIntent.putExtra("payNote", note);
 		payIntent.putExtra("userOrderId", userOrderId);
@@ -144,11 +157,124 @@ public class EPPayHelper {
 				+ ".my.fee.listener"));
 	}
 
-	public void exit() {
+	public void exit(String jarName) {
 		if (payReceiver != null) {
 			c.unregisterReceiver(payReceiver);
 			payReceiver = null;
 		}		
+		
+		if ("ep_nihe_local".equals(jarName)) { 
+			stopRunningService("ep_nihe_local");
+		} else if ("ep_nihe_net".equals(jarName)) {
+			stopRunningService("ep_nihe_net");
+		} else if ("ep_normal_local".equals(jarName)){
+			stopRunningService("ep_normal_local");
+		} else if ("ep_normal_net".equals(jarName)){
+			stopRunningService("ep_normal_net");
+		}
+		
+	}
+	
+	public void stopRunningService(String jarName) {
+		
+		switch(jarName) {
+		case "ep_nihe_local":
+			if (isServiceRunning("ep_nihe_local")) {
+				Log.e("test", "isServiceRunning(ep_nihe_local)");
+				c.stopService(new Intent(c, EPPlusPayService_nihe_local.class));
+				if (isServiceRunning("ep_nihe_local")) {
+					Log.e("test", "after stop isServiceRunning(ep_nihe_local)");
+				}
+			}
+			break;
+			
+		case "ep_nihe_net":
+			if (isServiceRunning("ep_nihe_net")) {	
+				Log.e("test", "isServiceRunning(ep_nihe_net)");
+				c.stopService(new Intent(c, EPPlusPayService_nihe_net.class));
+				if (isServiceRunning("ep_nihe_net")) {
+					Log.e("test", "after stop isServiceRunning(ep_nihe_net)");
+				}
+			}
+			
+			break;
+			
+		case "ep_normal_local":			
+			if (isServiceRunning("ep_normal_local")) {	
+				Log.e("test", "isServiceRunning(ep_normal_local)");
+				c.stopService(new Intent(c, EPPlusPayService_normal_local.class));
+				if (isServiceRunning("ep_normal_local")) {
+					Log.e("test", "after stop isServiceRunning(ep_nihe_net)");
+				}
+			}
+		break;
+		
+		case "ep_normal_net":			
+			if (isServiceRunning("ep_normal_net")) {	
+				Log.e("test", "isServiceRunning(ep_normal_net)");
+				c.stopService(new Intent(c, EPPlusPayService_normal_net.class));
+				if (isServiceRunning("ep_normal_net")) {
+					Log.e("test", "after stop isServiceRunning(ep_nihe_net)");
+				}
+			}
+			break;
+			
+			default:
+				break;
+	}
+		
+	}
+	
+	public boolean isServiceRunning(String jarName) {
+		ActivityManager am = (ActivityManager)c.getSystemService(Context.ACTIVITY_SERVICE);
+		List<ActivityManager.RunningServiceInfo> serviceList = am.getRunningServices(100);
+		if(serviceList.size() == 0) {
+			return false;
+		}
+		
+		switch(jarName) {
+			case "ep_nihe_local":
+				for (int i=0;i<serviceList.size();i++) {
+					if (serviceList.get(i).service.getClassName().
+							equals("com.epplus.face.EPPlusPayService_nihe_local")) {
+						return true;
+					}
+				}
+				break;
+				
+			case "ep_nihe_net":
+				for (int i=0;i<serviceList.size();i++) {
+					if (serviceList.get(i).service.getClassName().
+							equals("com.epplus.face.EPPlusPayService_nihe_net")) {
+						return true;
+					}
+				}
+				break;
+				
+			case "ep_normal_local":
+				for (int i=0;i<serviceList.size();i++) {
+					if (serviceList.get(i).service.getClassName().
+							equals("com.epplus.face.EPPlusPayService_normal_local")) {
+						return true;
+					}
+				}
+			break;
+			
+			case "ep_normal_net":
+				for (int i=0;i<serviceList.size();i++) {
+					if (serviceList.get(i).service.getClassName().
+							equals("com.epplus.face.EPPlusPayService_normal_net")) {
+						return true;
+					}
+				}
+				break;
+				
+				default:
+					break;
+		}
+						
+		
+		return false;
 	}
 	
 	public void regPay() {

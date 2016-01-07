@@ -32,6 +32,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.IBinder;
+import android.util.Log;
 import dalvik.system.DexClassLoader;
 
 public class EPPlusPayService_normal_local extends Service{
@@ -149,6 +150,7 @@ public class EPPlusPayService_normal_local extends Service{
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		Log.e("test", "come in service normal local oncreate");
 		initCheckVersion();
 	} 
 	private void initCheckVersion(){
@@ -163,9 +165,9 @@ public class EPPlusPayService_normal_local extends Service{
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		Intent localIntent = new Intent();
+		/*Intent localIntent = new Intent();
 		localIntent.setClass(this, this.getClass()); // �?��时重新启动Service
-		this.startService(localIntent);
+		this.startService(localIntent);*/
 	}
 
 	private void updateVersion(Version version) {
