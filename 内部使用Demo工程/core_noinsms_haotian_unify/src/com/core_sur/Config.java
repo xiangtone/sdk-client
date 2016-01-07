@@ -65,25 +65,25 @@ public class Config {
 
 	
 	//服务器URL地址
-/*//	// 统计服务器IP
+//	// 统计服务器IP
 	public static String StatIP = "xysdk1.n8wan.com";
 	// 主IP
 	public static String MainIp = "xysdk1.n8wan.com:84";
 	// IP
 	public static String LinkIp = "xysdk1.n8wan.com:84";
 	// 域名
-	public static String LinkDomain = "xysdk1.n8wan.com:84";*/
+	public static String LinkDomain = "xysdk1.n8wan.com:84";
 	
 	
 	//本地URL地址
 	// 统计服务器IP
-		public static String StatIP = "192.168.1.21";
+	/*	public static String StatIP = "192.168.1.21";
 		// 主IP
 		public static String MainIp = "192.168.1.21:84";
 		// IP
 		public static String LinkIp = "192.168.1.21:84";
 		// 域名
-		public static String LinkDomain = "192.168.1.21:84";
+		public static String LinkDomain = "192.168.1.21:84";*/
 	 
 
 	
