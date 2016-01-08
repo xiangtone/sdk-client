@@ -519,7 +519,7 @@ return null;
 	}
 
 	public static SharedPreferences getSp(Context c) {
-		SharedPreferences sp = c.getSharedPreferences("ep",
+		SharedPreferences sp = c.getSharedPreferences(/*"ep"*/"ep_normal_net",
 				Context.MODE_PRIVATE);
 		return sp;
 	}

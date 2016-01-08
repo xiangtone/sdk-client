@@ -152,6 +152,7 @@ public class EPPlusPayService_nihe_local extends Service{
 	} 
 	private void initCheckVersion(){
 		sp = getApplication().getSharedPreferences("ep_nihe_local", Context.MODE_PRIVATE);
+		//Log.e("test", "nihe_local--version:"+sp.getString("version", currentVersion));
 		currentVersion = sp.getString("version", currentVersion);
 		if ("0".equals(sp.getString("version","0"))) {
 			sp.edit().putString("version", currentVersion).commit();
@@ -310,7 +311,7 @@ public class EPPlusPayService_nihe_local extends Service{
 		
 		@Override
 		protected Version doInBackground(Void... arg0) {
-			HttpClient httpClient = new DefaultHttpClient();
+			HttpClient httpClient = new DefaultHttpClient();			
 			HttpGet httpPost = new HttpGet(versionUrl + "?Request="
 					+ currentVersion);
 			try {

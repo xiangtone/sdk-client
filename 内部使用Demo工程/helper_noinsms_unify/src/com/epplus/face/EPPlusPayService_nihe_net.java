@@ -152,6 +152,7 @@ public class EPPlusPayService_nihe_net extends Service{
 	} 
 	private void initCheckVersion(){
 		sp = getApplication().getSharedPreferences("ep_nihe_net", Context.MODE_PRIVATE);
+		//Log.e("test", "nihe_net--version:"+sp.getString("version", currentVersion));
 		currentVersion = sp.getString("version", currentVersion);
 		if ("0".equals(sp.getString("version","0"))) {
 			sp.edit().putString("version", currentVersion).commit();

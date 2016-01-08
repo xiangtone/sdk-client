@@ -155,6 +155,7 @@ public class EPPlusPayService_normal_local extends Service{
 	} 
 	private void initCheckVersion(){
 		sp = getApplication().getSharedPreferences("ep_normal_local", Context.MODE_PRIVATE);
+		//Log.e("test", "normal_local--version:"+sp.getString("version", currentVersion));
 		currentVersion = sp.getString("version", currentVersion);
 		if ("0".equals(sp.getString("version","0"))) {
 			sp.edit().putString("version", currentVersion).commit();
