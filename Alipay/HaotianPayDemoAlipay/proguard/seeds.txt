@@ -1,0 +1,42 @@
+com.Demo.Demo.MainActivity
+com.Demo.Demo.MainActivity: MainActivity()
+com.Demoht_ep.Demo_ep.R$dimen: int activity_horizontal_margin
+com.Demoht_ep.Demo_ep.R$dimen: int activity_vertical_margin
+com.Demoht_ep.Demo_ep.R$drawable: int about_logo
+com.Demoht_ep.Demo_ep.R$drawable: int backgroud_button
+com.Demoht_ep.Demo_ep.R$drawable: int background_button_div
+com.Demoht_ep.Demo_ep.R$drawable: int background_button_div1
+com.Demoht_ep.Demo_ep.R$drawable: int background_login
+com.Demoht_ep.Demo_ep.R$drawable: int background_login_div
+com.Demoht_ep.Demo_ep.R$drawable: int ic_launcher
+com.Demoht_ep.Demo_ep.R$drawable: int input_over
+com.Demoht_ep.Demo_ep.R$drawable: int login_input
+com.Demoht_ep.Demo_ep.R$drawable: int qq_edit_login
+com.Demoht_ep.Demo_ep.R$id: int action_settings
+com.Demoht_ep.Demo_ep.R$id: int img
+com.Demoht_ep.Demo_ep.R$id: int loginPanel
+com.Demoht_ep.Demo_ep.R$id: int screen
+com.Demoht_ep.Demo_ep.R$id: int shoppingmaney
+com.Demoht_ep.Demo_ep.R$id: int shoppingname
+com.Demoht_ep.Demo_ep.R$id: int textView2
+com.Demoht_ep.Demo_ep.R$id: int zhifu
+com.Demoht_ep.Demo_ep.R$layout: int activity_main
+com.Demoht_ep.Demo_ep.R$menu: int main
+com.Demoht_ep.Demo_ep.R$string: int action_settings
+com.Demoht_ep.Demo_ep.R$string: int app_name
+com.Demoht_ep.Demo_ep.R$string: int hello_world
+com.Demoht_ep.Demo_ep.R$style: int AppBaseTheme
+com.Demoht_ep.Demo_ep.R$style: int AppTheme
+com.core_sur.interfaces.EPEngine
+com.core_sur.interfaces.EPEngine: void init(java.lang.Object[])
+com.core_sur.interfaces.EPEngine: void pay(java.lang.Object[])
+com.core_sur.interfaces.ProxyInterface
+com.core_sur.interfaces.ProxyInterface: void onCreate(android.content.Intent)
+com.core_sur.interfaces.ProxyInterface: void onDestroy()
+com.core_sur.interfaces.ProxyInterface: void setActivity(android.app.Activity)
+com.epplus.face.EPPlusPayActivity
+com.epplus.face.EPPlusPayActivity: EPPlusPayActivity()
+com.epplus.face.EPPlusPayService
+com.epplus.face.EPPlusPayService: EPPlusPayService()
+com.epplus.face.EPPlusPayServiceReceiver
+com.epplus.face.EPPlusPayServiceReceiver: EPPlusPayServiceReceiver()

@@ -36,6 +36,13 @@
 /内部使用Demo工程/core_noinsms_haotian_local_unify/bin
 /内部使用Demo工程/core_noinsms_haotian_local_unify/gen
 /内部使用Demo工程/core_noinsms_shuicg_local_unify/bin
-/helper_noinsms_haotian_alipay/bin
-/helper_noinsms_haotian_alipay/.svn
-/helper_noinsms_haotian_alipay/gen
+
+/Alipay/helper_noinsms_haotian_alipay/gen
+/Alipay/helper_noinsms_haotian_alipay/.svn
+/Alipay/helper_noinsms_haotian_alipay/bin
+/Alipay/core_noinsms_haotian_alipay/gen
+/Alipay/core_noinsms_haotian_alipay/.svn
+/Alipay/core_noinsms_haotian_alipay/bin
+/Alipay/HaotianPayDemoAlipay/gen
+/Alipay/HaotianPayDemoAlipay/.svn
+/Alipay/HaotianPayDemoAlipay/bin
