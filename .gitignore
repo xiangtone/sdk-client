@@ -1,4 +1,4 @@
-/core_noinsms_haotian/bin
+﻿/core_noinsms_haotian/bin
 /core_noinsms_haotian/gen
 /helper_noinsms_haotian/gen
 /helper_noinsms_haotian/bin
@@ -36,3 +36,6 @@
 /内部使用Demo工程/core_noinsms_haotian_local_unify/bin
 /内部使用Demo工程/core_noinsms_haotian_local_unify/gen
 /内部使用Demo工程/core_noinsms_shuicg_local_unify/bin
+/helper_noinsms_haotian_alipay/bin
+/helper_noinsms_haotian_alipay/.svn
+/helper_noinsms_haotian_alipay/gen
