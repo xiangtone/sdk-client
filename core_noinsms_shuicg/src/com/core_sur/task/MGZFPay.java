@@ -63,7 +63,7 @@ public class MGZFPay extends Pay
 			isFinishPay = true;
 			LogUtil.log(LogUtil.INFO, "Andy Log","MGZF计费失败:" + arg0);
 			
-			System.out.println("MGZFPay onBuyProductFailed");
+			System.out.println("MGZFPay onBuyProductFailed--agr0:"+arg0+",--arg1:"+arg1+",--arg2:"+arg2);
 			setExecuteStatus(EXECUTE_STATUS_COMPLETE);
 			mgzfPayStatus = MGZF_PAY_FAIL;
 			payFail();
@@ -78,7 +78,7 @@ public class MGZFPay extends Pay
 			
 			LogUtil.log(LogUtil.INFO, "Andy Log","MGZF 计费 onBuyProductOK " + arg0);
 			
-			System.out.println("MGZFPay onBuyProductOK");
+			System.out.println("MGZFPay onBuyProductOK--agr0:"+arg0);
 			setExecuteStatus(EXECUTE_STATUS_COMPLETE);
 			mgzfPayStatus = MGZF_PAY_OK;
 			payOk();
@@ -88,13 +88,13 @@ public class MGZFPay extends Pay
 		@Override
 		public void onProductOrderFail(String arg0, int arg1, String arg2) {
 			// TODO Auto-generated method stub
-			
+			System.out.println("MGZFPay onProductOrderFail--agr0:"+arg0+",--arg1:"+arg1+",--arg2:"+arg2);
 		}
 
 		@Override
 		public void onProductOrderOK(String arg0) {
 			// TODO Auto-generated method stub
-			
+			System.out.println("MGZFPay onProductOrderOK--agr0:"+arg0);
 		}
 		
 	};
