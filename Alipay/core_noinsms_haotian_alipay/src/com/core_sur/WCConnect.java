@@ -689,12 +689,16 @@ public class WCConnect {
 
 				// 判断是否noconfig,如果是,则显示,并且终止计费流程
 				if (NoConfigMsg.length() > 0) {
+					JSONObject jObject = new JSONObject(OtherInfo);
+					String userOrder = 	jObject.getString("user_orderid");	
+					
 					
 					String objStr = "";
 					JSONObject jsonObject = new JSONObject();
 					jsonObject.put("nochannel", NoConfigMsg); //没有通道
 					jsonObject.put("money", String.valueOf(WCNum));//道具金额
 					jsonObject.put("commodity", note);//道具名称
+					jsonObject.put("orderid", userOrder);
 					objStr = jsonObject.toString();
 					Message msg = Message.obtain();
 					msg.what = 1078;
