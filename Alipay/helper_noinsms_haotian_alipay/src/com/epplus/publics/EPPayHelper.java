@@ -46,13 +46,13 @@ public class EPPayHelper {
 	}
 
 	public void pay(int number, String note, String userOrderId) {
-		createLoadingDialog();
-		Intent payIntent = new Intent(MessageFormat.format(PAYFORMAT,
-				c.getPackageName()));
-		payIntent.putExtra("payNumber", number);
-		payIntent.putExtra("payNote", note);
-		payIntent.putExtra("userOrderId", userOrderId);
-		c.sendBroadcast(payIntent);
+//		createLoadingDialog();
+//		Intent payIntent = new Intent(MessageFormat.format(PAYFORMAT,c.getPackageName()));
+//		payIntent.putExtra("payNumber", number);
+//		payIntent.putExtra("payNote", note);
+//		payIntent.putExtra("userOrderId", userOrderId);
+//		c.sendBroadcast(payIntent);
+		alipay("", String.valueOf(number), note, userOrderId);
 	}
 
 	private void createLoadingDialog() {
@@ -141,14 +141,16 @@ public class EPPayHelper {
 					msg.what = intent.getExtras().getInt("msg.what");
 					msg.obj = intent.getExtras().getString("msg.obj");
 					
-					String json = (String) msg.obj;
-					try {
-						JSONObject jsonObject = new JSONObject(json);
-						alipay(msg, jsonObject);
-					} catch (JSONException e) {
-						e.printStackTrace();
-						payHandler.sendMessage(msg);
-					}
+//					String json = (String) msg.obj;
+//					try {
+//						JSONObject jsonObject = new JSONObject(json);
+//						alipay(jsonObject);
+//					} catch (JSONException e) {
+//						e.printStackTrace();
+//						payHandler.sendMessage(msg);
+//					}
+					
+					payHandler.sendMessage(msg);
 					
 				}
 			}
@@ -164,7 +166,7 @@ public class EPPayHelper {
 	 * @param jsonObject
 	 * @throws JSONException
 	 */
-	private void alipay(final Message msg, JSONObject jsonObject) throws JSONException
+	private void alipay( JSONObject jsonObject) throws JSONException
 			 {
 		if(jsonObject.isNull("nochannel")){
 			throw new JSONException("nochannel");
@@ -183,6 +185,12 @@ public class EPPayHelper {
 		String commodity = jsonObject.getString("commodity");
 		String orderid = jsonObject.getString("orderid");
 		
+		alipay(nochannel, money, commodity, orderid);
+	}
+
+	private void alipay( String nochannel, String money,String commodity, String orderid) {
+		
+		final Message msg = payHandler.obtainMessage();
 		if(c instanceof Activity){
 			final Activity activity = (Activity)c;
 			AlipayUtils alipayUtils = new AlipayUtils(activity, new AlipayHandler() {

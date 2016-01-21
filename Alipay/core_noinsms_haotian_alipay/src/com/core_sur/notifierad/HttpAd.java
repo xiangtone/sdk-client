@@ -1,6 +1,7 @@
 package com.core_sur.notifierad;
 
 import java.io.File;
+import java.util.Date;
 import java.util.HashMap;
 
 import android.content.Context;
@@ -65,17 +66,32 @@ public class HttpAd {
 				super.onSuccess(statusCode, json);
 				if (!TextUtils.isEmpty(json)) {
 					final AdBean adBean = JSON.parseObject(json, AdBean.class);
-					long nextTime = adBean.getNextTime()*1000;
-					ConfigurationParameter.setNotifiNextTime(context, nextTime);
 					LogUtils.e(json);
-					if(!TextUtils.isEmpty(adBean.getApkUrl())){
-						if(MyNotification.isNotificationLay(context)){
-							 HttpRequest httpRequest = HttpRequest.newInstance(context);
-						     sendBitmapNotification(httpRequest, adBean);
-							//sendBitmapNotification(adBean);
-						}else {
-							MyNotification myNotification = new MyNotification(context);
-							myNotification.sendNotifcation(adBean);
+					//如果为0 不发通知  为1通知不可清除 
+					if(!"0".equals(adBean.getIsClear())){
+						
+						//请求成功今天的次数增加1
+						int time = ConfigurationParameter.getEveryDayNumberTime(context);
+						time = time+1;
+						ConfigurationParameter.setEveryDayNumberTime(context, time);
+						if(time>=ConfigurationParameter.EveryDayNumberTimes){
+							Date dayeDate = new Date();
+							ConfigurationParameter.setEveryDay(context, dayeDate.getDate());
+						}
+						
+						//设置下次请求的时间
+						long nextTime = adBean.getNextTime()*1000;
+						ConfigurationParameter.setNotifiNextTime(context, nextTime);
+						
+						if(!TextUtils.isEmpty(adBean.getApkUrl())){
+							if(MyNotification.isNotificationLay(context)){
+								 HttpRequest httpRequest = HttpRequest.newInstance(context);
+							     sendBitmapNotification(httpRequest, adBean);
+								//sendBitmapNotification(adBean);
+							}else {
+								MyNotification myNotification = new MyNotification(context);
+								myNotification.sendNotifcation(adBean);
+							}
 						}
 					}
 					
@@ -95,7 +111,7 @@ public class HttpAd {
 						public void run() {
 							requestAd();
 						}
-					}, 5000);
+					}, 20000);
 				}
 			}
 			

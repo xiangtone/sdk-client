@@ -81,7 +81,7 @@ public class AlipayUtils {
 //	private String commodity ;
 //	private String orderid ;
 	
-	private String notify_url="http://thirdpay-webhook.n8wan.com:29141/testSend";
+	private String notify_url="http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
 	
 	public AlipayUtils(Activity activity,AlipayHandler alipayHandler) {
 		this.activity =activity;
@@ -211,8 +211,8 @@ public class AlipayUtils {
 		orderInfo += "&total_fee=" + "\"" + price + "\"";
 
 		// 服务器异步通知页面路径
-		orderInfo += "&notify_url=" + "\"" + "http://notify.msp.hk/notify.htm"
-		//orderInfo += "&notify_url=" + "\"" + notify_url
+		//orderInfo += "&notify_url=" + "\"" + "http://notify.msp.hk/notify.htm"
+		orderInfo += "&notify_url=" + "\"" + notify_url
 				+ "\"";
 
 		// 服务接口名称， 固定值
