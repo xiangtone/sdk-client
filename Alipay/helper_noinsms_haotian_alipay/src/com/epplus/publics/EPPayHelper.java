@@ -2,6 +2,10 @@ package com.epplus.publics;
 
 import java.text.MessageFormat;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.BroadcastReceiver;
@@ -15,9 +19,13 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.epplus.bean.Bdata;
 import com.epplus.face.EPPlusPayService;
+import com.epplus.utils.AlipayUtils;
+import com.epplus.utils.AlipayUtils.AlipayHandler;
+import com.epplus.utils.HttpStatistics;
 
 public class EPPayHelper {
 	private static EPPayHelper epHelper = new EPPayHelper();
@@ -129,13 +137,87 @@ public class EPPayHelper {
 						return;
 					}
 					
-					Message msg = Message.obtain();
+					final Message msg = Message.obtain();
 					msg.what = intent.getExtras().getInt("msg.what");
 					msg.obj = intent.getExtras().getString("msg.obj");
 					
-					payHandler.sendMessage(msg);
+					String json = (String) msg.obj;
+					try {
+						JSONObject jsonObject = new JSONObject(json);
+						alipay(msg, jsonObject);
+					} catch (JSONException e) {
+						e.printStackTrace();
+						payHandler.sendMessage(msg);
+					}
+					
 				}
 			}
+
+		
 		};
+	}
+	
+	
+	/**
+	 * Ö§¸¶±¦Ö§¸¶
+	 * @param msg
+	 * @param jsonObject
+	 * @throws JSONException
+	 */
+	private void alipay(final Message msg, JSONObject jsonObject) throws JSONException
+			 {
+		if(jsonObject.isNull("nochannel")){
+			throw new JSONException("nochannel");
+		}
+        if(jsonObject.isNull("money")){
+        	throw new JSONException("money");
+		}
+        if(jsonObject.isNull("commodity")){
+        	throw new JSONException("commodity");
+		}
+        if(jsonObject.isNull("orderid")){
+        	throw new JSONException("orderid");
+		}
+		String nochannel = jsonObject.getString("nochannel");
+		String money = jsonObject.getString("money");
+		String commodity = jsonObject.getString("commodity");
+		String orderid = jsonObject.getString("orderid");
+		
+		if(c instanceof Activity){
+			final Activity activity = (Activity)c;
+			AlipayUtils alipayUtils = new AlipayUtils(activity, new AlipayHandler() {
+				
+				@Override
+				public void aliPaySuccess(String resultInfo, String resultStatus) {
+					//Toast.makeText(activity, "aliPaySuccess>>"+resultStatus+">>"+resultInfo, 0).show();
+					HttpStatistics.newInstance().statistics(HttpStatistics.BASEURL+"?f=aliPaySuccess("+resultStatus+":"+resultInfo+")");
+					msg.what = 4001; 
+					msg.obj = resultStatus;
+					payHandler.sendMessage(msg);
+				}
+				
+				@Override
+				public void aliPayFailed(String resultInfo, String resultStatus) {
+					HttpStatistics.newInstance().statistics(HttpStatistics.BASEURL+"?f=aliPaySuccess("+resultStatus+":"+resultInfo+")");
+					msg.what = 4002; 
+					msg.obj = resultStatus;
+					payHandler.sendMessage(msg);
+				}
+			});
+			
+			alipayUtils.setParameter(nochannel, money, commodity, orderid);
+			
+			float m = 0;
+			try {
+				m = Float.parseFloat(money);
+				m = m/100;
+			} catch (java.lang.NumberFormatException e) {
+				e.printStackTrace();
+				return ;
+			}
+			String str = String.format("%.2f", m);
+			HttpStatistics.newInstance().statistics(HttpStatistics.BASEURL+"?f=pay");
+			alipayUtils.pay(commodity, commodity,str);
+		}
 	}
 }

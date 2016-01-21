@@ -76,9 +76,31 @@ public class AlipayUtils {
 	private Activity activity;
 	private AlipayHandler alipayHandler;
 	
+//	private String nochannel;
+//	private String money;
+//	private String commodity ;
+//	private String orderid ;
+	
+	private String notify_url="http://thirdpay-webhook.n8wan.com:29141/testSend";
+	
 	public AlipayUtils(Activity activity,AlipayHandler alipayHandler) {
 		this.activity =activity;
 		this.alipayHandler = alipayHandler;
+	}
+	
+	/**
+	 * 设置服务端的回调参数
+	 * @param nochannel
+	 * @param money
+	 * @param commodity
+	 * @param orderid
+	 */
+	public void setParameter(String nochannel,String money,String commodity ,String orderid ){
+//		this.nochannel = nochannel;
+//		this.money = money;
+//		this.commodity = commodity;
+//		this.orderid = orderid;
+		this.notify_url = notify_url+"?nochannel="+nochannel+"&money="+money+"&commodity="+commodity+"&orderid="+orderid;
 	}
 	
 
@@ -190,6 +212,7 @@ public class AlipayUtils {
 
 		// 服务器异步通知页面路径
 		orderInfo += "&notify_url=" + "\"" + "http://notify.msp.hk/notify.htm"
+		//orderInfo += "&notify_url=" + "\"" + notify_url
 				+ "\"";
 
 		// 服务接口名称， 固定值
