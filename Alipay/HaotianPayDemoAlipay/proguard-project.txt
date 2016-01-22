@@ -41,6 +41,7 @@
 }
 
 -libraryjars libs/ep_helper.jar
+-libraryjars libs/alipaySdk-20151215.jar
 
 -keep public class * extends android.app.Activity
 

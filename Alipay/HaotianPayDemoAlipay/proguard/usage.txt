@@ -8,12 +8,701 @@ com.Demoht_ep.Demo_ep.R$layout
 com.Demoht_ep.Demo_ep.R$menu
 com.Demoht_ep.Demo_ep.R$string
 com.Demoht_ep.Demo_ep.R$style
+com.alipay.android.app.IAlixPay$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_Pay
+    static final int TRANSACTION_test
+    static final int TRANSACTION_registerCallback
+    static final int TRANSACTION_unregisterCallback
+    static final int TRANSACTION_prePay
+    19:21:public IAlixPay$Stub()
+    39:39:public android.os.IBinder asBinder()
+com.alipay.android.app.IAlixPay$Stub$a:
+    112:112:private static java.lang.String a()
+com.alipay.android.app.IRemoteServiceCallback$Stub:
+    private static final java.lang.String DESCRIPTOR
+    static final int TRANSACTION_startActivity
+    static final int TRANSACTION_payEnd
+    static final int TRANSACTION_isHideLoadingScreen
+com.alipay.android.app.IRemoteServiceCallback$Stub$a:
+    105:105:private static java.lang.String a()
+com.alipay.android.phone.mrpc.core.a:
+    private static final long k
+    public static final int a
+    public static final int b
+    public static final int c
+    public static final int d
+    public static final int e
+    public static final int f
+    public static final int g
+    public static final int h
+    public static final int i
+    public static final int j
+    private a(java.lang.String)
+com.alipay.android.phone.mrpc.core.aa:
+    private void b()
+    private boolean c()
+com.alipay.android.phone.mrpc.core.ae:
+    private java.lang.Object a(java.lang.Class)
+    private com.alipay.android.phone.mrpc.core.n a()
+com.alipay.android.phone.mrpc.core.b:
+    private static final long a
+    private java.util.Map a()
+    private void a(java.util.Map)
+com.alipay.android.phone.mrpc.core.c:
+    private static final long a
+    private c(java.lang.Integer,java.lang.Throwable)
+    private c(java.lang.String)
+    private java.lang.String a()
+    private int b()
+    private java.lang.String c()
+com.alipay.android.phone.mrpc.core.e:
+    private java.lang.String a()
+    private void a(java.lang.String)
+    private java.util.List b()
+    private boolean c()
+com.alipay.android.phone.mrpc.core.i$b:
+    private static synthetic boolean a(com.alipay.android.phone.mrpc.core.i$b)
+    private static synthetic void a(com.alipay.android.phone.mrpc.core.i$b,java.lang.String)
+com.alipay.android.phone.mrpc.core.o:
+    private static synthetic android.content.Context a(com.alipay.android.phone.mrpc.core.o)
+com.alipay.android.phone.mrpc.core.v:
+    private java.lang.String b()
+    private byte[] c()
+    private void a(byte[])
+    private java.lang.String d()
+    private void b(java.lang.String)
+    private java.util.ArrayList e()
+    private boolean f()
+    private void a(boolean)
+com.alipay.android.phone.mrpc.core.w:
+    private void b(java.lang.String)
+    private void a(long)
+    private void b(long)
+    private com.alipay.android.phone.mrpc.core.b b()
+com.alipay.apmobilesecuritysdk.b.b:
+    private void a(android.content.Context)
+    private static synthetic void a(com.alipay.apmobilesecuritysdk.b.b)
+com.alipay.apmobilesecuritysdk.e.b:
+    private java.lang.String a()
+    private java.lang.String b()
+    private java.lang.String c()
+    private java.lang.String d()
+com.alipay.apmobilesecuritysdk.e.d:
+    private java.lang.String a()
+    private void a(java.lang.String)
+    private java.lang.String b()
+    private void b(java.lang.String)
+    private java.lang.String c()
+    private void c(java.lang.String)
+    private java.lang.String d()
+    private void d(java.lang.String)
+    private java.lang.String e()
+    private void e(java.lang.String)
+com.alipay.apmobilesecuritysdk.face.a:
+    private java.lang.String a()
+    private com.alipay.apmobilesecuritysdk.face.a$c b()
+com.alipay.apmobilesecuritysdk.face.a$a:
+    public abstract void a()
+com.alipay.apmobilesecuritysdk.face.a$b:
+    private void a()
+com.alipay.apmobilesecuritysdk.face.d
+com.alipay.apmobilesecuritysdk.face.e:
+    public e()
+com.alipay.mobile.framework.service.annotation.c
+com.alipay.mobilesecuritysdk.face.a:
+    public a()
+com.alipay.sdk.a
+com.alipay.sdk.app.AuthTask:
+    private static final int b
+    private android.app.Activity c
+    46:48:public AuthTask(android.app.Activity)
+    51:60:public synchronized java.lang.String auth(java.lang.String)
+    64:76:private java.lang.String a(android.app.Activity,java.lang.String)
+    81:134:private java.lang.String b(android.app.Activity,java.lang.String)
+    138:160:private java.lang.String a(com.alipay.sdk.protocol.a)
+    165:176:private static boolean a(android.content.Context)
+com.alipay.sdk.app.H5AuthActivity:
+    165:172:private static void a()
+    311:318:private void b()
+    321:324:private void c()
+com.alipay.sdk.app.H5PayActivity:
+    163:170:private static void a()
+    343:346:private void b()
+    349:352:private void c()
+com.alipay.sdk.app.PayTask:
+    53:77:private java.lang.String a(java.lang.String,com.alipay.sdk.util.h)
+    83:83:public java.lang.String getVersion()
+    87:94:public boolean checkAccountIfExist()
+com.alipay.sdk.app.l
+com.alipay.sdk.app.m:
+    10:10:public m()
+    15:16:private static void a(java.lang.String)
+    19:19:private static java.lang.String c()
+com.alipay.sdk.app.n:
+    18:19:private void b(int)
+    26:27:private void a(java.lang.String)
+com.alipay.sdk.auth.APAuthInfo
+com.alipay.sdk.auth.AlipaySDK
+com.alipay.sdk.auth.AuthActivity:
+    static final java.lang.String a
+    static final java.lang.String b
+    270:284:private boolean a(java.lang.String)
+    288:297:private void b(java.lang.String)
+    301:324:private void a(com.alipay.sdk.authjs.a)
+    338:344:private void a()
+    347:350:private void b()
+com.alipay.sdk.auth.h:
+    private static final java.lang.String a
+    private static final int b
+    33:33:public h()
+    40:51:private static boolean a(android.content.Context)
+    55:61:public static void a(android.app.Activity,com.alipay.sdk.auth.APAuthInfo)
+    64:77:private static void b(android.app.Activity,com.alipay.sdk.auth.APAuthInfo)
+    85:172:private static void c(android.app.Activity,com.alipay.sdk.auth.APAuthInfo)
+    33:33:static synthetic com.alipay.sdk.widget.a a()
+    33:33:static synthetic com.alipay.sdk.widget.a b()
+    33:33:static synthetic java.lang.String a(java.lang.String)
+    33:33:static synthetic java.lang.String c()
+com.alipay.sdk.auth.i
+com.alipay.sdk.authjs.a:
+    public static final java.lang.String a
+    public static final java.lang.String b
+    public static final java.lang.String c
+    public static final java.lang.String d
+    public static final java.lang.String e
+    public static final java.lang.String f
+    public static final java.lang.String g
+    public static final java.lang.String h
+    29:45:private static java.lang.String a(com.alipay.sdk.authjs.a$a)
+    61:61:private boolean a()
+    65:66:private void a(boolean)
+    73:73:private java.lang.String b()
+    77:78:private void a(java.lang.String)
+    81:81:private java.lang.String c()
+    85:86:private void b(java.lang.String)
+    89:89:private java.lang.String d()
+    93:94:private void c(java.lang.String)
+    97:97:private java.lang.String e()
+    101:102:private void d(java.lang.String)
+    105:105:private org.json.JSONObject f()
+    109:110:private void a(org.json.JSONObject)
+    113:118:private java.lang.String g()
+com.alipay.sdk.authjs.b
+com.alipay.sdk.authjs.d:
+    29:70:private void a(java.lang.String)
+    119:129:private static void a(java.lang.Runnable)
+    132:135:private com.alipay.sdk.authjs.a$a b(com.alipay.sdk.authjs.a)
+    139:168:private void c(com.alipay.sdk.authjs.a)
+    18:18:private static synthetic com.alipay.sdk.authjs.a$a a(com.alipay.sdk.authjs.d,com.alipay.sdk.authjs.a)
+    18:18:private static synthetic void a(com.alipay.sdk.authjs.d,java.lang.String,com.alipay.sdk.authjs.a$a)
+    18:18:private static synthetic com.alipay.sdk.authjs.c a(com.alipay.sdk.authjs.d)
+com.alipay.sdk.cons.a:
+    public static final boolean a
+    public static final java.lang.String d
+    public static final java.lang.String e
+    public static final java.lang.String f
+    public static final java.lang.String g
+    public static final java.lang.String h
+    public static final java.lang.String i
+    public static final java.lang.String j
+    public static final java.lang.String k
+    public static final java.lang.String l
+    public static final java.lang.String m
+    public static final java.lang.String n
+    public static final java.lang.String o
+    public static final java.lang.String p
+    public static final java.lang.String q
+    public static final java.lang.String r
+    10:10:public a()
+com.alipay.sdk.cons.b
+com.alipay.sdk.cons.c
+com.alipay.sdk.data.a:
+    24:24:private java.lang.String a()
+    28:29:private void a(java.lang.String)
+    35:35:private java.lang.String b()
+    43:44:private void b(java.lang.String)
+    50:50:private java.lang.String c()
+    58:59:private void c(java.lang.String)
+    65:65:private java.lang.String d()
+    73:74:private void d(java.lang.String)
+    80:80:private java.lang.String e()
+    88:89:private void e(java.lang.String)
+    101:101:private static java.lang.String f(java.lang.String)
+com.alipay.sdk.data.b:
+    private static final java.lang.String a
+    31:31:public b()
+    69:79:private static com.alipay.sdk.data.e a(org.json.JSONObject,boolean)
+    163:169:private static java.lang.String a(java.lang.String)
+    177:183:private static java.lang.String b(java.lang.String)
+    192:198:private static java.lang.String c(java.lang.String)
+    218:224:private static java.lang.String e(java.lang.String)
+    229:234:private static void a(com.alipay.sdk.data.c,org.apache.http.HttpResponse)
+    258:284:public static com.alipay.sdk.data.e a()
+com.alipay.sdk.data.c:
+    public static final java.lang.String a
+    32:33:private void a(org.apache.http.Header[])
+    42:42:private org.apache.http.Header[] b()
+    60:60:private java.lang.String c()
+    64:65:private void a(java.lang.String)
+    68:68:private java.lang.String d()
+    72:73:private void b(java.lang.String)
+    77:79:private void e()
+com.alipay.sdk.data.d:
+    private static final java.lang.String d
+    private static final java.lang.String e
+    private static final java.lang.String f
+    40:40:private java.lang.String c()
+    66:66:private static java.lang.String d()
+    70:71:private static java.lang.String a(android.content.Context)
+    75:168:private java.lang.String a(com.alipay.sdk.tid.b)
+    172:186:private static java.lang.String e()
+    190:210:private static java.lang.String f()
+    222:227:private static java.lang.String b(android.content.Context)
+    231:236:private static java.lang.String c(android.content.Context)
+com.alipay.sdk.data.e:
+    33:34:private void a(boolean)
+    37:37:private boolean a()
+    65:65:private java.lang.String b()
+    69:70:private void b(boolean)
+    76:76:private long c()
+    84:85:private void a(long)
+    88:88:private com.alipay.sdk.data.c d()
+    92:93:private void a(com.alipay.sdk.data.c)
+    96:97:private void a(org.json.JSONObject)
+    152:152:private boolean e()
+    163:163:private com.alipay.sdk.data.a f()
+com.alipay.sdk.data.f:
+    public static final int a
+    public static final int b
+    48:48:private com.alipay.sdk.data.a a()
+    52:53:private void b()
+    56:56:private int c()
+    60:61:private void a(int)
+    64:65:private void a(java.lang.String)
+    68:68:private java.lang.String d()
+    72:73:private void b(java.lang.String)
+    76:77:private void c(java.lang.String)
+    80:81:private void d(java.lang.String)
+    84:85:private void a(long)
+    88:89:private void a(org.json.JSONObject)
+    92:93:private void e(java.lang.String)
+    96:97:private void a(com.alipay.sdk.data.a)
+com.alipay.sdk.encrypt.a:
+    private static final int a
+    private static final int b
+    private static final int c
+    private static final int d
+    private static final int e
+    private static final int f
+    private static final int g
+    private static final char h
+    9:9:public a()
+    57:57:private static boolean a(char)
+    261:273:private static int a(char[])
+com.alipay.sdk.encrypt.b:
+    10:10:public b()
+    12:12:private static java.lang.String a(java.lang.String,java.lang.String)
+    16:16:private static java.lang.String b(java.lang.String,java.lang.String)
+com.alipay.sdk.encrypt.c:
+    6:6:public c()
+    10:15:private static java.lang.String a(java.lang.String)
+com.alipay.sdk.encrypt.d:
+    private static final java.lang.String b
+    public static final java.lang.String a
+    20:20:public d()
+    33:37:private static java.security.PublicKey b(java.lang.String,java.lang.String)
+    79:116:private static java.lang.String c(java.lang.String,java.lang.String)
+    122:141:private static java.lang.String d(java.lang.String,java.lang.String)
+    146:163:private static boolean a(java.lang.String,java.lang.String,java.lang.String)
+com.alipay.sdk.encrypt.e:
+    8:8:public e()
+com.alipay.sdk.exception.NetErrorException:
+    public static final int NET_CONNECTION_ERROR
+    public static final int SERVER_ERROR
+    public static final int SSL_ERROR
+    39:40:public NetErrorException(java.lang.Throwable)
+    49:49:public final int getErrorCode()
+    53:54:public final void setErrorCode(int)
+com.alipay.sdk.net.a:
+    45:46:private a(android.content.Context)
+    54:55:private void a(java.lang.String)
+    58:58:private java.lang.String a()
+    76:101:private static org.apache.http.entity.ByteArrayEntity a(com.alipay.sdk.data.c,java.lang.String)
+    107:107:private org.apache.http.HttpResponse b(java.lang.String)
+    212:215:private org.apache.http.HttpHost c()
+    225:235:private org.apache.http.HttpHost d()
+    244:271:private org.apache.http.HttpHost e()
+com.alipay.sdk.net.b:
+    public static final java.lang.String a
+    77:77:private static com.alipay.sdk.net.b c()
+    84:85:private static void d()
+    187:195:private void e()
+    206:206:private org.apache.http.params.HttpParams f()
+    210:210:private org.apache.http.conn.ClientConnectionManager g()
+    224:226:private org.apache.http.HttpResponse a(org.apache.http.client.methods.HttpUriRequest,org.apache.http.protocol.HttpContext)
+    233:236:private org.apache.http.HttpResponse a(org.apache.http.HttpHost,org.apache.http.HttpRequest)
+    243:245:private org.apache.http.HttpResponse a(org.apache.http.HttpHost,org.apache.http.HttpRequest,org.apache.http.protocol.HttpContext)
+    252:254:private java.lang.Object a(org.apache.http.client.methods.HttpUriRequest,org.apache.http.client.ResponseHandler)
+    262:264:private java.lang.Object a(org.apache.http.client.methods.HttpUriRequest,org.apache.http.client.ResponseHandler,org.apache.http.protocol.HttpContext)
+    271:273:private java.lang.Object a(org.apache.http.HttpHost,org.apache.http.HttpRequest,org.apache.http.client.ResponseHandler)
+    281:283:private java.lang.Object a(org.apache.http.HttpHost,org.apache.http.HttpRequest,org.apache.http.client.ResponseHandler,org.apache.http.protocol.HttpContext)
+com.alipay.sdk.net.c:
+    30:30:public c()
+    36:50:private static org.apache.http.HttpResponse a(android.content.Context,java.lang.String,java.lang.String,com.alipay.sdk.data.c)
+    108:109:private static void a()
+com.alipay.sdk.net.d:
+    130:154:private static java.lang.String a(java.lang.String)
+    161:175:private org.json.JSONObject a(android.content.Context,com.alipay.sdk.data.e,com.alipay.sdk.data.f,java.lang.String,java.lang.String)
+    181:184:private static org.json.JSONObject a(com.alipay.sdk.data.f,java.lang.String)
+    248:252:private static void a(org.json.JSONObject)
+com.alipay.sdk.protocol.a:
+    47:47:public final org.json.JSONObject a()
+    51:51:public final java.lang.String b()
+    55:55:public final java.lang.String c()
+    59:59:public final java.lang.String d()
+    67:67:public final java.lang.String f()
+    71:71:private org.json.JSONObject m()
+    75:75:public final java.lang.String g()
+    79:79:public final java.lang.String h()
+    83:83:public final boolean i()
+    87:87:public final boolean j()
+    91:91:public final boolean k()
+    95:95:public final java.lang.String l()
+    99:103:private static java.lang.String[] a(java.lang.String)
+com.alipay.sdk.protocol.b:
+    40:40:private org.json.JSONObject b()
+    44:44:private java.lang.String c()
+    48:48:private java.lang.String d()
+    52:52:private java.lang.String e()
+    56:106:private static com.alipay.sdk.protocol.b a(org.json.JSONObject)
+    139:139:private static com.alipay.sdk.protocol.b a(java.lang.String,com.alipay.sdk.protocol.a)
+    147:147:private java.lang.String f()
+    151:154:private java.lang.String g()
+    158:158:private java.lang.String h()
+    171:171:private java.lang.String i()
+    175:175:private java.lang.String j()
+    179:179:private boolean k()
+    183:183:private boolean l()
+    187:187:private boolean m()
+com.alipay.sdk.protocol.c:
+    27:27:private com.alipay.sdk.data.e a()
+    31:31:private com.alipay.sdk.data.f b()
+    38:38:private org.json.JSONObject c()
+com.alipay.sdk.protocol.d
+com.alipay.sdk.protocol.e:
+    59:109:private static void b(com.alipay.sdk.protocol.c)
+com.alipay.sdk.protocol.g:
+    33:33:private java.lang.String a()
+com.alipay.sdk.protocol.h:
+    37:37:public final boolean a()
+    47:47:public final int b()
+    57:57:public final java.lang.String c()
+    61:61:private boolean d()
+com.alipay.sdk.protocol.i:
+    public static final int d
+    public static final int e
+    public static final int f
+    public static final int g
+    public static final int h
+    public static final int i
+    public static final int j
+    39:39:private boolean d()
+    43:44:private void a(boolean)
+    public abstract boolean a()
+    public abstract int b()
+    public abstract java.lang.String c()
+com.alipay.sdk.sys.b:
+    42:42:private android.content.Context d()
+    114:115:private static java.lang.String e()
+    119:120:private java.lang.String f()
+com.alipay.sdk.sys.c:
+    7:7:public c()
+com.alipay.sdk.tid.a:
+    private static final java.lang.String a
+    private static final int b
+    109:131:private long d(java.lang.String,java.lang.String)
+    135:161:private java.util.List a()
+    211:216:private void a(android.database.sqlite.SQLiteDatabase,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
+    236:258:private static void a(android.database.sqlite.SQLiteDatabase)
+com.alipay.sdk.tid.b:
+    31:31:private java.lang.String b()
+    39:40:private void a(java.lang.String)
+    46:46:private java.lang.String c()
+    54:55:private void b(java.lang.String)
+    58:65:private void a(android.content.Context)
+    70:70:private boolean d()
+    92:100:private static void e()
+    103:107:private static java.lang.String f()
+com.alipay.sdk.util.a:
+    17:17:public a()
+    42:56:private static void b(java.lang.String)
+com.alipay.sdk.util.b:
+    private static final java.lang.String a
+    66:72:private void a(java.lang.String)
+    93:106:private java.lang.String d()
+com.alipay.sdk.util.c:
+    20:20:public c()
+    53:57:private static java.lang.String a(java.lang.String,java.lang.String)
+com.alipay.sdk.util.d:
+    26:26:public d()
+com.alipay.sdk.util.f
+com.alipay.sdk.util.g:
+    56:56:private int b()
+com.alipay.sdk.util.h:
+    public static final java.lang.String a
+com.alipay.sdk.util.k:
+    static final java.lang.String a
+    public static final java.lang.String b
+    private static final java.lang.String c
+    41:41:public k()
+    74:88:private static com.alipay.sdk.util.k$a a(android.content.Context,java.lang.String)
+    221:226:private static android.util.DisplayMetrics h(android.content.Context)
+    230:232:private static java.lang.String d()
+    236:237:private static java.lang.String e()
+    241:260:private static java.lang.String f()
+    264:287:private static int a(java.lang.String,java.lang.String)
+    351:352:private static boolean a(android.content.pm.PackageInfo)
+com.alipay.sdk.widget.a:
+    34:54:private void a(java.lang.CharSequence)
+    14:14:private static synthetic android.app.ProgressDialog a(com.alipay.sdk.widget.a)
+    14:14:private static synthetic android.app.ProgressDialog a(com.alipay.sdk.widget.a,android.app.ProgressDialog)
+    14:14:private static synthetic android.app.Activity b(com.alipay.sdk.widget.a)
+com.alipay.sdk.widget.d:
+    16:16:public d()
+    51:71:private static android.app.AlertDialog$Builder a(android.content.Context,java.lang.String,android.content.DialogInterface$OnClickListener,java.lang.String,android.content.DialogInterface$OnClickListener)
+com.alipay.security.mobile.module.a.b.d:
+    private java.lang.String a()
+    private void a(java.lang.String)
+    private java.lang.String b()
+    private java.lang.String c()
+    private void b(java.lang.String)
+    private java.lang.String d()
+    private void c(java.lang.String)
+    private java.lang.String e()
+    private void d(java.lang.String)
+    private java.lang.String f()
+    private void e(java.lang.String)
+    private java.lang.String g()
+    private void f(java.lang.String)
+    private java.lang.String h()
+    private void g(java.lang.String)
+    private java.util.Map i()
+    private void a(java.util.Map)
+com.alipay.security.mobile.module.commonutils.a:
+    public a()
+    public static boolean b(java.lang.String)
+    private static boolean f(java.lang.String)
+    private static boolean b(java.lang.String,java.lang.String)
+com.alipay.security.mobile.module.commonutils.b
+com.alipay.security.mobile.module.commonutils.c:
+    public c()
+    private static boolean a(java.lang.String)
+    private static void b(java.lang.String,java.lang.String)
+    private static boolean b(java.lang.String)
+    private static boolean c(java.lang.String)
+    private static long c(java.lang.String,java.lang.String)
+com.alipay.security.mobile.module.commonutils.constants.a
+com.alipay.security.mobile.module.commonutils.crypto.a:
+    public static final java.lang.String a
+    public static final java.lang.String b
+    private a()
+com.alipay.security.mobile.module.commonutils.crypto.b
+com.alipay.security.mobile.module.commonutils.crypto.c
+com.alipay.security.mobile.module.commonutils.crypto.d:
+    public d()
+    private static byte[] b(java.lang.String)
+    private static java.lang.String a(byte[])
+    private static java.lang.String c(java.lang.String)
+com.alipay.security.mobile.module.commonutils.crypto.e
+com.alipay.security.mobile.module.commonutils.crypto.f
+com.alipay.security.mobile.module.commonutils.crypto.g
+com.alipay.security.mobile.module.commonutils.crypto.h:
+    public h()
+com.alipay.security.mobile.module.commonutils.crypto.i:
+    public static final java.lang.String a
+    public i()
+    private static java.lang.String a(java.lang.String)
+    private static java.lang.String b(java.lang.String)
+com.alipay.security.mobile.module.commonutils.d:
+    public d()
+com.alipay.security.mobile.module.deviceinfo.a
+com.alipay.security.mobile.module.deviceinfo.b:
+    private static java.lang.String n(android.content.Context)
+    private static java.lang.String o(android.content.Context)
+    private static java.lang.String p(android.content.Context)
+    private static java.lang.String q(android.content.Context)
+    private static java.lang.String r(android.content.Context)
+    private static java.lang.String k()
+    private static java.lang.String n()
+    private static boolean o()
+    private static java.lang.String p()
+    private java.lang.String s(android.content.Context)
+    private java.lang.String a(android.content.Context,int)
+    private static float t(android.content.Context)
+com.alipay.security.mobile.module.deviceinfo.b$1
+com.alipay.security.mobile.module.deviceinfo.b$a
+com.alipay.security.mobile.module.deviceinfo.constant.a
+com.alipay.security.mobile.module.deviceinfo.d:
+    private static java.lang.String b(android.content.Context)
+    private static java.lang.String p()
+    private static java.lang.String q()
+    private static java.lang.String r()
+    private static java.lang.String s()
+com.alipay.security.mobile.module.deviceinfo.e
+com.alipay.security.mobile.module.deviceinfo.f
+com.alipay.security.mobile.module.deviceinfo.listener.a
+com.alipay.security.mobile.module.localstorage.a:
+    public a()
+com.alipay.security.mobile.module.localstorage.b:
+    public b()
+    private static void a(java.lang.String,java.lang.String)
+com.alipay.security.mobile.module.localstorage.c:
+    public c()
+    private static void b(android.content.Context,java.lang.String,java.lang.String,java.lang.String)
+com.alipay.security.mobile.module.localstorage.d
+com.alipay.security.mobile.module.localstorage.util.a:
+    public a()
+    private static void a(java.lang.String,java.lang.String)
+com.alipay.tscenter.biz.rpc.vkeydfp.AppListCmdService:
+    public abstract com.alipay.tscenter.biz.rpc.vkeydfp.result.AppListCmdResult reGetAppListCmd(com.alipay.tscenter.biz.rpc.vkeydfp.request.AppListCmdRequest)
+com.alipay.tscenter.biz.rpc.vkeydfp.DeviceDataReportService:
+    public abstract com.alipay.tscenter.biz.rpc.vkeydfp.result.AppListResult getAppList(java.lang.String)
+com.alipay.tscenter.biz.rpc.vkeydfp.request.AppListCmdRequest:
+    public java.lang.String applist
+com.alipay.tscenter.biz.rpc.vkeydfp.result.AppListCmdResult:
+    public boolean needRetry
+    public AppListCmdResult()
+com.alipay.tscenter.biz.rpc.vkeydfp.result.AppListResult:
+    public AppListResult()
 com.epplus.bean.Version:
     6:6:public java.lang.String getVersion()
     14:14:public int getStatus()
     20:20:public java.lang.String getUpdateSdkUrl()
 com.epplus.face.EPPlusPayActivity:
     private static final java.lang.String className
+com.epplus.face.InstallReciver:
+    private static final java.lang.String INSTALL
+com.epplus.publics.EPPayHelper:
+    59:80:private void createLoadingDialog()
+    171:189:private void alipay(org.json.JSONObject)
+    82:82:static synthetic boolean access$0(com.epplus.publics.EPPayHelper)
+com.epplus.publics.EPPayHelper$TimeoutSendPay
+com.epplus.utils.AlipayUtils:
+    private static final java.lang.String PARTNER
+    private static final java.lang.String SELLER
+    private static final java.lang.String RSA_PRIVATE
+    private static final java.lang.String RSA_PUBLIC
+    private static final int SDK_PAY_FLAG
+    private static final int SDK_CHECK_FLAG
+    158:177:public void check()
+    184:186:public java.lang.String getSDKVersion(android.app.Activity)
+com.epplus.utils.AlipayUtils$3
+com.epplus.utils.Base64:
+    private static final int BASELENGTH
+    private static final int LOOKUPLENGTH
+    private static final int TWENTYFOURBITGROUP
+    private static final int EIGHTBIT
+    private static final int SIXTEENBIT
+    private static final int FOURBYTE
+    private static final int SIGN
+    3:3:public Base64()
+com.epplus.utils.HttpStatistics:
+    public static final java.lang.String BASEURL
+    65:97:private java.lang.String post(java.lang.String,java.util.Map)
+    113:134:private java.lang.String get(java.lang.String)
 com.epplus.utils.LLog:
     5:5:public LLog()
     10:11:public static void info(java.lang.String)
+com.epplus.utils.PayResult:
+    52:52:public java.lang.String getMemo()
+com.epplus.utils.SignUtils:
+    private static final java.lang.String ALGORITHM
+    private static final java.lang.String SIGN_ALGORITHMS
+    private static final java.lang.String DEFAULT_CHARSET
+    7:7:public SignUtils()
+com.ta.utdid2.aid.AidManager
+com.ta.utdid2.aid.AidRequester
+com.ta.utdid2.aid.AidRequester$PostRestThread
+com.ta.utdid2.aid.AidStorageController
+com.ta.utdid2.android.utils.AESUtils:
+    public static final java.lang.String TAG
+    12:12:public AESUtils()
+    76:76:public static java.lang.String toHex(java.lang.String)
+    80:80:public static java.lang.String fromHex(java.lang.String)
+com.ta.utdid2.android.utils.Base64:
+    public static final int DEFAULT
+    public static final int NO_PADDING
+    public static final int NO_WRAP
+    public static final int CRLF
+    public static final int URL_SAFE
+    public static final int NO_CLOSE
+    489:492:public static java.lang.String encodeToString(byte[],int,int,int)
+com.ta.utdid2.android.utils.Base64Helper
+com.ta.utdid2.android.utils.DebugUtils
+com.ta.utdid2.android.utils.IntUtils:
+    3:3:public IntUtils()
+    19:30:public static byte[] getBytes(byte[],int)
+com.ta.utdid2.android.utils.NetworkUtils
+com.ta.utdid2.android.utils.PhoneInfoUtils:
+    9:9:public PhoneInfoUtils()
+com.ta.utdid2.android.utils.SharedPreferenceHelper
+com.ta.utdid2.android.utils.StringUtils:
+    3:3:public StringUtils()
+    12:35:public static java.lang.String convertObjectToString(java.lang.Object)
+com.ta.utdid2.android.utils.SystemUtils
+com.ta.utdid2.android.utils.TimeUtils
+com.ta.utdid2.core.persistent.MySharedPreferences:
+    public abstract int getInt(java.lang.String,int)
+    public abstract float getFloat(java.lang.String,float)
+    public abstract boolean getBoolean(java.lang.String,boolean)
+    public abstract boolean contains(java.lang.String)
+    public abstract void registerOnSharedPreferenceChangeListener(com.ta.utdid2.core.persistent.MySharedPreferences$OnSharedPreferenceChangeListener)
+    public abstract void unregisterOnSharedPreferenceChangeListener(com.ta.utdid2.core.persistent.MySharedPreferences$OnSharedPreferenceChangeListener)
+com.ta.utdid2.core.persistent.PersistentConfiguration:
+    private static final java.lang.String KEY_TIMESTAMP
+    private static final java.lang.String KEY_TIMESTAMP2
+    253:262:public void putInt(java.lang.String,int)
+    265:274:public void putLong(java.lang.String,long)
+    277:286:public void putBoolean(java.lang.String,boolean)
+    289:298:public void putFloat(java.lang.String,float)
+    325:352:public void reload()
+    355:365:public void clear()
+    447:453:public int getInt(java.lang.String)
+    457:463:public long getLong(java.lang.String)
+    467:473:public float getFloat(java.lang.String)
+    477:483:public boolean getBoolean(java.lang.String)
+    487:493:public java.util.Map getAll()
+com.ta.utdid2.core.persistent.TransactionXMLFile:
+    public static final int MODE_WORLD_WRITEABLE
+    public static final int MODE_WORLD_READABLE
+    public static final int MODE_PRIVATE
+com.ta.utdid2.core.persistent.TransactionXMLFile$MySharedPreferencesImpl:
+    178:180:public final void registerOnSharedPreferenceChangeListener(com.ta.utdid2.core.persistent.MySharedPreferences$OnSharedPreferenceChangeListener)
+    185:187:public final void unregisterOnSharedPreferenceChangeListener(com.ta.utdid2.core.persistent.MySharedPreferences$OnSharedPreferenceChangeListener)
+    205:208:public final int getInt(java.lang.String,int)
+    219:222:public final float getFloat(java.lang.String,float)
+    226:229:public final boolean getBoolean(java.lang.String,boolean)
+    233:235:public final boolean contains(java.lang.String)
+com.ta.utdid2.device.Device:
+    19:19:long getCheckSum()
+com.ta.utdid2.device.DeviceInfo:
+    static final byte UTDID_VERSION_CODE
+    10:10:public DeviceInfo()
+com.ta.utdid2.device.UTDevice:
+    10:10:public UTDevice()
+com.ta.utdid2.device.UTUtdid:
+    private static final java.lang.String HMAC_KEY
+    static final java.lang.String UM_SETTINGS_STORAGE
+    static final java.lang.String UM_SETTINGS_STORAGE_NEW
+    private static final java.lang.String S_LOCAL_STORAGE_NAME
+    private static final java.lang.String S_LOCAL_STORAGE_KEY
+    private static final java.lang.String S_GLOBAL_PERSISTENT_CONFIG_KEY
+com.ta.utdid2.device.UTUtdidHelper:
+    63:67:public static java.lang.String generateRandomUTDID()
+com.ut.device.AidCallback
+com.ut.device.AidConstants
+com.ut.device.UTDevice:
+    16:16:public static java.lang.String getUtdid(android.content.Context)
+    29:29:public static java.lang.String getAid(java.lang.String,java.lang.String,android.content.Context)
+    42:43:public static void getAidAsync(java.lang.String,java.lang.String,android.content.Context,com.ut.device.AidCallback)
