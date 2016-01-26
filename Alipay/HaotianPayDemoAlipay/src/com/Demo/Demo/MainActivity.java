@@ -1,6 +1,7 @@
 package com.Demo.Demo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -96,6 +97,13 @@ public class MainActivity extends Activity {
 			}
 			
 	    }  
+	  
+	  
+	  @Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		EPPayHelper.getInstance(this).onActivityResult(requestCode, resultCode, data);
+		super.onActivityResult(requestCode, resultCode, data);
+	}
 	  
 	 
 }
