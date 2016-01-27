@@ -20,15 +20,17 @@
 #}
 
 -dontskipnonpubliclibraryclassmembers 
--optimizations !code/simplification/arithmetic
+-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
 -optimizationpasses 5
 -allowaccessmodification
 -repackageclasses epPlus
 -keepattributes *Annotation*,Signature
 -dontpreverify
 -verbose
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
 -dontwarn com.core_sur.interfaces.**,com.core_sur.activity.**
-
+-dontwarn com.unionpay.**,com.unionpay.tsmservice.**
 
 -keep class com.core_sur.interfaces.ProxyInterface {
     <fields>;
@@ -40,8 +42,13 @@
     <methods>;
 }
 
+-keep class com.unionpay.** {*;}
+-keep class com.unionpay.tsmservice.** {*;}
+
 -libraryjars libs/ep_helper.jar
 -libraryjars libs/alipaySdk-20151215.jar
+-libraryjars libs/UPPayAssistEx.jar
+-libraryjars libs/UPPayPluginExPro.jar
 
 -keep public class * extends android.app.Activity
 

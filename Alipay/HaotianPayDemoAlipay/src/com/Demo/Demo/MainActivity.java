@@ -100,7 +100,8 @@ public class MainActivity extends Activity {
 	  
 	  
 	  @Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {		  		
+		  
 		EPPayHelper.getInstance(this).onActivityResult(requestCode, resultCode, data);
 		super.onActivityResult(requestCode, resultCode, data);
 	}

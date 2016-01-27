@@ -8,6 +8,26 @@ com.Demoht_ep.Demo_ep.R$layout
 com.Demoht_ep.Demo_ep.R$menu
 com.Demoht_ep.Demo_ep.R$string
 com.Demoht_ep.Demo_ep.R$style
+com.UCMobile.PayPlugin.PayInterface
+com.UCMobile.PayPlugin.PluginIcon
+com.UCMobile.PayPlugin.PluginSurfaceView:
+    private final int e
+    private boolean f
+    private java.lang.Object g
+    android.view.SurfaceHolder a
+    android.graphics.Paint b
+    public PluginSurfaceView(android.content.Context,int,int,int)
+    public void invalidateNPP()
+    private native void nativeSurfaceCreated(int)
+    private native void nativeSurfaceChanged(int,int,int,int)
+    private native void nativeSurfaceDestroyed(int)
+    static synthetic java.lang.Object a(com.UCMobile.PayPlugin.PluginSurfaceView)
+    static synthetic boolean b(com.UCMobile.PayPlugin.PluginSurfaceView)
+    static synthetic int c(com.UCMobile.PayPlugin.PluginSurfaceView)
+    static synthetic void a(com.UCMobile.PayPlugin.PluginSurfaceView,int,int,int,int)
+    static synthetic void a(com.UCMobile.PayPlugin.PluginSurfaceView,int)
+    static synthetic void b(com.UCMobile.PayPlugin.PluginSurfaceView,int)
+com.UCMobile.PayPlugin.a
 com.alipay.android.app.IAlixPay$Stub:
     private static final java.lang.String DESCRIPTOR
     static final int TRANSACTION_Pay
@@ -584,9 +604,9 @@ com.epplus.face.EPPlusPayActivity:
 com.epplus.face.InstallReciver:
     private static final java.lang.String INSTALL
 com.epplus.publics.EPPayHelper:
-    59:80:private void createLoadingDialog()
-    171:189:private void alipay(org.json.JSONObject)
-    82:82:static synthetic boolean access$0(com.epplus.publics.EPPayHelper)
+    68:89:private void createLoadingDialog()
+    180:198:private void alipay(org.json.JSONObject)
+    91:91:static synthetic boolean access$0(com.epplus.publics.EPPayHelper)
 com.epplus.publics.EPPayHelper$TimeoutSendPay
 com.epplus.utils.AlipayUtils:
     private static final java.lang.String PARTNER
@@ -598,6 +618,9 @@ com.epplus.utils.AlipayUtils:
     158:177:public void check()
     184:186:public java.lang.String getSDKVersion(android.app.Activity)
 com.epplus.utils.AlipayUtils$3
+com.epplus.utils.AssetsUtils:
+    60:69:public android.graphics.drawable.Drawable getXmlDrawble(java.lang.String)
+    98:99:protected android.graphics.Bitmap getBitmapByResourceName(java.lang.String)
 com.epplus.utils.Base64:
     private static final int BASELENGTH
     private static final int LOOKUPLENGTH
@@ -616,6 +639,11 @@ com.epplus.utils.LLog:
     10:11:public static void info(java.lang.String)
 com.epplus.utils.PayResult:
     52:52:public java.lang.String getMemo()
+com.epplus.utils.PluginPayUtil:
+    private static final java.lang.String merId
+    public static final java.lang.String SERVER_UNIONSDK
+com.epplus.utils.RSAUtil
+com.epplus.utils.ResourceUtil
 com.epplus.utils.SignUtils:
     private static final java.lang.String ALGORITHM
     private static final java.lang.String SIGN_ALGORITHMS
