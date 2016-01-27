@@ -60,7 +60,7 @@
         </activity>
         
         
-         <!-- alipay sdk begin -->
+        <!--start 支付宝  alipay sdk begin -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"

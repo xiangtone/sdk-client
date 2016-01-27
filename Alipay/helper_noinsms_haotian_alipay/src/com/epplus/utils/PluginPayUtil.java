@@ -70,7 +70,7 @@ public class PluginPayUtil implements Runnable,Callback {
           //mGoodsIdx = (Integer) v.getTag();
           mLoadingDialog = ProgressDialog.show(context, // context
                   "", // title
-                  "正在努力的获取tn中,请稍候...", // message
+                  "努力加载中,请稍候...", // message
                   true); // 进度是否是不确定的，这只和创建进度条有关
           
           this.TN_URL_00 = getPluginPayUrl(price);
@@ -209,18 +209,6 @@ public class PluginPayUtil implements Runnable,Callback {
 	            this.pluginHandler.pluginPayFailed(msg, "");
 	        }
 
-//	        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-//	        builder.setTitle("支付结果通知");
-//	        builder.setMessage(msg);
-//	        builder.setInverseBackgroundForced(true);
-//	        // builder.setCustomTitle();
-//	        builder.setNegativeButton("确定", new DialogInterface.OnClickListener() {
-//	            @Override
-//	            public void onClick(DialogInterface dialog, int which) {
-//	                dialog.dismiss();
-//	            }
-//	        });
-//	        builder.create().show();
 	    }
 	
 	/**
