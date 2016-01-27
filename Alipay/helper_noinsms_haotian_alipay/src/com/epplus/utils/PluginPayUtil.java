@@ -162,6 +162,9 @@ public class PluginPayUtil implements Runnable,Callback {
 	        /*************************************************
 	         * 步骤3：处理银联手机支付控件返回的支付结果
 	         ************************************************/
+			if(requestCode!=10){
+				return ;
+			}
 	        if (data == null) {
 	            return;
 	        }
@@ -173,9 +176,8 @@ public class PluginPayUtil implements Runnable,Callback {
 	        String str = data.getExtras().getString("pay_result");
 	        if (str.equalsIgnoreCase("success")) {
 	            // 支付成功后，extra中如果存在result_data，取出校验
-	          
 	            msg = "支付成功！";
-	            this.pluginHandler.pluginPaySuccess(msg, "");
+                this.pluginHandler.pluginPaySuccess(msg, "");
 	            
 	        } else if (str.equalsIgnoreCase("fail")) {
 	            msg = "支付失败！";
