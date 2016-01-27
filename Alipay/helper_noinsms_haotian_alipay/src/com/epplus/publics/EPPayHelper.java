@@ -24,8 +24,11 @@ import android.widget.Toast;
 import com.epplus.bean.Bdata;
 import com.epplus.face.EPPlusPayService;
 import com.epplus.utils.AlipayUtils;
+import com.epplus.utils.PluginPayUtil;
 import com.epplus.utils.AlipayUtils.AlipayHandler;
 import com.epplus.utils.HttpStatistics;
+import com.epplus.utils.PluginPayUtil.PluginHandler;
+import com.epplus.view.PayCheckDialog;
 
 public class EPPayHelper {
 	private static EPPayHelper epHelper = new EPPayHelper();
@@ -52,7 +55,13 @@ public class EPPayHelper {
 //		payIntent.putExtra("payNote", note);
 //		payIntent.putExtra("userOrderId", userOrderId);
 //		c.sendBroadcast(payIntent);
-		alipay("", String.valueOf(number), note, userOrderId);
+		//alipay("", String.valueOf(number), note, userOrderId);
+		if(c instanceof Activity){
+			Activity activity = (Activity) c;
+			PayCheckDialog payCheckDialog = new PayCheckDialog(activity, this, number, note, userOrderId);
+			payCheckDialog.show();
+		}
+		
 	}
 
 	private void createLoadingDialog() {
@@ -188,10 +197,11 @@ public class EPPayHelper {
 		alipay(nochannel, money, commodity, orderid);
 	}
 
-	private void alipay( String nochannel, String money,String commodity, String orderid) {
+	public  void alipay( String nochannel, String money,String commodity, String orderid) {
 		
 		final Message msg = payHandler.obtainMessage();
 		if(c instanceof Activity){
+			isPlugin = false;
 			final Activity activity = (Activity)c;
 			AlipayUtils alipayUtils = new AlipayUtils(activity, new AlipayHandler() {
 				
@@ -228,4 +238,55 @@ public class EPPayHelper {
 			alipayUtils.pay(commodity, commodity,str);
 		}
 	}
+	
+	
+	private PluginPayUtil payUtil;
+	private boolean isPlugin = false;
+	/**
+	 * ÒøÁªÖ§¸¶
+	 */
+	public void pluginPay(String money){
+		final Message msg = payHandler.obtainMessage();
+		if(c instanceof Activity){
+			isPlugin = true;
+			final Activity activity = (Activity)c;
+			payUtil= new PluginPayUtil(activity,new PluginHandler() {
+				
+				@Override
+				public void pluginPaySuccess(String resultInfo, String resultStatus) {
+					HttpStatistics.newInstance().statistics(HttpStatistics.BASEURL+"?f=aliPaySuccess("+resultStatus+":"+resultInfo+")");
+					msg.what = 4001; 
+					msg.obj = resultStatus;
+					payHandler.sendMessage(msg);
+					
+				}
+
+				@Override
+				public void pluginPayFailed(String resultInfo,
+						String resultStatus) {
+					
+					HttpStatistics.newInstance().statistics(HttpStatistics.BASEURL+"?f=aliPaySuccess("+resultStatus+":"+resultInfo+")");
+					msg.what = 4002; 
+					msg.obj = resultStatus;
+					payHandler.sendMessage(msg);
+					
+				}
+			});
+			payUtil.pay(money);
+		}
+	}
+	
+	
+	public  void onActivityResult(int requestCode, int resultCode, Intent data){
+		if(isPlugin){
+			if(payUtil!=null){
+				payUtil.onActivityResult(requestCode, resultCode, data);
+			}
+		}
+	}
+	
+	
+	
+	
+	
 }
