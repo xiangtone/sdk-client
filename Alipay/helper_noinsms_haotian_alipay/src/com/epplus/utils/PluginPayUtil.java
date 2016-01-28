@@ -222,7 +222,7 @@ public class PluginPayUtil implements Runnable,Callback {
 	 */
 	@SuppressLint("SimpleDateFormat") 
 	private  String getOutTradeNo() {
-		String key = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) ;
+		String key = new SimpleDateFormat("yyyyMMddHHmmss",Locale.getDefault()).format(new Date()) ;		
 		Random random = new Random();
 		int n = random.nextInt(10000);
 		String order =String.valueOf(n)+key;
