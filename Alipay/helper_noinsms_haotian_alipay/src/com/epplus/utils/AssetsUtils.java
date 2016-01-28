@@ -13,6 +13,7 @@ import android.content.res.XmlResourceParser;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.NinePatchDrawable;
 import android.view.LayoutInflater;
@@ -74,11 +75,19 @@ public class AssetsUtils {
 		InputStream inputStream;
 		try {
 			inputStream = context.getAssets().open(path);
-			Drawable drawable = Drawable.createFromStream(inputStream, srcName);
-			return drawable;
+			
+			BitmapDrawable bitmapDrawable = new BitmapDrawable(
+					context.getResources(),
+					BitmapFactory.decodeStream(inputStream));
+			return bitmapDrawable;
+//			Drawable drawable = Drawable.createFromStream(inputStream, srcName);
+//			return drawable;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
+		
 		
 		return null;
 	}

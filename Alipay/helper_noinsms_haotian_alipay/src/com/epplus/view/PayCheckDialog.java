@@ -50,29 +50,6 @@ public class PayCheckDialog extends Dialog {
 		rootView = assetsUtils.findViewByFileName("pay_dialog_check");
 		super.setContentView(rootView);
 		
-//		zfb_app = findViewById(ResourceUtil.getId(context, "zfb_app"));
-//		yl_app = findViewById(ResourceUtil.getId(context, "yl_app"));
-//		
-//		
-//		zfb_app.setOnClickListener(new View.OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				ep.alipay("", String.valueOf(money), note, userOrderId);
-//				dismiss();
-//			}
-//		});
-//		
-//		
-//		yl_app.setOnClickListener(new View.OnClickListener() {
-//			
-//			@Override
-//			public void onClick(View v) {
-//				ep.pluginPay(String.valueOf(money));
-//				dismiss();
-//			}
-//		});
-		
 		zfb_app = rootView.findViewWithTag("zfb_app");
 		yl_app = rootView.findViewWithTag("yl_app");
 		

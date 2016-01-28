@@ -6,7 +6,9 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Random;
 
 import org.json.JSONException;
@@ -47,8 +49,11 @@ public class PluginPayUtil implements Runnable,Callback {
 	
 		
 	public final static String SERVER_UNIONSDK ="http://unionpay-server.n8wan.com:29141/form05_6_2_Consume";//内网测试地址
+	//public final static String SERVER_UNIONSDK ="http://192.168.1.124:8080/ACPSample_KongjianServer/form05_6_2_Consume";//内网测试地址
 		
-	private String TN_URL_00;
+	
+	
+	private String price;
 	
 	
 	private PluginHandler pluginHandler;
@@ -68,12 +73,11 @@ public class PluginPayUtil implements Runnable,Callback {
 	public  void pay(String price)  {
 		 // Log.e(LOG_TAG, " " + v.getTag());
           //mGoodsIdx = (Integer) v.getTag();
+		this.price=price;
           mLoadingDialog = ProgressDialog.show(context, // context
                   "", // title
                   "努力加载中,请稍候...", // message
                   true); // 进度是否是不确定的，这只和创建进度条有关
-          
-          this.TN_URL_00 = getPluginPayUrl(price);
 
           /*************************************************
            * 步骤1：从网络开始,获取交易流水号即TN
@@ -82,29 +86,52 @@ public class PluginPayUtil implements Runnable,Callback {
 	}
 	
 
-	@Override
+	@SuppressLint("SimpleDateFormat") @Override
 	public void run() {
-		 String tn = null;
-	        InputStream is;
-	        try {
-	            String url = TN_URL_00;
-
-	            URL myURL = new URL(url);
-	            URLConnection ucon = myURL.openConnection();
-	            ucon.setConnectTimeout(120000);
-	            is = ucon.getInputStream();
-	            int i = -1;
-	            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	            while ((i = is.read()) != -1) {
-	                baos.write(i);
-	            }
-
-	            tn = baos.toString();
-	            is.close();
-	            baos.close();
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
+//		 String tn = null;
+//	        InputStream is;
+//	        try {
+//	            String url = TN_URL_00;
+//
+//	            URL myURL = new URL(url);
+//	            URLConnection ucon = myURL.openConnection();
+//	            ucon.setConnectTimeout(120000);
+//	            is = ucon.getInputStream();
+//	            int i = -1;
+//	            
+//	            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//	            while ((i = is.read()) != -1) {
+//	                baos.write(i);
+//	            }
+//	           
+//	            tn = baos.toString();
+//	            
+//	            Log.e("zgt", "连接上"+tn);
+//	            
+//	            is.close();
+//	            baos.close();
+//	        } catch (Exception e) {
+//	            e.printStackTrace();
+//	            Log.e("zgt", e.toString());
+//	        }
+	        
+	        
+	        
+//	        String time = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+//			
+//			String TN_URL_01 = SERVER_UNIONSDK+ "?&txnTime="+ time
+//						+ "&merId=" + merId + "&orderId=" + getOutTradeNo() + "&txnAmt=" + price;
+	        
+	        String time = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+	        Map<String, String> map = new HashMap<String, String>();
+	        map.put("txnTime", time);
+	        map.put("merId", merId);
+	        map.put("orderId",  getOutTradeNo());
+	        map.put("txnAmt", price);
+	        
+ 	        String tn = HttpUtils.post(SERVER_UNIONSDK, map);
+	        
+	        
 
 	        Message msg = mHandler.obtainMessage();
 	        msg.obj = tn;
@@ -189,32 +216,17 @@ public class PluginPayUtil implements Runnable,Callback {
 
 	    }
 	
-	/**
-	 * 获取支付的 url
-	 * @return
-	 */
-	@SuppressLint("SimpleDateFormat") 
-	private String getPluginPayUrl(String price){
-		String time = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-		
-		String TN_URL_01 = SERVER_UNIONSDK+ "?&txnTime="+ time
-					+ "&merId=" + merId + "&orderId=" + getOutTradeNo() + "&txnAmt=" + price;
-		return TN_URL_01;
-	}
 	
 	/**
 	 * get the out_trade_no for an order. 生成商户订单号，该值在商户端应保持唯一（可自定义格式规范）
 	 */
+	@SuppressLint("SimpleDateFormat") 
 	private  String getOutTradeNo() {
-		SimpleDateFormat format = new SimpleDateFormat("MMddHHmmss",
-				Locale.getDefault());
-		Date date = new Date();
-		String key = format.format(date);
-
-		Random r = new Random();
-		key = key + r.nextInt();
-		key = key.substring(0, 15);
-		return key;
+		String key = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) ;
+		Random random = new Random();
+		int n = random.nextInt(10000);
+		String order =String.valueOf(n)+key;
+		return order;  
 	}
 	
 	
