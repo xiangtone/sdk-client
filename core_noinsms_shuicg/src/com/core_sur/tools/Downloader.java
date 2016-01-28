@@ -138,7 +138,8 @@ public class Downloader {
 	public void sendMessage(PointInfo pointInfo){
 	Message message = Message.obtain();
 	message.what=1;
-	message.obj=pointInfo;
+	//message.obj=pointInfo;
+	message.obj=downloadInfo;
 	message.arg1=complete;
 	message.arg2=fileSize;
 	handler.sendMessage(message);
