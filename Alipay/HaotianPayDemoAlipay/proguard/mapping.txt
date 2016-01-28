@@ -1406,9 +1406,11 @@ com.epplus.utils.HttpStatistics -> epPlus.hs:
     com.epplus.utils.HttpStatistics httpStatistics -> a
     com.epplus.utils.HttpStatistics newInstance() -> a
     void statistics(java.lang.String) -> a
-com.epplus.utils.LLog -> epPlus.ht:
+com.epplus.utils.HttpUtils -> epPlus.ht:
+    java.lang.String post(java.lang.String,java.util.Map) -> a
+com.epplus.utils.LLog -> epPlus.hu:
     void log(java.lang.String) -> a
-com.epplus.utils.PayResult -> epPlus.hu:
+com.epplus.utils.PayResult -> epPlus.hv:
     java.lang.String resultStatus -> a
     java.lang.String result -> b
     java.lang.String memo -> c
@@ -1416,29 +1418,28 @@ com.epplus.utils.PayResult -> epPlus.hu:
     java.lang.String gatValue(java.lang.String,java.lang.String) -> a
     java.lang.String getResultStatus() -> a
     java.lang.String getResult() -> b
-com.epplus.utils.PluginPayUtil -> epPlus.hv:
+com.epplus.utils.PluginPayUtil -> epPlus.hw:
     android.app.ProgressDialog mLoadingDialog -> a
     java.lang.String mMode -> b
     android.app.Activity context -> c
     android.os.Handler mHandler -> d
-    java.lang.String TN_URL_00 -> e
+    java.lang.String price -> e
     com.epplus.utils.PluginPayUtil$PluginHandler pluginHandler -> f
     void pay(java.lang.String) -> a
     void run() -> run
     boolean handleMessage(android.os.Message) -> handleMessage
     void doStartUnionPayPlugin(android.app.Activity,java.lang.String,java.lang.String) -> a
     void onActivityResult(int,int,android.content.Intent) -> a
-    java.lang.String getPluginPayUrl(java.lang.String) -> b
     java.lang.String getOutTradeNo() -> a
-com.epplus.utils.PluginPayUtil$1 -> epPlus.hw:
+com.epplus.utils.PluginPayUtil$1 -> epPlus.hx:
     com.epplus.utils.PluginPayUtil this$0 -> a
     void onClick(android.content.DialogInterface,int) -> onClick
-com.epplus.utils.PluginPayUtil$PluginHandler -> epPlus.hx:
+com.epplus.utils.PluginPayUtil$PluginHandler -> epPlus.hy:
     void pluginPaySuccess(java.lang.String,java.lang.String) -> a
     void pluginPayFailed(java.lang.String,java.lang.String) -> b
-com.epplus.utils.SignUtils -> epPlus.hy:
+com.epplus.utils.SignUtils -> epPlus.hz:
     java.lang.String sign(java.lang.String,java.lang.String) -> a
-com.epplus.view.PayCheckDialog -> epPlus.hz:
+com.epplus.view.PayCheckDialog -> epPlus.ia:
     android.app.Activity context -> b
     android.view.View zfb_app -> c
     android.view.View yl_app -> d
@@ -1454,13 +1455,13 @@ com.epplus.view.PayCheckDialog -> epPlus.hz:
     int access$1(com.epplus.view.PayCheckDialog) -> b
     java.lang.String access$2(com.epplus.view.PayCheckDialog) -> c
     java.lang.String access$3(com.epplus.view.PayCheckDialog) -> d
-com.epplus.view.PayCheckDialog$1 -> epPlus.ia:
+com.epplus.view.PayCheckDialog$1 -> epPlus.ib:
     com.epplus.view.PayCheckDialog this$0 -> a
     void onClick(android.view.View) -> onClick
-com.epplus.view.PayCheckDialog$2 -> epPlus.ib:
+com.epplus.view.PayCheckDialog$2 -> epPlus.ic:
     com.epplus.view.PayCheckDialog this$0 -> a
     void onClick(android.view.View) -> onClick
-com.ta.utdid2.android.utils.AESUtils -> epPlus.ic:
+com.ta.utdid2.android.utils.AESUtils -> epPlus.id:
     java.lang.String encrypt(java.lang.String,java.lang.String) -> a
     java.lang.String decrypt(java.lang.String,java.lang.String) -> b
     byte[] getRawKey(byte[]) -> b
@@ -1469,7 +1470,7 @@ com.ta.utdid2.android.utils.AESUtils -> epPlus.ic:
     byte[] toByte(java.lang.String) -> a
     java.lang.String toHex(byte[]) -> a
     void appendHex(java.lang.StringBuffer,byte) -> a
-com.ta.utdid2.android.utils.Base64 -> epPlus.id:
+com.ta.utdid2.android.utils.Base64 -> epPlus.ie:
     boolean $assertionsDisabled -> a
     byte[] decode(java.lang.String,int) -> a
     byte[] decode(byte[],int) -> a
@@ -1477,17 +1478,17 @@ com.ta.utdid2.android.utils.Base64 -> epPlus.id:
     java.lang.String encodeToString(byte[],int) -> b
     byte[] encode(byte[],int) -> c
     byte[] encode(byte[],int,int,int) -> b
-com.ta.utdid2.android.utils.Base64$Coder -> epPlus.ie:
+com.ta.utdid2.android.utils.Base64$Coder -> epPlus.if:
     byte[] output -> a
     int op -> b
-com.ta.utdid2.android.utils.Base64$Decoder -> epPlus.if:
+com.ta.utdid2.android.utils.Base64$Decoder -> epPlus.ig:
     int[] DECODE -> c
     int[] DECODE_WEBSAFE -> d
     int state -> e
     int value -> f
     int[] alphabet -> g
     boolean process(byte[],int,int,boolean) -> a
-com.ta.utdid2.android.utils.Base64$Encoder -> epPlus.ig:
+com.ta.utdid2.android.utils.Base64$Encoder -> epPlus.ih:
     byte[] ENCODE -> h
     byte[] ENCODE_WEBSAFE -> i
     byte[] tail -> j
@@ -1499,16 +1500,16 @@ com.ta.utdid2.android.utils.Base64$Encoder -> epPlus.ig:
     byte[] alphabet -> l
     boolean $assertionsDisabled -> g
     boolean process(byte[],int,int,boolean) -> a
-com.ta.utdid2.android.utils.IntUtils -> epPlus.ih:
+com.ta.utdid2.android.utils.IntUtils -> epPlus.ii:
     byte[] getBytes(int) -> a
-com.ta.utdid2.android.utils.PhoneInfoUtils -> epPlus.ii:
+com.ta.utdid2.android.utils.PhoneInfoUtils -> epPlus.ij:
     java.lang.String getUniqueID() -> a
     java.lang.String getImei(android.content.Context) -> a
     java.lang.String getImsi(android.content.Context) -> b
-com.ta.utdid2.android.utils.StringUtils -> epPlus.ij:
+com.ta.utdid2.android.utils.StringUtils -> epPlus.ik:
     boolean isEmpty(java.lang.String) -> a
     int hashCode(java.lang.String) -> b
-com.ta.utdid2.core.persistent.FastXmlSerializer -> epPlus.ik:
+com.ta.utdid2.core.persistent.FastXmlSerializer -> epPlus.il:
     java.lang.String[] ESCAPE_TABLE -> a
     char[] mText -> b
     int mPos -> c
@@ -1549,13 +1550,13 @@ com.ta.utdid2.core.persistent.FastXmlSerializer -> epPlus.ik:
     org.xmlpull.v1.XmlSerializer startTag(java.lang.String,java.lang.String) -> startTag
     org.xmlpull.v1.XmlSerializer text(char[],int,int) -> text
     org.xmlpull.v1.XmlSerializer text(java.lang.String) -> text
-com.ta.utdid2.core.persistent.MySharedPreferences -> epPlus.il:
+com.ta.utdid2.core.persistent.MySharedPreferences -> epPlus.im:
     boolean checkFile() -> a
     java.util.Map getAll() -> b
     java.lang.String getString(java.lang.String,java.lang.String) -> a
     long getLong(java.lang.String,long) -> a
     com.ta.utdid2.core.persistent.MySharedPreferences$MyEditor edit() -> c
-com.ta.utdid2.core.persistent.MySharedPreferences$MyEditor -> epPlus.im:
+com.ta.utdid2.core.persistent.MySharedPreferences$MyEditor -> epPlus.in:
     com.ta.utdid2.core.persistent.MySharedPreferences$MyEditor putString(java.lang.String,java.lang.String) -> a
     com.ta.utdid2.core.persistent.MySharedPreferences$MyEditor putInt(java.lang.String,int) -> a
     com.ta.utdid2.core.persistent.MySharedPreferences$MyEditor putLong(java.lang.String,long) -> a
@@ -1564,9 +1565,9 @@ com.ta.utdid2.core.persistent.MySharedPreferences$MyEditor -> epPlus.im:
     com.ta.utdid2.core.persistent.MySharedPreferences$MyEditor remove(java.lang.String) -> a
     com.ta.utdid2.core.persistent.MySharedPreferences$MyEditor clear() -> a
     boolean commit() -> b
-com.ta.utdid2.core.persistent.MySharedPreferences$OnSharedPreferenceChangeListener -> epPlus.in:
+com.ta.utdid2.core.persistent.MySharedPreferences$OnSharedPreferenceChangeListener -> epPlus.io:
     void onSharedPreferenceChanged(com.ta.utdid2.core.persistent.MySharedPreferences,java.lang.String) -> a
-com.ta.utdid2.core.persistent.PersistentConfiguration -> epPlus.io:
+com.ta.utdid2.core.persistent.PersistentConfiguration -> epPlus.ip:
     java.lang.String mConfigName -> a
     java.lang.String mFolderName -> b
     boolean mIsSafety -> c
@@ -1589,7 +1590,7 @@ com.ta.utdid2.core.persistent.PersistentConfiguration -> epPlus.io:
     void remove(java.lang.String) -> a
     boolean commit() -> a
     java.lang.String getString(java.lang.String) -> b
-com.ta.utdid2.core.persistent.TransactionXMLFile -> epPlus.ip:
+com.ta.utdid2.core.persistent.TransactionXMLFile -> epPlus.iq:
     java.lang.Object mSync -> a
     java.io.File mPreferencesDir -> b
     java.lang.Object GLOBAL_COMMIT_LOCK -> c
@@ -1601,7 +1602,7 @@ com.ta.utdid2.core.persistent.TransactionXMLFile -> epPlus.ip:
     java.io.File makeBackupFile(java.io.File) -> b
     java.io.File access$000(java.io.File) -> a
     java.lang.Object access$100() -> a
-com.ta.utdid2.core.persistent.TransactionXMLFile$MySharedPreferencesImpl -> epPlus.iq:
+com.ta.utdid2.core.persistent.TransactionXMLFile$MySharedPreferencesImpl -> epPlus.ir:
     java.io.File mFile -> a
     java.io.File mBackupFile -> b
     int mMode -> c
@@ -1622,7 +1623,7 @@ com.ta.utdid2.core.persistent.TransactionXMLFile$MySharedPreferencesImpl -> epPl
     java.util.WeakHashMap access$200(com.ta.utdid2.core.persistent.TransactionXMLFile$MySharedPreferencesImpl) -> a
     java.util.Map access$300(com.ta.utdid2.core.persistent.TransactionXMLFile$MySharedPreferencesImpl) -> b
     boolean access$400(com.ta.utdid2.core.persistent.TransactionXMLFile$MySharedPreferencesImpl) -> c
-com.ta.utdid2.core.persistent.TransactionXMLFile$MySharedPreferencesImpl$EditorImpl -> epPlus.ir:
+com.ta.utdid2.core.persistent.TransactionXMLFile$MySharedPreferencesImpl$EditorImpl -> epPlus.is:
     java.util.Map mModified -> b
     boolean mClear -> c
     com.ta.utdid2.core.persistent.TransactionXMLFile$MySharedPreferencesImpl this$0 -> a
@@ -1634,7 +1635,7 @@ com.ta.utdid2.core.persistent.TransactionXMLFile$MySharedPreferencesImpl$EditorI
     com.ta.utdid2.core.persistent.MySharedPreferences$MyEditor remove(java.lang.String) -> a
     com.ta.utdid2.core.persistent.MySharedPreferences$MyEditor clear() -> a
     boolean commit() -> b
-com.ta.utdid2.core.persistent.XmlUtils -> epPlus.is:
+com.ta.utdid2.core.persistent.XmlUtils -> epPlus.it:
     void writeMapXml(java.util.Map,java.io.OutputStream) -> a
     void writeMapXml(java.util.Map,java.lang.String,org.xmlpull.v1.XmlSerializer) -> a
     void writeListXml(java.util.List,java.lang.String,org.xmlpull.v1.XmlSerializer) -> a
@@ -1647,7 +1648,7 @@ com.ta.utdid2.core.persistent.XmlUtils -> epPlus.is:
     int[] readThisIntArrayXml(org.xmlpull.v1.XmlPullParser,java.lang.String,java.lang.String[]) -> c
     java.lang.Object readValueXml(org.xmlpull.v1.XmlPullParser,java.lang.String[]) -> a
     java.lang.Object readThisValueXml(org.xmlpull.v1.XmlPullParser,java.lang.String[]) -> b
-com.ta.utdid2.device.Device -> epPlus.it:
+com.ta.utdid2.device.Device -> epPlus.iu:
     java.lang.String imei -> a
     java.lang.String imsi -> b
     java.lang.String deviceId -> c
@@ -1665,16 +1666,16 @@ com.ta.utdid2.device.Device -> epPlus.it:
     void setDeviceId(java.lang.String) -> c
     java.lang.String getUtdid() -> e
     void setUtdid(java.lang.String) -> d
-com.ta.utdid2.device.DeviceInfo -> epPlus.iu:
+com.ta.utdid2.device.DeviceInfo -> epPlus.iv:
     com.ta.utdid2.device.Device mDevice -> c
     java.lang.String HMAC_KEY -> a
     java.lang.Object CREATE_DEVICE_METADATA_LOCK -> b
     long getMetadataCheckSum(com.ta.utdid2.device.Device) -> a
     com.ta.utdid2.device.Device _initDeviceMetadata(android.content.Context) -> b
     com.ta.utdid2.device.Device getDevice(android.content.Context) -> a
-com.ta.utdid2.device.UTDevice -> epPlus.iv:
+com.ta.utdid2.device.UTDevice -> epPlus.iw:
     java.lang.String getUtdid(android.content.Context) -> a
-com.ta.utdid2.device.UTUtdid -> epPlus.iw:
+com.ta.utdid2.device.UTUtdid -> epPlus.ix:
     android.content.Context mContext -> a
     java.lang.Object CREATE_LOCK -> b
     com.ta.utdid2.device.UTUtdid s_umutdid -> c
@@ -1698,13 +1699,13 @@ com.ta.utdid2.device.UTUtdid -> epPlus.iw:
     java.lang.String getValue() -> a
     byte[] _generateUtdid() -> d
     java.lang.String _calcHmac(byte[]) -> a
-com.ta.utdid2.device.UTUtdidHelper -> epPlus.ix:
+com.ta.utdid2.device.UTUtdidHelper -> epPlus.iy:
     java.lang.String mAESKey -> a
     java.util.Random random -> b
     java.lang.String pack(byte[]) -> a
     java.lang.String packUtdidStr(java.lang.String) -> a
     java.lang.String dePack(java.lang.String) -> b
-com.ta.utdid2.device.UTUtdidHelper2 -> epPlus.iy:
+com.ta.utdid2.device.UTUtdidHelper2 -> epPlus.iz:
     java.lang.String mAESKey -> a
     java.lang.String dePack(java.lang.String) -> a
     java.lang.String dePackWithBase64(java.lang.String) -> b
@@ -7431,17 +7432,17 @@ com.unionpay.z -> com.unionpay.z:
     com.unionpay.WebViewJavascriptBridge a -> a
     boolean onConsoleMessage(android.webkit.ConsoleMessage) -> onConsoleMessage
     boolean onJsAlert(android.webkit.WebView,java.lang.String,java.lang.String,android.webkit.JsResult) -> onJsAlert
-com.ut.device.UTDevice -> epPlus.iz:
-org.json.alipay.a -> epPlus.ja:
+com.ut.device.UTDevice -> epPlus.ja:
+org.json.alipay.a -> epPlus.jb:
     java.lang.Throwable a -> a
     java.lang.Throwable getCause() -> getCause
-org.json.alipay.b -> epPlus.jb:
+org.json.alipay.b -> epPlus.jc:
     java.util.ArrayList a -> a
     java.lang.Object a(int) -> a
     java.lang.String a(java.lang.String) -> a
     int a() -> a
     java.lang.String toString() -> toString
-org.json.alipay.c -> epPlus.jc:
+org.json.alipay.c -> epPlus.jd:
     java.util.Map b -> b
     java.lang.Object a -> a
     java.lang.Object a(java.lang.String) -> a
@@ -7451,11 +7452,11 @@ org.json.alipay.c -> epPlus.jc:
     void b(java.lang.Object) -> b
     java.lang.String toString() -> toString
     java.lang.String a(java.lang.Object) -> a
-org.json.alipay.c$a -> epPlus.jd:
+org.json.alipay.c$a -> epPlus.je:
     java.lang.Object clone() -> clone
     boolean equals(java.lang.Object) -> equals
     java.lang.String toString() -> toString
-org.json.alipay.d -> epPlus.je:
+org.json.alipay.d -> epPlus.jf:
     int a -> a
     java.io.Reader b -> b
     char c -> c

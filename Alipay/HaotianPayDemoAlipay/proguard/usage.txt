@@ -619,8 +619,8 @@ com.epplus.utils.AlipayUtils:
     184:186:public java.lang.String getSDKVersion(android.app.Activity)
 com.epplus.utils.AlipayUtils$3
 com.epplus.utils.AssetsUtils:
-    60:69:public android.graphics.drawable.Drawable getXmlDrawble(java.lang.String)
-    98:99:protected android.graphics.Bitmap getBitmapByResourceName(java.lang.String)
+    61:70:public android.graphics.drawable.Drawable getXmlDrawble(java.lang.String)
+    107:108:protected android.graphics.Bitmap getBitmapByResourceName(java.lang.String)
 com.epplus.utils.Base64:
     private static final int BASELENGTH
     private static final int LOOKUPLENGTH
@@ -634,6 +634,8 @@ com.epplus.utils.HttpStatistics:
     public static final java.lang.String BASEURL
     65:97:private java.lang.String post(java.lang.String,java.util.Map)
     113:134:private java.lang.String get(java.lang.String)
+com.epplus.utils.HttpUtils:
+    18:18:public HttpUtils()
 com.epplus.utils.LLog:
     5:5:public LLog()
     10:11:public static void info(java.lang.String)
