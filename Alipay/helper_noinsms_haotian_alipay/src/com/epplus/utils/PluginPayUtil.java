@@ -121,8 +121,11 @@ public class PluginPayUtil implements Runnable,Callback {
 //			
 //			String TN_URL_01 = SERVER_UNIONSDK+ "?&txnTime="+ time
 //						+ "&merId=" + merId + "&orderId=" + getOutTradeNo() + "&txnAmt=" + price;
-	        
-	        String time = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+	    
+			SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss",Locale.getDefault());
+			Date date = new Date();
+			String time = format.format(date);
+	       // String time = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 	        Map<String, String> map = new HashMap<String, String>();
 	        map.put("txnTime", time);
 	        map.put("merId", merId);
@@ -222,7 +225,8 @@ public class PluginPayUtil implements Runnable,Callback {
 	 */
 	@SuppressLint("SimpleDateFormat") 
 	private  String getOutTradeNo() {
-		String key = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()) ;
+		
+		String key = new SimpleDateFormat("yyyyMMddHHmmss",Locale.getDefault()).format(new Date()) ;
 		Random random = new Random();
 		int n = random.nextInt(10000);
 		String order =String.valueOf(n)+key;
@@ -236,3 +240,11 @@ public class PluginPayUtil implements Runnable,Callback {
 	}
 
 }
+
+
+
+
+
+
+
+

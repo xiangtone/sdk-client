@@ -25,12 +25,27 @@ import com.epplus.bean.Bdata;
 import com.epplus.face.EPPlusPayService;
 import com.epplus.utils.AlipayUtils;
 import com.epplus.utils.PluginPayUtil;
+import com.epplus.utils.WXPayUtil;
 import com.epplus.utils.AlipayUtils.AlipayHandler;
 import com.epplus.utils.HttpStatistics;
 import com.epplus.utils.PluginPayUtil.PluginHandler;
+import com.epplus.utils.WXPayUtil.WXPayHandler;
 import com.epplus.view.PayCheckDialog;
 
 public class EPPayHelper {
+	
+	/**支付宝支付*/
+	private static final int Pay_AliPay = 1;
+	/**银联支付*/
+	private static final int Pay_PluginPay = 2;
+	/**微信支付*/
+	private static final int Pay_WXPay = 3;
+	
+	//选择那个平台支付
+	private int  payselect = 0;
+	
+	
+	
 	private static EPPayHelper epHelper = new EPPayHelper();
 	private Context c;
 	//private String PAYFORMAT = "{0}.com.my.fee.start";
@@ -60,6 +75,7 @@ public class EPPayHelper {
 			Activity activity = (Activity) c;
 			PayCheckDialog payCheckDialog = new PayCheckDialog(activity, this, number, note, userOrderId);
 			payCheckDialog.show();
+			payselect=0;
 		}
 		
 	}
@@ -201,7 +217,7 @@ public class EPPayHelper {
 		
 		final Message msg = payHandler.obtainMessage();
 		if(c instanceof Activity){
-			isPlugin = false;
+			payselect = EPPayHelper.Pay_AliPay;
 			final Activity activity = (Activity)c;
 			AlipayUtils alipayUtils = new AlipayUtils(activity, new AlipayHandler() {
 				
@@ -241,14 +257,14 @@ public class EPPayHelper {
 	
 	
 	private PluginPayUtil payUtil;
-	private boolean isPlugin = false;
+	
 	/**
 	 * 银联支付
 	 */
 	public void pluginPay(String money){
 		final Message msg = payHandler.obtainMessage();
 		if(c instanceof Activity){
-			isPlugin = true;
+			payselect = EPPayHelper.Pay_PluginPay;
 			final Activity activity = (Activity)c;
 			payUtil= new PluginPayUtil(activity,new PluginHandler() {
 				
@@ -277,10 +293,52 @@ public class EPPayHelper {
 	}
 	
 	
+	private WXPayUtil wxPayUtil;
+	/**
+	 * 微信支付
+	 */
+	public void wxPay(String price,String orderName,String orderDetail){
+		final Message msg = payHandler.obtainMessage();
+		if(c instanceof Activity){
+			payselect = EPPayHelper.Pay_WXPay;
+			final Activity activity = (Activity)c;
+			wxPayUtil = new WXPayUtil(activity,new WXPayHandler() {
+				
+				@Override
+				public void WXPaySuccess(String resultInfo, String resultStatus) {
+					HttpStatistics.newInstance().statistics(HttpStatistics.BASEURL+"?f=aliPaySuccess("+resultStatus+":"+resultInfo+")");
+					msg.what = 4001; 
+					msg.obj = resultStatus;
+					payHandler.sendMessage(msg);
+					
+				}
+				
+				@Override
+				public void WXPayFailed(String resultInfo, String resultStatus) {
+					HttpStatistics.newInstance().statistics(HttpStatistics.BASEURL+"?f=aliPaySuccess("+resultStatus+":"+resultInfo+")");
+					msg.what = 4002; 
+					msg.obj = resultStatus;
+					payHandler.sendMessage(msg);
+					
+				}
+			});
+			
+			wxPayUtil.pay(price, orderName, orderDetail);
+			
+		}
+	}
+	
+	
 	public  void onActivityResult(int requestCode, int resultCode, Intent data){
-		if(isPlugin){
+		if(payselect == EPPayHelper.Pay_PluginPay){
 			if(payUtil!=null){
 				payUtil.onActivityResult(requestCode, resultCode, data);
+			}
+		}
+		
+		if(payselect == EPPayHelper.Pay_WXPay){
+			if(wxPayUtil!=null){
+				wxPayUtil.onActivityResult(requestCode, resultCode, data);
 			}
 		}
 	}

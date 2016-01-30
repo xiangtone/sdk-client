@@ -4,7 +4,7 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk
+    <uses-sdk  
         android:minSdkVersion="8"
         android:targetSdkVersion="21" />
 
@@ -85,6 +85,16 @@
             android:windowSoftInputMode="adjustResize" >
         </activity>
         <!-- end  -->
+        
+        <!-- start 微信 支付  -->
+         <activity
+            android:name="com.ipaynow.plugin.inner_plugin.wechat_plugin.activity.WeChatNotifyActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|smallestScreenSize|locale|screenLayout"
+            android:label="WeChatPayActivity"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <!-- end 微信支付 -->
   		
       
     </application>
@@ -106,6 +116,7 @@
     <uses-permission android:name="android.permission.WRITE_SMS" />
  	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.NFC"/>
     
     
 

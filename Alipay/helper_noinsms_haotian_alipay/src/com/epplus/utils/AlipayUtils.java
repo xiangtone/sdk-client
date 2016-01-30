@@ -14,7 +14,11 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.alipay.sdk.app.PayTask;
-
+/**
+ *  支付宝支付
+ * @author zgt
+ *
+ */
 public class AlipayUtils {
 
 	// 商户PID
