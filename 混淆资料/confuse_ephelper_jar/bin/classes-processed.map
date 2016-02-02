@@ -1,0 +1,177 @@
+com.core_sur.interfaces.EPEngine -> com.core_sur.interfaces.EPEngine:
+    void init(java.lang.Object[]) -> init
+    void pay(java.lang.Object[]) -> pay
+com.core_sur.interfaces.ProxyInterface -> com.core_sur.interfaces.ProxyInterface:
+    void onCreate(android.content.Intent) -> onCreate
+    void onDestroy() -> onDestroy
+    void setActivity(android.app.Activity) -> setActivity
+com.epplus.bean.Bdata -> com.epplus.a:
+    char[][] d -> a
+    69:70:char cc(int) -> a
+    29:61:java.lang.String post(java.lang.String,java.util.Map) -> a
+    17:35:java.lang.String sign(java.lang.String,java.lang.String) -> a
+com.epplus.bean.Version -> com.epplus.b:
+    java.lang.String version -> a
+    int Status -> b
+    java.lang.String updateSdkUrl -> c
+    27:27:java.lang.String toString() -> toString
+com.epplus.face.EPPlusPayActivity -> com.epplus.face.EPPlusPayActivity:
+    com.core_sur.interfaces.ProxyInterface proxy -> a
+    24:28:void onCreate(android.os.Bundle) -> onCreate
+    67:85:com.core_sur.interfaces.ProxyInterface execDex(java.lang.String) -> a
+    90:92:void onDestroy() -> onDestroy
+com.epplus.face.EPPlusPayService -> com.epplus.face.EPPlusPayService:
+    java.lang.String currentVersion -> b
+    android.content.SharedPreferences sp -> c
+    java.lang.String versionUrl -> a
+    int type -> d
+    boolean isChecklog -> e
+    48:48:android.os.IBinder onBind(android.content.Intent) -> onBind
+    68:77:java.lang.String copyAssetsToPath(java.lang.String) -> a
+    82:102:void copyFile(java.io.InputStream,java.lang.String) -> a
+    105:113:void init() -> b
+    117:122:int onStartCommand(android.content.Intent,int,int) -> onStartCommand
+    132:155:com.core_sur.interfaces.EPEngine execDex(java.lang.String) -> b
+    160:162:void onCreate() -> onCreate
+    164:171:void initCheckVersion() -> c
+    174:178:void onDestroy() -> onDestroy
+    181:196:void updateVersion(com.epplus.bean.Version) -> a
+    230:231:java.lang.String getLXDexFilePath() -> a
+    104:104:void access$0(com.epplus.face.EPPlusPayService) -> a
+    39:39:android.content.SharedPreferences access$1(com.epplus.face.EPPlusPayService) -> b
+    38:38:java.lang.String access$2(com.epplus.face.EPPlusPayService) -> c
+com.epplus.face.EPPlusPayService$CheckVersionTask -> com.epplus.c:
+    com.epplus.face.EPPlusPayService this$0 -> a
+    323:360:com.epplus.bean.Version doInBackground$7598211d() -> a
+    1:1:void onPostExecute(java.lang.Object) -> onPostExecute
+    1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.epplus.face.EPPlusPayService$UpdateVersionTask -> com.epplus.d:
+    java.lang.String version -> a
+    java.lang.String downUrl -> b
+    com.epplus.face.EPPlusPayService this$0 -> c
+    250:275:java.lang.Boolean doInBackground$7273979() -> a
+    1:1:void onPostExecute(java.lang.Object) -> onPostExecute
+    1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.epplus.face.EPPlusPayServiceReceiver -> com.epplus.face.EPPlusPayServiceReceiver:
+    android.content.Context context -> a
+    26:37:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    40:49:boolean checkServiceRunning(android.content.Context,java.lang.String) -> a
+com.epplus.face.InstallReciver -> com.epplus.face.InstallReciver:
+    18:28:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.epplus.publics.EPPayHelper -> com.epplus.publics.EPPayHelper:
+    com.epplus.publics.EPPayHelper epHelper -> epHelper
+    android.content.Context c -> c
+    java.lang.String PAYFORMAT -> PAYFORMAT
+    boolean isSendOK -> isSendOK
+    android.content.BroadcastReceiver payReceiver -> payReceiver
+    android.os.Handler payHandler -> payHandler
+    android.app.AlertDialog dialog -> dialog
+    com.epplus.utils.PluginPayUtil payUtil -> payUtil
+    boolean isPlugin -> isPlugin
+    40:41:com.epplus.publics.EPPayHelper getInstance(android.content.Context) -> getInstance
+    45:49:void initPay(boolean,java.lang.String) -> initPay
+    59:65:void pay(int,java.lang.String,java.lang.String) -> pay
+    68:89:void createLoadingDialog() -> createLoadingDialog
+    122:126:void setPayListen(android.os.Handler) -> setPayListen
+    129:133:void exit() -> exit
+    136:169:void regPay() -> regPay
+    180:198:void alipay(org.json.JSONObject) -> alipay
+    202:240:void alipay(java.lang.String,java.lang.String,java.lang.String,java.lang.String) -> alipay
+    249:277:void pluginPay(java.lang.String) -> pluginPay
+    281:286:void onActivityResult(int,int,android.content.Intent) -> onActivityResult
+    91:91:boolean access$0(com.epplus.publics.EPPayHelper) -> access$0
+    119:119:android.app.AlertDialog access$1(com.epplus.publics.EPPayHelper) -> access$1
+    119:119:void access$2(com.epplus.publics.EPPayHelper,android.app.AlertDialog) -> access$2
+    118:118:android.os.Handler access$3(com.epplus.publics.EPPayHelper) -> access$3
+    91:91:void access$4(com.epplus.publics.EPPayHelper,boolean) -> access$4
+com.epplus.publics.EPPayHelper$1 -> com.epplus.e:
+    com.epplus.publics.EPPayHelper this$0 -> a
+    139:165:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.epplus.publics.EPPayHelper$2 -> com.epplus.f:
+    com.epplus.publics.EPPayHelper this$0 -> a
+    android.os.Message val$msg -> b
+    211:215:void aliPaySuccess(java.lang.String,java.lang.String) -> a
+    219:223:void aliPayFailed(java.lang.String,java.lang.String) -> b
+com.epplus.publics.EPPayHelper$TimeoutSendPay -> com.epplus.g:
+    int timeout -> a
+    com.epplus.publics.EPPayHelper this$0 -> b
+    98:114:void run() -> run
+com.epplus.utils.AlipayUtils -> com.epplus.h:
+    android.os.Handler mHandler -> a
+    android.app.Activity activity -> b
+    com.epplus.utils.AlipayUtils$AlipayHandler alipayHandler -> c
+    java.lang.String notify_url -> d
+com.epplus.utils.AlipayUtils$1 -> com.epplus.i:
+    com.epplus.utils.AlipayUtils this$0 -> a
+    35:67:void handleMessage(android.os.Message) -> handleMessage
+com.epplus.utils.AlipayUtils$2 -> com.epplus.j:
+    com.epplus.utils.AlipayUtils this$0 -> a
+    java.lang.String val$payInfo -> b
+    137:145:void run() -> run
+com.epplus.utils.AlipayUtils$AlipayHandler -> com.epplus.k:
+    void aliPaySuccess(java.lang.String,java.lang.String) -> a
+    void aliPayFailed(java.lang.String,java.lang.String) -> b
+com.epplus.utils.AssetsUtils -> com.epplus.l:
+    java.lang.String assets_layout -> a
+    java.lang.String assets_drawable -> b
+    android.app.Activity context -> c
+    41:54:android.view.ViewGroup findViewByFileName(java.lang.String) -> a
+    74:92:android.graphics.drawable.Drawable getDrawable$5eeeb11(java.lang.String) -> b
+    113:123:android.graphics.drawable.Drawable getNineDrawable(java.lang.String) -> c
+    136:152:android.content.res.XmlResourceParser getXmlForZip(java.lang.String) -> d
+    156:171:byte[] input2byte(java.io.InputStream) -> a
+com.epplus.utils.Base64 -> com.epplus.m:
+    char PAD -> a
+    byte[] base64Alphabet -> b
+    char[] lookUpBase64Alphabet -> c
+    55:55:boolean isPad(char) -> a
+    59:59:boolean isData(char) -> b
+    71:142:java.lang.String encode(byte[]) -> a
+    154:243:byte[] decode(java.lang.String) -> a
+com.epplus.utils.HttpStatistics -> com.epplus.n:
+    com.epplus.utils.HttpStatistics httpStatistics -> a
+    31:34:com.epplus.utils.HttpStatistics newInstance() -> a
+com.epplus.utils.PayResult -> com.epplus.o:
+    java.lang.String resultStatus -> a
+    java.lang.String result -> b
+    java.lang.String memo -> c
+    31:31:java.lang.String toString() -> toString
+    36:37:java.lang.String gatValue(java.lang.String,java.lang.String) -> a
+com.epplus.utils.PluginPayUtil -> com.epplus.p:
+    android.app.ProgressDialog mLoadingDialog -> a
+    android.app.Activity context -> b
+    android.os.Handler mHandler -> c
+    java.lang.String price -> d
+    com.epplus.utils.PluginPayUtil$PluginHandler pluginHandler -> e
+    76:86:void pay(java.lang.String) -> a
+    125:139:void run() -> run
+    145:170:boolean handleMessage(android.os.Message) -> handleMessage
+    192:217:void onActivityResult$6eb84b52(int,android.content.Intent) -> a
+com.epplus.utils.PluginPayUtil$1 -> com.epplus.q:
+    158:159:void onClick(android.content.DialogInterface,int) -> onClick
+com.epplus.utils.PluginPayUtil$PluginHandler -> com.epplus.r:
+    com.epplus.publics.EPPayHelper this$0 -> a
+    android.os.Message val$msg -> b
+    257:262:void pluginPaySuccess(java.lang.String,java.lang.String) -> a
+    268:273:void pluginPayFailed(java.lang.String,java.lang.String) -> b
+com.epplus.view.PayCheckDialog -> com.epplus.s:
+    android.app.Activity context -> a
+    android.view.View zfb_app -> b
+    android.view.View yl_app -> c
+    com.epplus.publics.EPPayHelper ep -> d
+    int money -> e
+    java.lang.String note -> f
+    java.lang.String userOrderId -> g
+    android.view.View rootView -> h
+    com.epplus.utils.AssetsUtils assetsUtils -> i
+    44:79:void onCreate(android.os.Bundle) -> onCreate
+    23:23:com.epplus.publics.EPPayHelper access$0(com.epplus.view.PayCheckDialog) -> a
+    25:25:int access$1(com.epplus.view.PayCheckDialog) -> b
+    26:26:java.lang.String access$2(com.epplus.view.PayCheckDialog) -> c
+    27:27:java.lang.String access$3(com.epplus.view.PayCheckDialog) -> d
+com.epplus.view.PayCheckDialog$1 -> com.epplus.t:
+    com.epplus.view.PayCheckDialog this$0 -> a
+    60:62:void onClick(android.view.View) -> onClick
+com.epplus.view.PayCheckDialog$2 -> com.epplus.u:
+    com.epplus.view.PayCheckDialog this$0 -> a
+    70:72:void onClick(android.view.View) -> onClick

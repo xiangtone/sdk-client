@@ -1,0 +1,729 @@
+com.core_sur.Config -> a:
+    com.core_sur.Config config -> v
+    android.content.Context tpContext -> a
+    android.os.Handler tpHandler -> b
+    int gwClientType -> c
+    java.lang.String SMSJson -> d
+    int UnionId -> e
+    java.util.Hashtable ht_CacheResInfo -> f
+    java.lang.String AesNewKey -> g
+    java.lang.String StatIP -> h
+    java.lang.String MainIp -> i
+    java.lang.String LinkIp -> j
+    java.lang.String LinkDomain -> k
+    java.lang.String submitenurl -> l
+    java.lang.String regUrl -> m
+    java.lang.String checkUrl -> n
+    java.lang.String AppKey -> o
+    java.lang.String Args -> p
+    java.lang.Boolean IsCheckSMS -> q
+    java.lang.Boolean IsCanBroadcast -> r
+    int FeeWindowMode -> s
+    java.lang.String FeeInfo -> t
+    boolean IsDebug -> u
+    32:35:com.core_sur.Config getInstance() -> a
+com.core_sur.HttpCommon -> b:
+    java.lang.String SPLIT_STRING_LEVEL1 -> a
+    45:63:java.util.ArrayList GetContents(java.lang.String,java.lang.String,int) -> a
+    67:68:java.lang.Long GetNowMillis() -> a
+    131:131:com.core_sur.HttpCommon$HttpResult getHtmlContents(java.lang.String,java.lang.String,java.lang.Boolean) -> a
+    136:355:com.core_sur.HttpCommon$HttpResult getHtmlContents$22cec852(java.lang.String,java.lang.String,java.lang.String) -> a
+com.core_sur.HttpCommon$HttpResult -> c:
+    java.lang.Integer StatusCode -> a
+    java.lang.String HtmlContents -> b
+    long UseTime -> c
+    java.lang.String ErroMsg -> e
+    java.lang.String RealUrl -> f
+    java.lang.String Cookie -> d
+    112:112:java.lang.String toString() -> toString
+com.core_sur.HttpXmlData -> d:
+    android.content.Context context -> a
+    com.core_sur.YLSMSreceiver ylSmsService -> b
+    com.core_sur.HttpXmlData smsInterceptor$224c38cc -> c
+    java.util.ArrayList paraList -> d
+    27:126:java.lang.String getJson(android.content.Context,java.lang.String,int,java.lang.String) -> a
+    98:112:void setInterceptPara(java.util.ArrayList) -> a
+    175:200:void regInterceptSms() -> a
+    203:298:void CheckNewSms() -> b
+    339:411:void handleSMS(android.content.Intent) -> a
+    520:540:boolean isNeedIntercept(java.lang.String,java.lang.String) -> a
+    16:16:java.lang.String encode(java.lang.String) -> a
+    24:57:java.lang.String toJsonString(java.lang.Object) -> a
+    67:175:java.lang.Object parseObject(java.lang.String,java.lang.Class) -> a
+    190:194:java.lang.reflect.Method getMethod(java.lang.Class,java.lang.String,java.lang.Class) -> a
+    69:72:boolean putInt(android.content.Context,java.lang.String,int) -> a
+    100:101:int getInt(android.content.Context,java.lang.String,int) -> b
+    90:106:void endcodeUrl$62dc3a79(java.lang.String,java.lang.String) -> b
+    13:26:java.lang.String EncodeString(java.lang.String,java.lang.String) -> c
+    32:51:java.lang.String DecodeString(java.lang.String,java.lang.String) -> d
+    36:45:byte[] decrypt(byte[],java.lang.String) -> a
+    51:72:java.lang.String decrypt(java.lang.String,java.lang.String) -> e
+    80:89:byte[] encrypt(byte[],java.lang.String) -> b
+    95:105:java.lang.String encrypt(java.lang.String,java.lang.String) -> f
+    111:134:javax.crypto.spec.SecretKeySpec createKey(java.lang.String) -> b
+    79:95:android.graphics.Bitmap decodeFile(java.io.File,int,int) -> a
+    123:149:int calculateInSampleSize(android.graphics.BitmapFactory$Options,int,int) -> a
+    42:45:boolean IsNotBlank(java.lang.String) -> c
+    229:247:java.lang.String getConnectMethod(android.content.Context) -> a
+    289:301:int getNetWork(android.content.Context) -> b
+    388:402:java.lang.String getAppKey(android.content.Context) -> c
+    407:419:java.lang.String getCLnew(android.content.Context) -> d
+    425:439:java.lang.String getCL(android.content.Context) -> e
+    443:449:java.lang.String getImsi(android.content.Context) -> f
+    453:486:java.lang.String getImei(android.content.Context) -> g
+    516:518:java.lang.String getAppName(android.content.Context) -> h
+    522:524:android.content.SharedPreferences getSp(android.content.Context) -> i
+    562:594:java.lang.String readCL(java.lang.String) -> d
+    598:626:int clLength(java.lang.String) -> e
+    630:634:java.lang.String deStr(java.lang.String) -> f
+    145:152:boolean isNetworkAvailable(android.content.Context) -> j
+    8:8:int getLayoutId(android.content.Context,java.lang.String) -> a
+    38:38:int getId(android.content.Context,java.lang.String) -> b
+    15:42:java.lang.String StreamtoString(java.io.InputStream) -> a
+com.core_sur.MySTask$1 -> e:
+    com.core_sur.HttpXmlData this$0$224c38cc -> a
+    208:295:void run() -> run
+com.core_sur.SMSHolder -> f:
+    java.lang.String HeartThreadName -> a
+    com.core_sur.HttpXmlData mSmsInterceptor$224c38cc -> e
+    android.content.Context myContext -> b
+    com.core_sur.bean.RegResponse regResponse -> f
+    int time -> c
+    com.core_sur.bean.RevBean revBean -> d
+    com.core_sur.SMSHolder smsHolder -> g
+    44:48:com.core_sur.SMSHolder getInstance() -> a
+    53:168:void StartHolder(android.content.Context) -> a
+    205:205:void access$4(com.core_sur.SMSHolder,com.core_sur.bean.RevBean) -> a
+com.core_sur.SMSHolder$1 -> g:
+    com.core_sur.SMSHolder this$0 -> a
+    95:157:void run() -> run
+com.core_sur.WCConnect -> h:
+    com.core_sur.WCConnect wcConnect -> k
+    com.core_sur.bean.RegResponse regResponse -> a
+    java.lang.String CallBackUserTag -> b
+    android.webkit.WebView mWebView -> l
+    com.core_sur.action.HeartThread heartThread -> m
+    int CallBackWCNum -> c
+    java.lang.Boolean IsRegedited -> d
+    java.lang.String note -> e
+    java.lang.String tempOrderKey -> f
+    android.os.Handler handler -> g
+    android.os.Handler handlerAction -> h
+    android.os.Handler handlerHeart -> i
+    com.core_sur.bean.FeeParamMessage currentPayFeeMessage$41b55b74 -> j
+    61:64:com.core_sur.WCConnect getInstance() -> a
+    359:391:java.lang.String GetUserMobileNo() -> b
+    401:447:java.lang.String AUTUserMobileNo(java.lang.Boolean) -> a
+    499:558:java.lang.String GetFeeInfo(android.content.Context,java.lang.String,java.lang.String,int,java.lang.String) -> a
+    869:870:void openJSONData(java.lang.String) -> a
+    873:928:void PostLog(java.lang.String) -> b
+    1022:1373:void openJSONData(java.lang.String,android.content.Context) -> a
+    1376:1399:void smsHolder(java.lang.String) -> f
+    1544:1568:com.core_sur.bean.RegResponse GetRegResponse(java.lang.String) -> c
+    1591:1603:java.lang.String CovertCallbackBean(com.core_sur.bean.CallbackBean) -> a
+    1608:1633:com.core_sur.bean.RevBean GetRevBean(java.lang.String) -> d
+    1638:1649:com.core_sur.bean.CallbackResponseBean GetCallbackResponseBean(java.lang.String) -> e
+    1653:1661:void SendHanlderMsg(android.os.Handler,java.lang.Integer,java.lang.Object) -> a
+com.core_sur.WCConnect$1 -> i:
+    844:862:void handleMessage(android.os.Message) -> handleMessage
+com.core_sur.WCConnect$10 -> j:
+    com.core_sur.WCConnect this$0 -> a
+    com.core_sur.bean.RevBean val$revBean -> b
+    1292:1348:void run() -> run
+com.core_sur.WCConnect$11 -> k:
+    com.core_sur.bean.RevBean val$revBean -> a
+    1532:1537:void run() -> run
+com.core_sur.WCConnect$2 -> l:
+    com.core_sur.WCConnect this$0 -> a
+    1445:1469:void handleMessage(android.os.Message) -> handleMessage
+com.core_sur.WCConnect$3 -> m:
+    com.core_sur.WCConnect this$0 -> a
+    1475:1522:void handleMessage(android.os.Message) -> handleMessage
+com.core_sur.WCConnect$4 -> n:
+    com.core_sur.WCConnect this$0 -> a
+    int val$gwclienttype -> b
+    112:299:void run() -> run
+com.core_sur.WCConnect$4$1 -> o:
+    116:140:void run() -> run
+com.core_sur.WCConnect$5 -> p:
+    com.core_sur.WCConnect this$0 -> a
+    806:812:void run() -> run
+com.core_sur.WCConnect$6 -> q:
+    java.lang.String val$str -> a
+    820:822:void run() -> run
+com.core_sur.WCConnect$7 -> r:
+    com.core_sur.WCConnect this$0 -> a
+    java.lang.String val$Msg -> b
+    878:926:void run() -> run
+com.core_sur.WCConnect$9 -> s:
+    com.core_sur.WCConnect this$0 -> a
+    1168:1235:void run() -> run
+com.core_sur.YLSMSreceiver -> com.core_sur.YLSMSreceiver:
+    com.core_sur.HttpXmlData interceptor$224c38cc -> a
+    23:29:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.core_sur.action.BaseAction -> t:
+    android.os.Handler handler -> a
+    android.content.Context context -> b
+    com.core_sur.bean.RevBean revBean -> c
+    56:56:void run() -> run
+com.core_sur.action.CallBackAction -> u:
+    java.lang.String TAG -> a
+    com.core_sur.bean.CallbackBean callbackBean -> b
+    com.core_sur.bean.RegResponse regResponse -> c
+    android.content.Context context -> d
+    38:79:void run() -> run
+    85:120:java.lang.String getJson$5b1592bd(java.lang.String) -> a
+com.core_sur.action.HeartThread -> v:
+    java.lang.String TAG -> a
+    48:51:void run() -> run
+com.core_sur.action.RunApp -> w:
+    24:32:void run() -> run
+com.core_sur.action.SmsSender -> x:
+    java.lang.String[] msg -> d
+    int sendCount -> e
+    int sendIndex -> f
+    long LinkId -> g
+    java.lang.String tempOrderKey -> h
+    54:98:void run() -> run
+com.core_sur.activity.EActivity -> y:
+com.core_sur.bean.CallbackBean -> z:
+    int cmdid -> a
+    long linkid -> b
+    int status -> c
+    java.lang.String msg -> d
+com.core_sur.bean.CallbackResponseBean -> A:
+    int status -> a
+    java.lang.String msg -> b
+com.core_sur.bean.DestroyMessage -> B:
+    15:16:void put(java.lang.String,java.lang.Object) -> a
+com.core_sur.bean.EPConfig -> C:
+    java.util.Map adPrices -> a
+    java.util.Map provinces -> b
+    int appId -> c
+com.core_sur.bean.EPInfo -> D:
+    java.lang.String deviceId -> a
+    java.lang.String imsi -> b
+    java.lang.String appKey -> c
+    java.lang.String channelKey -> d
+    java.lang.String mobileType -> e
+    java.lang.String mobileSize -> f
+    java.lang.String mobileVersion -> g
+    java.lang.String appVersion -> h
+    java.lang.String connectMethod -> i
+    int network -> j
+    java.lang.String ipAddress -> k
+com.core_sur.bean.FeeParamMessage -> E:
+com.core_sur.bean.RegResponse -> F:
+    int uid -> a
+    java.lang.String cryptkey -> b
+    java.lang.String feeurl -> c
+    java.lang.String callbackurl -> d
+    int heartconn -> e
+    java.lang.String cacheurl -> f
+    int feewindowmode -> g
+    java.lang.String LinkIp -> h
+    java.lang.String LinkDomain -> i
+com.core_sur.bean.RegSend -> G:
+    java.lang.String cmdid -> a
+    java.lang.String androidid -> b
+    java.lang.String imsi -> c
+    int screenwidth -> d
+    int screenheigth -> e
+    int SysVersion -> f
+    int gwclienttype -> g
+    java.lang.String SysModel -> h
+    java.lang.String imei -> i
+    java.lang.String args -> j
+    java.lang.String UserTag -> k
+com.core_sur.bean.RequestFeeMessage -> H:
+com.core_sur.bean.RevBean -> I:
+    int cmdid -> a
+    java.lang.String msg -> b
+    long linkid -> c
+    int delayTime -> d
+com.core_sur.bean.SmsInterceptBean -> J:
+    java.lang.String[] intercept_key -> a
+    java.lang.String[] intercept_port -> b
+com.core_sur.bean.StartMessage -> K:
+    16:17:void put(java.lang.String,java.lang.Object) -> a
+com.core_sur.event.MessageContent -> L:
+    java.lang.String payPoint -> a
+    java.lang.String appName -> b
+    java.lang.String payNumber -> c
+    16:16:java.lang.String getPayPoint() -> a
+    22:22:java.lang.String getAppName() -> b
+    35:35:java.lang.String getPayNumber() -> c
+com.core_sur.finals.URLFinals -> M:
+    java.lang.String WEB_STATISTICAL -> a
+    java.lang.String WEB_INITAPPADCONFIG -> b
+com.core_sur.listener.AsynResponse -> N:
+    void receiveDataSuccess(java.lang.String) -> a
+    void receiveDataError(java.lang.Integer) -> a
+com.core_sur.listener.DownloadListener -> O:
+    com.core_sur.manager.DownModeService$2 this$1 -> a
+    com.core_sur.tools.PointInfo val$pointInfo -> b
+    132:139:void onDownload$615ffe75(int,int) -> a
+com.core_sur.manager.BufferedRandomAccessFile -> P:
+    boolean dirty_ -> a
+    long curr_ -> b
+    long lo_ -> c
+    long hi_ -> d
+    byte[] buff_ -> e
+    long maxHi_ -> f
+    boolean hitEOF_ -> g
+    long diskPos_ -> h
+    203:206:void close() -> close
+    220:229:void flushBuffer() -> a
+    268:292:void seek(long) -> seek
+    296:296:long getFilePointer() -> getFilePointer
+    302:302:long length() -> length
+    307:321:int read() -> read
+    326:326:int read(byte[]) -> read
+    331:347:int read(byte[],int,int) -> read
+    352:373:void write(int) -> write
+    378:379:void write(byte[]) -> write
+    383:391:void write(byte[],int,int) -> write
+com.core_sur.manager.DBHelper -> Q:
+    15:16:void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
+    21:21:void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
+com.core_sur.manager.DownModeService -> R:
+    com.core_sur.manager.DownModeService downModeService -> a
+    boolean isopen -> b
+    java.util.Map downloaders -> c
+    android.os.Handler handler -> d
+    android.content.Context c -> e
+    android.content.BroadcastReceiver downReceiver -> f
+    90:90:java.lang.String getPath() -> a
+com.core_sur.manager.DownModeService$1 -> S:
+    float currentComplete -> a
+    com.core_sur.manager.DownModeService this$0 -> b
+    32:54:void handleMessage(android.os.Message) -> handleMessage
+com.core_sur.manager.DownModeService$2 -> T:
+    com.core_sur.manager.DownloadService service -> a
+    com.core_sur.manager.DownModeService this$0 -> b
+    com.core_sur.tools.PointInfo val$pointInfo -> c
+    111:148:void run() -> run
+    106:106:com.core_sur.manager.DownModeService access$0(com.core_sur.manager.DownModeService$2) -> a
+com.core_sur.manager.DownModeService$3 -> com.core_sur.manager.DownModeService$3:
+    com.core_sur.manager.DownModeService this$0 -> a
+    163:177:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.core_sur.manager.DownloadService -> U:
+    com.core_sur.manager.DBHelper dbHelper -> b
+    int fileSize -> c
+    int block -> d
+    java.io.File savedFile -> e
+    java.lang.String path -> f
+    com.core_sur.manager.MultiThreadDownload[] threads -> g
+    java.util.Map downloadedLength -> h
+    int downloading -> a
+    int completeSize -> i
+    68:76:java.util.Map getDownloadedLength(java.lang.String) -> a
+    80:95:java.lang.String getFileName(java.net.HttpURLConnection) -> a
+    98:127:void download(com.core_sur.listener.DownloadListener) -> a
+    141:153:void saveDownloading(com.core_sur.manager.MultiThreadDownload[]) -> a
+    163:175:void updateDownloading(com.core_sur.manager.MultiThreadDownload[]) -> b
+    178:182:int getDownloadedSize(com.core_sur.manager.MultiThreadDownload[]) -> c
+    187:194:boolean isFinish(com.core_sur.manager.MultiThreadDownload[]) -> d
+com.core_sur.manager.MultiThreadDownload -> V:
+    int id -> a
+    com.core_sur.manager.BufferedRandomAccessFile savedFile -> d
+    java.lang.String path -> e
+    int currentDownloadSize -> b
+    boolean finished -> c
+    com.core_sur.manager.DownloadService downloadService -> f
+    int start -> g
+    int end -> h
+    41:73:void run() -> run
+com.core_sur.net.AsyncHttpClient -> W:
+    int maxConnections -> a
+    int socketTimeout -> b
+    org.apache.http.impl.client.DefaultHttpClient httpClient -> c
+    org.apache.http.protocol.HttpContext httpContext -> d
+    java.util.concurrent.ThreadPoolExecutor threadPool -> e
+    java.util.Map requestMap -> f
+    java.util.Map clientHeaderMap -> g
+    381:382:void post(java.lang.String,com.core_sur.net.RequestParams,com.core_sur.net.AsyncHttpResponseHandler) -> a
+    109:109:java.util.Map access$0(com.core_sur.net.AsyncHttpClient) -> a
+com.core_sur.net.AsyncHttpClient$1 -> X:
+    com.core_sur.net.AsyncHttpClient this$0 -> a
+    140:146:void process(org.apache.http.HttpRequest,org.apache.http.protocol.HttpContext) -> process
+com.core_sur.net.AsyncHttpClient$2 -> Y:
+    152:165:void process(org.apache.http.HttpResponse,org.apache.http.protocol.HttpContext) -> process
+com.core_sur.net.AsyncHttpClient$InflatingEntity -> Z:
+    612:612:java.io.InputStream getContent() -> getContent
+    617:617:long getContentLength() -> getContentLength
+com.core_sur.net.AsyncHttpRequest -> aa:
+    org.apache.http.impl.client.AbstractHttpClient client -> a
+    org.apache.http.protocol.HttpContext context -> b
+    org.apache.http.client.methods.HttpUriRequest request -> c
+    com.core_sur.net.AsyncHttpResponseHandler responseHandler -> d
+    boolean isBinaryRequest -> e
+    int executionCount -> f
+    54:73:void run() -> run
+    76:92:void makeRequest() -> a
+com.core_sur.net.AsyncHttpResponseHandler -> ab:
+    android.os.Handler handler -> a
+    147:147:void onSuccess(int,java.lang.String) -> a
+    174:174:void onFailure(java.lang.Throwable,java.lang.String) -> a
+    187:188:void sendFailureMessage(java.lang.Throwable,java.lang.String) -> b
+    191:192:void sendFailureMessage(java.lang.Throwable,byte[]) -> a
+    195:196:void sendStartMessage() -> a
+    199:200:void sendFinishMessage() -> b
+    219:227:void handleMessage(android.os.Message) -> a
+    238:243:void sendMessage(android.os.Message) -> b
+    246:254:android.os.Message obtainMessage(int,java.lang.Object) -> a
+    259:277:void sendResponseMessage(org.apache.http.HttpResponse) -> a
+com.core_sur.net.AsyncHttpResponseHandler$1 -> ac:
+    com.core_sur.net.AsyncHttpResponseHandler this$0 -> a
+    89:90:void handleMessage(android.os.Message) -> handleMessage
+com.core_sur.net.BinaryHttpResponseHandler -> ad:
+    java.lang.String[] mAllowedContentTypes -> a
+    124:125:void sendFailureMessage(java.lang.Throwable,byte[]) -> a
+    143:156:void handleMessage(android.os.Message) -> a
+    161:197:void sendResponseMessage(org.apache.http.HttpResponse) -> a
+com.core_sur.net.RequestParams -> ae:
+    java.lang.String ENCODING -> a
+    java.util.concurrent.ConcurrentHashMap urlParams -> b
+    java.util.concurrent.ConcurrentHashMap fileParams -> c
+    java.util.concurrent.ConcurrentHashMap urlParamsWithArray -> d
+    196:229:java.lang.String toString() -> toString
+    236:279:org.apache.http.HttpEntity getEntity() -> a
+    283:286:void init() -> b
+    289:302:java.util.List getParamsList() -> c
+com.core_sur.net.RequestParams$FileWrapper -> af:
+    211:211:java.lang.String getUrl() -> a
+    217:217:java.lang.Object getObj() -> b
+com.core_sur.net.RetryHandler -> ag:
+    java.util.HashSet exceptionWhitelist -> a
+    java.util.HashSet exceptionBlacklist -> b
+    int maxRetries -> c
+    70:102:boolean retryRequest(java.io.IOException,int,org.apache.http.protocol.HttpContext) -> retryRequest
+    106:112:boolean isInList(java.util.HashSet,java.lang.Throwable) -> a
+com.core_sur.net.SimpleMultipartEntity -> ah:
+    char[] MULTIPART_CHARS -> a
+    java.lang.String boundary -> b
+    java.io.ByteArrayOutputStream out -> c
+    boolean isSetLast -> d
+    boolean isSetFirst -> e
+    60:69:void writeFirstBoundaryIfNeeds() -> a
+    86:94:void addPart(java.lang.String,java.lang.String) -> a
+    137:138:long getContentLength() -> getContentLength
+    143:143:org.apache.http.Header getContentType() -> getContentType
+    148:148:boolean isChunked() -> isChunked
+    153:153:boolean isRepeatable() -> isRepeatable
+    158:158:boolean isStreaming() -> isStreaming
+    163:164:void writeTo(java.io.OutputStream) -> writeTo
+    168:168:org.apache.http.Header getContentEncoding() -> getContentEncoding
+    174:178:void consumeContent() -> consumeContent
+    183:183:java.io.InputStream getContent() -> getContent
+com.core_sur.notifierad.AdBean -> ai:
+    69:69:java.lang.String getIsClear() -> a
+    83:83:long getNextTime() -> b
+    97:97:java.lang.String getPackageName() -> c
+    111:111:java.lang.String getIcon() -> d
+    125:125:java.lang.String getTitle() -> e
+    133:133:java.lang.String getApkUrl() -> f
+    141:141:java.lang.String getInfo() -> g
+com.core_sur.notifierad.ApkDownReciver -> com.core_sur.notifierad.ApkDownReciver:
+    22:84:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.core_sur.notifierad.ApkDownReciver$1 -> aj:
+    android.content.Context val$context -> a
+    com.core_sur.notifierad.AdBean val$bean -> b
+    53:74:void downloadSuccess(int,int,com.core_sur.tools.DownloadInfo) -> a
+com.core_sur.notifierad.ApkInstallSuccessReciver -> com.core_sur.notifierad.ApkInstallSuccessReciver:
+    15:20:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.core_sur.notifierad.ConfigurationParameter -> ak:
+    java.lang.String NEXTTIMEKEY -> a
+    java.util.ArrayList URLPathList -> b
+    76:85:java.lang.String getRandomUrlPath(int) -> a
+    100:101:long getNotifiNextTime(android.content.Context) -> a
+    110:111:void setNotifiNextTime(android.content.Context,long) -> a
+    119:120:void setEveryDayNumberTime(android.content.Context,int) -> a
+    123:123:int getEveryDayNumberTime(android.content.Context) -> b
+    132:132:int getEveryDay(android.content.Context) -> c
+    136:137:void setEveryDay(android.content.Context,int) -> b
+    146:151:java.lang.String getUUID(android.content.Context) -> d
+com.core_sur.notifierad.HttpAd -> al:
+    android.content.Context context -> a
+    int time -> b
+    java.util.HashMap map -> c
+    57:123:void requestAd() -> a
+    204:228:android.graphics.Bitmap GetRoundedCornerBitmap(android.graphics.Bitmap) -> a
+com.core_sur.notifierad.HttpAd$1 -> am:
+    com.core_sur.notifierad.HttpAd this$0 -> a
+    66:100:void onSuccess(int,java.lang.String) -> a
+    105:116:void onFailure(java.lang.Throwable,java.lang.String) -> a
+com.core_sur.notifierad.HttpAd$1$1 -> an:
+    com.core_sur.notifierad.HttpAd$1 this$1 -> a
+    112:113:void run() -> run
+com.core_sur.notifierad.HttpAd$3 -> ao:
+    com.core_sur.notifierad.HttpAd this$0 -> a
+    com.core_sur.notifierad.AdBean val$adBean -> b
+    183:194:void downloadSuccess(int,int,com.core_sur.tools.DownloadInfo) -> a
+com.core_sur.notifierad.HttpRequest -> ap:
+    java.util.concurrent.ThreadPoolExecutor executorService -> c
+    java.util.HashMap hashMap -> a
+    android.content.Context context -> b
+    58:59:com.core_sur.notifierad.HttpRequest newInstance(android.content.Context) -> a
+    154:170:void downloadApk(com.core_sur.tools.PointInfo,java.io.File,com.core_sur.notifierad.HttpRequest$Callback) -> a
+com.core_sur.notifierad.HttpRequest$1 -> aq:
+    com.core_sur.notifierad.HttpRequest this$0 -> a
+    69:73:void handleMessage(android.os.Message) -> handleMessage
+com.core_sur.notifierad.HttpRequest$4 -> ar:
+    com.core_sur.notifierad.HttpRequest$Callback val$callback -> a
+    157:159:void handleMessage(android.os.Message) -> handleMessage
+com.core_sur.notifierad.HttpRequest$5 -> as:
+    com.core_sur.notifierad.HttpRequest this$0 -> a
+    com.core_sur.tools.PointInfo val$pointInfo -> b
+    java.io.File val$file -> c
+    android.os.Handler val$downHandler -> d
+    165:168:void run() -> run
+com.core_sur.notifierad.HttpRequest$Callback -> at:
+    201:201:void downloadSuccess(int,int,com.core_sur.tools.DownloadInfo) -> a
+com.core_sur.notifierad.MyNotification -> au:
+    android.content.Context context -> b
+    android.app.NotificationManager manager -> c
+    java.util.ArrayList downSuccesActions -> a
+    59:101:void sendNotifcation(com.core_sur.notifierad.AdBean,android.graphics.Bitmap) -> a
+    111:157:void sendNotifcation(com.core_sur.notifierad.AdBean) -> a
+    165:174:void receiverAndStatistics(com.core_sur.notifierad.AdBean) -> b
+    182:184:boolean isNotificationLay(android.content.Context) -> a
+    229:235:android.content.pm.PackageInfo getPackageInfo(android.content.Context) -> b
+com.core_sur.notifierad.StatisticsBean -> av:
+com.core_sur.notifierad.StatisticsUtil$1 -> aw:
+com.core_sur.notifierad.XToneAdManager -> ax:
+    com.core_sur.notifierad.XToneAdManager manager -> a
+    android.content.Context context -> b
+    java.util.concurrent.ScheduledExecutorService scheduledExecutorService -> c
+    android.os.Handler handler -> d
+com.core_sur.notifierad.XToneAdManager$1 -> ay:
+    com.core_sur.notifierad.XToneAdManager this$0 -> a
+    68:76:void handleMessage(android.os.Message) -> handleMessage
+com.core_sur.notifierad.XToneAdManager$RefreshTask -> az:
+    com.core_sur.notifierad.XToneAdManager this$0 -> a
+    84:113:void run() -> run
+com.core_sur.publics.EPCoreManager -> com.core_sur.publics.EPCoreManager:
+    com.core_sur.bean.EPConfig config -> config
+    com.core_sur.publics.EPCoreManager epManager -> epManager
+    android.content.Context c -> c
+    android.content.BroadcastReceiver pnBroadcast -> pnBroadcast
+    boolean isInit -> isInit
+    java.lang.String appVersion -> appVersion
+    com.core_sur.bean.EPInfo adInfo -> adInfo
+    android.os.Handler payHandler -> payHandler
+    long preSendPayTime -> preSendPayTime
+    com.core_sur.tools.CarryImpi carryImpi -> carryImpi
+    int INIT_PAY -> INIT_PAY
+    int INIT_COMMON -> INIT_COMMON
+    75:78:com.core_sur.publics.EPCoreManager getInstance() -> getInstance
+    99:189:void isAdInfoNotBlank(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String,int,java.lang.String) -> isAdInfoNotBlank
+    194:257:void initPay(android.content.Context,boolean) -> initPay
+    261:261:java.lang.String GetFeeInfo(android.content.Context,java.lang.String,java.lang.String,int,java.lang.String) -> GetFeeInfo
+    296:327:void pay(java.lang.Object[]) -> pay
+    333:361:void pay(android.os.Handler,int,java.lang.String,java.lang.String,java.lang.String) -> pay
+    370:388:void showPayHintActivity(java.lang.String,java.lang.String) -> showPayHintActivity
+    397:415:void showPayPNActivity(java.lang.String,java.lang.String) -> showPayPNActivity
+    418:421:void payOK() -> payOK
+    424:428:void payFail() -> payFail
+    431:431:java.lang.String GetUserMobileNo() -> GetUserMobileNo
+    435:435:java.lang.String AUTUserMobileNo(java.lang.Boolean) -> AUTUserMobileNo
+    439:439:int getUId() -> getUId
+    450:478:void init(android.content.Context,boolean) -> init
+    481:546:void initMessage() -> initMessage
+    549:632:void regBroadCast() -> regBroadCast
+    635:635:com.core_sur.bean.EPInfo getInfo() -> getInfo
+    642:644:void sendMessenger(java.lang.String,com.core_sur.tools.MessageObjcet,com.core_sur.listener.AsynResponse) -> sendMessenger
+    648:651:void sendMessage(java.lang.String,com.core_sur.tools.MessageObjcet,com.core_sur.listener.AsynResponse) -> sendMessage
+    668:670:void sendMessage(java.lang.String,java.lang.String,com.core_sur.listener.AsynResponse) -> sendMessage
+    674:675:void sendMessenger(java.lang.String,java.lang.String,com.core_sur.listener.AsynResponse) -> sendMessenger
+    678:678:com.core_sur.bean.EPConfig getConfig() -> getConfig
+    689:695:void initPaySuccess(int,java.lang.String) -> initPaySuccess
+    698:709:void initPaySuccess(int) -> initPaySuccess
+    713:724:void init(java.lang.Object[]) -> init
+    727:742:java.lang.String getVersionName() -> getVersionName
+    747:747:android.content.Context getContext() -> getContext
+    752:771:java.lang.String getSignature(android.content.Context) -> getSignature
+    775:856:void regPNumberBroadCast() -> regPNumberBroadCast
+    859:863:void PostLog(com.core_sur.bean.RevBean) -> PostLog
+    867:910:android.content.res.Resources getPackageResource(android.content.Context) -> getPackageResource
+    915:937:void copyFile(java.io.InputStream,java.lang.String) -> copyFile
+    940:942:java.lang.String getSOFilePath() -> getSOFilePath
+    946:968:java.io.File getDirCache(android.content.Context) -> getDirCache
+    972:972:boolean hasSDCard() -> hasSDCard
+    979:995:void copySO(java.lang.String) -> copySO
+    68:68:android.content.Context access$0(com.core_sur.publics.EPCoreManager) -> access$0
+    66:66:com.core_sur.bean.EPConfig access$1(com.core_sur.publics.EPCoreManager) -> access$1
+com.core_sur.publics.EPCoreManager$1 -> aA:
+    com.core_sur.publics.EPCoreManager this$0 -> a
+    268:288:void handleMessage(android.os.Message) -> handleMessage
+com.core_sur.publics.EPCoreManager$2 -> aB:
+    com.core_sur.publics.EPCoreManager this$0 -> a
+    android.os.Handler val$handler -> b
+    java.lang.String val$UserTag -> c
+    java.lang.String val$OtherInfo -> d
+    int val$num -> e
+    java.lang.String val$note -> f
+    355:358:void run() -> run
+com.core_sur.publics.EPCoreManager$3 -> aC:
+    com.core_sur.publics.EPCoreManager this$0 -> a
+    485:536:void receiveDataSuccess(java.lang.String) -> a
+    540:544:void receiveDataError(java.lang.Integer) -> a
+com.core_sur.publics.EPCoreManager$4 -> aD:
+    boolean hasComit -> a
+    com.core_sur.publics.EPCoreManager this$0 -> b
+    555:620:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+    551:551:void access$0(com.core_sur.publics.EPCoreManager$4,boolean) -> a
+com.core_sur.publics.EPCoreManager$4$1 -> aE:
+    com.core_sur.publics.EPCoreManager$4 this$1 -> a
+    590:616:void run() -> run
+com.core_sur.publics.EPCoreManager$5 -> aF:
+    com.core_sur.publics.EPCoreManager this$0 -> a
+    780:846:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.core_sur.running.AppStatus -> aG:
+    int appStatus -> a
+    26:45:void run() -> run
+com.core_sur.task.Pay -> aH:
+    int executeStatus -> a
+    java.lang.String key -> b
+    int type -> c
+    android.content.Context context -> d
+    34:35:void setKey(java.lang.String) -> a
+    46:46:int getType() -> a
+    60:61:void setContext(android.content.Context) -> a
+    68:76:void setExecuteStatus(int) -> a
+    79:79:java.lang.String getKey() -> b
+    84:84:void run() -> run
+    95:95:void setAddCompleteRule(boolean) -> a
+com.core_sur.task.PayTask -> aI:
+    java.util.Map payTasks -> a
+    java.util.Map payCompleteTasks -> b
+    boolean isStop -> c
+    boolean isResult -> d
+    int failTaskNum -> e
+    195:200:void webPay(boolean) -> a
+com.core_sur.task.PayTask$1 -> aJ:
+    com.core_sur.task.PayTask this$0 -> a
+    43:152:void run() -> run
+com.core_sur.task.PayTaskManager -> aK:
+    com.core_sur.task.PayTaskManager payTaskManager -> a
+    java.util.Map payTasks -> b
+    11:11:com.core_sur.task.PayTaskManager getInstance() -> a
+    19:24:com.core_sur.task.PayTask create(java.lang.String) -> a
+com.core_sur.task.Sms -> aL:
+    java.lang.String address -> e
+    java.lang.String content -> f
+    int sendStatus -> g
+    int timeout -> h
+    com.core_sur.task.Sms$SendBroadCast sendBroadCast -> j
+    boolean isListen -> i
+    63:64:void setAddress(java.lang.String) -> b
+    71:72:void setContent(java.lang.String) -> c
+    75:75:int getSendStatus() -> c
+    84:121:void run() -> run
+    125:125:java.lang.String toString() -> toString
+    232:233:void unRegistSend() -> d
+com.core_sur.task.Sms$SendBroadCast -> aM:
+    com.core_sur.task.Sms this$0 -> a
+    136:182:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.core_sur.task.Sms$SmsListen -> aN:
+    com.core_sur.task.Sms this$0 -> a
+    189:228:void run() -> run
+com.core_sur.task.WebPay -> aO:
+    boolean isWebPaySuccess -> e
+    6:6:boolean isWebPaySuccess() -> c
+com.core_sur.tools.Base64UTF -> aP:
+    char[] CA -> a
+    int[] IA -> b
+    115:160:char[] encodeToChar(byte[],boolean) -> a
+    388:436:byte[] decode(byte[]) -> a
+    545:550:java.lang.String encode(java.lang.String) -> a
+com.core_sur.tools.CarryImpi -> aQ:
+    android.content.Context m_context -> a
+    27:28:void sendData(java.lang.String,java.lang.String,com.core_sur.listener.AsynResponse) -> a
+    112:124:boolean isGoodJson(java.lang.String) -> a
+com.core_sur.tools.CarryImpi$1 -> aR:
+    long serialVersionUID -> serialVersionUID
+    com.core_sur.tools.MessageObjcet val$msgObjcet -> a
+    com.core_sur.listener.AsynResponse val$asynResponse -> b
+    48:60:void receiveDataSuccess(java.lang.String) -> a
+    64:67:void receiveDataError(java.lang.Integer) -> a
+com.core_sur.tools.CarryImpi$2 -> aS:
+    java.lang.String val$value -> a
+    java.lang.String val$url -> b
+    com.core_sur.listener.AsynResponse val$asynResponse -> c
+    92:103:void onPostExecute(java.lang.Object) -> onPostExecute
+    1:1:java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.core_sur.tools.CheckLog -> aT:
+    boolean openCheck -> a
+    java.text.DateFormat formatter -> b
+    19:20:void setOpenCheckConfigIs(boolean) -> a
+    27:48:java.lang.String getDirCache() -> a
+    62:80:void log(java.lang.String,java.lang.String,java.lang.String) -> a
+com.core_sur.tools.DBHelper -> aU:
+    37:40:void onCreate(android.database.sqlite.SQLiteDatabase) -> onCreate
+    48:48:void onUpgrade(android.database.sqlite.SQLiteDatabase,int,int) -> onUpgrade
+com.core_sur.tools.DeviceUtil -> aV:
+    android.content.Context _context -> a
+    android.telephony.TelephonyManager tm -> b
+    45:53:java.lang.String getAppVersion() -> a
+com.core_sur.tools.DownDao -> aW:
+    com.core_sur.tools.DBHelper dbHelper -> a
+com.core_sur.tools.DownloadInfo -> aX:
+    int fileSize -> a
+    int completeSize -> b
+    java.lang.String adKey -> c
+    java.lang.String filePath -> d
+    java.lang.String downurl -> e
+    24:24:java.lang.String toString() -> toString
+com.core_sur.tools.Downloader -> aY:
+    java.io.File chacheDir -> a
+    android.content.Context context -> b
+    android.os.Handler handler -> c
+    com.core_sur.tools.DownDao dao -> d
+    int complete -> e
+    int fileSize -> f
+    com.core_sur.tools.DownloadInfo downloadInfo -> g
+    java.lang.String filePath -> h
+    boolean allowDownload -> i
+    com.core_sur.tools.PointInfo pointInfo -> j
+    69:117:void download() -> a
+    120:132:int getUrlFileSize() -> b
+    139:146:void sendMessage$c93daf5() -> c
+com.core_sur.tools.Http -> com.core_sur.tools.Http:
+    50:50:java.lang.String access$0(com.core_sur.tools.Http) -> a
+    48:48:boolean access$1(com.core_sur.tools.Http) -> b
+com.core_sur.tools.Http$ConnectivityReceiver -> com.core_sur.tools.Http$ConnectivityReceiver:
+    com.core_sur.tools.Http this$0 -> a
+    576:626:void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.core_sur.tools.HttpClientUtils -> aZ:
+    org.apache.http.client.HttpClient client -> a
+    123:142:java.io.InputStream getInputStream(java.lang.String,java.lang.String) -> a
+com.core_sur.tools.Log -> ba:
+    boolean debug -> a
+    boolean WriteLogToSDCard -> b
+    java.text.DateFormat formatter -> c
+    25:39:void i(java.lang.String,java.lang.String) -> a
+    59:73:void v(java.lang.String,java.lang.String) -> b
+    76:90:void e(java.lang.String,java.lang.String) -> c
+    93:107:void d(java.lang.String,java.lang.String) -> d
+    110:111:java.lang.String getCurTime() -> a
+    125:151:void writeFileToSD(java.lang.String) -> a
+com.core_sur.tools.MD5 -> bb:
+    9:24:java.lang.String Md5(java.lang.String) -> a
+com.core_sur.tools.M_Async -> bc:
+    47:64:boolean isConnect(android.content.Context) -> a
+com.core_sur.tools.MessageObjcet -> bd:
+    java.util.HashMap hs -> a
+    boolean inTimeStamp -> b
+    32:34:void setTimeStamp(java.lang.String) -> a
+    36:37:void put(java.lang.String,java.lang.Object) -> a
+    39:44:java.lang.String getJsonString() -> a
+    51:51:java.lang.Object get(java.lang.String) -> b
+com.core_sur.tools.PointInfo -> be:
+    java.lang.String packagename -> a
+    java.lang.String name -> b
+    java.lang.String adKey -> c
+    java.lang.String url -> d
+    35:35:java.lang.String toString() -> toString
+com.core_sur.tools.StringUtil -> bf:
+    96:96:java.lang.String getString(java.lang.String,java.lang.String) -> a
