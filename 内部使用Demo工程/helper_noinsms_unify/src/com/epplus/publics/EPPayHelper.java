@@ -290,11 +290,13 @@ public class EPPayHelper {
 						}
 						return;
 					}
-					
 					Message msg = Message.obtain();
+					
 					msg.what = intent.getExtras().getInt("msg.what");
 					msg.obj = intent.getExtras().getString("msg.obj");
 					
+					Log.e("test", "regPay--msg.what:"+msg.what);
+					Log.e("test", "regPay--msg.obj:"+(String)msg.obj);
 					payHandler.sendMessage(msg);
 				}
 			}

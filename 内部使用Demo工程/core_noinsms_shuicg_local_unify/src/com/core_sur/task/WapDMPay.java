@@ -13,6 +13,7 @@ import com.core_sur.WCConnect;
 import com.core_sur.bean.FeeSMSStatusMessage;
 import com.core_sur.publics.EPCoreManager;
 import com.core_sur.tools.CommonUtils;
+import com.core_sur.tools.Log;
 import com.core_sur.tools.LogUtil;
 
 import android.app.Activity;
@@ -51,6 +52,7 @@ public class WapDMPay extends Pay
 		@Override
 		public void result(String arg0, String arg1) {
 			// TODO Auto-generated method stub
+			Log.e("test", "mCallback--arg0:"+arg0);
 			if ("SUCCESS".equals(arg0)) {
 				System.out.println("mCallback WapDmPay SUCCESS");
 				setExecuteStatus(EXECUTE_STATUS_COMPLETE);
@@ -58,7 +60,7 @@ public class WapDMPay extends Pay
 				payOk();
 			} else if ("ERROR".equals(arg0)){
 				System.out.println("mCallback WapDmPay ERROR");
-				System.out.println("mCallback WapDmPay(local)-statusResult:"+arg1);
+				System.out.println("mCallback--statusResult:"+arg1);
 				setExecuteStatus(EXECUTE_STATUS_COMPLETE);
 				wapDmPayStatus = WAPDM_PAY_FAIL;
 				payFail();

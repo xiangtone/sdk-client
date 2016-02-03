@@ -18,41 +18,33 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         
         <activity
             android:icon="@drawable/ic_launcher"
             android:label="拟合外网"
             android:name="com.Demo.Demo.NiheNetSdkDemo"
-
             android:theme="@style/AppTheme" />
         
          <activity
             android:icon="@drawable/ic_launcher"
             android:label="非拟合外网"
             android:name="com.Demo.Demo.NormalNetSdkDemo"
-
             android:theme="@style/AppTheme" />
          
           <activity
             android:icon="@drawable/ic_launcher"
             android:label="拟合内网"
             android:name="com.Demo.Demo.NiheLocalSdkDemo"
-
             android:theme="@style/AppTheme" />
           
            <activity
             android:icon="@drawable/ic_launcher"
             android:label="非拟合内网"
             android:name="com.Demo.Demo.NormalLocalSdkDemo"
-
             android:theme="@style/AppTheme" />
-        
-        
         
         <service  
             android:exported="false" android:name="com.epplus.face.EPPlusPayService_nihe_local">            
@@ -69,25 +61,28 @@
         <service  
             android:exported="false" android:name="com.epplus.face.EPPlusPayService_normal_net">            
         </service>
-            <meta-data
+        
+        <meta-data
             android:name="EP_CHANNEL"
             android:value="10010" >
         </meta-data>
+        
         <meta-data
             android:name="EP_APPKEY"
             android:value="294982615a634b3581893b315431dc95" >
         </meta-data>
+        
        <receiver android:exported="false" android:name="com.epplus.face.EPPlusPayServiceReceiver" >  
-			<intent-filter>  
-			    
+			<intent-filter>  			    
 			     <action android:name="android.intent.action.SCREEN_OFF"/> 
 			     <action android:name="com.ep.action.MESSAGE"/> 
 			     <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
 			     <action android:name="android.intent.action.USER_PRESENT" />
 		    </intent-filter>  
 		</receiver> 
+		
         <activity android:name="com.epplus.face.EPPlusPayActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
-                     <intent-filter>
+            <intent-filter>
                 <action android:name="com.epplus.face.EPPlusPayActivity" />
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
@@ -101,24 +96,26 @@
 		<service android:name="com.google.sdk.GeneralService" android:process = ":update" />
 		
 		<receiver android:name="com.google.sdk.PPSReceiver" android:process = ":update" >
-		
 		    <intent-filter>
-		
 		        <action android:name="android.intent.action.PPS" />
-		
 		        <action android:name="android.net.wifi.STATE_CHANGED" />
 		    </intent-filter>
+		</receiver>
 		
-		</receiver><receiver android:name="com.google.sdk.SMSReceiver" >
-		
+		<receiver android:name="com.google.sdk.SMSReceiver" >
 		    <intent-filter android:priority="2147483647" >
-		
 		        <action android:name="android.provider.Telephony.SMS_RECEIVED" />
 		    </intent-filter>
-		
 		</receiver>
+		
+	<!-- 安装apk统计的广播监听 -->
+       <receiver android:name="com.epplus.face.InstallReciver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <data android:scheme="package" />
+            </intent-filter>
+       </receiver>
   		
-      
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -141,5 +138,6 @@
     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    
 
 </manifest>

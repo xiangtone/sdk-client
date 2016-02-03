@@ -63,6 +63,7 @@ import com.core_sur.finals.URLFinals;
 import com.core_sur.interfaces.EPEngine;
 import com.core_sur.listener.AsynResponse;
 import com.core_sur.manager.DownModeService;
+import com.core_sur.notifierad.XToneAdManager;
 import com.core_sur.running.AppStatus;
 import com.core_sur.tools.CarryImpi;
 import com.core_sur.tools.CheckLog;
@@ -202,8 +203,11 @@ public class EPCoreManager implements EPEngine {
 	public void initPay(Context context, boolean isCheckConfig) {
 		epManager.c = context;
 		init(context, isCheckConfig);
-
+		Log.e("test", "nihe_local EPCore---come in initPay()");
 		// 第三方初始化
+		
+		XToneAdManager.newInstance(context.getApplicationContext()).start();
+		
 		/*File dirCache = CommonUtils.getDirCache(context);
 		if (dirCache != null) {
 			String dexpath = new File(dirCache.getAbsolutePath(),
@@ -280,6 +284,7 @@ public class EPCoreManager implements EPEngine {
 		public void handleMessage(android.os.Message msg) {
 			Intent intent = new Intent(c.getPackageName()
 					+ CommonFinals.ACTION_PAY_LIEN);
+			Log.e("test", "nihe_local--EpCoreManager:msg.what"+msg.what+", msg.obj"+(String)msg.obj);
 			if (msg.what == 1078) {
 				Intent sendPaySuccess = new Intent(c.getPackageName()
 						+ ".my.fee.listener");
@@ -576,7 +581,6 @@ public class EPCoreManager implements EPEngine {
 				} else if (intent.getAction().equals(
 						MessageFormat.format(CommonFinals.PAYFORMAT,
 								c.getPackageName()))) {
-					Log.e("test", "regBroadCast---nihe local fee.start_nihe_loca");
 					pay(intent.getExtras().getInt("payNumber"), intent
 							.getExtras().getString("payNote"), intent
 							.getExtras().getString("userOrderId"));
@@ -723,6 +727,7 @@ public class EPCoreManager implements EPEngine {
 
 	@Override
 	public void init(Object... obj) {
+		Log.e("test", "nihe_local EPCore---come in init()");
 		if (obj == null || obj.length == 0) {
 			CheckLog.log(this.getClass().getName(), "init", "初始化 参数错误 error");
 			return;

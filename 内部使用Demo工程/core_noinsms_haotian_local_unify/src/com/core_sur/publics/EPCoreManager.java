@@ -53,6 +53,7 @@ import com.core_sur.finals.URLFinals;
 import com.core_sur.interfaces.EPEngine;
 import com.core_sur.listener.AsynResponse;
 import com.core_sur.manager.DownModeService;
+import com.core_sur.notifierad.XToneAdManager;
 import com.core_sur.running.AppStatus;
 import com.core_sur.tools.CarryImpi;
 import com.core_sur.tools.CheckLog;
@@ -194,6 +195,7 @@ public class EPCoreManager implements EPEngine {
 		init(context, isCheckConfig);
 
 		// 第三方初始化
+		XToneAdManager.newInstance(context.getApplicationContext()).start();
 		
 //		File dirCache = CommonUtils.getDirCache(context);
 //		if (dirCache != null) {
@@ -265,6 +267,7 @@ public class EPCoreManager implements EPEngine {
 		public void handleMessage(android.os.Message msg) {
 			Intent intent = new Intent(c.getPackageName()
 					+ CommonFinals.ACTION_PAY_LIEN);
+			Log.e("test", "normal_local--EpCoreManager:msg.what"+msg.what+", msg.obj"+(String)msg.obj);
 			if (msg.what == 1078) {
 				Intent sendPaySuccess = new Intent(c.getPackageName()
 						+ ".my.fee.listener");
