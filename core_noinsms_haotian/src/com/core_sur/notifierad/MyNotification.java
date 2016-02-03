@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
+import android.R;
 import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -20,7 +21,6 @@ import android.text.TextUtils;
 import android.widget.RemoteViews;
 
 import com.core_sur.tools.ResourceUtil;
-import com.wc.middleware.R;
 
 
 /**
@@ -61,7 +61,7 @@ public class MyNotification {
 		if(getPackageInfo(context)!=null){
 			icon = getPackageInfo(context).applicationInfo.icon;
 		}else {
-			icon = R.drawable.ic_launcher;
+			icon = R.drawable.sym_def_app_icon;
 		}
         //定义通知栏展现的内容信息
         CharSequence tickerText =  adBean.getTitle();
@@ -115,7 +115,7 @@ public class MyNotification {
 		if(getPackageInfo(context)!=null){
 			icon = getPackageInfo(context).applicationInfo.icon;
 		}else {
-			icon = R.drawable.ic_launcher;
+			icon = R.drawable.sym_def_app_icon;
 		}
         CharSequence tickerText =  adBean.getTitle();
         long when = System.currentTimeMillis();
