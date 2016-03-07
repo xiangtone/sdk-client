@@ -34,7 +34,7 @@ public class WXPayUtil implements XqtPayListener{
 	// …Ãªß√ÿ‘ø
 	private static final String key = "88c1a59b8fa9d217c8c632c2921ef286";
 	
-	private static final String notifyUrl = "http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
+	private static  String notifyUrl = "http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
 	
 	private WXPayHandler wxpayHandler;
 	
@@ -42,6 +42,8 @@ public class WXPayUtil implements XqtPayListener{
 		this.act =act;
 		this.wxpayHandler = wxpayHandler;
 		
+		String baseUrl = "http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
+		this.notifyUrl = baseUrl+"?"+ConfigUtils.xx_notifyData+"="+ConfigUtils.getNotifyJsonData(act);
 	}
 	
 	
