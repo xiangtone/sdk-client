@@ -47,7 +47,7 @@
 
 # Reduce the size of the output some more.
 
--repackageclasses ''
+-repackageclasses 'com.core_sur'
 -allowaccessmodification
 
 # Switch off some optimizations that trip older versions of the Dalvik VM.
@@ -159,6 +159,11 @@
 # -keep public class * implements mypackage.MyInterface
 
 -keep class com.core_sur.publics.EPCoreManager {
+    <fields>;
+    <methods>;
+}
+
+-keep class com.core_sur.activity.** {
     <fields>;
     <methods>;
 }
