@@ -47,12 +47,6 @@
 /Alipay/HaotianPayDemoAlipay/.svn
 /Alipay/HaotianPayDemoAlipay/bin
 /Alipay/HaotianPayDemoAlipay/assets
-/只包含短信的工程/core_noinsms_only_sms/.svn
-/只包含短信的工程/core_noinsms_only_sms/gen
-/只包含短信的工程/core_noinsms_only_sms/bin
-/只包含短信的工程/helper_noinsms_only_sms/gen
-/只包含短信的工程/helper_noinsms_only_sms/.svn
-/只包含短信的工程/helper_noinsms_only_sms/bin
-/只包含短信的工程/HaotianPayOnlySmsDemo/gen
-/只包含短信的工程/HaotianPayOnlySmsDemo/.svn
-/只包含短信的工程/HaotianPayOnlySmsDemo/bin
+/Alipay(weixin)/helper_noinsms_haotian_alipay_alipay_plugin_wx/bin
+
+/Alipay(weixin)/HaotianPayDemoAlipay/bin
