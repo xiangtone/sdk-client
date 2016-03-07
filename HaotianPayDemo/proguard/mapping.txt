@@ -22,73 +22,65 @@ com.core_sur.interfaces.ProxyInterface -> com.core_sur.interfaces.ProxyInterface
     void onCreate(android.content.Intent) -> onCreate
     void onDestroy() -> onDestroy
     void setActivity(android.app.Activity) -> setActivity
-com.epplus.bean.Bdata -> epPlus.c:
-    char[][] d -> a
-    java.lang.String guu(boolean) -> a
-    java.lang.String gpf() -> a
-    char cc(int) -> a
-com.epplus.bean.Version -> epPlus.d:
-    java.lang.String version -> a
-    int Status -> b
-    java.lang.String updateSdkUrl -> c
-    void setVersion(java.lang.String) -> a
-    void setStatus(int) -> a
-    void setUpdateSdkUrl(java.lang.String) -> b
+com.epplus.a -> epPlus.c:
+    char[][] a -> a
+    char a(int) -> a
+com.epplus.b -> epPlus.d:
+    java.lang.String a -> a
+    int b -> b
+    java.lang.String c -> c
     java.lang.String toString() -> toString
+com.epplus.c -> epPlus.e:
+    com.epplus.face.EPPlusPayService a -> a
+    com.epplus.b a() -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.epplus.d -> epPlus.f:
+    java.lang.String a -> a
+    java.lang.String b -> b
+    com.epplus.face.EPPlusPayService c -> c
+    java.lang.Boolean a() -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.epplus.e -> com.epplus.e:
+    com.epplus.publics.EPPayHelper a -> a
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.epplus.f -> epPlus.g:
+    int a -> a
+    com.epplus.publics.EPPayHelper b -> b
+    void run() -> run
 com.epplus.face.EPPlusPayActivity -> com.epplus.face.EPPlusPayActivity:
-    com.core_sur.interfaces.ProxyInterface proxy -> a
+    com.core_sur.interfaces.ProxyInterface a -> a
     void onCreate(android.os.Bundle) -> onCreate
-    java.io.File getDirCache(android.content.Context) -> a
-    boolean hasSDCard() -> a
-    java.lang.String getLXDexFilePath() -> b
-    java.lang.String getLXDexPath() -> c
-    com.core_sur.interfaces.ProxyInterface execDex(java.lang.String) -> a
+    com.core_sur.interfaces.ProxyInterface a(java.lang.String) -> a
     void onDestroy() -> onDestroy
 com.epplus.face.EPPlusPayService -> com.epplus.face.EPPlusPayService:
-    java.lang.String currentVersion -> b
-    android.content.SharedPreferences sp -> c
-    java.lang.String versionUrl -> a
-    int type -> d
-    boolean isChecklog -> e
+    java.lang.String b -> b
+    android.content.SharedPreferences c -> c
+    java.lang.String a -> a
+    int d -> d
+    boolean e -> e
     android.os.IBinder onBind(android.content.Intent) -> onBind
-    com.core_sur.interfaces.EPEngine getEngine() -> a
-    java.lang.String copyAssetsToPath(java.lang.String) -> a
-    void copyFile(java.io.InputStream,java.lang.String) -> a
-    void init() -> f
+    java.lang.String a(java.lang.String) -> a
+    void a(java.io.InputStream,java.lang.String) -> a
+    void b() -> b
     int onStartCommand(android.content.Intent,int,int) -> onStartCommand
-    com.core_sur.interfaces.EPEngine execDex(java.lang.String) -> b
+    com.core_sur.interfaces.EPEngine b(java.lang.String) -> b
     void onCreate() -> onCreate
-    void initCheckVersion() -> b
+    void c() -> c
     void onDestroy() -> onDestroy
-    void updateVersion(com.epplus.bean.Version) -> a
-    java.io.File getDirCache(android.content.Context) -> a
-    boolean hasSDCard() -> c
-    java.lang.String getLXDexFilePath() -> d
-    java.lang.String getLXDexPath() -> e
-    void access$0(com.epplus.face.EPPlusPayService) -> a
-    android.content.SharedPreferences access$1(com.epplus.face.EPPlusPayService) -> b
-    java.lang.String access$2(com.epplus.face.EPPlusPayService) -> c
-com.epplus.face.EPPlusPayService$CheckVersionTask -> epPlus.e:
-    com.epplus.face.EPPlusPayService this$0 -> a
-    com.epplus.bean.Version doInBackground(java.lang.Void[]) -> a
-    void onPostExecute(com.epplus.bean.Version) -> a
-    void onPostExecute(java.lang.Object) -> onPostExecute
-    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.epplus.face.EPPlusPayService$UpdateVersionTask -> epPlus.f:
-    java.lang.String version -> b
-    java.lang.String downUrl -> c
-    com.epplus.face.EPPlusPayService this$0 -> a
-    java.lang.Boolean doInBackground(java.lang.String[]) -> a
-    void onPostExecute(java.lang.Boolean) -> a
-    void updateVersionSuccess() -> a
-    void onPostExecute(java.lang.Object) -> onPostExecute
-    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+    void a(com.epplus.b) -> a
+    java.lang.String a() -> a
+    void a(com.epplus.face.EPPlusPayService) -> a
+    android.content.SharedPreferences b(com.epplus.face.EPPlusPayService) -> b
+    java.lang.String c(com.epplus.face.EPPlusPayService) -> c
 com.epplus.face.EPPlusPayServiceReceiver -> com.epplus.face.EPPlusPayServiceReceiver:
-    android.content.Context context -> a
-    void startService() -> a
+    android.content.Context a -> a
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
-    boolean checkServiceRunning(android.content.Context,java.lang.String) -> a
-com.epplus.publics.EPPayHelper -> epPlus.g:
+    boolean a(android.content.Context,java.lang.String) -> a
+com.epplus.face.InstallReciver -> com.epplus.face.InstallReciver:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.epplus.publics.EPPayHelper -> epPlus.h:
     com.epplus.publics.EPPayHelper epHelper -> b
     android.content.Context c -> c
     java.lang.String PAYFORMAT -> d
@@ -108,12 +100,3 @@ com.epplus.publics.EPPayHelper -> epPlus.g:
     void access$2(com.epplus.publics.EPPayHelper,android.app.AlertDialog) -> a
     android.os.Handler access$3(com.epplus.publics.EPPayHelper) -> c
     void access$4(com.epplus.publics.EPPayHelper,boolean) -> a
-com.epplus.publics.EPPayHelper$1 -> epPlus.h:
-    com.epplus.publics.EPPayHelper this$0 -> a
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.epplus.publics.EPPayHelper$TimeoutSendPay -> epPlus.i:
-    int timeout -> b
-    com.epplus.publics.EPPayHelper this$0 -> a
-    void run() -> run
-com.epplus.utils.LLog -> epPlus.j:
-    void log(java.lang.String) -> a

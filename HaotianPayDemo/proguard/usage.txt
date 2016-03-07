@@ -8,12 +8,3 @@ com.Demoht_ep.Demo_ep.R$layout
 com.Demoht_ep.Demo_ep.R$menu
 com.Demoht_ep.Demo_ep.R$string
 com.Demoht_ep.Demo_ep.R$style
-com.epplus.bean.Version:
-    6:6:public java.lang.String getVersion()
-    14:14:public int getStatus()
-    20:20:public java.lang.String getUpdateSdkUrl()
-com.epplus.face.EPPlusPayActivity:
-    private static final java.lang.String className
-com.epplus.utils.LLog:
-    5:5:public LLog()
-    10:11:public static void info(java.lang.String)
