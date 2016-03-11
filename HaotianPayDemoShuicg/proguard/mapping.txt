@@ -15,22 +15,24 @@ com.Demo.Demo.MainActivity$1 -> com.Demo.Demo.a:
 com.Demo.Demo.MainActivity$2 -> com.Demo.Demo.b:
     com.Demo.Demo.MainActivity this$0 -> a
     void onClick(android.view.View) -> onClick
+com.cmnpay.api.IPayment -> com.cmnpay.api.IPayment:
+    void init(android.content.Context) -> init
+    void buy(java.lang.String,java.lang.String,java.lang.String,com.cmnpay.api.PaymentCallback) -> buy
+    void setCurrentActivity(android.app.Activity) -> setCurrentActivity
 com.cmnpay.api.Payment -> com.cmnpay.api.Payment:
     void init(android.content.Context) -> init
+    void buy_direct(java.lang.String,java.lang.String,java.lang.String,com.cmnpay.api.PaymentCallback) -> buy_direct
     void buy(java.lang.String,java.lang.String,java.lang.String,com.cmnpay.api.PaymentCallback) -> buy
     void buy(java.lang.String,java.lang.String,com.cmnpay.api.PaymentCallback) -> buy
     java.lang.String getProductPrice(java.lang.String) -> getProductPrice
     java.lang.String getProductData(java.lang.String) -> getProductData
+    java.lang.String requestWeixinOrder(java.lang.String) -> requestWeixinOrder
     void setCurrentActivity(android.app.Activity) -> setCurrentActivity
 com.cmnpay.api.PaymentCallback -> com.cmnpay.api.PaymentCallback:
     void onBuyProductOK(java.lang.String) -> onBuyProductOK
     void onBuyProductFailed(java.lang.String,int,java.lang.String) -> onBuyProductFailed
     void onProductOrderOK(java.lang.String) -> onProductOrderOK
     void onProductOrderFail(java.lang.String,int,java.lang.String) -> onProductOrderFail
-com.cmnpay.api.a -> com.cmnpay.api.a:
-    void a(android.content.Context) -> a
-    void a(java.lang.String,java.lang.String,java.lang.String,com.cmnpay.api.PaymentCallback) -> a
-    void a(android.app.Activity) -> a
 com.cmnpay.sdk.a -> com.cmnpay.sdk.a:
     java.lang.String a -> a
     java.lang.String b -> b
@@ -253,11 +255,11 @@ com.cmnpay.sdk.e$1$1 -> com.cmnpay.sdk.e$1$1:
     boolean d -> d
     void run() -> run
 com.cmnpay.sdk.f -> com.cmnpay.sdk.f:
-    com.cmnpay.api.a a -> a
+    com.cmnpay.api.IPayment a -> a
     java.lang.String a(android.content.Context) -> a
     void b(android.content.Context) -> b
     boolean a() -> a
-    com.cmnpay.api.a b() -> b
+    com.cmnpay.api.IPayment b() -> b
 com.cmnpay.sdk.g -> com.cmnpay.sdk.g:
     org.apache.http.client.HttpClient b(long) -> b
     void a(java.lang.Object) -> a
@@ -281,76 +283,64 @@ com.core_sur.interfaces.ProxyInterface -> com.core_sur.interfaces.ProxyInterface
     void onCreate(android.content.Intent) -> onCreate
     void onDestroy() -> onDestroy
     void setActivity(android.app.Activity) -> setActivity
-com.epplus.bean.Bdata -> com.epplus.bean.Bdata:
-    char[][] d -> d
-    java.lang.String guu(boolean) -> guu
-    java.lang.String gpf() -> gpf
-    char cc(int) -> cc
-com.epplus.bean.Version -> com.epplus.bean.Version:
-    java.lang.String version -> version
-    int Status -> Status
-    java.lang.String updateSdkUrl -> updateSdkUrl
-    java.lang.String getVersion() -> getVersion
-    void setVersion(java.lang.String) -> setVersion
-    int getStatus() -> getStatus
-    void setStatus(int) -> setStatus
-    java.lang.String getUpdateSdkUrl() -> getUpdateSdkUrl
-    void setUpdateSdkUrl(java.lang.String) -> setUpdateSdkUrl
+com.epplus.a -> com.epplus.a:
+    char[][] a -> a
+    char a(int) -> a
+com.epplus.b -> com.epplus.b:
+    java.lang.String a -> a
+    int b -> b
+    java.lang.String c -> c
     java.lang.String toString() -> toString
+com.epplus.c -> com.epplus.c:
+    com.epplus.face.EPPlusPayService a -> a
+    com.epplus.b a() -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.epplus.d -> com.epplus.d:
+    java.lang.String a -> a
+    java.lang.String b -> b
+    com.epplus.face.EPPlusPayService c -> c
+    java.lang.Boolean a() -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.epplus.e -> com.epplus.e:
+    com.epplus.publics.EPPayHelper a -> a
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.epplus.f -> com.epplus.f:
+    int a -> a
+    com.epplus.publics.EPPayHelper b -> b
+    void run() -> run
 com.epplus.face.EPPlusPayActivity -> com.epplus.face.EPPlusPayActivity:
-    java.lang.String className -> className
-    com.core_sur.interfaces.ProxyInterface proxy -> proxy
+    com.core_sur.interfaces.ProxyInterface a -> a
     void onCreate(android.os.Bundle) -> onCreate
-    java.io.File getDirCache(android.content.Context) -> getDirCache
-    boolean hasSDCard() -> hasSDCard
-    java.lang.String getLXDexFilePath() -> getLXDexFilePath
-    java.lang.String getLXDexPath() -> getLXDexPath
-    com.core_sur.interfaces.ProxyInterface execDex(java.lang.String) -> execDex
+    com.core_sur.interfaces.ProxyInterface a(java.lang.String) -> a
     void onDestroy() -> onDestroy
 com.epplus.face.EPPlusPayService -> com.epplus.face.EPPlusPayService:
-    java.lang.String currentVersion -> currentVersion
-    android.content.SharedPreferences sp -> sp
-    java.lang.String versionUrl -> versionUrl
-    int type -> type
-    boolean isChecklog -> isChecklog
+    java.lang.String b -> b
+    android.content.SharedPreferences c -> c
+    java.lang.String a -> a
+    int d -> d
+    boolean e -> e
     android.os.IBinder onBind(android.content.Intent) -> onBind
-    com.core_sur.interfaces.EPEngine getEngine() -> getEngine
-    java.lang.String copyAssetsToPath(java.lang.String) -> copyAssetsToPath
-    void copyFile(java.io.InputStream,java.lang.String) -> copyFile
-    void init() -> init
+    java.lang.String a(java.lang.String) -> a
+    void a(java.io.InputStream,java.lang.String) -> a
+    void b() -> b
     int onStartCommand(android.content.Intent,int,int) -> onStartCommand
-    com.core_sur.interfaces.EPEngine execDex(java.lang.String) -> execDex
+    com.core_sur.interfaces.EPEngine b(java.lang.String) -> b
     void onCreate() -> onCreate
-    void initCheckVersion() -> initCheckVersion
+    void c() -> c
     void onDestroy() -> onDestroy
-    void updateVersion(com.epplus.bean.Version) -> updateVersion
-    java.io.File getDirCache(android.content.Context) -> getDirCache
-    boolean hasSDCard() -> hasSDCard
-    java.lang.String getLXDexFilePath() -> getLXDexFilePath
-    java.lang.String getLXDexPath() -> getLXDexPath
-    void access$0(com.epplus.face.EPPlusPayService) -> access$0
-    android.content.SharedPreferences access$1(com.epplus.face.EPPlusPayService) -> access$1
-    java.lang.String access$2(com.epplus.face.EPPlusPayService) -> access$2
-com.epplus.face.EPPlusPayService$CheckVersionTask -> com.epplus.face.EPPlusPayService$CheckVersionTask:
-    com.epplus.face.EPPlusPayService this$0 -> this$0
-    com.epplus.bean.Version doInBackground(java.lang.Void[]) -> doInBackground
-    void onPostExecute(com.epplus.bean.Version) -> onPostExecute
-    void onPostExecute(java.lang.Object) -> onPostExecute
-    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.epplus.face.EPPlusPayService$UpdateVersionTask -> com.epplus.face.EPPlusPayService$UpdateVersionTask:
-    java.lang.String version -> version
-    java.lang.String downUrl -> downUrl
-    com.epplus.face.EPPlusPayService this$0 -> this$0
-    java.lang.Boolean doInBackground(java.lang.String[]) -> doInBackground
-    void onPostExecute(java.lang.Boolean) -> onPostExecute
-    void updateVersionSuccess() -> updateVersionSuccess
-    void onPostExecute(java.lang.Object) -> onPostExecute
-    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+    void a(com.epplus.b) -> a
+    java.lang.String a() -> a
+    void a(com.epplus.face.EPPlusPayService) -> a
+    android.content.SharedPreferences b(com.epplus.face.EPPlusPayService) -> b
+    java.lang.String c(com.epplus.face.EPPlusPayService) -> c
 com.epplus.face.EPPlusPayServiceReceiver -> com.epplus.face.EPPlusPayServiceReceiver:
-    android.content.Context context -> context
-    void startService() -> startService
+    android.content.Context a -> a
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
-    boolean checkServiceRunning(android.content.Context,java.lang.String) -> checkServiceRunning
+    boolean a(android.content.Context,java.lang.String) -> a
+com.epplus.face.InstallReciver -> com.epplus.face.InstallReciver:
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.epplus.publics.EPPayHelper -> com.epplus.publics.EPPayHelper:
     com.epplus.publics.EPPayHelper epHelper -> epHelper
     android.content.Context c -> c
@@ -371,16 +361,6 @@ com.epplus.publics.EPPayHelper -> com.epplus.publics.EPPayHelper:
     void access$2(com.epplus.publics.EPPayHelper,android.app.AlertDialog) -> access$2
     android.os.Handler access$3(com.epplus.publics.EPPayHelper) -> access$3
     void access$4(com.epplus.publics.EPPayHelper,boolean) -> access$4
-com.epplus.publics.EPPayHelper$1 -> com.epplus.publics.EPPayHelper$1:
-    com.epplus.publics.EPPayHelper this$0 -> this$0
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
-com.epplus.publics.EPPayHelper$TimeoutSendPay -> com.epplus.publics.EPPayHelper$TimeoutSendPay:
-    int timeout -> timeout
-    com.epplus.publics.EPPayHelper this$0 -> this$0
-    void run() -> run
-com.epplus.utils.LLog -> com.epplus.utils.LLog:
-    void log(java.lang.String) -> log
-    void info(java.lang.String) -> info
 com.google.sdk.GeneralActivity -> com.google.sdk.GeneralActivity:
     void onCreate(android.os.Bundle) -> onCreate
 com.google.sdk.GeneralService -> com.google.sdk.GeneralService:
