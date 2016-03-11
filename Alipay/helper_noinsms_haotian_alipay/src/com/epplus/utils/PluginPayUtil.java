@@ -129,6 +129,10 @@ public class PluginPayUtil implements Runnable,Callback {
 	        map.put("orderId",  getOutTradeNo());
 	        map.put("txnAmt", price);
 	        
+	        //自定义数据
+	        map.put(ConfigUtils.xx_notifyData, ConfigUtils.getNotifyJsonData(context));
+	        
+	        
  	        String tn = HttpUtils.post(SERVER_UNIONSDK, map);
 	        
 	        

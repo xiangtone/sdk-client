@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#88000000"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20.0dip"
+        android:layout_marginRight="20.0dip"
+        android:background="#ffffffff"
+        android:orientation="vertical"
+        android:paddingBottom="10.0dip" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="38.0dip" >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="38.0dip"
+                android:gravity="center"
+                android:tag="title"
+                android:text="手机话费支付"
+                android:textColor="#ffffffff"
+                android:textSize="16.0dip" />
+
+            <ImageView
+                android:layout_width="32.0dip"
+                android:layout_height="25.0dip"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="8.0dip"
+                android:scaleType="fitXY"
+                android:tag="exit" />
+
+            <ImageView
+                android:layout_width="25.0dip"
+                android:layout_height="22.0dip"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="40.0dip"
+                android:scaleType="fitXY"
+                android:tag="network" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10.0dip" >
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="5.0dip"
+                android:paddingRight="5.0dip" >
+
+                <ImageView
+                    android:layout_width="22.0dip"
+                    android:layout_height="22.0dip"
+                    android:layout_gravity="center"
+                    android:tag="appNameIcon" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10.0dip"
+                    android:tag="appName"
+                    android:text="应用名称:极品飙车"
+                    android:textColor="#ff777777"
+                    android:textSize="14.0dip" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="#55ababab" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="5.0dip"
+                android:paddingRight="5.0dip" >
+
+                <ImageView
+                    android:layout_width="22.0dip"
+                    android:layout_height="22.0dip"
+                    android:layout_gravity="center"
+                    android:tag="payPointIcon" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10.0dip"
+                    android:tag="payPoint"
+                    android:text="道具:极品飙车"
+                    android:textColor="#ff777777"
+                    android:textSize="14.0dip" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="#55ababab" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="5.0dip"
+                android:paddingRight="5.0dip" >
+
+                <ImageView
+                    android:layout_width="22.0dip"
+                    android:layout_height="22.0dip"
+                    android:layout_gravity="center"
+                    android:tag="payNumberIcon" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10.0dip"
+                    android:tag="payNumber"
+                    android:text="金额:150元"
+                    android:textColor="#ff777777"
+                    android:textSize="14.0dip" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="#55ababab" />
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="5.0dip"
+                android:paddingRight="5.0dip" >
+
+                <ImageView
+                    android:layout_width="22.0dip"
+                    android:layout_height="22.0dip"
+                    android:layout_gravity="center"
+                    android:tag="payContactIcon" />
+
+                <TextView
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10.0dip"
+                    android:tag="payContact"
+                    android:text="联系客服:4001-0595-66"
+                    android:textColor="#ff777777"
+                    android:textSize="14.0dip" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1.0px"
+                android:background="#55ababab" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10.0dip" >
+
+            <TextView
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_margin="2.0dip"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:tag="positive"
+                android:text="确认支付"
+                android:textColor="#ffffffff" />
+
+            <TextView
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_margin="2.0dip"
+                android:layout_weight="1.0"
+                android:gravity="center"
+                android:tag="passive"
+                android:text="取消"
+                android:textColor="#ffffffff" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

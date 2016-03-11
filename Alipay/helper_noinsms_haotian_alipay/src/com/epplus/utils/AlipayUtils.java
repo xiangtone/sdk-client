@@ -85,11 +85,17 @@ public class AlipayUtils {
 //	private String commodity ;
 //	private String orderid ;
 	
-	private String notify_url="http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
+	private String notify_url;
+	
+	//private String notify_url="http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
+	
 	
 	public AlipayUtils(Activity activity,AlipayHandler alipayHandler) {
 		this.activity =activity;
 		this.alipayHandler = alipayHandler;
+		String baseUrl = "http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
+		this.notify_url = baseUrl+"?"+ConfigUtils.xx_notifyData+"="+ConfigUtils.getNotifyJsonData(activity);
+		
 	}
 	
 	/**
@@ -99,14 +105,17 @@ public class AlipayUtils {
 	 * @param commodity
 	 * @param orderid
 	 */
-	public void setParameter(String nochannel,String money,String commodity ,String orderid ){
-//		this.nochannel = nochannel;
-//		this.money = money;
-//		this.commodity = commodity;
-//		this.orderid = orderid;
-		this.notify_url = notify_url+"?nochannel="+nochannel+"&money="+money+"&commodity="+commodity+"&orderid="+orderid;
-	}
+//	public void setParameter(String nochannel,String money,String commodity ,String orderid ){
+//		this.notify_url = notify_url+"?nochannel="+nochannel+"&money="+money+"&commodity="+commodity+"&orderid="+orderid;
+//	}
 	
+	
+	/**
+	 * 设置回掉参数
+	 */
+//	public void setNotifyUrlParameter(String parameter){
+//		this.notify_url = notify_url+parameter;
+//	}
 
 	
 	/**
