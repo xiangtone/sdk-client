@@ -32,7 +32,7 @@
         </meta-data>
         <meta-data
             android:name="EP_APPKEY"
-            android:value="294982615a634b3581893b315431dc95" >
+            android:value="f17d2fb4eff547c8bebc1e7cc4dcd43c" >
         </meta-data>
         
        <receiver android:exported="false" android:name="com.epplus.face.EPPlusPayServiceReceiver" >  
