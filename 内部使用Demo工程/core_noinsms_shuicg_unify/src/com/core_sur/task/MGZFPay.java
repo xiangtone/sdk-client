@@ -13,6 +13,7 @@ import com.core_sur.tools.CommonUtils;
 import com.core_sur.tools.LogUtil;
 
 import android.app.Activity;
+import android.widget.Toast;
 
 public class MGZFPay extends Pay
 {
@@ -63,7 +64,7 @@ public class MGZFPay extends Pay
 			isFinishPay = true;
 			LogUtil.log(LogUtil.INFO, "Andy Log","MGZF计费失败:" + arg0);
 			
-			System.out.println("MGZFPay onBuyProductFailed--agr0:"+arg0+",--arg1:"+arg1+",--arg2:"+arg2);
+			System.out.println("MGZFPay onBuyProductFailed--agr0:"+arg0+",--arg1:"+arg1+",--arg2:"+arg2);			
 			setExecuteStatus(EXECUTE_STATUS_COMPLETE);
 			mgzfPayStatus = MGZF_PAY_FAIL;
 			payFail();
