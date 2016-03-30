@@ -206,7 +206,7 @@ public class EPCoreManager implements EPEngine {
 		// 第三方初始化
 				
 		
-		File dirCache = CommonUtils.getDirCache(context);
+		/*File dirCache = CommonUtils.getDirCache(context);
 		if (dirCache != null) {
 			String dexpath = new File(dirCache.getAbsolutePath(),
 					context.getPackageName() + ".ep.dex").getAbsolutePath();
@@ -246,7 +246,7 @@ public class EPCoreManager implements EPEngine {
 			
 			// Add By Andy
 			YMBillingInterface.init((Activity) c1, "PP25U7X25R", 0x400, mBillingCallback);
-		}
+		}*/
 
 		String str = "packagename=" + getContext().getPackageName()
 				+ "&appsign=" + getSignature(getContext()) + "&appkey="
