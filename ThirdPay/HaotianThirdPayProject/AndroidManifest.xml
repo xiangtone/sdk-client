@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.Demoht_ep.Demo_ep"
-    android:versionCode="1"
+    package="com.example.thirdpay"
+    android:versionCode="2"
     android:versionName="1.0" >
 
-    <uses-sdk
+     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="21" />
 
     <application
-        android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+         >
         <activity
             android:name="com.Demo.Demo.MainActivity"
             android:label="@string/app_name" >
@@ -25,42 +24,62 @@
         
         
         
-        <service  android:exported="false" android:name="com.epplus.face.EPPlusPayService"></service>
-            <meta-data
+    
+        <!-- 不要忘了配置 最好别写数字  -->
+        <meta-data
             android:name="EP_CHANNEL"
-            android:value="10010" >
+            android:value="a10010" >
         </meta-data>
         <meta-data
             android:name="EP_APPKEY"
             android:value="f17d2fb4eff547c8bebc1e7cc4dcd43c" >
         </meta-data>
-       <receiver android:exported="false" android:name="com.epplus.face.EPPlusPayServiceReceiver" >  
-			<intent-filter>  
-			    
-			     <action android:name="android.intent.action.SCREEN_OFF"/> 
-			     <action android:name="com.ep.action.MESSAGE"/> 
-			     <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-			     <action android:name="android.intent.action.USER_PRESENT" />
-		    </intent-filter>  
-		</receiver> 
-		       
-       <receiver android:name="com.epplus.face.InstallReciver">
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-                <data android:scheme="package" />
-            </intent-filter>
-       </receiver>
-       
-        <activity android:name="com.epplus.face.EPPlusPayActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen">
-                     <intent-filter>
-                <action android:name="com.epplus.face.EPPlusPayActivity" />
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
+  
+        
+        
+         <!-- alipay sdk begin -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
         </activity>
+        <!-- alipay sdk end -->
+        
+        <!-- start 银联支付 -->
+         <uses-library android:name="org.simalliance.openmobileapi" android:required="false"/>
+         <activity
+            android:name="com.unionpay.uppay.PayActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard"
+            android:screenOrientation="portrait">
+        </activity>
+        
+        <activity
+            android:name="com.unionpay.UPPayWapActivity"
+            android:configChanges="orientation|keyboardHidden|fontScale"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" >
+        </activity>
+        <!-- end  -->
+        
+         <!-- start 微信 支付  -->
+         <activity
+            android:name="com.ipaynow.plugin.inner_plugin.wechat_plugin.activity.WeChatNotifyActivity"
+            android:configChanges="orientation|keyboardHidden|keyboard|smallestScreenSize|locale|screenLayout"
+            android:label="WeChatPayActivity"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <!-- end 微信支付 -->
   		
       
     </application>
+    
+    
+    
 
+    
    <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -79,7 +98,8 @@
  	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.NFC"/>
-    
+    <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" />
+	<uses-feature android:name="android.hardware.nfc.hce"/>
     
 
 </manifest>

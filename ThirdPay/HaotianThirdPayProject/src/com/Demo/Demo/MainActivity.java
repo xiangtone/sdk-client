@@ -1,6 +1,7 @@
 package com.Demo.Demo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,8 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.Demoht_ep.Demo_ep.R;
 import com.epplus.publics.EPPayHelper;
+import com.example.thirdpay.R;
 
 public class MainActivity extends Activity {
 	private EditText manety;
@@ -61,8 +62,8 @@ public class MainActivity extends Activity {
 		but.setOnClickListener(onclick);
 		
 		// ≥ı ºªØSDK
-		EPPayHelper.getInstance(this).initPay(true,"4001059566");
-		EPPayHelper.getInstance(this).setPayListen(handler);
+		//EPPayHelper.getInstance(this).initPay(true,"4001059566");
+		EPPayHelper.getInstance(this).initPay(handler);
 		
 	}
 
@@ -83,19 +84,26 @@ public class MainActivity extends Activity {
 				// TODO Auto-generated catch block
 				Toast.makeText(MainActivity.this, "f78e98df8cfc4745b0b1ef88581704e6", 1000).show();
 			}
-		}
+        }
 	};
 	  @Override  
 	    protected void onDestroy() {  
 	        super.onDestroy(); 
-	        try {
-	        	EPPayHelper.getInstance(activity).exit();
-			
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
+//	        try {
+//	        	EPPayHelper.getInstance(activity).exit();
+//			
+//			} catch (Exception e) {
+//				// TODO: handle exception
+//			}
 			
 	    }  
+	  
+	  
+	  @Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		EPPayHelper.getInstance(this).onActivityResult(requestCode, resultCode, data);
+		super.onActivityResult(requestCode, resultCode, data);
+	}
 	  
 	 
 }
