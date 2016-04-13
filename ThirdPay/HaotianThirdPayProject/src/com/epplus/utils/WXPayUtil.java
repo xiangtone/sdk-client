@@ -118,7 +118,7 @@ public class WXPayUtil implements XqtPayListener{
 	@Override
 	public void error(String str) {
 		progressDialog.dismiss();
-		Toast.makeText(act, str, 1).show();
+		//Toast.makeText(act, str, 1).show();
 		
 	}
 

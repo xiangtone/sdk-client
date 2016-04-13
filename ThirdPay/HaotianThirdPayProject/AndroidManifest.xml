@@ -63,14 +63,16 @@
         </activity>
         <!-- end  -->
         
-         <!-- start 微信 支付  -->
-         <activity
+        <!-- start 微信 支付  -->
+        <activity
             android:name="com.ipaynow.plugin.inner_plugin.wechat_plugin.activity.WeChatNotifyActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|smallestScreenSize|locale|screenLayout"
             android:label="WeChatPayActivity"
             android:screenOrientation="behind"
-            android:theme="@android:style/Theme.Dialog" >
-        </activity>
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name="com.switfpass.pay.activity.QQWapPayWebView"
+            android:screenOrientation="portrait" />
         <!-- end 微信支付 -->
   		
       
@@ -100,6 +102,20 @@
     <uses-permission android:name="android.permission.NFC"/>
     <uses-permission android:name="org.simalliance.openmobileapi.SMARTCARD" />
 	<uses-feature android:name="android.hardware.nfc.hce"/>
+	
+	<uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.webkit.permission.PLUGIN" />
+    <uses-permission android:name="cn.swiftpass.wxpay.permission.MMOAUTH_CALLBACK" />
+    <uses-permission android:name="cn.swiftpass.wxpay.permission.MM_MESSAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="xvtian.gai.receiver" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
     
 
 </manifest>
