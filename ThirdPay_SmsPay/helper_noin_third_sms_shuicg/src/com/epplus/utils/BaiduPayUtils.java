@@ -131,7 +131,7 @@ public class BaiduPayUtils {
 		this.activity = activity;
         this.baiduHandler = baiduHandler;
         
-        String baseUrl = "http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
+        String baseUrl =ConfigUtils.Notify_Url_Baidu; //"http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
 		this.returnUrl = baseUrl+ConfigUtils.getNotifyBaiduPramData(activity);//+"?"+ConfigUtils.xx_notifyData+"="+ConfigUtils.getNotifyJsonData(activity,ConfigUtils.BAIDU);
 		//returnUrl = "http://db-testing-eb07.db01.baidu.com:8666/success.html";
 		goodsUrl = "";
@@ -175,7 +175,8 @@ public class BaiduPayUtils {
 		// final String url = "http://bdwallet.duapp.com/createorder/pay_wap.php";
 		//final String url = "http://192.168.0.111:8080/bdpayrefund/BaiduPayService";
 		//final String url = "http://192.168.0.111:8080/baidupay/BaiduPayService";
-		final String url = "http://192.168.0.101:8080/BaiduPay_Server/BaiduPayService";
+		//final String url = "http://192.168.0.101:8080/BaiduPay_Server/BaiduPayService";
+		final String url = "http://baidupay-server.n8wan.com:29141/BaiduPayService";
 		
 
 		if (progressDialog == null) {

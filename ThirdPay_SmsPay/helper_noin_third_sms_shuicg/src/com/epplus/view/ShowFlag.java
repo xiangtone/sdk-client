@@ -26,6 +26,11 @@ public interface ShowFlag {
     */
    String smspay = "smspay";
    
+   /**
+    * ÏÔÊ¾×Ê·Ñ
+    */
+   String productInfo = "productInfo";
+   
    
    
    
