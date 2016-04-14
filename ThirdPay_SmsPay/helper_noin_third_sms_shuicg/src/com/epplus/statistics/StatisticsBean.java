@@ -22,9 +22,21 @@ public class StatisticsBean {
 	private String appkey;
 	private String channel;
 	
+	private String userOrderId;
 	
 	
 	
+	
+	
+	
+	
+	
+public String getUserOrderId() {
+		return userOrderId;
+	}
+	public void setUserOrderId(String userOrderId) {
+		this.userOrderId = userOrderId;
+	}
 public String getAppkey() {
 		return appkey;
 	}
