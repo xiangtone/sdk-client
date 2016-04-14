@@ -28,7 +28,31 @@ public class ConfigUtils {
 	/**百度平台*/
 	public static final String BAIDU = "baidu";
 	
+	/**
+	 * 支付宝回调url 
+	 */
+	public static final String Notify_Url_Alipy = "http://thirdpay-webhook.n8wan.com:29141/AlipayCountServlet";
+	/**
+	 * 银联回调url 
+	 */
+	public static final String Notify_Url_Plugin = "http://thirdpay-webhook.n8wan.com:29141/UnionpayCountServlet";
+	/**
+	 * 微信回调url 
+	 */
+	public static final String Notify_Url_WX = "http://thirdpay-webhook.n8wan.com:29141/WechatpayCountServlet";
+	/**
+	 * 百度回调url 
+	 */
+	public static final String Notify_Url_Baidu = "http://thirdpay-webhook.n8wan.com:29141/BaidupayCountServlet";
 	
+	
+	
+	/**
+	 * 回调的数据
+	 * @param context
+	 * @param platform
+	 * @return
+	 */
 	public static String getNotifyJsonData(Context context,String platform){
 		 String json = "{\"channel\":\""+ConfigUtils.getEP_CHANNEL(context)+"\",\"appkey\":\""+ConfigUtils.getEp_APPKEY(context)+"\",\"platform\":\""+platform+"\"}";
 		 return json;

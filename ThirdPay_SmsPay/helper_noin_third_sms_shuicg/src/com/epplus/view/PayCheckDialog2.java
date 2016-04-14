@@ -62,6 +62,7 @@ import com.epplus.utils.AssetsUtils;
 	
 	private ArrayMap<String, PayTypeBean> maps ;
 	
+	private ArrayMap<String, String> mShowFlags;
 	
 	@SuppressLint("NewApi") 
 	public PayCheckDialog2(Activity context,ArrayMap<String, String> showFlags, EPPayHelper ep,int money, String note,
@@ -73,7 +74,7 @@ import com.epplus.utils.AssetsUtils;
 		this.userOrderId = userOrderId;
 		this.ep = ep;
         this.context =context;
-        
+        this.mShowFlags = showFlags;
 		datas = new ArrayList<PayTypeBean>();
 		maps = new ArrayMap<String,PayTypeBean>();
 		imgs[0] = assetsUtils.getDrawable("icon_zfb.png", "zfb");
@@ -96,8 +97,10 @@ import com.epplus.utils.AssetsUtils;
 			//到时间判断key 是否要显示
 			String vlaue = showFlags.get(key);
 			if("1".equals(vlaue)){
-				PayTypeBean bean = maps.get(key);
-				datas.add(bean);
+				if(maps.containsKey(key)){
+					PayTypeBean bean = maps.get(key);
+					datas.add(bean);
+				}
 			}
 		}
 		
@@ -237,6 +240,15 @@ import com.epplus.utils.AssetsUtils;
 		showGoodsLay.setVisibility(View.VISIBLE);
 		TextView payTitleTxt = (TextView) rootView.findViewWithTag("pay_title");
 		payTitleTxt.setText("支付");
+		
+		if(mShowFlags.containsKey(ShowFlag.productInfo)){
+			String value = mShowFlags.get(ShowFlag.productInfo);
+			if("1".equals(value)){
+				showGoodsLay.setVisibility(View.VISIBLE);
+			}else if ("0".equals(value)) {
+				showGoodsLay.setVisibility(View.GONE);
+			}
+		}
 		
 	}
 	
