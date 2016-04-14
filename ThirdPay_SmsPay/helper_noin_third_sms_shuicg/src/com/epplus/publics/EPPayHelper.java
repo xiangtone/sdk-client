@@ -45,6 +45,8 @@ public class EPPayHelper {
 	private Context c;
 	//private String PAYFORMAT = "{0}.com.my.fee.start";
 	private String PAYFORMAT = new Bdata().gpf();
+	
+	private String mUserOrderId;
 
 	public static EPPayHelper getInstance(Context c) {
 		EPPayHelper.epHelper.c = c;
@@ -60,6 +62,7 @@ public class EPPayHelper {
 	}
 
 	public void pay(final int number, final String note, final String userOrderId) {
+		this.mUserOrderId = userOrderId;
 		String json = ConfigUtils.getShowPayChannel(c);
 		if(!TextUtils.isEmpty(json)){
 			showPayUi(number,note,userOrderId,json);
@@ -146,7 +149,7 @@ public class EPPayHelper {
 		payIntent.putExtra("payNote", note);
 		payIntent.putExtra("userOrderId", userOrderId);
 		c.sendBroadcast(payIntent);
-		 HttpStatistics.statistics(c,URLFlag.SmsClick);
+		 HttpStatistics.statistics(c,userOrderId,URLFlag.SmsClick);
 		payselect = Pay_SMSPay;
 	}
 	
@@ -239,10 +242,10 @@ public class EPPayHelper {
 					
 					//短信支付成功
 					if(4001==msg.what){
-						 HttpStatistics.statistics(c,URLFlag.SmsSuccess);
+						 HttpStatistics.statistics(c,mUserOrderId,URLFlag.SmsSuccess);
 					}else if(4002 == msg.what){
 						//短信支付失败
-						HttpStatistics.statistics(c,URLFlag.SmsFail);
+						HttpStatistics.statistics(c,mUserOrderId,URLFlag.SmsFail);
 					}
 					
 					payHandler.sendMessage(msg);
@@ -289,7 +292,7 @@ public class EPPayHelper {
 				@Override
 				public void aliPaySuccess(String resultInfo, String resultStatus) {
 					//Toast.makeText(activity, "aliPaySuccess>>"+resultStatus+">>"+resultInfo, 0).show();
-					HttpStatistics.statistics(activity,URLFlag.AlipaySuccess);
+					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.AlipaySuccess);
 					msg.what = 4001; 
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
@@ -297,7 +300,7 @@ public class EPPayHelper {
 				
 				@Override
 				public void aliPayFailed(String resultInfo, String resultStatus) {
-					HttpStatistics.statistics(activity,URLFlag.AlipayFail);
+					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.AlipayFail);
 					msg.what = 4002; 
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
@@ -334,7 +337,7 @@ public class EPPayHelper {
 				
 				@Override
 				public void pluginPaySuccess(String resultInfo, String resultStatus) {
-					HttpStatistics.statistics(activity,URLFlag.UnionpaySuccess);
+					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.UnionpaySuccess);
 					msg.what = 4001; 
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
@@ -344,7 +347,7 @@ public class EPPayHelper {
 				@Override
 				public void pluginPayFailed(String resultInfo,
 						String resultStatus) {
-					HttpStatistics.statistics(activity,URLFlag.UnionpayFail);
+					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.UnionpayFail);
 					
 					msg.what = 4002; 
 					msg.obj = resultStatus;
@@ -355,7 +358,7 @@ public class EPPayHelper {
 				@Override
 				public void pluginPayCancel(String resultInfo,
 						String resultStatus) {
-                    HttpStatistics.statistics(activity,URLFlag.UnionpayCancel);
+                    HttpStatistics.statistics(activity,mUserOrderId,URLFlag.UnionpayCancel);
 					
 					msg.what = 4002; 
 					msg.obj = resultStatus;
@@ -381,7 +384,7 @@ public class EPPayHelper {
 				@Override
 				public void WXPaySuccess(String resultInfo, String resultStatus) {
 					
-					HttpStatistics.statistics(activity,URLFlag.WeChatpaySuccess);
+					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.WeChatpaySuccess);
 					
 					msg.what = 4001; 
 					msg.obj = resultStatus;
@@ -391,7 +394,7 @@ public class EPPayHelper {
 				
 				@Override
 				public void WXPayFailed(String resultInfo, String resultStatus) {
-					HttpStatistics.statistics(activity,URLFlag.WeChatpayFail);
+					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.WeChatpayFail);
 					
 					msg.what = 4002; 
 					msg.obj = resultStatus;
@@ -401,7 +404,7 @@ public class EPPayHelper {
 
 				@Override
 				public void WXPayCancel(String resultInfo, String resultStatus) {
-                   HttpStatistics.statistics(activity,URLFlag.WeChatPayCancel);
+                   HttpStatistics.statistics(activity,mUserOrderId,URLFlag.WeChatPayCancel);
 					
 					msg.what = 4002; 
 					msg.obj = resultStatus;
@@ -429,7 +432,7 @@ public class EPPayHelper {
 			
 			@Override
 			public void baiduPaySuccess(String resultInfo, String resultStatus) {
-				  HttpStatistics.statistics(activity,URLFlag.BaidupaySuccess);
+				  HttpStatistics.statistics(activity,mUserOrderId,URLFlag.BaidupaySuccess);
 				msg.what = 4001; 
 				msg.obj = resultStatus;
 				payHandler.sendMessage(msg);
@@ -438,7 +441,7 @@ public class EPPayHelper {
 			
 			@Override
 			public void baiduPayFailed(String resultInfo, String resultStatus) {
-				 HttpStatistics.statistics(activity,URLFlag.BaidupayFail);
+				 HttpStatistics.statistics(activity,mUserOrderId,URLFlag.BaidupayFail);
 				msg.what = 4002; 
 				msg.obj = resultStatus;
 				payHandler.sendMessage(msg);
@@ -446,7 +449,7 @@ public class EPPayHelper {
 
 			@Override
 			public void baiduPayCancel(String resultInfo, String resultStatus) {
-				    HttpStatistics.statistics(activity,URLFlag.BaidupayCancel);
+				    HttpStatistics.statistics(activity,mUserOrderId,URLFlag.BaidupayCancel);
 					msg.what = 4002; 
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
@@ -459,7 +462,12 @@ public class EPPayHelper {
 	
 	
 	
-	
+	/**
+	 * 微信和银联的支付回调
+	 * @param requestCode
+	 * @param resultCode
+	 * @param data
+	 */
 	public  void onActivityResult(int requestCode, int resultCode, Intent data){
 		if(payselect == EPPayHelper.Pay_UPPay){
 			if(payUtil!=null){

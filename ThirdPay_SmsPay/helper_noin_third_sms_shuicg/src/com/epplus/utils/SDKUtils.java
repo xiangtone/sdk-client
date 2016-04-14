@@ -38,6 +38,23 @@ public class SDKUtils {
 	
 	
 	
+	/**
+	 * 检测百度是否配置了
+	 * @param context
+	 * @return
+	 */
+	public static boolean checkBaiduConfig(){
+		String rClazz = "com.baidu.paysdk.lib.R";
+		 try {
+			Class.forName(rClazz);
+			return true;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	
 	
 	
 	

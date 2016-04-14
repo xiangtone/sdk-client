@@ -22,6 +22,7 @@ import com.epplus.utils.DeviceUtil;
 import com.epplus.utils.SDKUtils;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 /**
  * Í³¼Æ
@@ -72,9 +73,11 @@ public class HttpStatistics {
 	}
 	
 	
-	public static HashMap<String, String> getBaseMap(Context context,int payOperateCode){
+	public static HashMap<String, String> getBaseMap(Context context,String userOrderId,int payOperateCode){
 		HashMap<String, String> map = new HashMap<String, String>();
-		String json = JSON.toJsonString(getStatisticsBean(context));
+		StatisticsBean bean = getStatisticsBean(context);
+		bean.setUserOrderId(userOrderId);
+		String json = JSON.toJsonString(bean);
 		String encodeData =EncodeUtils.encode(json);
 		map.put("op_notifyData", encodeData);
 		map.put("payOperateCode", String.valueOf(payOperateCode));
@@ -124,11 +127,13 @@ public class HttpStatistics {
 	 * @param parm
 	 * @return
 	 */
-	public static void statistics(final Context context,final int falgCode){
+	public static void statistics(final Context context,final String urid,final int falgCode){
 		ThreadUtil.start(new Runnable() {
 			@Override
 			public void run() {
-				HttpStatistics.newInstance().post(StatisURL.BASEURL, getBaseMap(context,falgCode));
+				String str =urid;
+				if(TextUtils.isEmpty(urid)){str = "";}
+				HttpStatistics.newInstance().post(StatisURL.BASEURL, getBaseMap(context,str,falgCode));
 			}
 		});
 	}

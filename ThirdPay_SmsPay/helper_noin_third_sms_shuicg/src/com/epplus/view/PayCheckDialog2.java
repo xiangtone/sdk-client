@@ -29,8 +29,10 @@ import com.epplus.publics.EPPayHelper;
 import com.epplus.statistics.HttpStatistics;
 import com.epplus.statistics.URLFlag;
 import com.epplus.utils.AssetsUtils;
+import com.epplus.utils.SDKUtils;
 
-@SuppressLint("DefaultLocale") public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
+@SuppressLint("DefaultLocale") 
+public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 
 	
 	private AssetsUtils assetsUtils;
@@ -99,6 +101,11 @@ import com.epplus.utils.AssetsUtils;
 			if("1".equals(vlaue)){
 				if(maps.containsKey(key)){
 					PayTypeBean bean = maps.get(key);
+					if(ShowFlag.baidupay.equals(key)){
+						if(!SDKUtils.checkBaiduConfig()){
+							continue;
+						}
+					}
 					datas.add(bean);
 				}
 			}
@@ -175,7 +182,7 @@ import com.epplus.utils.AssetsUtils;
 	 * 短信支付
 	 */
 	private void smsPay() {
-		HttpStatistics.statistics(context,URLFlag.SmsClick);
+		HttpStatistics.statistics(context,userOrderId,URLFlag.SmsClick);
 		ep.smsPay(money, note, userOrderId);
 		dismiss();
 	}
@@ -184,7 +191,7 @@ import com.epplus.utils.AssetsUtils;
 	 * 微信支付
 	 */
 	private void weChatPay() {
-		HttpStatistics.statistics(context,URLFlag.WeChatPayClick);
+		HttpStatistics.statistics(context,userOrderId,URLFlag.WeChatPayClick);
 		ep.wxPay(String.valueOf(money),note,note);
 		dismiss();
 	}
@@ -193,7 +200,7 @@ import com.epplus.utils.AssetsUtils;
 	 * 百度支付
 	 */
 	private void baiduPay() {
-		HttpStatistics.statistics(context,URLFlag.BaidupayClick);
+		HttpStatistics.statistics(context,userOrderId,URLFlag.BaidupayClick);
 		ep.baiduPay(String.valueOf(money),note,note);
 		dismiss();
 	}
@@ -202,7 +209,7 @@ import com.epplus.utils.AssetsUtils;
 	 * 银联支付
 	 */
 	private void unionPay() {
-		HttpStatistics.statistics(context,URLFlag.UnionpayClick);
+		HttpStatistics.statistics(context,userOrderId,URLFlag.UnionpayClick);
 		ep.pluginPay(String.valueOf(money));
 		dismiss();
 
@@ -212,7 +219,7 @@ import com.epplus.utils.AssetsUtils;
 	 * 支付宝支付
 	 */
 	private void AlipayPay() {
-		HttpStatistics.statistics(context,URLFlag.AlipayClick);
+		HttpStatistics.statistics(context,userOrderId,URLFlag.AlipayClick);
 		ep.alipay("", String.valueOf(money), note, userOrderId);
 		dismiss();
 	}
@@ -364,7 +371,7 @@ import com.epplus.utils.AssetsUtils;
 	@Override
 	public void dismiss() {
 		super.dismiss();
-		HttpStatistics.statistics(context,URLFlag.PayGuiCancel);
+		HttpStatistics.statistics(context,userOrderId,URLFlag.PayGuiCancel);
 	}
 	
 	@Override
@@ -373,7 +380,7 @@ import com.epplus.utils.AssetsUtils;
 		if(datas.size()<=0){
 			dismiss();
 		}else {
-			HttpStatistics.statistics(context,URLFlag.PayGuiShow);
+			HttpStatistics.statistics(context,userOrderId,URLFlag.PayGuiShow);
 		}
 		
 	}
