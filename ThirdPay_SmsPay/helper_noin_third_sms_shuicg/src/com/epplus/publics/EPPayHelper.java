@@ -1,6 +1,7 @@
 package com.epplus.publics;
 
 import java.text.MessageFormat;
+import java.util.HashMap;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,7 +17,6 @@ import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.ArrayMap;
 import android.view.Gravity;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
@@ -79,10 +79,9 @@ public class EPPayHelper {
 	}
 	
 	
-	@SuppressLint("NewApi") 
-	private  ArrayMap<String, String> getPayMap(String json){
+	private  HashMap<String, String> getPayMap(String json){
 		try {
-		    ArrayMap<String, String> map = new ArrayMap<String, String>();
+			HashMap<String, String> map = new HashMap<String, String>();
 			JSONObject jo = new JSONObject(json); 
 			if(!jo.isNull(ShowFlag.alipay)){
 				map.put(ShowFlag.alipay, jo.getString(ShowFlag.alipay));
@@ -122,7 +121,7 @@ public class EPPayHelper {
 	private void showPayUi(int number, String note, String userOrderId,String json) {
 		if (!TextUtils.isEmpty(json)) {
 			if (!ConfigUtils.SHOWPAYERROR.equals(json)) {
-				ArrayMap<String, String> showFlags = getPayMap(json);
+				HashMap<String, String> showFlags = getPayMap(json);
 				if (showFlags != null) {
 					if (c instanceof Activity) {
 						Activity activity = (Activity) c;

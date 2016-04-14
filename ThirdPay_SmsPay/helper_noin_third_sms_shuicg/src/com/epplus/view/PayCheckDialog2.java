@@ -3,6 +3,7 @@ package com.epplus.view;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import android.annotation.SuppressLint;
@@ -13,7 +14,6 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
-import android.util.ArrayMap;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -60,12 +60,12 @@ import com.epplus.utils.AssetsUtils;
 	private EPPayHelper ep;
 	private Activity context;
 	
-	private ArrayMap<String, PayTypeBean> maps ;
+	private HashMap<String, PayTypeBean> maps ;
 	
-	private ArrayMap<String, String> mShowFlags;
+	private HashMap<String, String> mShowFlags;
 	
 	@SuppressLint("NewApi") 
-	public PayCheckDialog2(Activity context,ArrayMap<String, String> showFlags, EPPayHelper ep,int money, String note,
+	public PayCheckDialog2(Activity context,HashMap<String, String> showFlags, EPPayHelper ep,int money, String note,
 			String userOrderId) {
 		super(context);
 		this.assetsUtils = new AssetsUtils(context);
@@ -76,7 +76,7 @@ import com.epplus.utils.AssetsUtils;
         this.context =context;
         this.mShowFlags = showFlags;
 		datas = new ArrayList<PayTypeBean>();
-		maps = new ArrayMap<String,PayTypeBean>();
+		maps = new HashMap<String,PayTypeBean>();
 		imgs[0] = assetsUtils.getDrawable("icon_zfb.png", "zfb");
 		imgs[1] = assetsUtils.getDrawable("yl.png", "yl");
 		imgs[2] = assetsUtils.getDrawable("icon_wx.png", "wx");
