@@ -100,9 +100,6 @@ public class EPPayHelper {
 			if(!jo.isNull(ShowFlag.smspay)){
 				map.put(ShowFlag.smspay, jo.getString(ShowFlag.smspay));
 			}
-			if(!jo.isNull(ShowFlag.productInfo)){
-				map.put(ShowFlag.productInfo, jo.getString(ShowFlag.productInfo));
-			}
 			
 			return map;
 		} catch (JSONException e) {
