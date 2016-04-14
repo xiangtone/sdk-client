@@ -90,7 +90,7 @@ public class AlipayUtils {
 	public AlipayUtils(Activity activity,AlipayHandler alipayHandler) {
 		this.activity =activity;
 		this.alipayHandler = alipayHandler;
-		String baseUrl = "http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
+		String baseUrl = ConfigUtils.Notify_Url_Alipy;//"http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
 		
 		this.notify_url = baseUrl+"?"+ConfigUtils.xx_notifyData+"="+ConfigUtils.getNotifyJsonData(activity,ConfigUtils.ALIPAY);
 		
