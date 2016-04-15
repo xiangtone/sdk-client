@@ -371,7 +371,9 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	@Override
 	public void dismiss() {
 		super.dismiss();
-		HttpStatistics.statistics(context,userOrderId,URLFlag.PayGuiCancel);
+		if(datas.size()>0){
+		 HttpStatistics.statistics(context,userOrderId,URLFlag.PayGuiCancel);
+		}
 	}
 	
 	@Override

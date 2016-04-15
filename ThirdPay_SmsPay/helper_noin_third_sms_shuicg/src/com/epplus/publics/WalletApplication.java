@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.baidu.wallet.api.BaiduWallet;
 import com.epplus.statistics.ThreadUtil;
+import com.epplus.utils.ConfigUtils;
+import com.epplus.utils.SDKUtils;
 
 public class WalletApplication extends Application {
     
@@ -13,8 +15,9 @@ public class WalletApplication extends Application {
         /**
          * 商户接入时需要在自己工程的application中加入以下钱包初始化的代码
          */
-        BaiduWallet.getInstance().initWallet(this);
-        
+        if(SDKUtils.checkBaiduConfig()){
+        	 BaiduWallet.getInstance().initWallet(this);
+        }
     }
     
     @Override

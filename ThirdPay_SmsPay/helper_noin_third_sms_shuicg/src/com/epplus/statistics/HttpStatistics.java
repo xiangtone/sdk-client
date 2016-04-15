@@ -19,6 +19,7 @@ import org.apache.http.util.EntityUtils;
 
 import com.epplus.utils.ConfigUtils;
 import com.epplus.utils.DeviceUtil;
+import com.epplus.utils.HttpUtils;
 import com.epplus.utils.SDKUtils;
 
 import android.content.Context;
@@ -98,6 +99,8 @@ public class HttpStatistics {
 				HttpStatistics.newInstance().post(url, map);
 			}
 		});
+		
+	
 	}
 	
 	
