@@ -14,6 +14,9 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         android:name="com.epplus.publics.WalletApplication" >
+        
+          
+        
         <activity
             android:name="com.Demo.Demo.MainActivity"
             android:label="@string/app_name" >
@@ -351,6 +354,11 @@
                 android:theme="@style/EbpayThemeActivitTranslucent"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateVisible|adjustResize" />
+<<<<<<< HEAD
+=======
+                
+        <!--  biadu支付 商户添加activity  end -->
+>>>>>>> 86d91b8992e7f4aacc164b57c345b7dfa924f53e
         
         <!--  biadu支付 商户添加activity  end -->
          
