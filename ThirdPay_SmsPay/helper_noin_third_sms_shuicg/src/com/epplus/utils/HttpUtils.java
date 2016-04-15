@@ -38,7 +38,7 @@ public class HttpUtils {
 			}
 			@Override
 			protected void onPostExecute(String result) {
-				iResult.result(result);
+				if(iResult!=null)iResult.result(result);
 			}
 		}.execute();
 	}
