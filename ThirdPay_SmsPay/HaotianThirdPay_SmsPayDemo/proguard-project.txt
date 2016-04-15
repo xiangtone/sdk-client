@@ -35,12 +35,8 @@
 -dontwarn com.baidu.sapi2.**,com.baidu.paysdk.**,com.baidu.wallet.**
 
 
--keep class com.epplus.statistics.StatisticsBean {
-    <fields>;
-    <methods>;
-}
 
--keep class com.epplus.publics.** {
+-keep class com.epplus.** {
     <fields>;
     <methods>;
 }
@@ -57,10 +53,10 @@
     <methods>;
 }
 
--keep class com.epplus.face.**{ 
-	<fields>;
-    <methods>; 
-}
+-keep class com.unionpay.** {*;}
+-keep class com.unionpay.tsmservice.** {*;}
+
+-keep class com.baidu.** {*;}
 
 -keep class com.cmnpay.api.**{ *; }
 -keep class com.cmnpay.**{ *; }
@@ -73,7 +69,7 @@
 #-keep class com.cmnpay.**{ *; }
 #-keep class com.google.**{ *; }
 
--libraryjars libs/ep_helper.jar
+-libraryjars libs/ephelper.jar
 -libraryjars libs/alipaySdk-20151215.jar
 -libraryjars libs/async-httpclient-1.0.0.jar
 -libraryjars libs/dmWap.jar

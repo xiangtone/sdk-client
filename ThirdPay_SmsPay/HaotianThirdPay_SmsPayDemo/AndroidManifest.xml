@@ -13,8 +13,8 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
-        android:name="com.epplus.publics.WalletApplication" >
-        
+         >
+        <!-- android:name="com.epplus.publics.WalletApplication" -->
           
         
         <activity
@@ -122,7 +122,7 @@
         
         
         <!--     biadu支付    以下需要商户添加activity start -->       
-        
+         <!--  
         <activity
             android:name="com.baidu.wallet.passport.PassLoginActivity"
             android:configChanges="keyboardHidden|navigation|orientation|screenSize"
@@ -354,15 +354,8 @@
                 android:theme="@style/EbpayThemeActivitTranslucent"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateVisible|adjustResize" />
-<<<<<<< HEAD
-=======
-                
+                -->
         <!--  biadu支付 商户添加activity  end -->
->>>>>>> 86d91b8992e7f4aacc164b57c345b7dfa924f53e
-        
-        <!--  biadu支付 商户添加activity  end -->
-         
-		
 		<!-- end 第三方支付 -->
 		
 		
