@@ -102,6 +102,10 @@ public class EPPayHelper {
 			if(!jo.isNull(ShowFlag.smspay)){
 				map.put(ShowFlag.smspay, jo.getString(ShowFlag.smspay));
 			}
+			//productInfo
+			if(!jo.isNull(ShowFlag.productInfo)){
+				map.put(ShowFlag.productInfo, jo.getString(ShowFlag.productInfo));
+			}
 			
 			
 			return map;
