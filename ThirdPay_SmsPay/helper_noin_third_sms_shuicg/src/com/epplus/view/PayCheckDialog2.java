@@ -48,7 +48,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private ArrayList<PayTypeBean> datas;
 
 	private Drawable imgs[] = new Drawable[5];
-	private String texts[] = { "支付宝", "银联支付", "微信支付", "百度支付" ,"短信支付"};
+	private String texts[] = { "支付宝", "银联支付", "微信支付", "百度支付" ,"话费支付"};
 	private PayFlag flags[] = { PayFlag.ZFB, PayFlag.YL, PayFlag.WX, PayFlag.BD,PayFlag.SMS };
 
 	enum PayFlag {
