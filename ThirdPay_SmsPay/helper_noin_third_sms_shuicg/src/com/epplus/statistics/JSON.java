@@ -35,7 +35,9 @@ public class JSON {
 				Method m = clazz.getMethod(newfieldName, null);
 				Object value = m.invoke(obj, null);
 				//System.out.println(value);
-				jsonObject.put(field.getName(), value);
+				if(value!=null){
+					jsonObject.put(field.getName(), value);
+				}
 			} catch (NoSuchMethodException e) {
 				e.printStackTrace();
 				return null;

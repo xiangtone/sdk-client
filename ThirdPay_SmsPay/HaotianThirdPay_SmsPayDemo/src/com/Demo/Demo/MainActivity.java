@@ -131,17 +131,7 @@ public class MainActivity extends Activity {
 		}
 	 };
 	 
-	  @Override  
-	    protected void onDestroy() {  
-	        super.onDestroy(); 
-	        try {
-	        	EPPayHelper.getInstance(activity).exit();
-			
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-			
-	    }  
+	   
 	  
 	  @Override
 	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {

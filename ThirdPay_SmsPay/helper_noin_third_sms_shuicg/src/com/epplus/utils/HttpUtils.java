@@ -23,10 +23,10 @@ import android.os.AsyncTask;
  */
 public class HttpUtils {
 
-	
+	 
 	/**
 	 * 异步回调请求
-	 * @param uri
+	 * @param uri 
 	 * @param map
 	 * @param result
 	 */
@@ -45,9 +45,9 @@ public class HttpUtils {
 	
 	
 	
-	/**
+	/** 
 	 * post请求
-	 * @param uri
+	 * @param uri 
 	 * @param map
 	 * @return
 	 */

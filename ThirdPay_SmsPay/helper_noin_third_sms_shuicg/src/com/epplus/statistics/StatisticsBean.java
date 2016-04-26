@@ -4,7 +4,7 @@ package com.epplus.statistics;
  * 用于统计的bean对象
  * 
  * @author Administrator
- *
+ * 
  */
 public class StatisticsBean {
 
@@ -25,6 +25,30 @@ public class StatisticsBean {
 	private String channel;
 
 	private String userOrderId;
+	
+
+	// 支付参数
+	private String payParams;
+	
+	//是单机还是网游
+	private String gameType;
+	
+
+	public String getGameType() {
+		return gameType;
+	}
+
+	public void setGameType(String gameType) {
+		this.gameType = gameType;
+	}
+
+	public String getPayParams() {
+		return payParams;
+	}
+
+	public void setPayParams(String payParams) {
+		this.payParams = payParams;
+	}
 
 	public String getUserOrderId() {
 		return userOrderId;

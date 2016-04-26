@@ -21,9 +21,14 @@ import com.epplus.utils.ConfigUtils;
 import com.epplus.utils.DeviceUtil;
 import com.epplus.utils.HttpUtils;
 import com.epplus.utils.SDKUtils;
+import com.epplus.utils.SDKVersion;
+import com.epplus.utils.URLUtils;
+import com.epplus.view.PayParams;
+import com.epplus.view.ShowFlag;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.Log;
 
 /**
  * 统计
@@ -74,13 +79,21 @@ public class HttpStatistics {
 	}
 	
 	
-	public static HashMap<String, String> getBaseMap(Context context,String userOrderId,int payOperateCode){
+	public static HashMap<String, String> getBaseMap(Context context,String userOrderId,int payOperateCode,String gameType,String payParams){
 		HashMap<String, String> map = new HashMap<String, String>();
 		StatisticsBean bean = getStatisticsBean(context);
 		bean.setUserOrderId(userOrderId);
+		bean.setGameType(gameType);
+		if(TextUtils.isEmpty(payParams)){
+			payParams = "";
+		}
+		bean.setPayParams(payParams);
 		String json = JSON.toJsonString(bean);
+		Log.e("zgt", "json:"+json);
 		String encodeData =EncodeUtils.encode(json);
+		Log.e("zgt", "op_notifyData="+encodeData);
 		map.put("op_notifyData", encodeData);
+		map.put("sdkVersion", SDKVersion.SDK_VERSION);
 		map.put("payOperateCode", String.valueOf(payOperateCode));
 		return map;
 	}
@@ -127,16 +140,26 @@ public class HttpStatistics {
 	 * 503 BaidupaySuccess<br/>
 	 * 504 BaidupayFail<br/>
 	 *  post 统计 带入基础数据
-	 * @param parm
-	 * @return
+	 * @param context
+	 * @param urid
+	 * @param falgCode
+	 * @param gameType 游戏类型
+	 * @param payParams 支付参数
 	 */
-	public static void statistics(final Context context,final String urid,final int falgCode){
+	public static void statistics(final Context context,final String urid,final int falgCode,final String gameType,final PayParams payParams ){
 		ThreadUtil.start(new Runnable() {
 			@Override
 			public void run() {
 				String str =urid;
 				if(TextUtils.isEmpty(urid)){str = "";}
-				HttpStatistics.newInstance().post(StatisURL.BASEURL, getBaseMap(context,str,falgCode));
+				String payParamsJson = "";
+				if(ShowFlag.danji.equals(gameType)){
+					payParamsJson = "";
+				}else if (ShowFlag.wangyou.equals(gameType)) {
+					if(payParams!=null)payParamsJson = JSON.toJsonString(payParams);
+				}
+				//HttpStatistics.newInstance().post(StatisURL.BASEURL, getBaseMap(context,str,falgCode,gameType,payParamsJson));
+				HttpStatistics.newInstance().post(URLUtils.payStatis(), getBaseMap(context,str,falgCode,gameType,payParamsJson));
 			}
 		});
 	}
