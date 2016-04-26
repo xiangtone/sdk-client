@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.app.AlertDialog.Builder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -17,6 +18,7 @@ import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
@@ -26,6 +28,7 @@ import android.widget.TextView;
 import com.epplus.bean.Bdata;
 import com.epplus.face.EPPlusPayService;
 import com.epplus.statistics.HttpStatistics;
+import com.epplus.statistics.ThreadUtil;
 import com.epplus.statistics.URLFlag;
 import com.epplus.utils.AlipayUtils;
 import com.epplus.utils.AlipayUtils.AlipayHandler;
@@ -35,9 +38,11 @@ import com.epplus.utils.IHttpResult;
 import com.epplus.utils.PluginPayUtil;
 import com.epplus.utils.PreferencesUtils;
 import com.epplus.utils.PluginPayUtil.PluginHandler;
+import com.epplus.utils.SDKUtils;
 import com.epplus.utils.WXPayUtil;
 import com.epplus.utils.WXPayUtil.WXPayHandler;
 import com.epplus.view.PayCheckDialog2;
+import com.epplus.view.PayParams;
 import com.epplus.view.ShowFlag;
 
 public class EPPayHelper {
@@ -47,6 +52,13 @@ public class EPPayHelper {
 	private String PAYFORMAT = new Bdata().gpf();
 	
 	private String mUserOrderId;
+	
+	//游戏类型
+	private String gameType = ShowFlag.gameType;
+	
+	private EPPayHelper(){
+		
+	}
 
 	public static EPPayHelper getInstance(Context c) {
 		EPPayHelper.epHelper.c = c;
@@ -54,33 +66,56 @@ public class EPPayHelper {
 	}
 
 	public void initPay(boolean isCheckLog, String payContact) {
+		
 		ConfigUtils.setShowPayChannel(c);
+		SDKUtils.getFlagId(c);
 		c.getSharedPreferences("payInfo", Context.MODE_PRIVATE).edit()
 				.putString("payContact", payContact).commit();
 		c.startService(new Intent(c, EPPlusPayService.class).putExtra("type", 1000)
 				.putExtra("isChecklog", isCheckLog));
 	}
 
-	public void pay(final int number, final String note, final String userOrderId) {
-		this.mUserOrderId = userOrderId;
+	public void pay(final PayParams params) {
+		this.mUserOrderId = params.getProductId();
 		String json = ConfigUtils.getShowPayChannel(c);
-		if(!TextUtils.isEmpty(json)){
-			showPayUi(number,note,userOrderId,json);
+		//if(!TextUtils.isEmpty(json))gameType = getGameType(json);
+		if(!TextUtils.isEmpty(json)&&ShowFlag.danji.equals(gameType)){
+			showPayUi(json,params);
 		}else {
+			final ProgressDialog progressDialog = new ProgressDialog(c);
+			progressDialog.setMessage("支付获取中...");
+			progressDialog.setCancelable(false);
+			progressDialog.show();
 			ConfigUtils.setShowPayChannel(c, new IHttpResult() {
 				@Override
 				public void result(Object obj) {
+					progressDialog.dismiss();
 					if(obj==null){
 						return;
 					}
 					String json = (String) obj;
+					
+					//gameType = getGameType(json);
+					Log.e("zgt", "pay:"+json+">>gameType:"+gameType);
 					PreferencesUtils.putString(c, ConfigUtils.PAY_CHANNEL, json);
-					showPayUi(number,note,userOrderId,json);
+					showPayUi(json,params);
 				}
 			});
 		}
 	}
 	
+	
+//	private String getGameType(String json){
+//		try {
+//			JSONObject jo = new JSONObject(json);
+//			if(!jo.isNull(ShowFlag.gameType)){
+//			  return  jo.getString(ShowFlag.gameType);
+//			}
+//		} catch (JSONException e) {
+//			e.printStackTrace();
+//		} 
+//		return "-1";
+//	}
 	
 	private  HashMap<String, String> getPayMap(String json){
 		try {
@@ -106,6 +141,14 @@ public class EPPayHelper {
 			if(!jo.isNull(ShowFlag.productInfo)){
 				map.put(ShowFlag.productInfo, jo.getString(ShowFlag.productInfo));
 			}
+			//网络orderid
+			if(!jo.isNull(ShowFlag.webOrderid)){
+				map.put(ShowFlag.webOrderid, jo.getString(ShowFlag.webOrderid));
+			}
+//			//获取游戏类型
+//			if(!jo.isNull(ShowFlag.gameType)){
+//				map.put(ShowFlag.gameType, jo.getString(ShowFlag.gameType));
+//			}
 			
 			return map;
 		} catch (JSONException e) {
@@ -122,14 +165,14 @@ public class EPPayHelper {
 	 * @param note
 	 * @param userOrderId
 	 */
-	private void showPayUi(int number, String note, String userOrderId,String json) {
+	private void showPayUi(String json,PayParams params) {
 		if (!TextUtils.isEmpty(json)) {
 			if (!ConfigUtils.SHOWPAYERROR.equals(json)) {
 				HashMap<String, String> showFlags = getPayMap(json);
 				if (showFlags != null) {
 					if (c instanceof Activity) {
 						Activity activity = (Activity) c;
-						PayCheckDialog2 payCheckDialog = new PayCheckDialog2(activity, showFlags, this, number, note,userOrderId);
+						PayCheckDialog2 payCheckDialog = new PayCheckDialog2(activity, showFlags, this,gameType,params);
 						payCheckDialog.show();
 						payselect = 0;
 					}
@@ -139,21 +182,23 @@ public class EPPayHelper {
 	}
 	
 	
+	private PayParams smsParams;
 	/**
 	 * 短信支付
 	 * @param number
 	 * @param note
 	 * @param userOrderId
 	 */
-	public void smsPay(int number, String note, String userOrderId){
+	public void smsPay(PayParams params, String userOrderId){
+		this.smsParams = params;
 		createLoadingDialog();
 		Intent payIntent = new Intent(MessageFormat.format(PAYFORMAT,
 				c.getPackageName()));
-		payIntent.putExtra("payNumber", number);
-		payIntent.putExtra("payNote", note);
+		payIntent.putExtra("payNumber", params.getPrice());
+		payIntent.putExtra("payNote", params.getProductName());
 		payIntent.putExtra("userOrderId", userOrderId);
 		c.sendBroadcast(payIntent);
-		 HttpStatistics.statistics(c,userOrderId,URLFlag.SmsClick);
+		 HttpStatistics.statistics(c,userOrderId,URLFlag.SmsClick,gameType,params);
 		payselect = Pay_SMSPay;
 	}
 	
@@ -224,6 +269,7 @@ public class EPPayHelper {
 			c.unregisterReceiver(payReceiver);
 			payReceiver = null;
 		}
+		ThreadUtil.clearThreadsta();
 	}
 
 	public void regPay() {
@@ -246,10 +292,10 @@ public class EPPayHelper {
 					
 					//短信支付成功
 					if(4001==msg.what){
-						 HttpStatistics.statistics(c,mUserOrderId,URLFlag.SmsSuccess);
+						 HttpStatistics.statistics(c,mUserOrderId,URLFlag.SmsSuccess,gameType,smsParams);
 					}else if(4002 == msg.what){
 						//短信支付失败
-						HttpStatistics.statistics(c,mUserOrderId,URLFlag.SmsFail);
+						HttpStatistics.statistics(c,mUserOrderId,URLFlag.SmsFail,gameType,smsParams);
 					}
 					
 					payHandler.sendMessage(msg);
@@ -285,7 +331,7 @@ public class EPPayHelper {
 	 * @throws JSONException
 	 */
 	@SuppressLint("DefaultLocale") 
-	public  void alipay( String nochannel, String money,String commodity, String orderid) {
+	public  void alipay( final PayParams params) {
 		
 		final Message msg = payHandler.obtainMessage();
 		if(c instanceof Activity){
@@ -296,7 +342,7 @@ public class EPPayHelper {
 				@Override
 				public void aliPaySuccess(String resultInfo, String resultStatus) {
 					//Toast.makeText(activity, "aliPaySuccess>>"+resultStatus+">>"+resultInfo, 0).show();
-					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.AlipaySuccess);
+					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.AlipaySuccess,gameType,params);
 					msg.what = 4001; 
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
@@ -304,7 +350,7 @@ public class EPPayHelper {
 				
 				@Override
 				public void aliPayFailed(String resultInfo, String resultStatus) {
-					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.AlipayFail);
+					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.AlipayFail,gameType,params);
 					msg.what = 4002; 
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
@@ -315,14 +361,14 @@ public class EPPayHelper {
 			
 			float m = 0;
 			try {
-				m = Float.parseFloat(money);
+				m = Float.parseFloat(params.getPrice()+"");
 				m = m/100;
 			} catch (java.lang.NumberFormatException e) {
 				e.printStackTrace();
 				return ;
 			} 
 			String str = String.format("%.2f", m);
-			alipayUtils.pay(commodity, commodity,str);
+			alipayUtils.pay(params.getProductName(), params.getProductDesc(),str);
 		}
 	}
 	
@@ -332,7 +378,7 @@ public class EPPayHelper {
 	/**
 	 * 银联支付
 	 */
-	public void pluginPay(String money){
+	public void pluginPay(final PayParams params){
 		final Message msg = payHandler.obtainMessage();
 		if(c instanceof Activity){
 			payselect = EPPayHelper.Pay_UPPay;
@@ -341,7 +387,7 @@ public class EPPayHelper {
 				
 				@Override
 				public void pluginPaySuccess(String resultInfo, String resultStatus) {
-					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.UnionpaySuccess);
+					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.UnionpaySuccess,gameType,params);
 					msg.what = 4001; 
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
@@ -351,7 +397,7 @@ public class EPPayHelper {
 				@Override
 				public void pluginPayFailed(String resultInfo,
 						String resultStatus) {
-					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.UnionpayFail);
+					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.UnionpayFail,gameType,params);
 					
 					msg.what = 4002; 
 					msg.obj = resultStatus;
@@ -362,14 +408,14 @@ public class EPPayHelper {
 				@Override
 				public void pluginPayCancel(String resultInfo,
 						String resultStatus) {
-                    HttpStatistics.statistics(activity,mUserOrderId,URLFlag.UnionpayCancel);
+                    HttpStatistics.statistics(activity,mUserOrderId,URLFlag.UnionpayCancel,gameType,params);
 					
 					msg.what = 4002; 
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
 				}
 			});
-			payUtil.pay(money);
+			payUtil.pay(String.valueOf(params.getPrice()));
 		}
 	}
 	
@@ -378,7 +424,7 @@ public class EPPayHelper {
 	/**
 	 * 微信支付
 	 */
-	public void wxPay(String price,String orderName,String orderDetail){
+	public void wxPay(final PayParams params){
 		final Message msg = payHandler.obtainMessage();
 		if(c instanceof Activity){
 			payselect = EPPayHelper.Pay_WXPay;
@@ -388,7 +434,7 @@ public class EPPayHelper {
 				@Override
 				public void WXPaySuccess(String resultInfo, String resultStatus) {
 					
-					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.WeChatpaySuccess);
+					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.WeChatpaySuccess,gameType,params);
 					
 					msg.what = 4001; 
 					msg.obj = resultStatus;
@@ -398,7 +444,7 @@ public class EPPayHelper {
 				
 				@Override
 				public void WXPayFailed(String resultInfo, String resultStatus) {
-					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.WeChatpayFail);
+					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.WeChatpayFail,gameType,params);
 					
 					msg.what = 4002; 
 					msg.obj = resultStatus;
@@ -408,7 +454,7 @@ public class EPPayHelper {
 
 				@Override
 				public void WXPayCancel(String resultInfo, String resultStatus) {
-                   HttpStatistics.statistics(activity,mUserOrderId,URLFlag.WeChatPayCancel);
+                   HttpStatistics.statistics(activity,mUserOrderId,URLFlag.WeChatPayCancel,gameType,params);
 					
 					msg.what = 4002; 
 					msg.obj = resultStatus;
@@ -417,7 +463,7 @@ public class EPPayHelper {
 				}
 			});
 			
-			wxPayUtil.pay(price, orderName, orderDetail);
+			wxPayUtil.pay(String.valueOf(params.getPrice()), params.getProductName(), params.getProductDesc());
 			
 		}
 	}
@@ -427,7 +473,7 @@ public class EPPayHelper {
 	/**
 	 * 百度支付
 	 */
-	public void baiduPay(String price,String goods_name,String goodsDesc){
+	public void baiduPay(final PayParams params){
 		final Message msg = payHandler.obtainMessage();
 		if(c instanceof Activity){
 			payselect = EPPayHelper.Pay_BAIDUPay;
@@ -436,7 +482,7 @@ public class EPPayHelper {
 			
 			@Override
 			public void baiduPaySuccess(String resultInfo, String resultStatus) {
-				  HttpStatistics.statistics(activity,mUserOrderId,URLFlag.BaidupaySuccess);
+				  HttpStatistics.statistics(activity,mUserOrderId,URLFlag.BaidupaySuccess,gameType,params);
 				msg.what = 4001; 
 				msg.obj = resultStatus;
 				payHandler.sendMessage(msg);
@@ -445,7 +491,7 @@ public class EPPayHelper {
 			
 			@Override
 			public void baiduPayFailed(String resultInfo, String resultStatus) {
-				 HttpStatistics.statistics(activity,mUserOrderId,URLFlag.BaidupayFail);
+				 HttpStatistics.statistics(activity,mUserOrderId,URLFlag.BaidupayFail,gameType,params);
 				msg.what = 4002; 
 				msg.obj = resultStatus;
 				payHandler.sendMessage(msg);
@@ -453,13 +499,13 @@ public class EPPayHelper {
 
 			@Override
 			public void baiduPayCancel(String resultInfo, String resultStatus) {
-				    HttpStatistics.statistics(activity,mUserOrderId,URLFlag.BaidupayCancel);
+				    HttpStatistics.statistics(activity,mUserOrderId,URLFlag.BaidupayCancel,gameType,params);
 					msg.what = 4002; 
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
 			}
 		});
-		   baiduPayUtils.pay(goods_name, goodsDesc, price);
+		   baiduPayUtils.pay(params.getProductName(), params.getProductDesc(), String.valueOf(params.getPrice()));
 		   
 		}
 	}

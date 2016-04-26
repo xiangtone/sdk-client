@@ -28,23 +28,23 @@ public class ConfigUtils {
 	/**百度平台*/
 	public static final String BAIDU = "baidu";
 	
-	/**
-	 * 支付宝回调url 
-	 */
-	public static final String Notify_Url_Alipy = "http://thirdpay-webhook.n8wan.com:29141/AlipayCountServlet";
-	/**
-	 * 银联回调url 
-	 */
-	public static final String Notify_Url_Plugin = "http://thirdpay-webhook.n8wan.com:29141/UnionpayCountServlet";
-	/**
-	 * 微信回调url 
-	 */
-	public static final String Notify_Url_WX = "http://thirdpay-webhook.n8wan.com:29141/WechatpayCountServlet";
-	/**
-	 * 百度回调url 
-	 */
-	public static final String Notify_Url_Baidu = "http://thirdpay-webhook.n8wan.com:29141/BaidupayCountServlet";
-	
+//	/**
+//	 * 支付宝回调url 
+//	 */
+//	public static final String Notify_Url_Alipy = "http://thirdpay-webhook.n8wan.com:29141/AlipayCountServlet";
+//	/**
+//	 * 银联回调url 
+//	 */
+//	public static final String Notify_Url_Plugin = "http://thirdpay-webhook.n8wan.com:29141/UnionpayCountServlet";
+//	/**
+//	 * 微信回调url 
+//	 */
+//	public static final String Notify_Url_WX = "http://thirdpay-webhook.n8wan.com:29141/WechatpayCountServlet";
+//	/**
+//	 * 百度回调url 
+//	 */
+//	public static final String Notify_Url_Baidu = "http://thirdpay-webhook.n8wan.com:29141/BaidupayCountServlet";
+//	
 	
 	
 	/**
@@ -132,11 +132,12 @@ public class ConfigUtils {
      */
     public static final String SHOWPAYERROR = "-1";
     
-    /**
-     * 支付渠道 url
-     */
+//    /**
+//     * 支付渠道 url
+//     */
     //public static final String SHOW_PAY_CHANNEL_URL = "http://192.168.0.101:8080/thirdpay-webhook/CpInfoServlet";
-    public static final String SHOW_PAY_CHANNEL_URL = "http://thirdpay-webhook.n8wan.com:29141/CpInfoServlet";
+    //public static final String SHOW_PAY_CHANNEL_URL = "http://thirdpay-webhook.n8wan.com:29141/CpInfoServlet";
+  
     
     //配置显示的支付渠道
     /**
@@ -153,7 +154,7 @@ public class ConfigUtils {
      * @param c
      */
     public static void setShowPayChannel(final Context c){
-		setShowPayChannel(c, new IHttpResult() {
+		setShowPayChannel(c,new IHttpResult() {
 			@Override
 			public void result(Object obj) {
 				if(obj==null){
@@ -172,9 +173,12 @@ public class ConfigUtils {
     public static void setShowPayChannel(Context c,IHttpResult result){
     	String appkey=ConfigUtils.getEp_APPKEY(c);
     	if(TextUtils.isEmpty(appkey))return;
-    	String uri = SHOW_PAY_CHANNEL_URL;
+    	String uri = URLUtils.payChannle();//SHOW_PAY_CHANNEL_URL;
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("Appkey",appkey );
+		
+		Log.e("zgt", "url:"+uri+">>Appkey:"+appkey);
+		
 		HttpUtils.asyPost(uri, map, result);
     }
     

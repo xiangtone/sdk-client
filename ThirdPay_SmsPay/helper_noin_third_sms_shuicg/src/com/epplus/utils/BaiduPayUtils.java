@@ -131,8 +131,8 @@ public class BaiduPayUtils {
 		this.activity = activity;
         this.baiduHandler = baiduHandler;
         
-        String baseUrl =ConfigUtils.Notify_Url_Baidu; //"http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
-		this.returnUrl = baseUrl+ConfigUtils.getNotifyBaiduPramData(activity);//+"?"+ConfigUtils.xx_notifyData+"="+ConfigUtils.getNotifyJsonData(activity,ConfigUtils.BAIDU);
+       // String baseUrl =ConfigUtils.Notify_Url_Baidu; //"http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
+		this.returnUrl = URLUtils.notifyUrlBaidu(activity);//baseUrl+ConfigUtils.getNotifyBaiduPramData(activity);//+"?"+ConfigUtils.xx_notifyData+"="+ConfigUtils.getNotifyJsonData(activity,ConfigUtils.BAIDU);
 		//returnUrl = "http://db-testing-eb07.db01.baidu.com:8666/success.html";
 		goodsUrl = "";
 		String token = BaiduWallet.getInstance().getLoginToken();

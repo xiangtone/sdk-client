@@ -31,7 +31,22 @@ public interface ShowFlag {
     */
    String productInfo = "productInfo";
    
+   /**
+    * 网游 远程订单 id
+    */
+   String webOrderid = "webOrderid";
    
+   /**
+    * 游戏类型
+    */
+   String gameType = "1";
    
-   
+   /**
+    * 单机
+    */
+   String danji = "0";
+   /**
+    * 网游
+    */
+   String wangyou="1";
 }

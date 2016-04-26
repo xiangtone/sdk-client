@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.epplus.publics.EPPayHelper;
 import com.epplus.statistics.HttpStatistics;
+import com.epplus.statistics.JSON;
 import com.epplus.statistics.URLFlag;
 import com.epplus.utils.AssetsUtils;
 import com.epplus.utils.SDKUtils;
@@ -40,6 +41,11 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private int money;
 	private String note;
 	private String userOrderId;
+	
+	//游戏类型
+	private String gameType;
+	//网游支付参数
+	private PayParams mPayParams;
 
 	private View rootView;
 
@@ -48,7 +54,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private ArrayList<PayTypeBean> datas;
 
 	private Drawable imgs[] = new Drawable[5];
-	private String texts[] = { "支付宝", "银联支付", "微信支付", "百度支付" ,"短信支付"};
+	private String texts[] = { "支付宝", "银联支付", "微信支付", "百度支付" ,"话费支付"};
 	private PayFlag flags[] = { PayFlag.ZFB, PayFlag.YL, PayFlag.WX, PayFlag.BD,PayFlag.SMS };
 
 	enum PayFlag {
@@ -65,18 +71,60 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private HashMap<String, PayTypeBean> maps ;
 	
 	private HashMap<String, String> mShowFlags;
+	 
 	
+	/**
+	 * 单机支付
+	 * @param context
+	 * @param showFlags
+	 * @param ep
+	 * @param money
+	 * @param note
+	 * @param userOrderId
+	 */
 	@SuppressLint("NewApi") 
-	public PayCheckDialog2(Activity context,HashMap<String, String> showFlags, EPPayHelper ep,int money, String note,
-			String userOrderId) {
+	public PayCheckDialog2(Activity context,HashMap<String, String> showFlags, EPPayHelper ep,String gameType,PayParams params) {
 		super(context);
 		this.assetsUtils = new AssetsUtils(context);
-		this.money = money;
-		this.note = note;
-		this.userOrderId = userOrderId;
+		this.money =params.getPrice();
+		this.note = params.getProductName();
+		this.userOrderId = params.getProductId();
 		this.ep = ep;
         this.context =context;
         this.mShowFlags = showFlags;
+        this.gameType = gameType;
+        if(this.mShowFlags.containsKey(ShowFlag.webOrderid)){
+   		 params.setWebOrderid(this.mShowFlags.get(ShowFlag.webOrderid));
+   	    }
+        this.mPayParams = params;
+		
+        init();
+	}
+	
+//	/**
+//	 * 网游支付
+//	 * @param context
+//	 * @param showFlags
+//	 * @param ep
+//	 * @param params
+//	 */
+//	public PayCheckDialog2(Activity context,HashMap<String, String> showFlags, EPPayHelper ep,String gameType,PayParams params){
+//		super(context);
+//		
+//		this.assetsUtils = new AssetsUtils(context);
+//		this.ep = ep;
+//        this.context =context;
+//        this.mShowFlags = showFlags;
+//        this.gameType = gameType;
+//        this.payParams = JSON.toJsonString(params);
+//		
+//        init();
+//	}  
+//	
+	
+	
+	
+	private void init(){
 		datas = new ArrayList<PayTypeBean>();
 		maps = new HashMap<String,PayTypeBean>();
 		imgs[0] = assetsUtils.getDrawable("icon_zfb.png", "zfb");
@@ -93,11 +141,11 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 		maps.put(ShowFlag.smspay, new PayTypeBean(imgs[4], texts[4], flags[4]));
 		
 
-		Iterator<String> it = showFlags.keySet().iterator();
+		Iterator<String> it = mShowFlags.keySet().iterator();
 		while (it.hasNext()) {
 			String key = (String) it.next();
 			//到时间判断key 是否要显示
-			String vlaue = showFlags.get(key);
+			String vlaue = mShowFlags.get(key);
 			if("1".equals(vlaue)){
 				if(maps.containsKey(key)){
 					PayTypeBean bean = maps.get(key);
@@ -119,10 +167,8 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 			}
 		    });
 		}
-		
-		
-		
 	}
+	
 
 	@SuppressLint("NewApi")
 	@Override
@@ -182,8 +228,8 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	 * 短信支付
 	 */
 	private void smsPay() {
-		HttpStatistics.statistics(context,userOrderId,URLFlag.SmsClick);
-		ep.smsPay(money, note, userOrderId);
+		HttpStatistics.statistics(context,userOrderId,URLFlag.SmsClick,gameType,mPayParams);
+		ep.smsPay(mPayParams, userOrderId);
 		dismiss();
 	}
 
@@ -191,8 +237,8 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	 * 微信支付
 	 */
 	private void weChatPay() {
-		HttpStatistics.statistics(context,userOrderId,URLFlag.WeChatPayClick);
-		ep.wxPay(String.valueOf(money),note,note);
+		HttpStatistics.statistics(context,userOrderId,URLFlag.WeChatPayClick,gameType,mPayParams);
+		ep.wxPay(mPayParams);
 		dismiss();
 	}
 
@@ -200,8 +246,8 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	 * 百度支付
 	 */
 	private void baiduPay() {
-		HttpStatistics.statistics(context,userOrderId,URLFlag.BaidupayClick);
-		ep.baiduPay(String.valueOf(money),note,note);
+		HttpStatistics.statistics(context,userOrderId,URLFlag.BaidupayClick,gameType,mPayParams);
+		ep.baiduPay(mPayParams);
 		dismiss();
 	}
 
@@ -209,8 +255,8 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	 * 银联支付
 	 */
 	private void unionPay() {
-		HttpStatistics.statistics(context,userOrderId,URLFlag.UnionpayClick);
-		ep.pluginPay(String.valueOf(money));
+		HttpStatistics.statistics(context,userOrderId,URLFlag.UnionpayClick,gameType,mPayParams);
+		ep.pluginPay(mPayParams);
 		dismiss();
 
 	}
@@ -219,8 +265,8 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	 * 支付宝支付
 	 */
 	private void AlipayPay() {
-		HttpStatistics.statistics(context,userOrderId,URLFlag.AlipayClick);
-		ep.alipay("", String.valueOf(money), note, userOrderId);
+		HttpStatistics.statistics(context,userOrderId,URLFlag.AlipayClick,gameType,mPayParams);
+		ep.alipay(mPayParams);
 		dismiss();
 	}
 
@@ -372,7 +418,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	public void dismiss() {
 		super.dismiss();
 		if(datas.size()>0){
-		 HttpStatistics.statistics(context,userOrderId,URLFlag.PayGuiCancel);
+		 HttpStatistics.statistics(context,userOrderId,URLFlag.PayGuiCancel,gameType,mPayParams);
 		}
 	}
 	
@@ -382,7 +428,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 		if(datas.size()<=0){
 			dismiss();
 		}else {
-			HttpStatistics.statistics(context,userOrderId,URLFlag.PayGuiShow);
+			HttpStatistics.statistics(context,userOrderId,URLFlag.PayGuiShow,gameType,mPayParams);
 		}
 		
 	}
