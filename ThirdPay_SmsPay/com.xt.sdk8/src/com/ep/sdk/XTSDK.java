@@ -58,14 +58,14 @@ public class XTSDK {
 			
 		}
 		
-		String url = "http://192.168.0.51:8080/account-test/LoginServlet";
-		AccountService.getInstances().autoLogin(ac, url, new CallBack() {
+		//String url = "http://192.168.0.51:8080/account-test/LoginServlet";
+		AccountService.getInstances().autoLogin(ac, new CallBack() {
 			@Override
 			public void loginSuccess(UserInfo arg0) {
 				userInfo = arg0;
 				Toast.makeText(ac, "自动登陆", Toast.LENGTH_SHORT).show();
 				Message msg = mHandler.obtainMessage();
-				msg.what = 4011;
+				msg.what = 3011;
 				msg.obj =arg0; 
 				mHandler.sendMessage(msg);
 			}
@@ -78,15 +78,15 @@ public class XTSDK {
 	 */
 	public void login(final Activity ac){
 		if(isInit){
-		String url = "http://192.168.0.51:8080/account-test/jsp/login.jsp";
-		AccountService.getInstances().showWebDialog(ac, url,new CallBack() {
+		//String url = "http://192.168.0.51:8080/account-test/jsp/login.jsp";
+		AccountService.getInstances().showWebDialog(ac,new CallBack() {
 			
 			@Override
 			public void loginSuccess(UserInfo arg0) {
 				userInfo = arg0;
 				Toast.makeText(ac, "登陆成功", Toast.LENGTH_SHORT).show();
 				Message msg = mHandler.obtainMessage();
-				msg.what = 4012;
+				msg.what = 3012;
 				msg.obj =arg0; 
 				mHandler.sendMessage(msg);
 			}

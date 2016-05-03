@@ -7,14 +7,13 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Toast;
-
 import com.account.bean.UserInfo;
 import com.ep.sdk.XTSDK;
 import com.epplus.view.PayParams;
-import com.epplus.view.ShowFlag;
 import com.xt.test01.R;
 
 public class MainActivity extends Activity{
+
 	
 	
 	private Handler handler = new Handler() {
@@ -23,26 +22,26 @@ public class MainActivity extends Activity{
 			switch (msg.what) {
 			
 			case 1070:
-				Toast.makeText(MainActivity.this, "失败-"+msg.obj.toString(), 1000).show();
+				Toast.makeText(MainActivity.this, "失败-"+msg.obj.toString(), Toast.LENGTH_SHORT).show();
 				break;
 			case 1078:
-				Toast.makeText(MainActivity.this, "失败*"+msg.what, 1000).show();
+				Toast.makeText(MainActivity.this, "失败*"+msg.what, Toast.LENGTH_SHORT).show();
 				break;
 			case 4001:
-				Toast.makeText(MainActivity.this, msg.what+"", 1000).show();
+				Toast.makeText(MainActivity.this, msg.what+"", Toast.LENGTH_SHORT).show();
 				break;
 			case 4002:
-				Toast.makeText(MainActivity.this, msg.what+"", 1000).show();
+				Toast.makeText(MainActivity.this, msg.what+"", Toast.LENGTH_SHORT).show();
 				break;
 			case 4010:
-				Toast.makeText(MainActivity.this, "初始化成功*"+msg.what, 1000).show();
+				Toast.makeText(MainActivity.this, "初始化成功*"+msg.what, Toast.LENGTH_SHORT).show();
 				break;
-			case 4011:
+			case 3011:
 				UserInfo arg0 = (UserInfo) msg.obj;
 				Toast.makeText(MainActivity.this, "自动登陆成功*"+msg.what+
 						arg0.getUserID()+arg0.getUsername(), Toast.LENGTH_SHORT).show();
 				break;
-			case 4012:
+			case 3012:
 				UserInfo arg1 = (UserInfo) msg.obj;
 				Toast.makeText(MainActivity.this, "登陆成功*"+msg.what+
 						arg1.getUserID()+arg1.getUsername(), Toast.LENGTH_SHORT).show();
@@ -104,6 +103,9 @@ public class MainActivity extends Activity{
 				e.printStackTrace();
 			}
 			
-	    }  
+	    }
+
+
+
 
 }

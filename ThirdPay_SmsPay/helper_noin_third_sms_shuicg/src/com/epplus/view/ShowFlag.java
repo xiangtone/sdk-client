@@ -39,7 +39,7 @@ public interface ShowFlag {
    /**
     * 游戏类型
     */
-   String gameType = "1";
+   String gameType = "0";
    
    /**
     * 单机

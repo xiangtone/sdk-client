@@ -48,7 +48,7 @@ public class PluginPayUtil implements Runnable,Callback {
 	private final static String merId = "898440379930020";
 	
 		
-	public final static String SERVER_UNIONSDK ="http://unionpay-server.n8wan.com:29141/form05_6_2_Consume";//内网测试地址
+	public final static String SERVER_UNIONSDK = URLUtils.getUnionTn();//"http://unionpay-server.n8wan.com:29141/form05_6_2_Consume";//内网测试地址
 	//public final static String SERVER_UNIONSDK ="http://192.168.1.124:8080/ACPSample_KongjianServer/form05_6_2_Consume";//内网测试地址
 		
 	

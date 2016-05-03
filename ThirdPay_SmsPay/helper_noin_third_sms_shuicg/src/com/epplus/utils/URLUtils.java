@@ -19,6 +19,7 @@ public class URLUtils {
 	百度 : http://thirdpay-cs.n8wan.com:29141/BaidupayCountServlet
 	支付操作统计 : http://thirdpay-cs.n8wan.com:29141/PayOperateCountServlet
 	支付渠道 : http://thirdpay-cs.n8wan.com:29141/CpInfoServlet
+	银联获取tn : http://unionpay-cs.n8wan.com:29141/form05_6_2_Consume
 	
 	//单机
 	支付宝 : http://thirdpay-webhook.n8wan.com:29141/AlipayCountServlet
@@ -27,6 +28,7 @@ public class URLUtils {
 	百度 : http://thirdpay-webhook.n8wan.com:29141/BaidupayCountServlet
 	支付操作统计 : http://thirdpay-webhook.n8wan.com:29141/PayOperateCountServlet
 	支付渠道 : http://thirdpay-webhook.n8wan.com:29141/CpInfoServlet
+	银联获取tn : http://unionpay-server.n8wan.com:29141/form05_6_2_Consume
 	 */
 	
 	//
@@ -38,7 +40,7 @@ public class URLUtils {
 	/**
 	 * 单机   基础url
 	 */
-	public static final String D_BASE_URL = "http://thirdpay-webhook.n8wan.com:29141";
+	public static final String D_BASE_URL = "http://thirdpay-webhook.n8wan.com:29141/";
 	
 	/**
 	 *  支付宝回调url 
@@ -104,11 +106,22 @@ public class URLUtils {
 		return builder.toString();
 	}
 	
+	/**
+	 * 获取银联的Tn
+	 * @return
+	 */
+	public static String getUnionTn(){
+		StringBuilder builder = new StringBuilder();
+		if(ShowFlag.wangyou.equals(ShowFlag.gameType)){
+			//网游  银联获取tn
+			builder.append("http://unionpay-cs.n8wan.com:29141/form05_6_2_Consume");
+		}else if (ShowFlag.danji.equals(ShowFlag.gameType)) {
+			//单机   银联获取tn
+			builder.append("http://unionpay-server.n8wan.com:29141/form05_6_2_Consume");
+		}
+		return builder.toString();
+	}
 	
-	
-	
-
-
 	private static StringBuilder getBaseUrl(String gameType) {
 		StringBuilder builder = new StringBuilder();
 		if(ShowFlag.wangyou.equals(gameType)){
