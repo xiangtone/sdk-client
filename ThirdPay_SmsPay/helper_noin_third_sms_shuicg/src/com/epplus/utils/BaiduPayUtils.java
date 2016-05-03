@@ -1,11 +1,5 @@
 package com.epplus.utils;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,14 +18,12 @@ import android.app.ProgressDialog;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.baidu.android.pay.PayCallBack;
 import com.baidu.wallet.api.BaiduWallet;
 import com.baidu.wallet.api.Constants;
 import com.baidu.wallet.core.DebugConfig;
-import com.epplus.utils.AlipayUtils.AlipayHandler;
 
 /**
  * ∞Ÿ∂»÷ß∏∂
@@ -127,12 +119,12 @@ public class BaiduPayUtils {
 	
 	private BaiduHandler baiduHandler;
 
-	public BaiduPayUtils(Activity activity,BaiduHandler baiduHandler) {
+	public BaiduPayUtils(Activity activity,String OrderIdSelf,String OrderIdCp,BaiduHandler baiduHandler) {
 		this.activity = activity;
         this.baiduHandler = baiduHandler;
         
        // String baseUrl =ConfigUtils.Notify_Url_Baidu; //"http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
-		this.returnUrl = URLUtils.notifyUrlBaidu(activity);//baseUrl+ConfigUtils.getNotifyBaiduPramData(activity);//+"?"+ConfigUtils.xx_notifyData+"="+ConfigUtils.getNotifyJsonData(activity,ConfigUtils.BAIDU);
+		this.returnUrl = URLUtils.notifyUrlBaidu(activity,OrderIdSelf,OrderIdCp);//baseUrl+ConfigUtils.getNotifyBaiduPramData(activity);//+"?"+ConfigUtils.xx_notifyData+"="+ConfigUtils.getNotifyJsonData(activity,ConfigUtils.BAIDU);
 		//returnUrl = "http://db-testing-eb07.db01.baidu.com:8666/success.html";
 		goodsUrl = "";
 		String token = BaiduWallet.getInstance().getLoginToken();

@@ -24,6 +24,7 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.epplus.bean.Bdata;
 import com.epplus.face.EPPlusPayService;
@@ -35,6 +36,7 @@ import com.epplus.utils.AlipayUtils.AlipayHandler;
 import com.epplus.utils.BaiduPayUtils;
 import com.epplus.utils.ConfigUtils;
 import com.epplus.utils.IHttpResult;
+import com.epplus.utils.LogUtils;
 import com.epplus.utils.PluginPayUtil;
 import com.epplus.utils.PreferencesUtils;
 import com.epplus.utils.PluginPayUtil.PluginHandler;
@@ -47,7 +49,7 @@ import com.epplus.view.ShowFlag;
 
 public class EPPayHelper {
 	private static EPPayHelper epHelper = new EPPayHelper();
-	private Context c;
+	private Activity c;
 	//private String PAYFORMAT = "{0}.com.my.fee.start";
 	private String PAYFORMAT = new Bdata().gpf();
 	
@@ -60,7 +62,10 @@ public class EPPayHelper {
 		
 	}
 
-	public static EPPayHelper getInstance(Context c) {
+	public static EPPayHelper getInstance(Activity c) {
+		if(epHelper==null){
+			epHelper = new EPPayHelper();
+		}
 		EPPayHelper.epHelper.c = c;
 		return epHelper;
 	}
@@ -76,6 +81,9 @@ public class EPPayHelper {
 	}
 
 	public void pay(final PayParams params) {
+		if(!checkConfig(params)){
+			return ;
+		}
 		this.mUserOrderId = params.getProductId();
 		String json = ConfigUtils.getShowPayChannel(c);
 		//if(!TextUtils.isEmpty(json))gameType = getGameType(json);
@@ -96,7 +104,7 @@ public class EPPayHelper {
 					String json = (String) obj;
 					
 					//gameType = getGameType(json);
-					Log.e("zgt", "pay:"+json+">>gameType:"+gameType);
+					LogUtils.e("pay:"+json+">>gameType:"+gameType);
 					PreferencesUtils.putString(c, ConfigUtils.PAY_CHANNEL, json);
 					showPayUi(json,params);
 				}
@@ -105,18 +113,61 @@ public class EPPayHelper {
 	}
 	
 	
-//	private String getGameType(String json){
-//		try {
-//			JSONObject jo = new JSONObject(json);
-//			if(!jo.isNull(ShowFlag.gameType)){
-//			  return  jo.getString(ShowFlag.gameType);
-//			}
-//		} catch (JSONException e) {
-//			e.printStackTrace();
-//		} 
-//		return "-1";
-//	}
-	
+	/**
+	 * 检测配置是否配置是否ok
+	 * @return
+	 */
+	private boolean checkConfig(PayParams params) {
+		if(params==null){
+			Toast.makeText(c, "支付参数为null", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		
+		if(payHandler==null){
+			Toast.makeText(c, "setPayListen监听没有设置", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		
+		if(TextUtils.isEmpty(ConfigUtils.getEP_CHANNEL(c))){
+			Toast.makeText(c, "EP_CHANNEL没有配置", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		
+		if(TextUtils.isEmpty(ConfigUtils.getEp_APPKEY(c))){
+			Toast.makeText(c, "EP_APPKEY没有配置", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		
+		if(TextUtils.isEmpty(params.getProductId())){
+			Toast.makeText(c, "productId不能null", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		
+		if(TextUtils.isEmpty(params.getProductName())){
+			Toast.makeText(c, "productName不能null", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		
+		if(params.getPrice()<=0){
+			Toast.makeText(c, "Price不能为0或小于0", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		
+		//判断渠道号不能大于8位
+		if(ConfigUtils.getEP_CHANNEL(c).length()>8){
+			Toast.makeText(c, "EP_APPKEY不能大于8位", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		
+		//cp 订单号不能大于32为
+		if(params.getProductId().length()>32){
+			Toast.makeText(c, "ProductId不能大于32位", Toast.LENGTH_SHORT).show();
+			return false;
+		}
+		
+		return true;
+	}
+
 	private  HashMap<String, String> getPayMap(String json){
 		try {
 			HashMap<String, String> map = new HashMap<String, String>();
@@ -338,7 +389,7 @@ public class EPPayHelper {
 		if(c instanceof Activity){
 			payselect = EPPayHelper.Pay_AliPay;
 			final Activity activity = (Activity)c;
-			AlipayUtils alipayUtils = new AlipayUtils(activity, new AlipayHandler() {
+			AlipayUtils alipayUtils = new AlipayUtils(activity,params.getWebOrderid(),params.getProductId(), new AlipayHandler() {
 				
 				@Override
 				public void aliPaySuccess(String resultInfo, String resultStatus) {
@@ -384,7 +435,7 @@ public class EPPayHelper {
 		if(c instanceof Activity){
 			payselect = EPPayHelper.Pay_UPPay;
 			final Activity activity = (Activity)c;
-			payUtil= new PluginPayUtil(activity,new PluginHandler() {
+			payUtil= new PluginPayUtil(activity,params.getWebOrderid(),params.getProductId(),new PluginHandler() {
 				
 				@Override
 				public void pluginPaySuccess(String resultInfo, String resultStatus) {
@@ -430,7 +481,7 @@ public class EPPayHelper {
 		if(c instanceof Activity){
 			payselect = EPPayHelper.Pay_WXPay;
 			final Activity activity = (Activity)c;
-			wxPayUtil = new WXPayUtil(activity,new WXPayHandler() {
+			wxPayUtil = new WXPayUtil(activity,params.getWebOrderid(),params.getProductId(),new WXPayHandler() {
 				
 				@Override
 				public void WXPaySuccess(String resultInfo, String resultStatus) {
@@ -479,7 +530,7 @@ public class EPPayHelper {
 		if(c instanceof Activity){
 			payselect = EPPayHelper.Pay_BAIDUPay;
 			final Activity activity = (Activity)c;
-		   BaiduPayUtils baiduPayUtils = new BaiduPayUtils(activity, new BaiduPayUtils.BaiduHandler() {
+		   BaiduPayUtils baiduPayUtils = new BaiduPayUtils(activity,params.getWebOrderid(),params.getProductId(), new BaiduPayUtils.BaiduHandler() {
 			
 			@Override
 			public void baiduPaySuccess(String resultInfo, String resultStatus) {

@@ -20,6 +20,7 @@ import org.apache.http.util.EntityUtils;
 import com.epplus.utils.ConfigUtils;
 import com.epplus.utils.DeviceUtil;
 import com.epplus.utils.HttpUtils;
+import com.epplus.utils.LogUtils;
 import com.epplus.utils.SDKUtils;
 import com.epplus.utils.SDKVersion;
 import com.epplus.utils.URLUtils;
@@ -89,9 +90,9 @@ public class HttpStatistics {
 		}
 		bean.setPayParams(payParams);
 		String json = JSON.toJsonString(bean);
-		Log.e("zgt", "json:"+json);
+		LogUtils.e( "json:"+json);
 		String encodeData =EncodeUtils.encode(json);
-		Log.e("zgt", "op_notifyData="+encodeData);
+		
 		map.put("op_notifyData", encodeData);
 		map.put("sdkVersion", SDKVersion.SDK_VERSION);
 		map.put("payOperateCode", String.valueOf(payOperateCode));

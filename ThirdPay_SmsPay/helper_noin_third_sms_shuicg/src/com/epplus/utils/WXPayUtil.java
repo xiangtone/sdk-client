@@ -38,12 +38,12 @@ public class WXPayUtil implements XqtPayListener{
 	
 	private WXPayHandler wxpayHandler;
 	
-	public WXPayUtil(Activity act,WXPayHandler wxpayHandler) {
+	public WXPayUtil(Activity act,String OrderIdSelf,String OrderIdCp,WXPayHandler wxpayHandler) {
 		this.act =act;
 		this.wxpayHandler = wxpayHandler;
 		
 		//String baseUrl = ConfigUtils.Notify_Url_WX;//"http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
-		this.notifyUrl = URLUtils.notifyUrlWX(act);// baseUrl+"?"+ConfigUtils.xx_notifyData+"="+ConfigUtils.getNotifyJsonData(act,ConfigUtils.WX);
+		this.notifyUrl = URLUtils.notifyUrlWX(act,OrderIdSelf,OrderIdCp);// baseUrl+"?"+ConfigUtils.xx_notifyData+"="+ConfigUtils.getNotifyJsonData(act,ConfigUtils.WX);
 	}
 	
 	
