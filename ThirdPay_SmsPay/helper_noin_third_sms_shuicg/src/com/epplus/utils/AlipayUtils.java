@@ -11,7 +11,7 @@ import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils; 
-import android.view.View;
+
 
 import com.alipay.sdk.app.PayTask;
 /**
@@ -87,12 +87,12 @@ public class AlipayUtils {
 	
 	
 	
-	public AlipayUtils(Activity activity,AlipayHandler alipayHandler) {
+	public AlipayUtils(Activity activity,String OrderIdSelf,String OrderIdCp,AlipayHandler alipayHandler) {
 		this.activity =activity;
 		this.alipayHandler = alipayHandler;
 		//String baseUrl = ConfigUtils.Notify_Url_Alipy;//"http://thirdpay-webhook.n8wan.com:29141/thirdpayCountServlet";
 		
-		this.notify_url = URLUtils.notifyUrlAlipy(activity);//baseUrl+"?"+ConfigUtils.xx_notifyData+"="+ConfigUtils.getNotifyJsonData(activity,ConfigUtils.ALIPAY);
+		this.notify_url = URLUtils.notifyUrlAlipy(activity,OrderIdSelf,OrderIdCp);//baseUrl+"?"+ConfigUtils.xx_notifyData+"="+ConfigUtils.getNotifyJsonData(activity,ConfigUtils.ALIPAY);
 		
 	}
 	

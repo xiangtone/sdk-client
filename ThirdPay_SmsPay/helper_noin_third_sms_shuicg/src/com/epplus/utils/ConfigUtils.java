@@ -2,6 +2,11 @@ package com.epplus.utils;
 
 import java.util.HashMap;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import com.epplus.view.ShowFlag;
+
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
@@ -28,34 +33,46 @@ public class ConfigUtils {
 	/**百度平台*/
 	public static final String BAIDU = "baidu";
 	
-//	/**
-//	 * 支付宝回调url 
-//	 */
-//	public static final String Notify_Url_Alipy = "http://thirdpay-webhook.n8wan.com:29141/AlipayCountServlet";
-//	/**
-//	 * 银联回调url 
-//	 */
-//	public static final String Notify_Url_Plugin = "http://thirdpay-webhook.n8wan.com:29141/UnionpayCountServlet";
-//	/**
-//	 * 微信回调url 
-//	 */
-//	public static final String Notify_Url_WX = "http://thirdpay-webhook.n8wan.com:29141/WechatpayCountServlet";
-//	/**
-//	 * 百度回调url 
-//	 */
-//	public static final String Notify_Url_Baidu = "http://thirdpay-webhook.n8wan.com:29141/BaidupayCountServlet";
-//	
-	
 	
 	/**
 	 * 回调的数据
 	 * @param context
 	 * @param platform
+	 * @param OrderIdSelf
+	 * @param OrderIdCp
 	 * @return
+	 * 
+	 * {"channel":"10010","appkey":"f17d2fb4eff547c8bebc1e7cc4dcd43c","platform":"wx","OrderIdSelf":"1461902020543","OrderIdCp":"12345"}
+		a = channel
+		k = appkey
+		p =platform
+		s = OrderIdSelf
+		c = OrderIdCp
+	 * 
 	 */
-	public static String getNotifyJsonData(Context context,String platform){
-		 String json = "{\"channel\":\""+ConfigUtils.getEP_CHANNEL(context)+"\",\"appkey\":\""+ConfigUtils.getEp_APPKEY(context)+"\",\"platform\":\""+platform+"\"}";
-		 return json;
+	public static String getNotifyJsonData(Context context,String platform,String OrderIdSelf,String OrderIdCp){
+		if(ShowFlag.gameType.equals(ShowFlag.danji)){
+			OrderIdSelf = "";
+		}
+		JSONObject obj = new JSONObject();
+		try {
+			obj.put("a", ConfigUtils.getEP_CHANNEL(context));
+			obj.put("k", ConfigUtils.getEp_APPKEY(context));
+			obj.put("p",platform);
+			if(!TextUtils.isEmpty(OrderIdSelf)){
+				obj.put("s",OrderIdSelf);
+			}
+			if(!TextUtils.isEmpty(OrderIdCp)){
+				obj.put("c",OrderIdCp);
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		String json = obj.toString();
+		LogUtils.e("send_Json: "+json);
+		//String json = "{\"channel\":\""+ConfigUtils.getEP_CHANNEL(context)+"\",\"appkey\":\""+ConfigUtils.getEp_APPKEY(context)+"\",\"platform\":\""+platform+"\"}";
+		return json;
 	}
 	
 	
@@ -64,12 +81,35 @@ public class ConfigUtils {
 	 * @param context
 	 * @param platform
 	 * @return
+	 * 
+	 *  a = channel
+		k = appkey
+		p =platform
+		s = OrderIdSelf
+		c = OrderIdCp
 	 */
-	public static String getNotifyBaiduPramData(Context context){
-		 String pram = "?xx_notifyData=channel:"+ConfigUtils.getEP_CHANNEL(context)
-				       +"-appkey:"+ConfigUtils.getEp_APPKEY(context)
-				       +"-platform:"+BAIDU;
-		 return pram;
+	public static String getNotifyBaiduPramData(Context context,String OrderIdSelf,String OrderIdCp){
+		String strSelf="";
+		String srtCp="";
+		if(ShowFlag.gameType.equals(ShowFlag.danji)){
+			strSelf = "";
+		}else {
+			if(!TextUtils.isEmpty(OrderIdSelf)){
+				strSelf = "-s:"+OrderIdSelf;
+			}
+		}
+		
+		if(!TextUtils.isEmpty(OrderIdCp)){
+			srtCp = "-c:"+OrderIdCp;
+		}
+		
+		String pram = "?xx_notifyData=a:"+ConfigUtils.getEP_CHANNEL(context)
+				       +"-k:"+ConfigUtils.getEp_APPKEY(context)
+				       +"-p:"+BAIDU
+				       +strSelf
+				       +srtCp;
+		LogUtils.e("baidu_send_Json: "+pram);
+		return pram;
 	}
 	
 	
@@ -164,7 +204,7 @@ public class ConfigUtils {
 				if(!TextUtils.isEmpty(json)){
 					PreferencesUtils.putString(c, PAY_CHANNEL, json);
 				}
-				Log.e("zgt", "ShowPay : "+json);
+				LogUtils.e( "ShowPay : "+json);
 				
 			}
 		});
@@ -177,7 +217,7 @@ public class ConfigUtils {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("Appkey",appkey );
 		
-		Log.e("zgt", "url:"+uri+">>Appkey:"+appkey);
+		LogUtils.e("url:"+uri+">>Appkey:"+appkey);
 		
 		HttpUtils.asyPost(uri, map, result);
     }

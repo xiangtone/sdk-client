@@ -1,9 +1,5 @@
 package com.epplus.utils;
 
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.net.URL;
-import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -11,21 +7,17 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Random;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import com.unionpay.UPPayAssistEx;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Handler.Callback;
 import android.os.Handler;
+import android.os.Handler.Callback;
 import android.os.Message;
-import android.util.Log;
+
+import com.unionpay.UPPayAssistEx;
 
 /**
  * 银联支付工具类
@@ -47,7 +39,6 @@ public class PluginPayUtil implements Runnable,Callback {
 	// 商户号码，请改成自己申请的商户号或者open上注册得来的777商户号测试
 	private final static String merId = "898440379930020";
 	
-		
 	public final static String SERVER_UNIONSDK = URLUtils.getUnionTn();//"http://unionpay-server.n8wan.com:29141/form05_6_2_Consume";//内网测试地址
 	//public final static String SERVER_UNIONSDK ="http://192.168.1.124:8080/ACPSample_KongjianServer/form05_6_2_Consume";//内网测试地址
 		
@@ -55,12 +46,14 @@ public class PluginPayUtil implements Runnable,Callback {
 	
 	private String price;
 	
-	
 	private PluginHandler pluginHandler;
-	public PluginPayUtil(Activity context,PluginHandler pluginHandler) {
+	private String notifyData;
+	public PluginPayUtil(Activity context,String OrderIdSelf,String OrderIdCp,PluginHandler pluginHandler) {
 		this.context=context;
 		mHandler = new Handler(this);
 		this.pluginHandler = pluginHandler;
+		
+		notifyData = ConfigUtils.getNotifyJsonData(context,ConfigUtils.PLUGIN,OrderIdSelf,OrderIdCp);
 		
 	}
 	
@@ -88,40 +81,6 @@ public class PluginPayUtil implements Runnable,Callback {
 
 	@SuppressLint("SimpleDateFormat") @Override
 	public void run() {
-//		 String tn = null;
-//	        InputStream is;
-//	        try {
-//	            String url = TN_URL_00;
-//
-//	            URL myURL = new URL(url);
-//	            URLConnection ucon = myURL.openConnection();
-//	            ucon.setConnectTimeout(120000);
-//	            is = ucon.getInputStream();
-//	            int i = -1;
-//	            
-//	            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//	            while ((i = is.read()) != -1) {
-//	                baos.write(i);
-//	            }
-//	           
-//	            tn = baos.toString();
-//	            
-//	            Log.e("zgt", "连接上"+tn);
-//	            
-//	            is.close();
-//	            baos.close();
-//	        } catch (Exception e) {
-//	            e.printStackTrace();
-//	            Log.e("zgt", e.toString());
-//	        }
-	        
-	        
-	        
-//	        String time = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-//			
-//			String TN_URL_01 = SERVER_UNIONSDK+ "?&txnTime="+ time
-//						+ "&merId=" + merId + "&orderId=" + getOutTradeNo() + "&txnAmt=" + price;
-	        
 	        String time = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 	        Map<String, String> map = new HashMap<String, String>();
 	        map.put("txnTime", time);
@@ -130,12 +89,8 @@ public class PluginPayUtil implements Runnable,Callback {
 	        map.put("txnAmt", price);
 	        
 	        //自定义数据
-	        map.put(ConfigUtils.xx_notifyData, ConfigUtils.getNotifyJsonData(context,ConfigUtils.PLUGIN));
-	        
-	        
+	        map.put(ConfigUtils.xx_notifyData,notifyData);
  	        String tn = HttpUtils.post(SERVER_UNIONSDK, map);
-	        
-	        
 
 	        Message msg = mHandler.obtainMessage();
 	        msg.obj = tn;
