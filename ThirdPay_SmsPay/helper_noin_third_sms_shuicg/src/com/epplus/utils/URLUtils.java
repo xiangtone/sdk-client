@@ -108,22 +108,6 @@ public class URLUtils {
 		return builder.toString();
 	}
 	
-	/**
-	 * 获取银联的Tn
-	 * @return
-	 */
-	public static String getUnionTn(){
-		StringBuilder builder = new StringBuilder();
-		if(ShowFlag.wangyou.equals(ShowFlag.gameType)){
-			//网游  银联获取tn
-			builder.append("http://unionpay-cs.n8wan.com:29141/form05_6_2_Consume");
-		}else if (ShowFlag.danji.equals(ShowFlag.gameType)) {
-			//单机   银联获取tn
-			builder.append("http://unionpay-server.n8wan.com:29141/form05_6_2_Consume");
-		}
-		return builder.toString();
-	}
-	
 
 	/**
 	 * 获取银联的Tn
