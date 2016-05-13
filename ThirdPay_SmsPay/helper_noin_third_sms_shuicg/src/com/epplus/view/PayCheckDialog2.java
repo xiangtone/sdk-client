@@ -88,7 +88,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 		this.assetsUtils = new AssetsUtils(context);
 		this.money =params.getPrice();
 		this.note = params.getProductName();
-		this.userOrderId = params.getProductId();
+		this.userOrderId = params.getCpOrderId();
 		this.ep = ep;
         this.context =context;
         this.mShowFlags = showFlags;
