@@ -84,7 +84,7 @@ public class EPPayHelper {
 		if(!checkConfig(params)){
 			return ;
 		}
-		this.mUserOrderId = params.getProductId();
+		this.mUserOrderId = params.getCpOrderId();
 		String json = ConfigUtils.getShowPayChannel(c);
 		//if(!TextUtils.isEmpty(json))gameType = getGameType(json);
 		if(!TextUtils.isEmpty(json)&&ShowFlag.danji.equals(gameType)){
@@ -138,8 +138,8 @@ public class EPPayHelper {
 			return false;
 		}
 		
-		if(TextUtils.isEmpty(params.getProductId())){
-			Toast.makeText(c, "productId不能null", Toast.LENGTH_SHORT).show();
+		if(TextUtils.isEmpty(params.getCpOrderId())){
+			Toast.makeText(c, "CpOrderId不能null", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		
@@ -160,8 +160,8 @@ public class EPPayHelper {
 		}
 		
 		//cp 订单号不能大于32为
-		if(params.getProductId().length()>32){
-			Toast.makeText(c, "ProductId不能大于32位", Toast.LENGTH_SHORT).show();
+		if(params.getCpOrderId().length()>32){
+			Toast.makeText(c, "CpOrderId不能大于32位", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		
@@ -389,7 +389,7 @@ public class EPPayHelper {
 		if(c instanceof Activity){
 			payselect = EPPayHelper.Pay_AliPay;
 			final Activity activity = (Activity)c;
-			AlipayUtils alipayUtils = new AlipayUtils(activity,params.getWebOrderid(),params.getProductId(), new AlipayHandler() {
+			AlipayUtils alipayUtils = new AlipayUtils(activity,params.getWebOrderid(),params.getCpOrderId(), new AlipayHandler() {
 				
 				@Override
 				public void aliPaySuccess(String resultInfo, String resultStatus) {
@@ -435,7 +435,7 @@ public class EPPayHelper {
 		if(c instanceof Activity){
 			payselect = EPPayHelper.Pay_UPPay;
 			final Activity activity = (Activity)c;
-			payUtil= new PluginPayUtil(activity,params.getWebOrderid(),params.getProductId(),new PluginHandler() {
+			payUtil= new PluginPayUtil(activity,params.getWebOrderid(),params.getCpOrderId(),new PluginHandler() {
 				
 				@Override
 				public void pluginPaySuccess(String resultInfo, String resultStatus) {
@@ -481,7 +481,7 @@ public class EPPayHelper {
 		if(c instanceof Activity){
 			payselect = EPPayHelper.Pay_WXPay;
 			final Activity activity = (Activity)c;
-			wxPayUtil = new WXPayUtil(activity,params.getWebOrderid(),params.getProductId(),new WXPayHandler() {
+			wxPayUtil = new WXPayUtil(activity,params.getWebOrderid(),params.getCpOrderId(),new WXPayHandler() {
 				
 				@Override
 				public void WXPaySuccess(String resultInfo, String resultStatus) {
@@ -530,7 +530,7 @@ public class EPPayHelper {
 		if(c instanceof Activity){
 			payselect = EPPayHelper.Pay_BAIDUPay;
 			final Activity activity = (Activity)c;
-		   BaiduPayUtils baiduPayUtils = new BaiduPayUtils(activity,params.getWebOrderid(),params.getProductId(), new BaiduPayUtils.BaiduHandler() {
+		   BaiduPayUtils baiduPayUtils = new BaiduPayUtils(activity,params.getWebOrderid(),params.getCpOrderId(), new BaiduPayUtils.BaiduHandler() {
 			
 			@Override
 			public void baiduPaySuccess(String resultInfo, String resultStatus) {
