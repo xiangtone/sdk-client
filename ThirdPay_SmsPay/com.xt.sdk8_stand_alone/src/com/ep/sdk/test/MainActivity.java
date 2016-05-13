@@ -7,7 +7,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Toast;
+
+import com.cmnpay.api.Payment;
 import com.ep.sdk.XTSDK;
+import com.epplus.publics.EPPayHelper;
 import com.epplus.view.PayParams;
 import com.xt.test01.R;
 
@@ -58,7 +61,7 @@ public class MainActivity extends Activity{
 			break;
 		case R.id.button4:
 			PayParams pa = new PayParams(1, "123456", "苹果", "商品名称是苹果商品id为123456");
-			XTSDK.getInstance().pay(this,pa);
+			XTSDK.getInstance().pay(this,pa);			
 			break;
 
 		default:
@@ -69,7 +72,8 @@ public class MainActivity extends Activity{
 	
 	 @Override
 	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-			XTSDK.getInstance().payCallResult(this,requestCode, resultCode, data);
+			//XTSDK.getInstance().payCallResult(this,requestCode, resultCode, data);
+		 	EPPayHelper.getInstance(this).onActivityResult(requestCode, resultCode, data);
 			super.onActivityResult(requestCode, resultCode, data);
 		}
 	 
