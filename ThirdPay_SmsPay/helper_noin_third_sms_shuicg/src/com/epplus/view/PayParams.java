@@ -17,12 +17,15 @@ public class PayParams{
 	//网络远程orderid 自动生成
 	private String webOrderid;
 	
-	//商品订单号 必填
+	//商品订单号 
 	private String productId;
 	//商品名称  必填
 	private String productName;
 	//商品描述  必填
 	private String productDesc;
+	
+	//cpOrderId  必填
+	private String cpOrderId;
 	
 	
 	private int ratio;	//兑换比例，暂时无用
@@ -47,11 +50,27 @@ public class PayParams{
 	
 	
 	
-	public PayParams(int price, String productId, String productName,String productDesc) {
+	public PayParams(int price, String cpOrderId, String productName,String productDesc) {
 		this.price = price;
-		this.productId = productId;
+		this.cpOrderId = cpOrderId;
 		this.productName = productName;
 		this.productDesc = productDesc;
+	}
+
+
+
+
+
+	public String getCpOrderId() {
+		return cpOrderId;
+	}
+
+
+
+
+
+	public void setCpOrderId(String cpOrderId) {
+		this.cpOrderId = cpOrderId;
 	}
 
 
