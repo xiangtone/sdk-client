@@ -17,7 +17,7 @@ public class PayParams{
 	//网络远程orderid 自动生成
 	private String webOrderid;
 	
-	//商品订单号 
+	//商品订单号 必填
 	private String productId;
 	//商品名称  必填
 	private String productName;
@@ -59,23 +59,13 @@ public class PayParams{
 
 
 
-
-
 	public String getCpOrderId() {
 		return cpOrderId;
 	}
 
-
-
-
-
 	public void setCpOrderId(String cpOrderId) {
 		this.cpOrderId = cpOrderId;
 	}
-
-
-
-
 
 	public String getWebOrderid() {
 		return webOrderid;
