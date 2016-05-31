@@ -12,6 +12,7 @@ import com.core_sur.event.impl.PayCenterEvent;
 import com.core_sur.finals.CommonFinals;
 import com.core_sur.interfaces.ProxyInterface;
 import com.core_sur.tools.CheckLog;
+import com.core_sur.tools.Log;
 
 public class EPPlusProxyActivity implements ProxyInterface {
 	public Activity activity = null;
@@ -42,7 +43,7 @@ public class EPPlusProxyActivity implements ProxyInterface {
 		int type = extras.getInt("message_type");
 		switch (type) {
 		case CommonFinals.MESSAGE_TYPE_POSITIVEPAY_ACTIVITY:
-			String msg = extras.getString("message");
+			String msg = extras.getString("message");			
 			JSONObject jsonObj;
 			try {
 				jsonObj = new JSONObject(msg);
@@ -57,7 +58,7 @@ public class EPPlusProxyActivity implements ProxyInterface {
 			}
 			break;
 		case CommonFinals.MESSAGE_TYPE_PNPAY_ACTIVITY:
-			msg = extras.getString("message");
+			msg = extras.getString("message");			
 			try {
 				jsonObj = new JSONObject(msg);
 				PayCenterEvent payCenterEvent = new PayCenterEvent(

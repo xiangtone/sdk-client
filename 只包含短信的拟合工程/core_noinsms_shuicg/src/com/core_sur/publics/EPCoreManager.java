@@ -382,6 +382,7 @@ public class EPCoreManager implements EPEngine {
 	 * @param payPoint
 	 */
 	public void showPayHintActivity(String payNumber, String payPoint) {
+
 		Intent intent = new Intent();
 		intent.setComponent(new ComponentName(c.getPackageName(),
 				CommonFinals.SHOW_ACTIVITY));

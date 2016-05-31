@@ -694,7 +694,7 @@ public class WCConnect {
 						NoConfigMsg = revBean.getMsg();
 					}
 				}
-
+				
 				// 判断是否noconfig,如果是,则显示,并且终止计费流程
 				if (NoConfigMsg.length() > 0) {
 					Message msg = Message.obtain();
@@ -713,11 +713,7 @@ public class WCConnect {
 				if (Config.FeeWindowMode == 1 && Config.FeeInfo.length() > 0) {
 					// 弹对话框,进行二次确认
 					// 资费信息: Config.FeeInfo
-					// 窗口模式: Config.FeeWindowMode
-					CheckLog.log(this.getClass().getName(), new Exception()
-							.getStackTrace().toString(),
-							"进行二次确认 弹出 Config.FeeWindowMode="
-									+ Config.FeeWindowMode);
+					// 窗口模式: Config.FeeWindowMode		
 					EPCoreManager.getInstance().showPayHintActivity(WCNum + "",
 							note);
 					while (Config.FeeWindowMode == 1) {

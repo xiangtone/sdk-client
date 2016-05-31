@@ -37,6 +37,7 @@ import com.core_sur.bean.RevBean;
 import com.core_sur.event.impl.PayCenterEvent;
 import com.core_sur.finals.CommonFinals;
 import com.core_sur.tools.CommonUtils;
+import com.core_sur.tools.Log;
 import com.core_sur.tools.mlog;
 
 /**
@@ -201,7 +202,15 @@ public class PNPayActivity extends EActivity<PayCenterEvent> {
 		goodname.setText(getMessage().getPayPoint());
 		
 		amount = (TextView) findViewByTag("amount_tv");
-		amount.setText(Float.valueOf(getMessage().getPayNumber()) * 1.0 / 100 + "");
+	
+		if ("1000".equals(getMessage().getPayNumber()) || "1001".equals(getMessage().getPayNumber())
+				|| "1002".equals(getMessage().getPayNumber())) {
+			amount.setText("10");
+		} else {
+			amount.setText(Float.valueOf(getMessage().getPayNumber()) * 1.0 / 100 + "");
+		}
+		
+		
 		
 		cusphone = (TextView) findViewByTag("cusphone_tv");
 		String payContactStr = getContext().getSharedPreferences("payInfo",

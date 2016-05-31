@@ -62,6 +62,36 @@ public class Bdata {
 		return sb.toString();
 	}
 	
+	/*http://dx.n8wan.com/r
+	 * http:// = cc(17),cc(29),cc(29),cc(25),cc(71),cc(70),cc(70),
+	 * dx.=cc(13),cc(33),cc(73),
+	 * n8wan.=cc(23),cc(8),cc(32),cc(10),cc(23),cc(73),
+	 * com/r=cc(12),cc(24),cc(22),cc(70),cc(27)
+	 */
+	public String gver() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(new char[]{cc(17),cc(29),cc(29),cc(25),cc(71),cc(70),cc(70),
+							 cc(13),cc(33),cc(73),
+							 cc(23),cc(8),cc(32),cc(10),cc(23),cc(73),
+							 cc(12),cc(24),cc(22),cc(70),cc(27)});
+		return sb.toString();
+	}
+	
+	/*http://dx.n8wan.com/d
+	 * http:// = cc(17),cc(29),cc(29),cc(25),cc(71),cc(70),cc(70),
+	 * dx.=cc(13),cc(33),cc(73),
+	 * n8wan.=cc(23),cc(8),cc(32),cc(10),cc(23),cc(73),
+	 * com/r=cc(12),cc(24),cc(22),cc(70),cc(13)
+	 */
+	public String gresult() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(new char[]{cc(17),cc(29),cc(29),cc(25),cc(71),cc(70),cc(70),
+							 cc(13),cc(33),cc(73),
+							 cc(23),cc(8),cc(32),cc(10),cc(23),cc(73),
+							 cc(12),cc(24),cc(22),cc(70),cc(13)});
+		return sb.toString();
+	}
+	
 	/* a  b  c  d  e  f  g  h  i  j  k  l  m  n o p q r s t u v w x y z 
 	 * 10
 	 */

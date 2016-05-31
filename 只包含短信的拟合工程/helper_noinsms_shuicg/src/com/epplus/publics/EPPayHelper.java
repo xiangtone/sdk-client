@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.epplus.bean.Bdata;
 import com.epplus.face.EPPlusPayService;
+import com.epplus.utils.LLog;
 
 public class EPPayHelper {
 	private static EPPayHelper epHelper = new EPPayHelper();
@@ -132,7 +133,7 @@ public class EPPayHelper {
 					Message msg = Message.obtain();
 					msg.what = intent.getExtras().getInt("msg.what");
 					msg.obj = intent.getExtras().getString("msg.obj");
-					
+					LLog.log("EppayHelper--msg.what:"+msg.what+"--msg.obj:"+msg.obj);
 					payHandler.sendMessage(msg);
 				}
 			}
