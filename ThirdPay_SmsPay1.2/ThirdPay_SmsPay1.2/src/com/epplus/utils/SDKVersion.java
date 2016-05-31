@@ -9,7 +9,7 @@ public class SDKVersion {
 	/**
 	 * SDK °æ±¾ºÅ
 	 */
-	public static final String SDK_VERSION = "1.0.0";
+	public static final String SDK_VERSION = "1.2.0";
 	
 	/**
 	 * °æ±¾Ãû³Æ
