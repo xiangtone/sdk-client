@@ -104,6 +104,7 @@
 /dex_project/helper_noinsms_shuicg_dex/gen
 /dex_project/helper_noinsms_shuicg_dex/.svn
 /dex_project/helper_noinsms_shuicg_dex/bin
+
 /ThirdPay_SmsPay/com.xt.sdk8_stand_alone_wx_wap/gen
 /ThirdPay_SmsPay/com.xt.sdk8_stand_alone_wx_wap/bin
 /skypay/core_noinsms_shuicg_skypay/.svn
@@ -126,3 +127,6 @@
 /molibirdpay/helper_noinsms_shuicg_molibirdpay/.svn
 /ThirdPay_SmsPay/com.xt.sdk8_stand_alone_wx_wap/gen
 /ThirdPay_SmsPay/com.xt.sdk8_stand_alone_wx_wap/bin
+
+/helper_noin_third_sms_shuicg_update_config/gen
+/helper_noin_third_sms_shuicg_update_config/bin
