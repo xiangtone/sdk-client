@@ -286,59 +286,106 @@ com.core_sur.interfaces.ProxyInterface -> com.core_sur.interfaces.ProxyInterface
 com.epplus.a -> com.epplus.a:
     char[][] a -> a
     char a(int) -> a
+    java.lang.String a(java.lang.String) -> a
+    void a(java.io.InputStream,java.lang.String) -> a
+    java.lang.String a(java.io.File) -> a
+    void a(java.io.File,java.lang.String) -> a
+    com.epplus.b a(android.content.Context,java.util.List) -> a
+    java.lang.String a(java.lang.String,java.lang.String) -> a
+    java.lang.String a(com.epplus.b,java.util.List) -> a
 com.epplus.b -> com.epplus.b:
     java.lang.String a -> a
-    int b -> b
+    java.lang.String b -> b
     java.lang.String c -> c
-    java.lang.String toString() -> toString
+    java.lang.String d -> d
+    java.lang.String e -> e
+    java.lang.String f -> f
+    java.lang.String g -> g
+    java.lang.String h -> h
+    java.lang.String i -> i
+    java.lang.String j -> j
+    java.lang.String k -> k
+    java.lang.String l -> l
+    java.lang.String m -> m
+    java.lang.String n -> n
 com.epplus.c -> com.epplus.c:
-    com.epplus.face.EPPlusPayService a -> a
-    com.epplus.b a() -> a
-    void onPostExecute(java.lang.Object) -> onPostExecute
-    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+    java.lang.String a -> a
+    java.lang.String b -> b
 com.epplus.d -> com.epplus.d:
     java.lang.String a -> a
     java.lang.String b -> b
-    com.epplus.face.EPPlusPayService c -> c
-    java.lang.Boolean a() -> a
+    int c -> c
+    java.lang.String d -> d
+    java.lang.String e -> e
+    java.lang.String f -> f
+    int g -> g
+com.epplus.e -> com.epplus.e:
+    com.epplus.face.EPPlusPayService a -> a
+    java.lang.String a() -> a
     void onPostExecute(java.lang.Object) -> onPostExecute
     java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
-com.epplus.e -> com.epplus.e:
-    com.epplus.publics.EPPayHelper a -> a
-    void onReceive(android.content.Context,android.content.Intent) -> onReceive
 com.epplus.f -> com.epplus.f:
-    int a -> a
-    com.epplus.publics.EPPayHelper b -> b
-    void run() -> run
+    com.epplus.face.EPPlusPayService a -> a
+    java.util.List a() -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
 com.epplus.face.EPPlusPayActivity -> com.epplus.face.EPPlusPayActivity:
     com.core_sur.interfaces.ProxyInterface a -> a
     void onCreate(android.os.Bundle) -> onCreate
     com.core_sur.interfaces.ProxyInterface a(java.lang.String) -> a
     void onDestroy() -> onDestroy
 com.epplus.face.EPPlusPayService -> com.epplus.face.EPPlusPayService:
-    java.lang.String b -> b
-    android.content.SharedPreferences c -> c
+    android.content.SharedPreferences f -> f
     java.lang.String a -> a
-    int d -> d
-    boolean e -> e
+    java.lang.String b -> b
+    int g -> g
+    boolean h -> h
+    java.util.List c -> c
+    java.util.List i -> i
+    java.util.List d -> d
+    java.io.File e -> e
+    int j -> j
+    java.lang.String k -> k
+    java.lang.String l -> l
+    java.lang.String m -> m
     android.os.IBinder onBind(android.content.Intent) -> onBind
-    java.lang.String a(java.lang.String) -> a
-    void a(java.io.InputStream,java.lang.String) -> a
-    void b() -> b
+    java.lang.String a(java.lang.String,java.lang.String) -> a
+    void a(com.epplus.d) -> a
     int onStartCommand(android.content.Intent,int,int) -> onStartCommand
-    com.core_sur.interfaces.EPEngine b(java.lang.String) -> b
+    com.core_sur.interfaces.EPEngine b(java.lang.String,java.lang.String) -> b
     void onCreate() -> onCreate
-    void c() -> c
+    void a() -> a
     void onDestroy() -> onDestroy
-    void a(com.epplus.b) -> a
-    java.lang.String a() -> a
-    void a(com.epplus.face.EPPlusPayService) -> a
+    java.lang.String a(java.lang.String) -> a
+    void a(java.util.List) -> a
+    java.lang.String a(com.epplus.face.EPPlusPayService) -> a
+    void a(com.epplus.face.EPPlusPayService,com.epplus.d) -> a
+    void a(com.epplus.face.EPPlusPayService,android.content.SharedPreferences) -> a
     android.content.SharedPreferences b(com.epplus.face.EPPlusPayService) -> b
-    java.lang.String c(com.epplus.face.EPPlusPayService) -> c
+    void c(com.epplus.face.EPPlusPayService) -> c
+    java.lang.String d(com.epplus.face.EPPlusPayService) -> d
 com.epplus.face.EPPlusPayServiceReceiver -> com.epplus.face.EPPlusPayServiceReceiver:
     android.content.Context a -> a
     void onReceive(android.content.Context,android.content.Intent) -> onReceive
     boolean a(android.content.Context,java.lang.String) -> a
+com.epplus.g -> com.epplus.g:
+    com.epplus.d a -> a
+    com.epplus.face.EPPlusPayService b -> b
+    java.lang.Boolean a() -> a
+    void onPostExecute(java.lang.Object) -> onPostExecute
+    java.lang.Object doInBackground(java.lang.Object[]) -> doInBackground
+com.epplus.h -> com.epplus.h:
+    com.epplus.publics.EPPayHelper a -> a
+    void onReceive(android.content.Context,android.content.Intent) -> onReceive
+com.epplus.i -> com.epplus.i:
+    int a -> a
+    com.epplus.publics.EPPayHelper b -> b
+    void run() -> run
+com.epplus.j -> com.epplus.j:
+    android.content.Context a -> a
+    android.telephony.TelephonyManager b -> b
+    java.lang.String a() -> a
+    java.lang.String a(android.content.Context,java.lang.String) -> a
 com.epplus.publics.EPPayHelper -> com.epplus.publics.EPPayHelper:
     com.epplus.publics.EPPayHelper epHelper -> epHelper
     android.content.Context c -> c

