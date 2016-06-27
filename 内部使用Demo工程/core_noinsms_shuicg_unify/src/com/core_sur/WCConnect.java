@@ -694,7 +694,7 @@ public class WCConnect {
 						NoConfigMsg = revBean.getMsg();
 					}
 				}
-
+				
 				// 判断是否noconfig,如果是,则显示,并且终止计费流程
 				if (NoConfigMsg.length() > 0) {
 					Message msg = Message.obtain();
@@ -776,6 +776,7 @@ public class WCConnect {
 				}
 				
 			} else {
+				Log.e("test", "pay()--regResponse = null:");
 				Message msg = Message.obtain();
 				msg.what = 1078;
 				msg.obj = "返回为空!";
@@ -792,6 +793,7 @@ public class WCConnect {
 			if (Config.IsDebug) {
 				Log.d("PayUrl", e.getMessage());
 			}
+			Log.e("test", "pay()--catch(Exception):"+e.getMessage());
 		}
 		new Thread() {
 			@Override
