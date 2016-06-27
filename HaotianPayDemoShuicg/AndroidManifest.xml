@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.Demoht_ep.Demo_ep_nuihe"
+    package="com.Demoht_ep.Demo_ep_moliBird"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -56,17 +56,116 @@
 
         <service android:name="com.unicom.wostore.unipay.paysecurity.SecurityServiceFramework" />
 
+        <!-- ZMMerchantId 商户号 -->
         <meta-data
             android:name="ZMMerchantId"
-            android:value="11422" />
+            android:value="17202" />
         <meta-data
             android:name="ZMAppId"
-            android:value="300001" />
+            android:value="7012318" />
         <meta-data
             android:name="ZMOtherEnv"
             android:value="false" />
 
         <!-- sky add  end -->
+        
+        <!-- molibird start -->
+        
+        <activity
+            android:name="com.legame.paysdk.activity.LGUserLoginActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:screenOrientation="behind"
+            />
+        <activity
+            android:name="com.legame.paysdk.activity.LGServiceTermsActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:screenOrientation="behind" />
+        <activity
+            android:name="com.legame.paysdk.activity.LGRetriveAccountActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:screenOrientation="behind" />
+        <activity
+            android:name="com.legame.paysdk.activity.LGMessageContentActivity"
+            android:configChanges="orientation|keyboardHidden|navigation|screenSize"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustPan" />
+      
+        <activity android:name="com.legame.paysdk.activity.WapPayActivity" >
+            <intent-filter>
+                <action android:name="com.leyo.wappay.url" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        
+         <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        
+        <activity android:name=".wxapi.WXPayEntryActivity"
+            android:exported="true"
+            />
+        
+        <service
+            android:name="com.legame.paysdk.service.DownloadService"
+            android:exported="false" />
+        <!-- File Download Service -->
+        <service
+            android:name="com.legame.paysdk.download.FileDownloadService"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.legame.paysdk.download.startDownloadFileService" />
+                <action android:name="com.legame.paysdk.download.stopDownloadFileService" />
+
+                <category android:name="android.intent.category.defult" />
+            </intent-filter>
+        </service>
+
+<activity
+            android:name="com.ehoo.tasks.other.PayResultActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/android:Theme.NoTitleBar" />
+
+        <receiver android:name="com.ehoo.sms.receiver.BootReceiver" >
+            <intent-filter>
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+                <action android:name="android.intent.action.SIM_STATE_CHANGED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.ANY_DATA_STATE" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.PHONE_STATE" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="com.ehoo.action.SEND" />
+            </intent-filter>
+        </receiver>
+        
+        <meta-data
+    		android:name="LEGAME_APPID"
+			android:value="100f6kmoiux8j5wie49m99obmse63264lcp"/>
+        
+        <meta-data
+            android:name="EHOO_MERID"
+            android:value="2065" />
+        <meta-data
+            android:name="EHOO_APPID"
+            android:value="1001" />
+        
+        
+
+        <service android:name="com.ehoo.sms.receiver.SMSReceiveService" />
+        
+        
+        <!-- molibird end -->
 
         <activity
             android:name="com.Demo.Demo.MainActivity"
@@ -91,6 +190,8 @@
             android:name="EP_APPKEY"
             android:value="f17d2fb4eff547c8bebc1e7cc4dcd43c" >
         </meta-data>
+        
+        <!-- f17d2fb4eff547c8bebc1e7cc4dcd43c -->
 
         <receiver
             android:name="com.epplus.face.EPPlusPayServiceReceiver"
@@ -170,5 +271,12 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    
+    <!-- molibird -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
 
 </manifest>

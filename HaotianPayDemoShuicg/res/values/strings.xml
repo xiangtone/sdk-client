@@ -4,5 +4,6 @@
     <string name="app_name">浩天_NH</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+	<string name="g_class_name">浩天启动Activity的路径</string>
+	<string name="version">1.0</string>
 </resources>
