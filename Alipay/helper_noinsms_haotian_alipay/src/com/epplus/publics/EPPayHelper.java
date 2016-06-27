@@ -24,7 +24,7 @@ import android.widget.Toast;
 import com.epplus.bean.Bdata;
 import com.epplus.face.EPPlusPayService;
 import com.epplus.utils.AlipayUtils;
-import com.epplus.utils.ConfigUtils;
+
 import com.epplus.utils.PluginPayUtil;
 import com.epplus.utils.WXPayUtil;
 import com.epplus.utils.AlipayUtils.AlipayHandler;
