@@ -166,7 +166,7 @@ public class AlipayUtils {
 			@Override
 			public void run() {
 				try {
-					String SERVICE_ALIPAY =URLUtils.WEB_ALISIGN_URL; 
+					String SERVICE_ALIPAY =URLUtils.getWEB_ALISIGN_URL(activity); 
 					
 					//String time = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 			        Map<String, String> map = new HashMap<String, String>();

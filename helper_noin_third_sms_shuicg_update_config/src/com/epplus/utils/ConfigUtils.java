@@ -202,13 +202,13 @@ public class ConfigUtils {
 			@Override
 			public void result(Object obj) {
 				if(obj==null){
-					return ;
+					return;
 				}
 				String json = (String) obj;
 				if(!TextUtils.isEmpty(json)){
 					PreferencesUtils.putString(c, PAY_CHANNEL, json);
 				}
-				LogUtils.e( "ShowPay : "+json);				
+				LogUtils.e( "ShowPay : "+json);
 				
 			}
 		});
@@ -217,7 +217,7 @@ public class ConfigUtils {
     public static void setShowPayChannel(Context c,IHttpResult result){
     	String appkey=ConfigUtils.getEp_APPKEY(c);
     	if(TextUtils.isEmpty(appkey))return;
-    	String uri = URLUtils.payChannle();//SHOW_PAY_CHANNEL_URL;
+    	String uri = URLUtils.payChannle(c);//SHOW_PAY_CHANNEL_URL;
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("Appkey",appkey );
 		

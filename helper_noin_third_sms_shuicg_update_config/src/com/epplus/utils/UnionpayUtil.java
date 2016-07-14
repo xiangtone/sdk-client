@@ -42,13 +42,14 @@ public class UnionpayUtil implements Runnable,Callback {
 	private final static String merId = "898440379930020";
 	
 		
-	private final  String SERVER_UNIONSDK= URLUtils.getUnionTn() ;//="http://unionpay-server.n8wan.com:29141/form05_6_2_Consume";//内网测试地址
+	private String SERVER_UNIONSDK;//= URLUtils.getUnionTn() ;//="http://unionpay-server.n8wan.com:29141/form05_6_2_Consume";//内网测试地址
 	
 	private String price;
 	
 	private PluginHandler pluginHandler;
 	private String notifyData;
 	public UnionpayUtil(Activity context,String OrderIdSelf,String OrderIdCp,PluginHandler pluginHandler) {
+		SERVER_UNIONSDK= URLUtils.getUnionTn(context) ;
 		this.context=context;
 		mHandler = new Handler(this);
 		this.pluginHandler = pluginHandler;
@@ -155,6 +156,9 @@ public class UnionpayUtil implements Runnable,Callback {
 	 * @param data
 	 */
 	public  void onActivityResult(int requestCode, int resultCode, Intent data) {
+		
+		LogUtils.e("银联支付:"+requestCode+">>"+data);
+		
 	        /*************************************************
 	         * 步骤3：处理银联手机支付控件返回的支付结果
 	         ************************************************/
