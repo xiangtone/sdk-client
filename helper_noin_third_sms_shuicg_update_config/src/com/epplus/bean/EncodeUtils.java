@@ -1,14 +1,8 @@
-package com.core_sur.notifierad;
-/**
- * ç®€å•åŠ å¯†
- * @author Administrator
- *
- */
+package com.epplus.bean;
+
 public class EncodeUtils {
-	
-	
 	/**
-	 * åŠ å¯†
+	 * ¼ÓÃÜ
 	 * @param data
 	 * @return
 	 */
@@ -17,7 +11,7 @@ public class EncodeUtils {
 	} 
 	
 	/**
-	 * åŠ å¯†
+	 * ¼ÓÃÜ
 	 * @param contents
 	 * @return
 	 */
@@ -32,5 +26,4 @@ public class EncodeUtils {
 		return builder.toString();
 		
 	}
-
 }

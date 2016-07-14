@@ -18,6 +18,7 @@ import android.content.IntentFilter;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
@@ -32,6 +33,7 @@ import com.epplus.statistics.ThreadUtil;
 import com.epplus.statistics.URLFlag;
 import com.epplus.utils.AlipayUtils;
 import com.epplus.utils.AlipayUtils.AlipayHandler;
+import com.epplus.utils.ApkUtils;
 import com.epplus.utils.BaiduPayUtils;
 import com.epplus.utils.ConfigUtils;
 import com.epplus.utils.IHttpResult;
@@ -43,6 +45,7 @@ import com.epplus.utils.SDKUtils;
 import com.epplus.utils.WXPayUtil;
 import com.epplus.utils.WXPayUtil.WXPayHandler;
 import com.epplus.utils.WXWapPayUtil;
+import com.epplus.utils.WXWapPayUtil.WxWapHandler;
 import com.epplus.view.PayCheckDialog2;
 import com.epplus.view.PayParams;
 import com.epplus.view.ShowFlag;
@@ -316,7 +319,7 @@ public class EPPayHelper {
 		}
 	}
 
-	public BroadcastReceiver payReceiver;
+	public BroadcastReceiver payReceiver, initReceiver;
 	private Handler payHandler;
 	private AlertDialog dialog;
 
@@ -325,6 +328,29 @@ public class EPPayHelper {
 		regPay();
 		c.registerReceiver(payReceiver, new IntentFilter(c.getPackageName()
 				+ ".my.fee.listener"));
+		
+		/*initReceiver = new BroadcastReceiver() {
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				if (payHandler != null && intent.getExtras() != null) {
+										
+					Message msg = Message.obtain();
+					msg.what = intent.getExtras().getInt("msg.what");
+					msg.obj = intent.getExtras().getString("msg.obj");
+					
+					Log.e("test", "setPayListen()--msg.what="+msg.what+",--msg.obj="+msg.obj);
+					
+					
+					payHandler.sendMessage(msg);
+				}
+			}
+		};
+		
+		
+		c.registerReceiver(initReceiver, new IntentFilter(c.getPackageName()
+				+ ".my.init.listener"));*/
+		
+		
 	}
 
 	public void exit() {
@@ -352,6 +378,8 @@ public class EPPayHelper {
 					Message msg = Message.obtain();
 					msg.what = intent.getExtras().getInt("msg.what");
 					msg.obj = intent.getExtras().getString("msg.obj");
+					
+					Log.e("test", "regPay()--msg.what="+msg.what+",--msg.obj="+msg.obj);
 					
 					//短信支付成功
 					if(4001==msg.what){
@@ -578,10 +606,14 @@ public class EPPayHelper {
 	}
 	
 	WXWapPayUtil wxWapPayUtil;
+	WxWapHandler wxWapHandler;
+	
 	/**
 	 * 微信wap支付
 	 */
 	public void wxWapPay(final PayParams params){
+		
+		
 		final Message msg = payHandler.obtainMessage();
 		if(c instanceof Activity){
 			final Activity activity =c;
@@ -590,8 +622,9 @@ public class EPPayHelper {
 			final ProgressDialog progressDialog = new ProgressDialog(activity);;
 			progressDialog.setMessage("支付结果获取中...");
 			progressDialog.setCancelable(false);
-			progressDialog.show();
-			wxWapPayUtil= new WXWapPayUtil(activity,params.getWebOrderid(),params.getCpOrderId(), new WXWapPayUtil.WxWapHandler() {
+			
+			
+			wxWapHandler = new WXWapPayUtil.WxWapHandler() {
 				
 				@Override
 				public void wxWapSuccess(String resultInfo, String resultStatus) {
@@ -599,7 +632,9 @@ public class EPPayHelper {
 					msg.what = 4001; 
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
-					progressDialog.dismiss();
+					if (progressDialog != null &&progressDialog.isShowing())
+						progressDialog.dismiss();
+					
 					
 				}
 				
@@ -609,9 +644,20 @@ public class EPPayHelper {
 					msg.what = 4002; 
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
-					progressDialog.dismiss();
+					if (progressDialog != null &&progressDialog.isShowing())
+						progressDialog.dismiss();
 				}
-			});
+			};
+			
+			if(ApkUtils.isWeixinAvilible(c)==false){
+				Toast.makeText(activity, "手机没有安装微信，请先安装微信", Toast.LENGTH_SHORT).show();
+				wxWapHandler.wxWapFailed("204", "微信没有安装");
+				return;
+			}
+
+			progressDialog.show();
+			
+			wxWapPayUtil= new WXWapPayUtil(activity,params.getWebOrderid(),params.getCpOrderId(), wxWapHandler);
 			
 			wxWapPayUtil.pay(params.getProductName(), params.getProductDesc(), String.valueOf(params.getPrice()));
 		}

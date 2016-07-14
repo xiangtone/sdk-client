@@ -202,13 +202,13 @@ public class ConfigUtils {
 			@Override
 			public void result(Object obj) {
 				if(obj==null){
-					return;
+					return ;
 				}
 				String json = (String) obj;
 				if(!TextUtils.isEmpty(json)){
 					PreferencesUtils.putString(c, PAY_CHANNEL, json);
 				}
-				LogUtils.e( "ShowPay : "+json);
+				LogUtils.e( "ShowPay : "+json);				
 				
 			}
 		});
