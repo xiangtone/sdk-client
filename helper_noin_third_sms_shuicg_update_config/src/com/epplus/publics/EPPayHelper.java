@@ -439,6 +439,7 @@ public class EPPayHelper {
 					//Toast.makeText(activity, "aliPaySuccess>>"+resultStatus+">>"+resultInfo, 0).show();
 					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.AlipaySuccess,gameType,params);
 					msg.what = 4001; 
+					msg.arg1 = params.getPrice();
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
 				}
@@ -484,6 +485,7 @@ public class EPPayHelper {
 				public void pluginPaySuccess(String resultInfo, String resultStatus) {
 					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.UnionpaySuccess,gameType,params);
 					msg.what = 4001; 
+					msg.arg1 = params.getPrice();
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
 					
@@ -532,6 +534,7 @@ public class EPPayHelper {
 					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.WeChatpaySuccess,gameType,params);
 					
 					msg.what = 4001; 
+					msg.arg1 = params.getPrice();
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
 					
@@ -579,6 +582,7 @@ public class EPPayHelper {
 			public void baiduPaySuccess(String resultInfo, String resultStatus) {
 				  HttpStatistics.statistics(activity,mUserOrderId,URLFlag.BaidupaySuccess,gameType,params);
 				msg.what = 4001; 
+				msg.arg1 = params.getPrice();
 				msg.obj = resultStatus;
 				payHandler.sendMessage(msg);
 				
@@ -631,6 +635,7 @@ public class EPPayHelper {
 					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.WxWapSuccess,gameType,params);
 					msg.what = 4001; 
 					msg.obj = resultStatus;
+					msg.arg1 = params.getPrice();
 					payHandler.sendMessage(msg);
 					if (progressDialog != null &&progressDialog.isShowing())
 						progressDialog.dismiss();

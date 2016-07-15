@@ -48,7 +48,10 @@ public class URLUtils {
 	//public static final String WEB_BASE_URL="http://thirdpay.oss.vanggame.com:29141/";
 	
 	//有卡
-	public static final String WEB_BASE_URL="http://thirdpay.youkala.com:29141/";
+	//public static final String WEB_BASE_URL="http://thirdpay.youkala.com:29141/";
+	
+	//浩天
+	public static final String WEB_BASE_URL="http://thirdpay-webhook.n8wan.com:29141/";
 	
 	/**
 	 * 百度支付请求url
@@ -56,7 +59,10 @@ public class URLUtils {
 	//创世
 	//public static final String WEB_BAIDU_URL="http://baidupay.oss.vanggame.com:29141/";
 	//有卡
-	public static final String WEB_BAIDU_URL="http://baidupay.youkala.com:29141/";
+	//public static final String WEB_BAIDU_URL="http://baidupay.youkala.com:29141/";
+	
+	//haotian
+	public static final String WEB_BAIDU_URL="http://thirdpay-webhook.n8wan.com:29141/";
 	
 	/**
 	 * 银联支付请求url
@@ -64,11 +70,18 @@ public class URLUtils {
 	//创世
 	//public static final String WEB_UNIONPAY_URL="http://unionpay.oss.vanggame.com:29141/";
 	//有卡
-	public static final String WEB_UNIONPAY_URL="http://unionpay.youkala.com:29141/";
+	//public static final String WEB_UNIONPAY_URL="http://unionpay.youkala.com:29141/";
+	
+	//haotian
+	public static final String WEB_UNIONPAY_URL="http://unionpay-server.n8wan.com:29141/";
+	
 	
 	
 	//支付宝签名
-	public static final String WEB_ALISIGN_URL="http://thirdpay.youkala.com:29141/AlipaySign";
+	//public static final String WEB_ALISIGN_URL="http://thirdpay.youkala.com:29141/AlipaySign";
+	
+	//haotian
+	public static final String WEB_ALISIGN_URL="http://thirdpay-webhook.n8wan.com:29141/AlipaySign";
 	
 	
 	/**
