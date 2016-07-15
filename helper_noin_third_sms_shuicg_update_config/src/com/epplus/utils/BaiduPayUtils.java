@@ -244,7 +244,7 @@ public class BaiduPayUtils {
 			//final String url = "http://192.168.0.111:8080/bdpayrefund/BaiduPayService";
 			//final String url = "http://192.168.0.111:8080/baidupay/BaiduPayService";
 			//final String url = "http://192.168.0.101:8080/BaiduPay_Server/BaiduPayService";
-			final String url = URLUtils.WEB_BAIDU_URL+"BaiduPayService"; //"http://baidupay-server.n8wan.com:29141/BaiduPayService";
+			final String url = URLUtils.getWEB_BAIDU_URL(activity)+"BaiduPayService"; //"http://baidupay-server.n8wan.com:29141/BaiduPayService";
 
 			if (progressDialog == null) {
 				progressDialog = new ProgressDialog(activity);

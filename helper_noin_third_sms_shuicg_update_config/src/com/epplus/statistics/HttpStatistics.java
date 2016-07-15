@@ -162,7 +162,7 @@ public class HttpStatistics {
 //				}
 				//HttpStatistics.newInstance().post(StatisURL.BASEURL, getBaseMap(context,str,falgCode,gameType,payParamsJson));
 				LogUtils.e(falgCode+">>>");
-				HttpStatistics.newInstance().post(URLUtils.payStatis(), getBaseMap(context,str,falgCode,gameType,payParamsJson));
+				HttpStatistics.newInstance().post(URLUtils.payStatis(context), getBaseMap(context,str,falgCode,gameType,payParamsJson));
 			}
 		});
 	}

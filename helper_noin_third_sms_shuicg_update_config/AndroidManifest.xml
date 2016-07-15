@@ -34,10 +34,16 @@
             android:name="EP_CHANNEL"
             android:value="zgt10010" >
         </meta-data>
-        <meta-data
+        
+         <meta-data
+            android:name="EP_APPKEY"
+            android:value="be0e90edd42d4480a5c425db7f863a44" >
+        </meta-data>
+        
+      <!--   <meta-data
             android:name="EP_APPKEY"
             android:value="f17d2fb4eff547c8bebc1e7cc4dcd43c" >
-        </meta-data>
+        </meta-data> -->
         
        <!--  <meta-data
             android:name="EP_APPKEY"
@@ -130,7 +136,7 @@
         
         
         <!--     biadu支付    以下需要商户添加activity start -->       
-       
+       <!-- 
         <activity
             android:name="com.baidu.wallet.passport.PassLoginActivity"
             android:configChanges="keyboardHidden|navigation|orientation|screenSize"
@@ -362,7 +368,7 @@
                 android:theme="@style/EbpayThemeActivitTranslucent"
                 android:screenOrientation="portrait"
                 android:windowSoftInputMode="stateVisible|adjustResize" /> 
-                
+                 -->
         <!--  biadu支付 商户添加activity  end -->
         
 		
