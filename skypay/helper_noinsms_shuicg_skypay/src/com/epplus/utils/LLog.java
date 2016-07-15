@@ -4,7 +4,7 @@ import android.util.Log;
 
 public class LLog {
 	
-	final public static boolean isDebug = true; 
+	final public static boolean isDebug = false; 
 	
 	public static void log(String log) {
 		if (isDebug) 

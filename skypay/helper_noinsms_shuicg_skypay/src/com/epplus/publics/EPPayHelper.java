@@ -155,7 +155,7 @@ public class EPPayHelper {
 					msg.what = intent.getExtras().getInt("msg.what");
 					msg.obj = intent.getExtras().getString("msg.obj");
 					
-					Log.e("test", "EPPayHelper--msg.what:"+msg.what+",,,msg.obj:"+msg.obj);
+					LLog.error("EPPayHelper--msg.what:"+msg.what+",,,msg.obj:"+msg.obj);
 					
 					String json = (String) msg.obj;
 					try {
@@ -177,7 +177,7 @@ public class EPPayHelper {
 						String commodity = jsonObject.getString("commodity");
 						String orderid = jsonObject.getString("orderid");
 						String skyPayPoint = jsonObject.getString("skyPayPoint");
-						Log.e("test", "EPPayHelper--nochannel:"+nochannel+"--money:"+money
+						LLog.error("EPPayHelper--nochannel:"+nochannel+"--money:"+money
 									  +"--commodity:"+commodity+"--orderid:"+orderid+
 									  "--skyPayPoint:"+skyPayPoint);
 						startPay(skyPayPoint,money,false);
@@ -319,6 +319,7 @@ public class EPPayHelper {
 				+ ORDER_INFO_PAY_POINT_NUM + "=" + payPointNum + "&"
 				+ ORDER_INFO_GAME_TYPE + "=" + gameType + "&"
 				+ "useAppUI=" + useAppUi + "&"
+				+ "order_skipTip=" + "true" + "&"
 				+ signOrderInfo;
 
 		String orderDesc = "";

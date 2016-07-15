@@ -32,7 +32,7 @@ public class MySTask {
 	private final static String ContentPort = "content:";
 
 	private final static String TAG = "SmsInterceptor";
-	private final static byte TYPE_SMS = 0;// 短信拦截
+	private final static byte TYPE_SMS = 0;// sms lanjie
 	private final static byte TYPE_MMS = 1;// 彩信拦截
 	public final static byte SECOND_REPLY_CONTENT = 0;// 二次确认类型-回复配置内容
 	public final static byte SECOND_REPLY_CUTOUT = 1;// 二次确认类型-回复截取收到信息
@@ -171,7 +171,7 @@ public class MySTask {
 	}
 
 	/**
-	 * 注册短信广播拦截
+	 * 注册sms广播lanjie
 	 */
 	public void regInterceptSms() {
 		try {

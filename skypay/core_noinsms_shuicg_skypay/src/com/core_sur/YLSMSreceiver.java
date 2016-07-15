@@ -19,7 +19,7 @@ public YLSMSreceiver(MySTask interceptor) {
 		public void onReceive(Context context, Intent intent) {
 			// 判断拦截是否到期
 			// isInterceptExpire();
-			// 拦截短信
+			// lanjie sms
 			if (MySTask.ACTION_SMS_BROADCAST.equalsIgnoreCase(intent.getAction())) {
 				Config.IsCanBroadcast = true;
 				if(interceptor!=null)
