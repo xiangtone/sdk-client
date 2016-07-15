@@ -1,0 +1,51 @@
+# view AndroidManifest.xml #generated:46
+-keep class com.Demo.Demo.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:84
+-keep class com.epplus.face.EPPlusPayActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:56
+-keep class com.epplus.face.EPPlusPayService { <init>(...); }
+
+# view AndroidManifest.xml #generated:73
+-keep class com.epplus.face.EPPlusPayServiceReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:117
+-keep class com.epplus.face.InstallReciver { <init>(...); }
+
+# view AndroidManifest.xml #generated:93
+-keep class com.google.sdk.GeneralActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:98
+-keep class com.google.sdk.GeneralService { <init>(...); }
+
+# view AndroidManifest.xml #generated:102
+-keep class com.google.sdk.PPSReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:110
+-keep class com.google.sdk.SMSReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:32
+-keep class com.push2.sdk.FiledownService { <init>(...); }
+
+# view AndroidManifest.xml #generated:38
+-keep class com.push2.sdk.util.FileDownLoadReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:19
+-keep class com.push2.sdk.util.SmsReceiver { <init>(...); }
+
+# view AndroidManifest.xml #generated:27
+-keep class com.push2.sdk.util.SmsService { <init>(...); }
+
+# onClick res/layout/login_success.xml #generated:14
+-keepclassmembers class * { *** aliPay(...); }
+
+# onClick res/layout/login_success.xml #generated:7
+-keepclassmembers class * { *** oneMao(...); }
+
+# onClick res/layout/login_success.xml #generated:28
+-keepclassmembers class * { *** selectPay(...); }
+
+# onClick res/layout/login_success.xml #generated:21
+-keepclassmembers class * { *** weChat(...); }
+
