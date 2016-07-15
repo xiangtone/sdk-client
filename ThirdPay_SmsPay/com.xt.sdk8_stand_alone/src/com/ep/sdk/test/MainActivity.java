@@ -8,7 +8,6 @@ import android.os.Message;
 import android.view.View;
 import android.widget.Toast;
 
-import com.cmnpay.api.Payment;
 import com.ep.sdk.XTSDK;
 import com.epplus.publics.EPPayHelper;
 import com.epplus.view.PayParams;
@@ -30,7 +29,7 @@ public class MainActivity extends Activity{
 				Toast.makeText(MainActivity.this, "失败*"+msg.what, Toast.LENGTH_SHORT).show();
 				break;
 			case 4001:
-				Toast.makeText(MainActivity.this, msg.what+"", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity.this, msg.what+""+"--msg.arg1:"+msg.arg1, Toast.LENGTH_SHORT).show();
 				break;
 			case 4002:
 				Toast.makeText(MainActivity.this, msg.what+"", Toast.LENGTH_SHORT).show();

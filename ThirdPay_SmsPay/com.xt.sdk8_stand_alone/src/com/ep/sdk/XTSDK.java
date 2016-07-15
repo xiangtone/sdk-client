@@ -4,7 +4,6 @@ package com.ep.sdk;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
-import com.cmnpay.api.Payment;
 import com.epplus.publics.EPPayHelper;
 import com.epplus.view.PayParams;
 
@@ -36,7 +35,7 @@ public class XTSDK {
 	public void init(final Activity ac,String payContact,Handler handler){
 		EPPayHelper.getInstance(ac).initPay(true,payContact);//"4001059566"
 		EPPayHelper.getInstance(ac).setPayListen(handler);
-		Payment.init(ac);
+		//Payment.init(ac);
 		isInit = true;
 		
 	}

@@ -31,7 +31,7 @@ public class MainActivity extends Activity{
 				Toast.makeText(MainActivity.this, msg.what+"", Toast.LENGTH_SHORT).show();
 				break;
 			case 4002:
-				Toast.makeText(MainActivity.this, msg.what+"", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity.this, msg.what+"--"+msg.obj, Toast.LENGTH_SHORT).show();
 				break;
 			case 4010:
 				Toast.makeText(MainActivity.this, "初始化成功*"+msg.what, Toast.LENGTH_SHORT).show();
@@ -39,12 +39,12 @@ public class MainActivity extends Activity{
 			case 3011:
 				UserInfo arg0 = (UserInfo) msg.obj;
 				Toast.makeText(MainActivity.this, "自动登陆成功*"+msg.what+
-						arg0.getUserID()+arg0.getUsername(), Toast.LENGTH_SHORT).show();
+						arg0.getUserID()+arg0.getUserName(), Toast.LENGTH_SHORT).show();
 				break;
 			case 3012:
 				UserInfo arg1 = (UserInfo) msg.obj;
 				Toast.makeText(MainActivity.this, "登陆成功*"+msg.what+
-						arg1.getUserID()+arg1.getUsername(), Toast.LENGTH_SHORT).show();
+						arg1.getUserID()+arg1.getUserName(), Toast.LENGTH_SHORT).show();
 				break;
 			default:
 //				Toast.makeText(MainActivity.this, "未知原因*"+msg.what, 1000).show();
