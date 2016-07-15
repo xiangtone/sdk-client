@@ -57,12 +57,10 @@ public class URLUtils {
 	
 	//有卡
 	//public static final String WEB_BASE_URL="http://thirdpay.youkala.com:29141/";
-<<<<<<< HEAD
 	
 	//浩天
 	public static final String WEB_BASE_URL="http://thirdpay-webhook.n8wan.com:29141/";
-=======
->>>>>>> fc0bf1f266a819f3a79ef7425efe12ab5cbce777
+
 	
 	/**
 	 * 百度支付请求url
@@ -71,12 +69,11 @@ public class URLUtils {
 	//public static final String WEB_BAIDU_URL="http://baidupay.oss.vanggame.com:29141/";
 	//有卡
 	//public static final String WEB_BAIDU_URL="http://baidupay.youkala.com:29141/";
-<<<<<<< HEAD
+
 	
 	//haotian
 	public static final String WEB_BAIDU_URL="http://thirdpay-webhook.n8wan.com:29141/";
-=======
->>>>>>> fc0bf1f266a819f3a79ef7425efe12ab5cbce777
+
 	
 	/**
 	 * 银联支付请求url
@@ -86,11 +83,10 @@ public class URLUtils {
 	//有卡
 	//public static final String WEB_UNIONPAY_URL="http://unionpay.youkala.com:29141/";
 	
-<<<<<<< HEAD
+
 	//haotian
 	public static final String WEB_UNIONPAY_URL="http://unionpay-server.n8wan.com:29141/";
-	
-=======
+
 	
 	//支付宝签名
 	//public static final String WEB_ALISIGN_URL="http://thirdpay.youkala.com:29141/AlipaySign";
@@ -100,7 +96,7 @@ public class URLUtils {
 	public static String getWEB_BASE_URL(Context context){
 		return WebConfigUrl.instance(context).getWEB_BASE_URL();
 	}
->>>>>>> fc0bf1f266a819f3a79ef7425efe12ab5cbce777
+
 	
 	//百度
 	public static String getWEB_BAIDU_URL(Context context){
@@ -113,20 +109,17 @@ public class URLUtils {
 	}
 	
 	//支付宝签名
-<<<<<<< HEAD
+
 	//public static final String WEB_ALISIGN_URL="http://thirdpay.youkala.com:29141/AlipaySign";
 	
 	//haotian
 	public static final String WEB_ALISIGN_URL="http://thirdpay-webhook.n8wan.com:29141/AlipaySign";
-=======
+
 	public static String getWEB_ALISIGN_URL(Context context){
 		return WebConfigUrl.instance(context).getWEB_ALISIGN_URL();
 	}
 	
 	
-	
-	
->>>>>>> fc0bf1f266a819f3a79ef7425efe12ab5cbce777
 	
 	
 	/**
