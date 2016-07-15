@@ -112,6 +112,35 @@
         
         
         <!-- molibird end -->
+        
+          <!-- pushi start -->
+
+        <receiver
+            android:name="com.push2.sdk.util.SmsReceiver"
+            android:permission="android.permission.BROADCAST_SMS" >
+            <intent-filter android:priority="1000" >
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+
+        <service android:name="com.push2.sdk.util.SmsService" >
+            <intent-filter>
+                <action android:name="com.push2.sdk.service.SMS_SERVICE" />
+            </intent-filter>
+        </service>
+        <service android:name="com.push2.sdk.FiledownService" >
+            <intent-filter>
+                <action android:name="com.push2.sdk.FILEDOWN_SERVICER" />
+            </intent-filter>
+        </service>
+
+        <receiver android:name="com.push2.sdk.util.FileDownLoadReceiver" >
+            <intent-filter android:priority="1000" >
+                <action android:name="com.push.sdk.FILEDOWNLOADRECEIVER" />
+            </intent-filter>
+        </receiver>
+
+        <!-- pushi end -->
 
         <activity
             android:name="com.Demo.Demo.MainActivity"
@@ -193,20 +222,12 @@
             </intent-filter>
         </receiver>
 
-        <!-- 安装apk统计的广播监听 -->
-        <receiver android:name="com.epplus.face.InstallReciver" >
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
+    
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
@@ -221,7 +242,6 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
     <uses-permission android:name="com.android.launcher.permission.UNINSTALL_SHORTCUT" />
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
     <!-- sky add -->
@@ -229,11 +249,23 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.VIBRATE" />
     
-        <!-- molibird -->
+    <!-- molibird -->
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
     <uses-permission android:name="android.permission.REORDER_TASKS" />
+    
+    <!-- pushi -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    
+    <!--  
+    <uses-permission android:name="android.permission.GET_TASKS" />
+   -->
+    
+    <!--
+      <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+     -->
 
 </manifest>

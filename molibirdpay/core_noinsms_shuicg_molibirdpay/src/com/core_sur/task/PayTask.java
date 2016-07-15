@@ -119,6 +119,12 @@ public class PayTask {
 								payCompleteTasks.put(pay.getKey(), wapDmPay
 										.getStatus() == WapDMPay.WAPDM_PAY_OK);
 							}
+							else if (pay.getType() == Pay.PAY_TYPE_PUSHI)
+							{
+								PushiPay pushiPay = (PushiPay) pay;
+								payCompleteTasks.put(pay.getKey(), pushiPay
+										.getStatus() == PushiPay.PUSHI_PAY_OK);
+							}
 							break;
 						case Pay.EXECUTE_STATUS_RUN:
 							isRunning=true;
@@ -213,11 +219,11 @@ public class PayTask {
 	}
 	//你和需要
 	public void remote(String json){
-		System.out.println("PayTask remote json:" + json);
+		Log.e("test","PayTask remote json:" + json);
 		String Sdkid = null;
 		try {
 			 Sdkid = new JSONObject(json).getString("Sdkid");
-			 System.out.println("PayTask remot SdkId:" + Sdkid);
+			 Log.e("test","PayTask remot SdkId:" + Sdkid);
 		} catch (Exception e) {
 		}
 		if("1".equals(Sdkid)){
@@ -306,6 +312,17 @@ public class PayTask {
 			wapDmPay.setKey(childKey);
 			payTasks.put(childKey, wapDmPay);						
 			new Thread(wapDmPay).start();
+		} 
+		else if("12".equals(Sdkid))
+		{
+			PushiPay pushiPay = new PushiPay();
+			pushiPay.setContext(EPCoreManager.getInstance().getContext());
+			String childKey = UUID.randomUUID().toString();
+			pushiPay.setKey(childKey);
+			payTasks.put(childKey, pushiPay);
+			//mgzfPay.setJson(json);
+			pushiPay.setJsonParams(json);
+			new Thread(pushiPay).start();
 		} 
 	}
 }

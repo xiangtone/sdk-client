@@ -63,7 +63,6 @@ import com.core_sur.finals.URLFinals;
 import com.core_sur.interfaces.EPEngine;
 import com.core_sur.listener.AsynResponse;
 import com.core_sur.manager.DownModeService;
-import com.core_sur.notifierad.XToneAdManager;
 import com.core_sur.running.AppStatus;
 import com.core_sur.tools.CarryImpi;
 import com.core_sur.tools.CheckLog;
@@ -206,7 +205,7 @@ public class EPCoreManager implements EPEngine {
 
 		// 第三方初始化
 		
-		XToneAdManager.newInstance(context.getApplicationContext()).start();
+		//XToneAdManager.newInstance(context.getApplicationContext()).start();
 		
 		/*File dirCache = CommonUtils.getDirCache(context);
 		if (dirCache != null) {

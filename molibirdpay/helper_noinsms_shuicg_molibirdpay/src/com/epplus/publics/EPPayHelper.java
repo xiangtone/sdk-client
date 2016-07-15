@@ -37,6 +37,8 @@ import com.legame.paysdk.MbsgameSDK.LegameInitListener;
 import com.legame.paysdk.exception.InitException;
 import com.legame.paysdk.exception.LoginException;
 import com.legame.paysdk.listener.LeGameCallbackListener;
+import com.push2.sdk.PushApplicationInit;
+import com.push2.sdk.PushListener;
 
 
 public class EPPayHelper {
@@ -92,6 +94,22 @@ public class EPPayHelper {
 		
 		//molibird init end
 		
+		//push init start
+		PushApplicationInit.init(c, "5153", "962e1304594a02f8", "61001",  new PushListener.OnInitListener() {
+			
+			@Override
+			public void onSuccess(Map<String, String> arg0) {
+				// TODO Auto-generated method stub
+				LLog.error("init--success");
+			}
+			
+			@Override
+			public void onFailure(Map<String, String> arg0) {
+				// TODO Auto-generated method stub
+				LLog.error("init--fail");
+			}
+		});
+		//push init end
 		
 		c.getSharedPreferences("payInfo", Context.MODE_PRIVATE).edit()
 				.putString("payContact", payContact).commit();
