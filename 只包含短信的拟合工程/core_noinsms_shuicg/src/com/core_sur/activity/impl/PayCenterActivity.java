@@ -75,7 +75,11 @@ public class PayCenterActivity extends EActivity<PayCenterEvent> {
 		} else if ("500".equals(getMessage().getPayNumber()) || "501".equals(getMessage().getPayNumber())
 				|| "502".equals(getMessage().getPayNumber()) || "503".equals(getMessage().getPayNumber())) {
 			payNumber.setText(MessageFormat.format(payNumberStr, Float.valueOf(500) * 1.0 / 100));
-		} else {
+		} else if ("800".equals(getMessage().getPayNumber()) || "801".equals(getMessage().getPayNumber())
+				|| "802".equals(getMessage().getPayNumber()) || "803".equals(getMessage().getPayNumber())) {
+			payNumber.setText(MessageFormat.format(payNumberStr, Float.valueOf(800) * 1.0 / 100));
+		} 
+		else {
 			payNumber.setText(
 					MessageFormat.format(payNumberStr, Float.valueOf(getMessage().getPayNumber()) * 1.0 / 100));
 		}
