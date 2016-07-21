@@ -78,21 +78,43 @@ public class XTSDK {
 	 */
 	public void login(final Activity ac){
 		if(isInit){
-		//String url = "http://192.168.0.51:8080/account-test/jsp/login.jsp";
-		AccountService.getInstances().showWebDialog(ac,new CallBack() {
-			
-			@Override
-			public void loginSuccess(UserInfo arg0) {
-				userInfo = arg0;
-				Toast.makeText(ac, "登陆成功", Toast.LENGTH_SHORT).show();
-				Message msg = mHandler.obtainMessage();
-				msg.what = 3012;
-				msg.obj =arg0; 
-				mHandler.sendMessage(msg);
-			}
-		});
+			//String url = "http://192.168.0.51:8080/account-test/jsp/login.jsp";
+			AccountService.getInstances().showWebDialog(ac,new CallBack() {
+				
+				@Override
+				public void loginSuccess(UserInfo arg0) {
+					userInfo = arg0;
+					Toast.makeText(ac, "登陆成功", Toast.LENGTH_SHORT).show();
+					Message msg = mHandler.obtainMessage();
+					msg.what = 3012;
+					msg.obj =arg0; 
+					mHandler.sendMessage(msg);
+										
+				}		
+				
+				@Override
+				public void clickClose() {					
+					super.clickClose();
+					Toast.makeText(ac, "关闭界面成功", Toast.LENGTH_SHORT).show();
+					Message msg = mHandler.obtainMessage();
+					msg.what = 3013;					
+					mHandler.sendMessage(msg);
+				}
+				
+				@Override
+				public void loginFailure(String massage) {					
+					super.loginFailure(massage);
+					Toast.makeText(ac, "登录失败", Toast.LENGTH_SHORT).show();
+					Message msg = mHandler.obtainMessage();
+					msg.what = 3014;		
+					msg.obj = massage;
+					mHandler.sendMessage(msg);
+					
+				}
+			});
 		}
 	}
+	
 	
 	/**
 	 * 支付 
