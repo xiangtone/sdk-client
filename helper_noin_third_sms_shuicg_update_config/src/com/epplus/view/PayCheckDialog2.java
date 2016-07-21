@@ -15,6 +15,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -72,6 +74,9 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private HashMap<String, PayTypeBean> maps ;
 	
 	private HashMap<String, String> mShowFlags;
+	
+	private Handler payHandler;
+	private boolean isDispperforClick = false; //支付方式选择框的消失是否点击了其中的一种支付方式。(点返回键或者其他地方消失的时候false，否则为true)
 	 
 	
 	/**
@@ -84,7 +89,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	 * @param userOrderId
 	 */
 	@SuppressLint("NewApi") 
-	public PayCheckDialog2(Activity context,HashMap<String, String> showFlags, EPPayHelper ep,String gameType,PayParams params) {
+	public PayCheckDialog2(Activity context,HashMap<String, String> showFlags, EPPayHelper ep,String gameType,PayParams params,Handler payHandler) {
 		super(context);
 		this.assetsUtils = new AssetsUtils(context);
 		this.money =params.getPrice();
@@ -98,7 +103,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
    		 params.setWebOrderid(this.mShowFlags.get(ShowFlag.webOrderid));
    	    }
         this.mPayParams = params;
-		
+		this.payHandler = payHandler;
         init();
 	}
 	
@@ -263,6 +268,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private void wxWapPay() {
 		HttpStatistics.statistics(context,userOrderId,URLFlag.WxWapClick,gameType,mPayParams);
 		ep.wxWapPay(mPayParams);
+		isDispperforClick = true;
 		dismiss();
 		
 	}
@@ -282,6 +288,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private void weChatPay() {
 		HttpStatistics.statistics(context,userOrderId,URLFlag.WeChatPayClick,gameType,mPayParams);
 		ep.wxPay(mPayParams);
+		isDispperforClick = true;
 		dismiss();
 	}
 
@@ -291,6 +298,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private void baiduPay() {
 		HttpStatistics.statistics(context,userOrderId,URLFlag.BaidupayClick,gameType,mPayParams);
 		ep.baiduPay(mPayParams);
+		isDispperforClick = true;
 		dismiss();
 	}
 
@@ -300,6 +308,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private void unionPay() {
 		HttpStatistics.statistics(context,userOrderId,URLFlag.UnionpayClick,gameType,mPayParams);
 		ep.pluginPay(mPayParams);
+		isDispperforClick = true;
 		dismiss();
 
 	}
@@ -310,6 +319,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private void AlipayPay() {
 		HttpStatistics.statistics(context,userOrderId,URLFlag.AlipayClick,gameType,mPayParams);
 		ep.alipay(mPayParams);
+		isDispperforClick = true;
 		dismiss();
 	}
 
@@ -462,6 +472,12 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 		super.dismiss();
 		if(datas.size()>0){
 		 HttpStatistics.statistics(context,userOrderId,URLFlag.PayGuiCancel,gameType,mPayParams);
+		}
+		if (!isDispperforClick) {
+			Message msg = payHandler.obtainMessage();
+			msg.what = 4003; 			
+			msg.obj = "非点击支付弹出框消失";
+			payHandler.sendMessage(msg);
 		}
 	}
 	
