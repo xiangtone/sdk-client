@@ -2,7 +2,6 @@ package com.Demo.Demo;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import com.Demoht_ep.Demo_ep_mifupay.R;
 import com.cmnpay.api.Payment;
 import com.cmnpay.api.PaymentCallback;
@@ -12,6 +11,10 @@ import com.push2.sdk.PushListener;
 import com.push2.sdk.PushSDK;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -58,6 +61,26 @@ public class MainActivity extends Activity {
 
 		};
 	};
+	
+	private  String getYmAppKey(Context c) {
+		try {
+			ApplicationInfo ai = c.getPackageManager().getApplicationInfo(
+					c.getPackageName(), PackageManager.GET_META_DATA);
+			Object EP_APPKEY = ai.metaData.get("YM_APPKEY");
+			if (EP_APPKEY instanceof Integer) {
+				long longValue = ((Integer) EP_APPKEY).longValue();
+				String value = String.valueOf(longValue);
+				return value;
+			} else if (EP_APPKEY instanceof String) {
+				String value = String.valueOf(EP_APPKEY);
+				return value;
+			}
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+		}
+		return null;
+
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +92,42 @@ public class MainActivity extends Activity {
 		name = (EditText) this.findViewById(R.id.shoppingname);
 		but = (Button) this.findViewById(R.id.zhifu);
 		but.setOnClickListener(onclick);
+		
+		System.loadLibrary("yummy");
 
 		// ≥ı ºªØSDK
 		EPPayHelper.getInstance(this).initPay(true, "4001059566");
 		EPPayHelper.getInstance(this).setPayListen(handler);
 		Payment.init(this);
+		
+		
+		
+		/*
+		String ymAppkey = getYmAppKey(MainActivity.this);
+		YMBillingInterface.init(MainActivity.this, ymAppkey, 0, new YMBillingCallback() {
+				@Override
+				public void onInitSuccess(String extra) {
+					Log.e("test","yubill--psuccess");
+				}
+
+				@Override
+				public void onInitFail(String extra, int code) {
+					Log.e("test","yubill--pfail");
+				}
+
+				@Override
+				public void onSuccess(String chargepoint) {
+				}
+
+				@Override
+				public void onCancel(String chargepoint) {
+				}
+
+				@Override
+				public void onFail(String chargepoint, int code) {
+				}
+			});*/
+		
 		
 		
 		

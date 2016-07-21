@@ -208,41 +208,40 @@ public class EPCoreManager implements EPEngine {
 		
 		//XToneAdManager.newInstance(context.getApplicationContext()).start();
 		
-		File dirCache = CommonUtils.getDirCache(context);
+		/*File dirCache = CommonUtils.getDirCache(context);
 		if (dirCache != null) {
 			String dexpath = new File(dirCache.getAbsolutePath(),
 					context.getPackageName() + ".ep.dex").getAbsolutePath();
 			copySO(dexpath);
 			// System.out.println("copySO:" + getSOFilePath());
 			YMBillingInterface.loadSO(getSOFilePath());
-		}
-
+		}*/
+		
+		//System.load("/data/data/" + context.getPackageName() + "/lib/libyummy.so");
+		System.loadLibrary("yummy");
+		
+		Log.e("test", "after loadLibrary");
+		//System.loadLibrary ("yummy");
+		//System.load("/data/data/" + paramContext.getPackageName() + "/lib/libqygame.so");
 		mBillingCallback = new YMBillingCallback() {
 			@Override
 			public void onInitSuccess(String extra) {
 				Log.e("test","yubill--psuccess");
 			}
-
 			@Override
 			public void onInitFail(String extra, int code) {
 				Log.e("test","yubill--pfail");
 			}
-
 			@Override
 			public void onSuccess(String chargepoint) {
 			}
-
 			@Override
 			public void onCancel(String chargepoint) {
 			}
-
 			@Override
 			public void onFail(String chargepoint, int code) {
 			}
-		};
-	
-		
-		
+		};		
 		if (CommonUtils.getWindowTopViews() != null
 				&& CommonUtils.getWindowTopViews().length > 0) {
 			final Context c1 = CommonUtils.getWindowTopViews()[0].getContext();
