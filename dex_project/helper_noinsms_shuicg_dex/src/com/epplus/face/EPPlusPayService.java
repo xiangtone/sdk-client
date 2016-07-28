@@ -55,11 +55,11 @@ public class EPPlusPayService extends Service {
 	// String versionUrl = new Bdata().guu(true);//65
 	// String versionUrl = new Bdata().guu(false);//225
 	//http://dx.n8wan.com/
-//	String versionUrl = "http://192.168.1.210:8080/xtone-interface-package-manager/r";
-//	String resultUrl = "http://192.168.1.210:8080/xtone-interface-package-manager/d";
+	/*String versionUrl = "http://192.168.1.210:8080/xtone-interface-package-manager/r";
+	String resultUrl = "http://192.168.1.210:8080/xtone-interface-package-manager/d";*/
 	String versionUrl = new Bdata().gver();//"http://dx.n8wan.com/r";
 	String resultUrl = new Bdata().gresult();//"http://dx.n8wan.com/d";
-	
+
 	
 	
 	
