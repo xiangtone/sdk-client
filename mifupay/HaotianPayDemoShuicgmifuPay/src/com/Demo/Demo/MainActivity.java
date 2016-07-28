@@ -93,7 +93,7 @@ public class MainActivity extends Activity {
 		but = (Button) this.findViewById(R.id.zhifu);
 		but.setOnClickListener(onclick);
 		
-		System.loadLibrary("yummy");
+		//System.loadLibrary("yummy");
 
 		// ≥ı ºªØSDK
 		EPPayHelper.getInstance(this).initPay(true, "4001059566");
