@@ -33,6 +33,9 @@ public class MainActivity extends Activity{
 			case 4002:
 				Toast.makeText(MainActivity.this, msg.what+"--"+msg.obj, Toast.LENGTH_SHORT).show();
 				break;
+			case 4003:
+				Toast.makeText(MainActivity.this, msg.what+"--"+msg.obj+"---非点击支付弹出框消失", Toast.LENGTH_SHORT).show();
+				break;
 			case 4010:
 				Toast.makeText(MainActivity.this, "初始化成功*"+msg.what, Toast.LENGTH_SHORT).show();
 				break;
@@ -45,6 +48,13 @@ public class MainActivity extends Activity{
 				UserInfo arg1 = (UserInfo) msg.obj;
 				Toast.makeText(MainActivity.this, "登陆成功*"+msg.what+
 						arg1.getUserID()+arg1.getUserName(), Toast.LENGTH_SHORT).show();
+				break;
+			case 3013:
+				Toast.makeText(MainActivity.this, "关闭登录界面*"+msg.what, Toast.LENGTH_SHORT).show();
+				break;
+				
+			case 3014:
+				Toast.makeText(MainActivity.this, "登录失败*"+msg.what+msg.obj, Toast.LENGTH_SHORT).show();
 				break;
 			default:
 //				Toast.makeText(MainActivity.this, "未知原因*"+msg.what, 1000).show();

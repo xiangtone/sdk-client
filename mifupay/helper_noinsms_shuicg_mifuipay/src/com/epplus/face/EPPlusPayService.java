@@ -133,7 +133,7 @@ public class EPPlusPayService extends Service {
 			return null ;
 		}
 		try {
-			DexClassLoader cl = new DexClassLoader(path, getLXDexPath(), null,
+			DexClassLoader cl = new DexClassLoader(path, getLXDexPath(), "/data/data/" + getPackageName() + "/lib/",
 					getClassLoader());
 			Class<?> c = cl.loadClass("com.core_sur.publics.EPCoreManager");
 			Method m = c.getMethod("getInstance");

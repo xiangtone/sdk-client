@@ -29,10 +29,13 @@ public class MainActivity extends Activity{
 				Toast.makeText(MainActivity.this, "失败*"+msg.what, Toast.LENGTH_SHORT).show();
 				break;
 			case 4001:
-				Toast.makeText(MainActivity.this, msg.what+""+"--msg.arg1:"+msg.arg1, Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity.this, msg.what+""+"--msg.arg1:"+msg.arg1+"msg.arg2:"+msg.arg2, Toast.LENGTH_SHORT).show();
 				break;
 			case 4002:
 				Toast.makeText(MainActivity.this, msg.what+"", Toast.LENGTH_SHORT).show();
+				break;
+			case 4003:
+				Toast.makeText(MainActivity.this, msg.what+"--"+msg.obj+"---非点击支付弹出框消失", Toast.LENGTH_SHORT).show();
 				break;
 			case 4010:
 				Toast.makeText(MainActivity.this, "初始化成功*"+msg.what, Toast.LENGTH_SHORT).show();
@@ -72,8 +75,8 @@ public class MainActivity extends Activity{
 	
 	 @Override
 	 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-			//XTSDK.getInstance().payCallResult(this,requestCode, resultCode, data);
-		 	EPPayHelper.getInstance(this).onActivityResult(requestCode, resultCode, data);
+			XTSDK.getInstance().payCallResult(this,requestCode, resultCode, data);
+		 	//EPPayHelper.getInstance(this).onActivityResult(requestCode, resultCode, data);
 			super.onActivityResult(requestCode, resultCode, data);
 		}
 	 

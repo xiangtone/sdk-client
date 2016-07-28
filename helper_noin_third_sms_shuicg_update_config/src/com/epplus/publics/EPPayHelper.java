@@ -159,7 +159,7 @@ public class EPPayHelper {
 		
 		//判断渠道号不能大于8位
 		if(ConfigUtils.getEP_CHANNEL(c).length()>8){
-			Toast.makeText(c, "EP_APPKEY不能大于8位", Toast.LENGTH_SHORT).show();
+			Toast.makeText(c, "EP_CHANNEL不能大于8位", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		
@@ -238,7 +238,7 @@ public class EPPayHelper {
 				if (showFlags != null) {
 					if (c instanceof Activity) {
 						Activity activity = (Activity) c;
-						PayCheckDialog2 payCheckDialog = new PayCheckDialog2(activity, showFlags, this,gameType,params);
+						PayCheckDialog2 payCheckDialog = new PayCheckDialog2(activity, showFlags, this,gameType,params,payHandler);
 						payCheckDialog.show();
 						payselect = 0;
 					}
@@ -348,8 +348,8 @@ public class EPPayHelper {
 		
 		
 		c.registerReceiver(initReceiver, new IntentFilter(c.getPackageName()
-				+ ".my.init.listener"));*/
-		
+				+ ".my.init.listener"));
+		*/
 		
 	}
 
@@ -440,6 +440,7 @@ public class EPPayHelper {
 					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.AlipaySuccess,gameType,params);
 					msg.what = 4001; 
 					msg.arg1 = params.getPrice();
+					msg.arg2 = EPPayHelper.Pay_AliPay;
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
 				}
@@ -486,6 +487,7 @@ public class EPPayHelper {
 					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.UnionpaySuccess,gameType,params);
 					msg.what = 4001; 
 					msg.arg1 = params.getPrice();
+					msg.arg2 = EPPayHelper.Pay_UPPay;
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
 					
@@ -535,6 +537,7 @@ public class EPPayHelper {
 					
 					msg.what = 4001; 
 					msg.arg1 = params.getPrice();
+					msg.arg2 = EPPayHelper.Pay_WXPay;
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
 					
@@ -583,6 +586,7 @@ public class EPPayHelper {
 				  HttpStatistics.statistics(activity,mUserOrderId,URLFlag.BaidupaySuccess,gameType,params);
 				msg.what = 4001; 
 				msg.arg1 = params.getPrice();
+				msg.arg2 =  EPPayHelper.Pay_BAIDUPay;			
 				msg.obj = resultStatus;
 				payHandler.sendMessage(msg);
 				
@@ -636,6 +640,7 @@ public class EPPayHelper {
 					msg.what = 4001; 
 					msg.obj = resultStatus;
 					msg.arg1 = params.getPrice();
+					msg.arg2 = EPPayHelper.Pay_WxWapPay;
 					payHandler.sendMessage(msg);
 					if (progressDialog != null &&progressDialog.isShowing())
 						progressDialog.dismiss();

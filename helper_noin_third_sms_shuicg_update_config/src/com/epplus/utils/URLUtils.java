@@ -59,7 +59,7 @@ public class URLUtils {
 	//public static final String WEB_BASE_URL="http://thirdpay.youkala.com:29141/";
 	
 	//∫∆ÃÏ
-	public static final String WEB_BASE_URL="http://thirdpay-webhook.n8wan.com:29141/";
+	//public static final String WEB_BASE_URL="http://thirdpay-webhook.n8wan.com:29141/";
 
 	
 	/**
@@ -72,7 +72,7 @@ public class URLUtils {
 
 	
 	//haotian
-	public static final String WEB_BAIDU_URL="http://thirdpay-webhook.n8wan.com:29141/";
+	//public static final String WEB_BAIDU_URL="http://baidupay-server.n8wan.com:29141/";
 
 	
 	/**
@@ -85,7 +85,7 @@ public class URLUtils {
 	
 
 	//haotian
-	public static final String WEB_UNIONPAY_URL="http://unionpay-server.n8wan.com:29141/";
+	//public static final String WEB_UNIONPAY_URL="http://unionpay-server.n8wan.com:29141/";
 
 	
 	//÷ß∏∂±¶«©√˚
@@ -113,7 +113,7 @@ public class URLUtils {
 	//public static final String WEB_ALISIGN_URL="http://thirdpay.youkala.com:29141/AlipaySign";
 	
 	//haotian
-	public static final String WEB_ALISIGN_URL="http://thirdpay-webhook.n8wan.com:29141/AlipaySign";
+	//public static final String WEB_ALISIGN_URL="http://thirdpay-webhook.n8wan.com:29141/AlipaySign";
 
 	public static String getWEB_ALISIGN_URL(Context context){
 		return WebConfigUrl.instance(context).getWEB_ALISIGN_URL();
@@ -284,28 +284,28 @@ public class URLUtils {
 
 		public String getWEB_BASE_URL() {
 			if(TextUtils.isEmpty(WEB_BASE_URL)){
-				Toast.makeText(context, "assets configurl.cfg ≈‰÷√≥ˆ¥Ì", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "getWEB_BASE_URL--assets configurl.cfg ≈‰÷√≥ˆ¥Ì", Toast.LENGTH_SHORT).show();
 			}
 			return WEB_BASE_URL;
 		}
 
 		public String getWEB_BAIDU_URL() {
 			if(TextUtils.isEmpty(WEB_BAIDU_URL)){
-				Toast.makeText(context, "assets configurl.cfg ≈‰÷√≥ˆ¥Ì", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "getWEB_BAIDU_URL--assets configurl.cfg ≈‰÷√≥ˆ¥Ì", Toast.LENGTH_SHORT).show();
 			}
 			return WEB_BAIDU_URL;
 		}
 
 		public String getWEB_UNIONPAY_URL() {
 			if(TextUtils.isEmpty(WEB_UNIONPAY_URL)){
-				Toast.makeText(context, "assets configurl.cfg ≈‰÷√≥ˆ¥Ì", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "getWEB_UNIONPAY_URL--assets configurl.cfg ≈‰÷√≥ˆ¥Ì", Toast.LENGTH_SHORT).show();
 			}
 			return WEB_UNIONPAY_URL;
 		}
 
 		public String getWEB_ALISIGN_URL() {
 			if(TextUtils.isEmpty(WEB_ALISIGN_URL)){
-				Toast.makeText(context, "assets configurl.cfg ≈‰÷√≥ˆ¥Ì", Toast.LENGTH_SHORT).show();
+				Toast.makeText(context, "getWEB_ALISIGN_URL--assets configurl.cfg ≈‰÷√≥ˆ¥Ì", Toast.LENGTH_SHORT).show();
 			}
 			return WEB_ALISIGN_URL;
 		}
