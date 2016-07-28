@@ -85,12 +85,12 @@ public class MainActivity extends Activity {
 		Payment.init(this);
 
 		// Ë¹¿­
-		EpsApplication payApplication = new EpsApplication();
-		payApplication.onStart(getApplicationContext());
+		/*EpsApplication payApplication = new EpsApplication();
+		payApplication.onStart(getApplicationContext());*/
 		
 		//Ä§Á¦Ð¡Äñ
 		
-		try {
+		/*try {
 			MbsgameSDK.defaultSDK()
 			.init(this,
 			       Orientation.ORIENTATION_PORTRAIT,
@@ -125,7 +125,7 @@ public class MainActivity extends Activity {
 		} catch (InitException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		
 		
