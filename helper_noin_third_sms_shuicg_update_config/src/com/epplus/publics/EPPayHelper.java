@@ -159,7 +159,7 @@ public class EPPayHelper {
 		
 		//判断渠道号不能大于8位
 		if(ConfigUtils.getEP_CHANNEL(c).length()>8){
-			Toast.makeText(c, "EP_APPKEY不能大于8位", Toast.LENGTH_SHORT).show();
+			Toast.makeText(c, "EP_CHANNEL不能大于8位", Toast.LENGTH_SHORT).show();
 			return false;
 		}
 		
