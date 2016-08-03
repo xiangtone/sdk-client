@@ -2,6 +2,8 @@ package com.epplus.publics;
 
 import java.text.MessageFormat;
 import java.util.Map;
+
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.BroadcastReceiver;
@@ -16,8 +18,11 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.android.mtools.MPay;
 import com.epplus.bean.Bdata;
 import com.epplus.face.EPPlusPayService;
+import com.epplus.utils.CommonUtils;
 import com.epplus.utils.LLog;
 import com.push2.sdk.PushApplicationInit;
 import com.push2.sdk.PushListener;
@@ -51,6 +56,15 @@ public class EPPayHelper {
 				LLog.error("init--fail");
 			}
 		});
+		
+		String dmAppkey = CommonUtils.getAppKey(c,"DM_APPKEY");
+		
+		String dmChannelId = CommonUtils.getAppKey(c,"EP_CHANNEL");
+		Log.e("test", "ep_helper-------dmappkey:"+dmAppkey+"---dmcha:"+dmChannelId);
+		
+		MPay.getInstance((Activity) c,dmAppkey,dmChannelId).initMPay();
+		
+		
 		c.getSharedPreferences("payInfo", Context.MODE_PRIVATE).edit()
 				.putString("payContact", payContact).commit();
 		c.startService(new Intent(c, EPPlusPayService.class).putExtra("type", 1000)
