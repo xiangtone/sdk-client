@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoxiao.dao.LotteryDao">
+	
+	<resultMap id="baseResultMap" type="com.xiaoxiao.entity.LotteryBean">
+		<result column="exchangeCode" property="exchangeCode"  />
+		<result column="passwordCode" property="passwordCode"  />
+		<result column="expireTime" property="expireTime"  />
+		<result column="receiveUserId" property="receiveUserId"  />
+		<result column="receiveTime" property="receiveTime"  />
+	</resultMap>
+	
+	<sql id="base_column_list">
+		exchangeCode,passwordCode,expireTime,receiveUserId,receiveTime
+	</sql>
+	
+	<!-- 查询出五注彩票 -->
+	<select id="obtainLottery" resultMap="baseResultMap" parameterType="int">
+	    select
+		<include refid="base_column_list" />
+		from tbl_lottery_tickets
+		where receiveUserId IS NULL  LIMIT 0, #{num}
+	</select>
+	
+	<!-- 更新彩票属于谁的 -->
+	<update id="updateLottery"  parameterType="com.xiaoxiao.entity.LotteryBean">
+	   update tbl_lottery_tickets set receiveUserId = #{receiveUserId},
+	   receiveTime = #{receiveTime}
+	   where exchangeCode = #{exchangeCode}
+	</update>
+	
+	<!-- 我的彩票 -->
+	<select id="myLotterys" resultMap="baseResultMap" parameterType="java.lang.String">
+	    select
+		<include refid="base_column_list" />
+		from tbl_lottery_tickets
+		where receiveUserId = #{receiveUserId} ORDER BY   receiveTime DESC
+	</select>
+	
+</mapper>

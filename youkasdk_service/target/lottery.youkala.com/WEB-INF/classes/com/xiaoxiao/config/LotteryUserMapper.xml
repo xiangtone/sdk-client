@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoxiao.dao.LotteryUserDao">
+	
+	<resultMap id="baseResultMap" type="com.xiaoxiao.entity.LotteryUser">
+		<result column="id" property="id"  />
+		<result column="uid" property="uid"  />
+		<result column="lottery_activitie" property="lottery_activitie"  />
+	</resultMap>
+	
+	<sql id="base_column_list"> 
+		id,uid,lottery_activitie
+	</sql>
+	
+	
+	<select id="findByUid" resultType="com.xiaoxiao.entity.LotteryUser" parameterType="java.lang.String">
+	    select
+		<include refid="base_column_list" />
+		from tbl_lottery_user
+		where uid = #{uid}
+	</select>
+	
+	
+	<select id="findByUidActivitie" resultType="com.xiaoxiao.entity.LotteryUser" parameterType="java.lang.String" >
+	    select
+		<include refid="base_column_list" />
+		from tbl_lottery_user
+		where uid = #{uid} and lottery_activitie = #{lottery_activitie}
+	</select>
+	
+	
+	<insert id="addUser" parameterType="com.xiaoxiao.entity.LotteryUser">
+	   INSERT INTO tbl_lottery_user (uid,lottery_activitie) VALUES (#{uid} , #{lottery_activitie})
+	</insert>
+	
+	
+	
+</mapper>

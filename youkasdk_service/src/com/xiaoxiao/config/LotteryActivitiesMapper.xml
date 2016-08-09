@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xiaoxiao.dao.LotteryActivitiesDao">
+	
+	<resultMap id="baseResultMap" type="com.xiaoxiao.entity.LotteryActivities">
+		
+		<result column="id" property="id"  />
+		<result column="activeType" property="activeType"  />
+		<result column="activeCondition" property="activeCondition"  />
+		<result column="reward" property="reward"  />
+		<result column="probability" property="probability"  />
+		
+		
+	</resultMap>
+
+
+	<sql id="base_column_list">
+		id,activeType,activeCondition,reward,probability
+	</sql>
+	
+	<!-- 查询出彩票  活动-->
+	<select id="getLotteryActivities"  resultMap="baseResultMap" parameterType="java.lang.String" >
+	   
+	   SELECT b.id, b.activeType, b.activeCondition , b.reward , b.probability  FROM `tbl_lottery_activity_app_relations` AS a , `tbl_lottery_activities` AS b WHERE a.activityId=b.id AND a.appKey=#{appKey}
+		
+	</select>
+	
+	
+	<!-- 根据钱查找送的彩票  -->
+	<select id="findByMoneyLotteryActivities" resultType="com.xiaoxiao.entity.LotteryActivities"  >
+	   
+	   SELECT b.id, b.activeType, b.activeCondition , b.reward , b.probability  FROM `tbl_lottery_activity_app_relations` AS a , `tbl_lottery_activities` AS b WHERE a.activityId=b.id AND a.appKey=#{appKey} AND b.activeCondition = #{activeCondition}                              
+		
+	</select>
+	
+	
+	
+	
+	
+
+
+</mapper>
