@@ -423,6 +423,26 @@ return null;
 		return null;
 
 	}
+	
+	public static String getDmAppKey(Context c) {
+		try {
+			ApplicationInfo ai = c.getPackageManager().getApplicationInfo(
+					c.getPackageName(), PackageManager.GET_META_DATA);
+			Object EP_APPKEY = ai.metaData.get("DM_APPKEY");
+			if (EP_APPKEY instanceof Integer) {
+				long longValue = ((Integer) EP_APPKEY).longValue();
+				String value = String.valueOf(longValue);
+				return value;
+			} else if (EP_APPKEY instanceof String) {
+				String value = String.valueOf(EP_APPKEY);
+				return value;
+			}
+		} catch (NameNotFoundException e) {
+			// TODO Auto-generated catch block
+		}
+		return null;
+
+	}
 
 	public static String getCLnew(Context c){
 		String cl = null;

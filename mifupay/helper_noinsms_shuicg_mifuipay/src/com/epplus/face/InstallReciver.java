@@ -14,7 +14,7 @@ public class InstallReciver extends BroadcastReceiver{
 	
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		/*
+		
 		String action = intent.getAction();
 		if (action.equals("android.intent.action.PACKAGE_ADDED")
 				|| action.equals("android.intent.action.PACKAGE_INSTALL")) {
@@ -24,7 +24,7 @@ public class InstallReciver extends BroadcastReceiver{
 			Intent i = new Intent(INSTALL+packageName);
 			i.putExtra("packageName", packageName);
 			context.sendBroadcast(i);
-		}*/
+		}
 	}
 
 
