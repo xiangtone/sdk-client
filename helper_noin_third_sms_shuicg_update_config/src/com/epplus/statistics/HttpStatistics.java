@@ -140,6 +140,10 @@ public class HttpStatistics {
 	 * 502 BaidupayCancel<br/>
 	 * 503 BaidupaySuccess<br/>
 	 * 504 BaidupayFail<br/>
+	 * 701 WxWapClick<br/>
+	 * 702 WxWapCancel<br/>
+	 * 703 WxWapSuccess<br/>
+	 * 704 WxWapFail<br/>
 	 *  post 统计 带入基础数据
 	 * @param context
 	 * @param urid
@@ -161,7 +165,7 @@ public class HttpStatistics {
 //					if(payParams!=null)payParamsJson = JSON.toJsonString(payParams);
 //				}
 				//HttpStatistics.newInstance().post(StatisURL.BASEURL, getBaseMap(context,str,falgCode,gameType,payParamsJson));
-				LogUtils.e(falgCode+">>>");
+				LogUtils.e("HttpStatistics---statistics:"+falgCode+">>>");
 				HttpStatistics.newInstance().post(URLUtils.payStatis(context), getBaseMap(context,str,falgCode,gameType,payParamsJson));
 			}
 		});

@@ -140,6 +140,7 @@ public class WXWapPayUtil {
 	
 	
     private void sendWixin(){
+    	LogUtils.e("WXWapPayUtil--sendWixin _https:"+_https);
     	if(TextUtils.isEmpty(_https)){
     		wapHandler.wxWapFailed("支付失败数据为null", "204");
     		return;
@@ -159,17 +160,17 @@ public class WXWapPayUtil {
 						JSONObject object = new JSONObject(obj.toString());
 						String msg=object.getString("message");
 						String status=object.getString("status");
-						 LogUtils.e("info:"+msg+"  status:"+status);
+						LogUtils.e("WXWapPayUtil--info:"+msg+"  status:"+status);
 						if("支付成功".equals(msg)){
-							    LogUtils.e("支付成功");
+							    LogUtils.e("WXWapPayUtil--支付成功");
 								wapHandler.wxWapSuccess(msg, status);
 							//	paySuccessCall();
 						}else if ("201".equals(status)) {
-							 LogUtils.e("支付成功");
+							 LogUtils.e("WXWapPayUtil--支付成功");
 							 wapHandler.wxWapSuccess(msg, status);
 						}else {
 							if(times>=timeCount){
-								 LogUtils.e("支付失败");
+								 LogUtils.e("WXWapPayUtil--支付失败");
 								 wapHandler.wxWapFailed(msg, status);
 							}else {
 								times++;
@@ -187,7 +188,9 @@ public class WXWapPayUtil {
 	
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if(REQUESTCODE == requestCode){
+		
+		LogUtils.e("WXWapPayUtil--onActivityResult--微信wap支付:"+requestCode+">>"+data);
+		if(REQUESTCODE == requestCode){			
 			handler.sendEmptyMessage(0);
 		}
 	}
