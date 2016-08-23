@@ -1,0 +1,12 @@
+com\xiaoxiao\entity\LotteryUser.class
+com\xiaoxiao\dao\impl\LotteryDaoImpl.class
+com\xiaoxiao\dao\impl\LotteryUserDaoImpl.class
+com\xiaoxiao\service\LotteryService.class
+com\xiaoxiao\dao\LotteryDao.class
+com\xiaoxiao\controller\LotteryServlet.class
+com\xiaoxiao\entity\LotteryActivities.class
+com\xiaoxiao\entity\LotteryBean.class
+com\xiaoxiao\dao\impl\LotteryActivitiesDaoImpl.class
+com\xiaoxiao\dao\LotteryUserDao.class
+com\xiaoxiao\dao\LotteryActivitiesDao.class
+com\xiaoxiao\dao\impl\BasicDaoImpl.class

@@ -69,7 +69,7 @@ public class PayCenterActivity extends EActivity<PayCenterEvent> {
 		String payNumberStr = "支付金额: {0} 元";
 		payNumberIcon.setImageDrawable(getDrawble("payNumberIcon"));
 		//兼容沃+ 1001和1002的计费显示 501,502,503的计费显示
-		if ("1000".equals(getMessage().getPayNumber()) || "1001".equals(getMessage().getPayNumber())
+		/*if ("1000".equals(getMessage().getPayNumber()) || "1001".equals(getMessage().getPayNumber())
 				|| "1002".equals(getMessage().getPayNumber())) {
 			payNumber.setText(MessageFormat.format(payNumberStr, Float.valueOf(1000) * 1.0 / 100));
 		} else if ("500".equals(getMessage().getPayNumber()) || "501".equals(getMessage().getPayNumber())
@@ -79,9 +79,13 @@ public class PayCenterActivity extends EActivity<PayCenterEvent> {
 				|| "802".equals(getMessage().getPayNumber()) || "803".equals(getMessage().getPayNumber())) {
 			payNumber.setText(MessageFormat.format(payNumberStr, Float.valueOf(800) * 1.0 / 100));
 		} 
-		else {
+		else*/ {
+//			payNumber.setText(
+//					MessageFormat.format(payNumberStr, Float.valueOf(getMessage().getPayNumber()) * 1.0 / 100));
+			
+			//兼容沃+ 1的计费显示 ps:1001 显示10元
 			payNumber.setText(
-					MessageFormat.format(payNumberStr, Float.valueOf(getMessage().getPayNumber()) * 1.0 / 100));
+					MessageFormat.format(payNumberStr, Integer.valueOf(getMessage().getPayNumber()) / 100));
 		}
 
 		TextView positive = (TextView) findViewByTag("positive");

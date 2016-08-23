@@ -1,0 +1,3 @@
+魔信那边是作为升级的jar包放到原来的app里面
+所以，AndroidMainfest.xml里面的配置文件都需要另外处理。
+里面的service对方说可以用代理。EP_APPKEY和EP_CHANNEL在初始化的时候当成参数传到里面去，再做统计。

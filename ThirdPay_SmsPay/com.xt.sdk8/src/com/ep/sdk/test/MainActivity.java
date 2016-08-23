@@ -28,10 +28,10 @@ public class MainActivity extends Activity{
 				Toast.makeText(MainActivity.this, "失败*"+msg.what, Toast.LENGTH_SHORT).show();
 				break;
 			case 4001:
-				Toast.makeText(MainActivity.this, msg.what+"", Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity.this, msg.what+""+"--msg.arg1:"+msg.arg1+"msg.arg2:"+msg.arg2, Toast.LENGTH_SHORT).show();
 				break;
 			case 4002:
-				Toast.makeText(MainActivity.this, msg.what+"--"+msg.obj, Toast.LENGTH_SHORT).show();
+				Toast.makeText(MainActivity.this, msg.what+""+"msg.arg2:"+msg.arg2, Toast.LENGTH_SHORT).show();
 				break;
 			case 4003:
 				Toast.makeText(MainActivity.this, msg.what+"--"+msg.obj+"---非点击支付弹出框消失", Toast.LENGTH_SHORT).show();

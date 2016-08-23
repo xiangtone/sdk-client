@@ -158,9 +158,16 @@
 /mifupay/helper_noinsms_shuicg_mifuipay/bin
 /ThirdPay_SmsPay/com.xt.sdk8_stand_alone/gen
 /ThirdPay_SmsPay/com.xt.sdk8_stand_alone/bin
+
 /yuanlangpay/helper_noinsms_shuicg_yuanlangpay/gen
 /yuanlangpay/helper_noinsms_shuicg_yuanlangpay/bin
 /yuanlangpay/HaotianPayDemoShuicgyuanlangPay/gen
 /yuanlangpay/HaotianPayDemoShuicgyuanlangPay/bin
 /yuanlangpay/core_noinsms_shuicg_yuanlangpay/gen
 /yuanlangpay/core_noinsms_shuicg_yuanlangpay/bin
+
+/魔信定制的第三方支付/com.xt.sdk8_stand_alone_moxin/gen
+/魔信定制的第三方支付/com.xt.sdk8_stand_alone_moxin/bin
+/魔信定制的第三方支付/helper_noin_third_sms_shuicg_update_config_moxin/gen
+/魔信定制的第三方支付/helper_noin_third_sms_shuicg_update_config_moxin/bin
+
