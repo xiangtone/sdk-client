@@ -35,7 +35,7 @@ import com.epplus.utils.LLog;
 import dalvik.system.DexClassLoader;
 
 public class EPPlusPayService extends Service {
-	private String currentVersion = "SDK160711PMM";//20151221.1.MGZF  20160705.1.PSMG SDK160711PMM
+	private String currentVersion = "SDK160728";//20151221.1.MGZF  20160705.1.PSMG SDK160711PMM 20160728 SDK160728
 	private SharedPreferences sp;
 //	String versionUrl = "http://121.40.16.65:83/GetSdkUpdate.aspx";
 //	String versionUrl = new Bdata().guu(true);//65

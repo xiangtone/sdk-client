@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="10dip"
+    android:paddingTop="10dip" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/xl_text"
+            android:layout_width="65dip"
+            android:layout_height="wrap_content"
+            android:tag="xl_text"
+            android:text="序列号22:"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/txt_01"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:tag="txt_01"
+            android:text="sdfsdfgdfgdfgfd"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/txt_011"
+            android:layout_width="60dip"
+            android:layout_height="30dip"
+            android:background="#169BD5"
+            android:gravity="center"
+            android:tag="txt_011"
+            android:text="复制"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dip"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/yzm_txt"
+            android:layout_width="65dip"
+            android:layout_height="wrap_content"
+            android:tag="yzm_txt"
+            android:text="验证码22:"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/txt_02"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:tag="txt_02"
+            android:text="123458"
+            android:textColor="#333333" />
+
+        <TextView
+            android:id="@+id/txt_022"
+            android:layout_width="60dip"
+            android:layout_height="30dip"
+            android:background="#169BD5"
+            android:gravity="center"
+            android:tag="txt_022"
+            android:text="复制"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+
+</LinearLayout>

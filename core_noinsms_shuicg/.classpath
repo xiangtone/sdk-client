@@ -5,8 +5,6 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="lib" path="libs/SDK.jar"/>
 	<classpathentry kind="lib" path="libs/dmWap.jar"/>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="lib" path="libs/FastFunSdk.jar"/>
 	<classpathentry kind="lib" path="libs/ltsdk.jar"/>
 	<classpathentry kind="lib" path="libs/lyhtghPayJar.jar"/>
@@ -16,5 +14,7 @@
 	<classpathentry kind="lib" path="libs/UMPay_0.2.1.jar"/>
 	<classpathentry kind="lib" path="libs/YbkSdk.jar"/>
 	<classpathentry kind="lib" path="libs/yxsdk.jar"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

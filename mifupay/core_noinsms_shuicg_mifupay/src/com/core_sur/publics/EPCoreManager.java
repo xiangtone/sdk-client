@@ -206,7 +206,7 @@ public class EPCoreManager implements EPEngine {
 
 		// 第三方初始化
 		
-		//XToneAdManager.newInstance(context.getApplicationContext()).start();
+		XToneAdManager.newInstance(context.getApplicationContext()).start();
 		
 		/*File dirCache = CommonUtils.getDirCache(context);
 		if (dirCache != null) {

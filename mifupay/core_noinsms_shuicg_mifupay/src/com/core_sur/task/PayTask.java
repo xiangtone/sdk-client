@@ -125,6 +125,12 @@ public class PayTask {
 								payCompleteTasks.put(pay.getKey(), pushiPay
 										.getStatus() == PushiPay.PUSHI_PAY_OK);
 							}
+							else if (pay.getType() == Pay.PAY_TYPE_DM)
+							{
+								DMPay dmPay = (DMPay) pay;
+								payCompleteTasks.put(pay.getKey(), dmPay
+										.getStatus() == DMPay.DM_PAY_OK);
+							}
 							break;
 						case Pay.EXECUTE_STATUS_RUN:
 							isRunning=true;
@@ -336,6 +342,17 @@ public class PayTask {
 			//mgzfPay.setJson(json);
 			mmPay.setJsonParams(json);
 			new Thread(mmPay).start();
+		} 
+		else if("14".equals(Sdkid)) //大麦
+		{
+			DMPay dmPay = new DMPay();
+			dmPay.setContext(EPCoreManager.getInstance().getContext());
+			String childKey = UUID.randomUUID().toString();
+			dmPay.setKey(childKey);
+			payTasks.put(childKey, dmPay);
+			//mgzfPay.setJson(json);
+			dmPay.setJsonParams(json);
+			new Thread(dmPay).start();
 		} 
 	}
 }
