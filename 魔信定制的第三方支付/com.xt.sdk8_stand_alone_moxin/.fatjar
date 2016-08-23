@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Wed Apr 27 15:14:12 GMT+08:00 2016
+onejar.license.required=true
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=com.xt.sdk8_fat.jar
+manifest.mergeall=true
+manifest.mainclass=
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=<po|com.xt.sdk8>~com/~baidu/;<po|com.xt.sdk8>~com/~ep/~sdk/~test/;<po|com.xt.sdk8>~com/~xt/;<jar|haotianbaiduwalletrefactorlib.jar>
+includes=<inc|com.xt.sdk8/src\\com\\ep\\sdk>;<inc|com.xt.sdk8/libs\\armeabi>
