@@ -1,11 +1,7 @@
 package com.core_sur.task;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.util.Map;
-
 import org.json.JSONObject;
-
 import com.core_sur.Config;
 import com.core_sur.WCConnect;
 import com.core_sur.bean.FeeSMSStatusMessage;
@@ -16,7 +12,6 @@ import com.core_sur.tools.LogUtil;
 import com.push2.sdk.ErrorCode;
 import com.push2.sdk.PushListener;
 import com.push2.sdk.PushSDK;
-
 import android.app.Activity;
 
 public class PushiPay extends Pay{
@@ -102,6 +97,7 @@ public class PushiPay extends Pay{
 			String str = "支付失败不发放道具..";
 		}
 	};
+	
 	
 	
 
@@ -202,6 +198,8 @@ public class PushiPay extends Pay{
 		FeeSMSStatusMessage feeSMSStatusMessage = new FeeSMSStatusMessage(
 				timeStamp, -1);
 	}
+	
+	
 
 	public int getStatus()
 	{
