@@ -83,12 +83,38 @@ public class XTSDK {
 				
 				@Override
 				public void loginSuccess(UserInfo arg0) {
-					userInfo = arg0;
+					
+					AccountService.getInstances().authLogin(ac, new CallBack(){						
+						@Override
+						public void loginSuccess(UserInfo agr1) {
+							userInfo = agr1;
+							Toast.makeText(ac, "登陆成功", Toast.LENGTH_SHORT).show();
+							Message msg = mHandler.obtainMessage();
+							msg.what = 3012;
+							msg.obj =userInfo; 
+							mHandler.sendMessage(msg);
+						}
+						
+						@Override
+						public void loginFailure(String massage) {
+							super.loginFailure(massage);
+							Toast.makeText(ac, "登录失败", Toast.LENGTH_SHORT).show();
+							Message msg = mHandler.obtainMessage();
+							msg.what = 3014;		
+							msg.obj = massage;
+							mHandler.sendMessage(msg);
+						}
+					});
+					
+					/*userInfo = arg0;
 					Toast.makeText(ac, "登陆成功", Toast.LENGTH_SHORT).show();
 					Message msg = mHandler.obtainMessage();
 					msg.what = 3012;
-					msg.obj =arg0; 
-					mHandler.sendMessage(msg);
+					msg.obj =userInfo; 
+					mHandler.sendMessage(msg);*/
+					
+					
+					
 										
 				}		
 				

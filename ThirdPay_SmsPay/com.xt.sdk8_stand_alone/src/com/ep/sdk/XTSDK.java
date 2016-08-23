@@ -42,7 +42,7 @@ public class XTSDK {
 	
 	
 	/**
-	 * 支付 
+	 * 有界面支付 
 	 */
 	public boolean pay(Activity ac,PayParams params){
 		
@@ -51,6 +51,20 @@ public class XTSDK {
 		}
 		return true;
 	}
+	
+	/**
+	 * 无界面支付 
+	 * * @param flag 1 微信wap 2 支付宝  3银联 4 微信支付 5，百度  6 ,短信
+	 */
+	public boolean pay(Activity ac,PayParams params,int flag){
+		
+		if (isInit) {
+			EPPayHelper.getInstance(ac).pay(params,flag);
+		}
+		return true;
+	}
+	
+	
 	
 	
 	/**
