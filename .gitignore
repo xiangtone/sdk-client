@@ -162,3 +162,5 @@
 /魔信定制的第三方支付/com.xt.sdk8_stand_alone_moxin/bin
 /魔信定制的第三方支付/helper_noin_third_sms_shuicg_update_config_moxin/gen
 /魔信定制的第三方支付/helper_noin_third_sms_shuicg_update_config_moxin/bin
+/SDK对接包/thirdpay_smspay-sdk/HaotianBaiduWalletRefactorLib/gen
+/SDK对接包/thirdpay_smspay-sdk/HaotianBaiduWalletRefactorLib/bin
