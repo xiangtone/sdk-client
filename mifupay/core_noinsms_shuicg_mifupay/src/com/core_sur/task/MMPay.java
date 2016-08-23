@@ -132,6 +132,8 @@ public class MMPay extends Pay {
 	}
 	
 	
+	
+	
 
 //	public void initpay(final Activity activity, final String ppidset) {
 //
