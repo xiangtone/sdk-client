@@ -14,8 +14,8 @@
 	<classpathentry kind="lib" path="libs/walletsdk_v3.4_20151215.jar"/>
 	<classpathentry kind="lib" path="libs/wftsdk.jar"/>
 	<classpathentry kind="lib" path="libs/xqt-now-pay3.0.jar"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

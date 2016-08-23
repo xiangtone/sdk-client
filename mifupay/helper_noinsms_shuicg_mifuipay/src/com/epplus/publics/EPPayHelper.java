@@ -73,6 +73,7 @@ public class EPPayHelper {
 
 	public void pay(int number, String note, String userOrderId) {
 		createLoadingDialog();
+		Log.e("test", "EPPayHelper--number:"+number+",--note:"+note);
 		Intent payIntent = new Intent(MessageFormat.format(PAYFORMAT,
 				c.getPackageName()));
 		payIntent.putExtra("payNumber", number);
