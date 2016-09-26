@@ -89,8 +89,9 @@ public class HttpStatistics {
 			payParams = "";
 		}
 		bean.setPayParams(payParams);
+		//LogUtils.e("HttpStatics---HashMap--bean:"+bean);
 		String json = JSON.toJsonString(bean);
-		LogUtils.e( "json:"+json);
+		LogUtils.e( "HttpStatics---getBaseMap--json:"+json);
 		String encodeData =EncodeUtils.encode(json);
 		
 		map.put("op_notifyData", encodeData);
@@ -156,16 +157,24 @@ public class HttpStatistics {
 			@Override
 			public void run() {
 				String str =urid;
-				if(TextUtils.isEmpty(urid)){str = "";}
+				if(TextUtils.isEmpty(urid)){
+					str = "";
+				}
+				//LogUtils.e("HttpStatistics---statistics--urid:"+urid+">>>");
+				//LogUtils.e("HttpStatistics---statistics--payParams:"+payParams.toString()+">>>");
+				
 				String payParamsJson = "";
-				if(payParams!=null)payParamsJson = JSON.toJsonString(payParams);
+				if(payParams!=null)
+					payParamsJson = JSON.toJsonString(payParams);
+				
+				//LogUtils.e("HttpStatistics---statistics--payParamsJson:"+payParamsJson+">>>");
 //				if(ShowFlag.danji.equals(gameType)){
 //					payParamsJson = "";
 //				}else if (ShowFlag.wangyou.equals(gameType)) {
 //					if(payParams!=null)payParamsJson = JSON.toJsonString(payParams);
 //				}
 				//HttpStatistics.newInstance().post(StatisURL.BASEURL, getBaseMap(context,str,falgCode,gameType,payParamsJson));
-				LogUtils.e("HttpStatistics---statistics:"+falgCode+">>>");
+				LogUtils.e("HttpStatistics---statistics--falgCode:"+falgCode+">>>");
 				HttpStatistics.newInstance().post(URLUtils.payStatis(context), getBaseMap(context,str,falgCode,gameType,payParamsJson));
 			}
 		});

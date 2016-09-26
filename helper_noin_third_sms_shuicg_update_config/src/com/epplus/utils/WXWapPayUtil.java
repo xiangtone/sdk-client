@@ -117,7 +117,8 @@ public class WXWapPayUtil {
 					JSONObject jsonObject = new JSONObject(obj.toString());
 					String weixin= jsonObject.getString("wixin");
 					final String https= jsonObject.getString("https");
-					
+					LogUtils.e("WXWapPay---pay--jsonObject:"+jsonObject.toString());
+					LogUtils.e("WXWapPay---pay--weixin:"+weixin+"--https:"+https);
 					_https = https;
 					_weixin= weixin;
                     Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse(weixin));
@@ -126,9 +127,11 @@ public class WXWapPayUtil {
 					
 				} catch (JSONException e) {
 					e.printStackTrace();
+					LogUtils.e("WXWapPay---pay--e.getMessage():"+e.getMessage());
 					wapHandler.wxWapFailed("Ê§°Ü", "204");
 				}
 				}else {
+					LogUtils.e("WXWapPay---pay--obj==null");
 					wapHandler.wxWapFailed("Ê§°Ü", "204");
 				}
 			}

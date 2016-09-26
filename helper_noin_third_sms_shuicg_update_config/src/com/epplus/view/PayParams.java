@@ -170,6 +170,18 @@ public class PayParams{
 	public void setOrderID(String orderID) {
 		this.orderID = orderID;
 	}
+	
+	
+
+	
+	public String toString() {
+		return "price:"+String.valueOf(price)+
+				"--productName:"+productName+
+				"--productDesc"+productDesc+
+				"--cpOrderId:"+cpOrderId+
+				"--uid:"+uid+
+				"--webOrderid:"+webOrderid;
+	}
 
 	
 	

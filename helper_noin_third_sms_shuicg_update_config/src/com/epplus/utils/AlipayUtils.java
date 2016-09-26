@@ -181,9 +181,10 @@ public class AlipayUtils {
 					Constructor constructor = PayTaskClass.getDeclaredConstructor(Activity.class);
 					Object PayTask_ = constructor.newInstance(activity);
 					
-					Method pay = PayTaskClass.getDeclaredMethod("pay", String.class);
+					//新版本的20160825支付宝增加了boolean.class
+					Method pay = PayTaskClass.getDeclaredMethod("pay", String.class, boolean.class);
 				//	String result = (String) pay.invoke(PayTask_, payInfo);
-					String result = (String) pay.invoke(PayTask_, mPayInfo);
+					String result = (String) pay.invoke(PayTask_, mPayInfo, true);
 					
 					Message msg = new Message();
 					msg.what = SDK_PAY_FLAG;

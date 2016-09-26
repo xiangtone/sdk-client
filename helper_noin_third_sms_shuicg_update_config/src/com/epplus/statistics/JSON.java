@@ -11,6 +11,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.epplus.utils.LogUtils;
+
 public class JSON {
 
 	
@@ -24,33 +26,43 @@ public class JSON {
 		Class clazz = obj.getClass();
 		JSONObject jsonObject = new JSONObject();
 		Field[] fields = clazz.getDeclaredFields();
+		//LogUtils.e("JSON---toJsonString--fieldsLength():"+fields.length);
 		for (Field field : fields) {
 			String fieldName = field.getName();
-
+			//LogUtils.e("JSON---toJsonString--fieldName():"+fieldName);
 			Class type = field.getType();
 			String newfieldName = "get"
 					+ fieldName.substring(0, 1).toUpperCase()
 					+ fieldName.substring(1);
+			//LogUtils.e("JSON---toJsonString--newfieldName():"+newfieldName);
 			try {
 				Method m = clazz.getMethod(newfieldName, null);
 				Object value = m.invoke(obj, null);
+				//LogUtils.e("JSON---toJsonString--value:"+value);
 				//System.out.println(value);
 				if(value!=null){
 					jsonObject.put(field.getName(), value);
+					//LogUtils.e("JSON---toJsonString--field.getName():"+field.getName()+"--value:"+value);
 				}
+				
 			} catch (NoSuchMethodException e) {
+				LogUtils.e("JSON---toJsonString--NoSuchMethodException-e.getMessage():"+e.getMessage());
 				e.printStackTrace();
 				return null;
 			} catch (IllegalAccessException e) {
+				LogUtils.e("JSON---toJsonString--IllegalAccessException");
 				e.printStackTrace();
 				return null;
 			} catch (IllegalArgumentException e) {
+				LogUtils.e("JSON---toJsonString--IllegalArgumentException");
 				e.printStackTrace();
 				return null;
 			} catch (InvocationTargetException e) {
+				LogUtils.e("JSON---toJsonString--InvocationTargetException");
 				e.printStackTrace();
 				return null;
 			} catch (JSONException e) {
+				LogUtils.e("JSON---toJsonString--JSONException");
 				e.printStackTrace();
 				return null;
 			}

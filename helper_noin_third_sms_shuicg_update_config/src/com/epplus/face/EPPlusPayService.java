@@ -65,6 +65,10 @@ public class EPPlusPayService extends Service {
 	String resultUrl = new Bdata().gresult();//"http://dx.n8wan.com/d";
 	
 	
+	//String versionUrl = new Bdata().gver_nfyg();//"http://dex.wifi8.com/r";
+	//String resultUrl = new Bdata().gresult_nfyg();//"http://dex.wifi8.com/d";
+	
+	
 	
 	
 	

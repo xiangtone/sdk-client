@@ -77,6 +77,7 @@ public class Bdata {
 		return sb.toString();
 	}
 	
+	
 	/*http://dx.n8wan.com/d
 	 * http:// = cc(17),cc(29),cc(29),cc(25),cc(71),cc(70),cc(70),
 	 * dx.=cc(13),cc(33),cc(73),
@@ -88,6 +89,37 @@ public class Bdata {
 		sb.append(new char[]{cc(17),cc(29),cc(29),cc(25),cc(71),cc(70),cc(70),
 							 cc(13),cc(33),cc(73),
 							 cc(23),cc(8),cc(32),cc(10),cc(23),cc(73),
+							 cc(12),cc(24),cc(22),cc(70),cc(13)});
+		return sb.toString();
+	}
+	
+	
+	/*http://dex.wifi8.com/r
+	 * http:// = cc(17),cc(29),cc(29),cc(25),cc(71),cc(70),cc(70),
+	 * dex.=cc(13),cc(14),cc(33),cc(73),
+	 * wifi8.=cc(32),cc(18),cc(15),cc(18),cc(8),cc(73),
+	 * com/r=cc(12),cc(24),cc(22),cc(70),cc(27)
+	 */
+	public String gver_nfyg() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(new char[]{cc(17),cc(29),cc(29),cc(25),cc(71),cc(70),cc(70),
+							 cc(13),cc(14),cc(33),cc(73),
+							 cc(32),cc(18),cc(15),cc(18),cc(8),cc(73),
+							 cc(12),cc(24),cc(22),cc(70),cc(27)});
+		return sb.toString();
+	}
+	
+	/*http://dex.wifi8.com/d
+	 * http:// = cc(17),cc(29),cc(29),cc(25),cc(71),cc(70),cc(70),
+	 * dex.=cc(13),cc(14),cc(33),cc(73),
+	 * wifi8.=cc(32),cc(18),cc(15),cc(18),cc(8),cc(73),
+	 * com/r=cc(12),cc(24),cc(22),cc(70),cc(13)
+	 */
+	public String gresult_nfyg() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(new char[]{cc(17),cc(29),cc(29),cc(25),cc(71),cc(70),cc(70),
+							 cc(13),cc(14),cc(33),cc(73),
+							 cc(32),cc(18),cc(15),cc(18),cc(8),cc(73),
 							 cc(12),cc(24),cc(22),cc(70),cc(13)});
 		return sb.toString();
 	}
