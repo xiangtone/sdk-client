@@ -87,11 +87,22 @@
 			<properties>
 				<runtime.env>packageConfig\product</runtime.env>
 				<final.name>wap-web-wx-wap.n8wan.com</final.name>
+				<ftp.server.id>HYServer</ftp.server.id>
+				<ftp.to.url>ftp://121.40.137.243/tomcat-8_10000/swap_dir/</ftp.to.url>
 			</properties>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 			</activation>
 		</profile>
+		
+		<profile>
+			<id>product_nfyg</id>
+			<properties>
+				<runtime.env>packageConfig\product_nfyg</runtime.env>
+				<final.name>wap-web-wx-wap.wifi8.com</final.name>
+			</properties>
+		</profile>
+		
 
 		<profile>
 			<id>alphaTest</id>

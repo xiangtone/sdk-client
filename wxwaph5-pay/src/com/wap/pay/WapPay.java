@@ -117,9 +117,9 @@ public class WapPay extends HttpServlet {
 		//String uString = "http://thirdpay-webhook.n8wan.com:29141/WXWapServlet";
 		//String uString = "http://thirdpay-webhook.n8wan.com:29141/WXH5Servlet";//ConfigUtils.wap_wxurl;
 		
-		//String url = ConfigUtils.getWap_wxurl();  
+		String url = ConfigUtils.getWap_wxurl();  
 		//String url = "http://192.168.0.111:8080/native-pay/TestPay2";
-		String url = "http://192.168.0.111:8080/native-pay/TestPay2";
+		//String url = "http://192.168.0.111:8080/native-pay/TestPay2";
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("service", "pay.weixin.wappay");
