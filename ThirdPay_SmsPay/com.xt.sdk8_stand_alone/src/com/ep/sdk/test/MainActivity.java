@@ -71,8 +71,10 @@ public class MainActivity extends Activity{
 			
 			XTSDK.getInstance().pay(this,pa);			
 			break;
-		case R.id.button5:
-			PayParams wx_pa = new PayParams(1, "123456", "苹果", "商品名称是苹果商品id为123456");
+		/*case R.id.button5:
+			String price = "1";
+			
+			PayParams wx_pa = new PayParams(Integer.parseInt(price), "8_default_1472181872086", "苹果", "商品名称是苹果商品id为123456");
 			
 			XTSDK.getInstance().pay(this,wx_pa,1);
 			break;
@@ -80,7 +82,7 @@ public class MainActivity extends Activity{
 			PayParams ali_pa = new PayParams(1, "123456", "苹果", "商品名称是苹果商品id为123456");
 			
 			XTSDK.getInstance().pay(this,ali_pa,2);
-			break;
+			break;*/
 
 		default:
 			break;

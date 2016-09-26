@@ -7,6 +7,10 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.account.bean.UserInfo;
 import com.ep.sdk.XTSDK;
 import com.epplus.view.PayParams;
@@ -85,7 +89,12 @@ public class MainActivity extends Activity{
 			Toast.makeText(this, "退出", Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.button4:
-			PayParams pa = new PayParams(1, "123456", "苹果", "商品名称是苹果商品id为123456");
+			long currentTime = System.currentTimeMillis();
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+			Date date = new Date(currentTime);
+			//System.out.println(formatter.format(date));
+			
+			PayParams pa = new PayParams(1, formatter.format(date), "苹果", "商品名称是苹果商品id为123456");
 			boolean b = XTSDK.getInstance().pay(this,pa);
 			if(!b){
 				Toast.makeText(this, "你还未登录", Toast.LENGTH_SHORT).show();
