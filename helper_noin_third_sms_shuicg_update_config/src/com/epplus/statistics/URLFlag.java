@@ -38,8 +38,13 @@ public interface URLFlag {
 	WxWapClick =701 ,
 	WxWapCancel =702 ,
 	WxWapSuccess = 703 ,
-	WxWapFail  = 704 ;
+	WxWapFail  = 704 ,
 	
+	//Íþ¸»Í¨ 
+	WxSwiftPayClick =1001 ,
+	WxSwiftPayCancel =1002 ,
+	WxSwiftPaySuccess = 1003 ,
+	WxSwiftPayFail  = 1004 ;
 	
 
 }

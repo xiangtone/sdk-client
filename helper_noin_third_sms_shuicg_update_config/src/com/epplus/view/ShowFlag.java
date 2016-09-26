@@ -32,6 +32,11 @@ public interface ShowFlag {
    String wxWapPay = "wxwap";
    
    /**
+    * SwiftPay 微信
+    */
+   String wxSwiftPay = "wxswiftpay";
+   
+   /**
     * 显示资费
     */
    String productInfo = "productInfo";

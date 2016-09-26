@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.epplus.bean.Bdata;
 import com.epplus.face.EPPlusPayService;
 import com.epplus.statistics.HttpStatistics;
+import com.epplus.statistics.JSON;
 import com.epplus.statistics.ThreadUtil;
 import com.epplus.statistics.URLFlag;
 import com.epplus.utils.AlipayUtils;
@@ -48,11 +49,12 @@ import com.epplus.utils.WXSwiftPayUtil;
 import com.epplus.utils.WXWapPayUtil;
 import com.epplus.utils.WXWapPayUtil.WxWapHandler;
 import com.epplus.view.PayCheckDialog2;
+import com.epplus.view.PayCheckDialogActivity;
 import com.epplus.view.PayParams;
 import com.epplus.view.ShowFlag;
 
-public class EPPayHelper {
-	private static EPPayHelper epHelper = new EPPayHelper();
+public class EPPayHelper2 {
+	private static EPPayHelper2 epHelper = new EPPayHelper2();
 	private Activity c;
 	//private String PAYFORMAT = "{0}.com.my.fee.start";
 	private String PAYFORMAT = new Bdata().gpf();
@@ -62,15 +64,15 @@ public class EPPayHelper {
 	//游戏类型
 	private String gameType = ShowFlag.gameType;
 	
-	private EPPayHelper(){
+	private EPPayHelper2(){
 		
 	}
 
-	public static EPPayHelper getInstance(Activity c) {
+	public static EPPayHelper2 getInstance(Activity c) {
 		if(epHelper==null){
-			epHelper = new EPPayHelper();
+			epHelper = new EPPayHelper2();
 		}
-		EPPayHelper.epHelper.c = c;
+		EPPayHelper2.epHelper.c = c;
 		return epHelper;
 	}
 
@@ -97,7 +99,8 @@ public class EPPayHelper {
 		}else {
 			final ProgressDialog progressDialog = new ProgressDialog(c);
 			progressDialog.setMessage("支付获取中...");
-			progressDialog.setCancelable(false);
+			//progressDialog.setCancelable(false);
+			progressDialog.setCanceledOnTouchOutside(false);
 			progressDialog.show();
 			ConfigUtils.setShowPayChannel(c, new IHttpResult() {
 				@Override
@@ -136,7 +139,8 @@ public class EPPayHelper {
 			}else {
 				final ProgressDialog progressDialog = new ProgressDialog(c);
 				progressDialog.setMessage("支付获取中...");
-				progressDialog.setCancelable(false);
+				//progressDialog.setCancelable(false);
+				progressDialog.setCanceledOnTouchOutside(false);
 				progressDialog.show();
 				ConfigUtils.setShowPayChannel(c, new IHttpResult() {
 					@Override
@@ -399,8 +403,22 @@ public class EPPayHelper {
 				if (showFlags != null) {
 					if (c instanceof Activity) {
 						Activity activity = (Activity) c;
-						PayCheckDialog2 payCheckDialog = new PayCheckDialog2(activity, showFlags, this,gameType,params,payHandler);
-						payCheckDialog.show();
+						//PayCheckDialog2 payCheckDialog = new PayCheckDialog2(activity, showFlags, this,gameType,params,payHandler);
+						//payCheckDialog.show();
+						
+						Intent intent = new Intent(activity,PayCheckDialogActivity.class);
+						
+						intent.putExtra("params", JSON.toJsonString(params));
+						intent.putExtra("mShowFlags",JSON.toMapJson(showFlags));
+						intent.putExtra("gameType", gameType);
+						
+						activity.startActivity(intent);
+						if(showFlags.containsKey(ShowFlag.webOrderid)){
+					   		 params.setWebOrderid(showFlags.get(ShowFlag.webOrderid));
+					   	 }
+						HttpStatistics.statistics(c,params.getCpOrderId(),URLFlag.PayGuiShow,gameType,params);
+						
+						
 						payselect = 0;
 					}
 				}
@@ -596,7 +614,7 @@ public class EPPayHelper {
 		
 		final Message msg = payHandler.obtainMessage();
 		if(c instanceof Activity){
-			payselect = EPPayHelper.Pay_AliPay;
+			payselect = EPPayHelper2.Pay_AliPay;
 			final Activity activity = (Activity)c;
 			AlipayUtils alipayUtils = new AlipayUtils(activity,params.getWebOrderid(),params.getCpOrderId(), new AlipayHandler() {
 				
@@ -607,9 +625,10 @@ public class EPPayHelper {
 					LogUtils.e("aliPaySuccess--msg.arg2 = EPPayHelper.Pay_AliPay");
 					msg.what = 4001; 
 					msg.arg1 = params.getPrice();
-					msg.arg2 = EPPayHelper.Pay_AliPay;
+					msg.arg2 = EPPayHelper2.Pay_AliPay;
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
+					PayCheckDialogActivity.sendBroadcast(c);
 				}
 				
 				@Override
@@ -617,9 +636,10 @@ public class EPPayHelper {
 					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.AlipayFail,gameType,params);
 					LogUtils.e("aliPayFailed--msg.arg2 = EPPayHelper.Pay_AliPay");
 					msg.what = 4002; 
-					msg.arg2 = EPPayHelper.Pay_AliPay;
+					msg.arg2 = EPPayHelper2.Pay_AliPay;
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
+					PayCheckDialogActivity.sendBroadcast(c);
 				}
 			});
 			
@@ -647,7 +667,7 @@ public class EPPayHelper {
 	public void pluginPay(final PayParams params){
 		final Message msg = payHandler.obtainMessage();
 		if(c instanceof Activity){
-			payselect = EPPayHelper.Pay_UPPay;
+			payselect = EPPayHelper2.Pay_UPPay;
 			final Activity activity = (Activity)c;
 			payUtil= new UnionpayUtil(activity,params.getWebOrderid(),params.getCpOrderId(),new PluginHandler() {
 				
@@ -657,9 +677,10 @@ public class EPPayHelper {
 					LogUtils.e("pluginPaySuccess--msg.arg2 = EPPayHelper.Pay_UPPay");
 					msg.what = 4001; 
 					msg.arg1 = params.getPrice();
-					msg.arg2 = EPPayHelper.Pay_UPPay;
+					msg.arg2 = EPPayHelper2.Pay_UPPay;
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
+					PayCheckDialogActivity.sendBroadcast(c);
 					
 				}
 
@@ -669,9 +690,10 @@ public class EPPayHelper {
 					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.UnionpayFail,gameType,params);
 					LogUtils.e("pluginPayFailed--msg.arg2 = EPPayHelper.Pay_UPPay");
 					msg.what = 4002; 
-					msg.arg2 = EPPayHelper.Pay_UPPay;
+					msg.arg2 = EPPayHelper2.Pay_UPPay;
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
+					PayCheckDialogActivity.sendBroadcast(c);
 					
 				}
 
@@ -681,9 +703,10 @@ public class EPPayHelper {
                     HttpStatistics.statistics(activity,mUserOrderId,URLFlag.UnionpayCancel,gameType,params);
                     LogUtils.e("pluginPayCancel--msg.arg2 = EPPayHelper.Pay_UPPay");
 					msg.what = 4002; 
-					msg.arg2 = EPPayHelper.Pay_UPPay;
+					msg.arg2 = EPPayHelper2.Pay_UPPay;
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
+					PayCheckDialogActivity.sendBroadcast(c);
 				}
 			});
 			payUtil.pay(String.valueOf(params.getPrice()));
@@ -698,7 +721,7 @@ public class EPPayHelper {
 	public void wxPay(final PayParams params){
 		final Message msg = payHandler.obtainMessage();
 		if(c instanceof Activity){
-			payselect = EPPayHelper.Pay_WXPay;
+			payselect = EPPayHelper2.Pay_WXPay;
 			final Activity activity = (Activity)c;
 			wxPayUtil = new WXPayUtil(activity,params.getWebOrderid(),params.getCpOrderId(),new WXPayHandler() {
 				
@@ -709,9 +732,10 @@ public class EPPayHelper {
 					LogUtils.e("WXPaySuccess--msg.arg2 = EPPayHelper.Pay_WXPay");
 					msg.what = 4001; 
 					msg.arg1 = params.getPrice();
-					msg.arg2 = EPPayHelper.Pay_WXPay;
+					msg.arg2 = EPPayHelper2.Pay_WXPay;
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
+					PayCheckDialogActivity.sendBroadcast(c);
 					
 				}
 				
@@ -720,9 +744,10 @@ public class EPPayHelper {
 					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.WeChatpayFail,gameType,params);
 					LogUtils.e("WXPayFailed--msg.arg2 = EPPayHelper.Pay_WXPay");
 					msg.what = 4002; 
-					msg.arg2 = EPPayHelper.Pay_WXPay;
+					msg.arg2 = EPPayHelper2.Pay_WXPay;
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
+					PayCheckDialogActivity.sendBroadcast(c);
 					
 				}
 
@@ -731,9 +756,10 @@ public class EPPayHelper {
                    HttpStatistics.statistics(activity,mUserOrderId,URLFlag.WeChatPayCancel,gameType,params);
                    LogUtils.e("WXPayCancel--msg.arg2 = EPPayHelper.Pay_WXPay");
 					msg.what = 4002; 
-					msg.arg2 = EPPayHelper.Pay_WXPay;
+					msg.arg2 = EPPayHelper2.Pay_WXPay;
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
+					PayCheckDialogActivity.sendBroadcast(c);
 					
 				}
 			});
@@ -751,7 +777,7 @@ public class EPPayHelper {
 	public void baiduPay(final PayParams params){
 		final Message msg = payHandler.obtainMessage();
 		if(c instanceof Activity){
-			payselect = EPPayHelper.Pay_BAIDUPay;
+			payselect = EPPayHelper2.Pay_BAIDUPay;
 			final Activity activity = (Activity)c;
 		   BaiduPayUtils baiduPayUtils = new BaiduPayUtils(activity,params.getWebOrderid(),params.getCpOrderId(), new BaiduPayUtils.BaiduHandler() {
 			
@@ -761,9 +787,10 @@ public class EPPayHelper {
 				  LogUtils.e("baiduPaySuccess--msg.arg2 = EPPayHelper.Pay_BAIDUPay");
 				msg.what = 4001; 
 				msg.arg1 = params.getPrice();
-				msg.arg2 =  EPPayHelper.Pay_BAIDUPay;			
+				msg.arg2 =  EPPayHelper2.Pay_BAIDUPay;			
 				msg.obj = resultStatus;
 				payHandler.sendMessage(msg);
+				PayCheckDialogActivity.sendBroadcast(c);
 				
 			}
 			
@@ -772,9 +799,10 @@ public class EPPayHelper {
 				 HttpStatistics.statistics(activity,mUserOrderId,URLFlag.BaidupayFail,gameType,params);
 				 LogUtils.e("baiduPayFailed--msg.arg2 = EPPayHelper.Pay_BAIDUPay");
 				msg.what = 4002; 
-				msg.arg2 =  EPPayHelper.Pay_BAIDUPay;
+				msg.arg2 =  EPPayHelper2.Pay_BAIDUPay;
 				msg.obj = resultStatus;
 				payHandler.sendMessage(msg);
+				PayCheckDialogActivity.sendBroadcast(c);
 			}
 
 			@Override
@@ -782,9 +810,10 @@ public class EPPayHelper {
 				    HttpStatistics.statistics(activity,mUserOrderId,URLFlag.BaidupayCancel,gameType,params);
 				    LogUtils.e("baiduPayCancel--msg.arg2 = EPPayHelper.Pay_BAIDUPay");
 					msg.what = 4002; 
-					msg.arg2 =  EPPayHelper.Pay_BAIDUPay;
+					msg.arg2 =  EPPayHelper2.Pay_BAIDUPay;
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
+					PayCheckDialogActivity.sendBroadcast(c);
 			}
 		});
 		   baiduPayUtils.pay(params.getProductName(), params.getProductDesc(), String.valueOf(params.getPrice()));
@@ -804,12 +833,12 @@ public class EPPayHelper {
 		final Message msg = payHandler.obtainMessage();
 		if(c instanceof Activity){
 			final Activity activity =c;
-			payselect = EPPayHelper.Pay_WxWapPay;
+			payselect = EPPayHelper2.Pay_WxWapPay;
 			
 			final ProgressDialog progressDialog = new ProgressDialog(activity);;
 			progressDialog.setMessage("支付结果获取中...");
-			progressDialog.setCancelable(false);
-			
+			//progressDialog.setCancelable(false);
+			progressDialog.setCanceledOnTouchOutside(false);
 			
 			wxWapHandler = new WXWapPayUtil.WxWapHandler() {
 				
@@ -820,10 +849,11 @@ public class EPPayHelper {
 					msg.what = 4001; 
 					msg.obj = resultStatus;
 					msg.arg1 = params.getPrice();
-					msg.arg2 = EPPayHelper.Pay_WxWapPay;
+					msg.arg2 = EPPayHelper2.Pay_WxWapPay;
 					payHandler.sendMessage(msg);
 					if (progressDialog != null &&progressDialog.isShowing())
 						progressDialog.dismiss();
+					PayCheckDialogActivity.sendBroadcast(c);
 					
 					
 				}
@@ -833,17 +863,19 @@ public class EPPayHelper {
 					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.WxWapCancel,gameType,params);
 					LogUtils.e("wxWapFailed--msg.arg2 = EPPayHelper.Pay_WxWapPay");
 					msg.what = 4002; 
-					msg.arg2 = EPPayHelper.Pay_WxWapPay;
+					msg.arg2 = EPPayHelper2.Pay_WxWapPay;
 					msg.obj = resultStatus;
 					payHandler.sendMessage(msg);
 					if (progressDialog != null &&progressDialog.isShowing())
 						progressDialog.dismiss();
+					PayCheckDialogActivity.sendBroadcast(c);
 				}
 			};
 			
 			if(ApkUtils.isWeixinAvilible(c)==false){
 				Toast.makeText(activity, "手机没有安装微信，请先安装微信", Toast.LENGTH_SHORT).show();
 				wxWapHandler.wxWapFailed("204", "微信没有安装");
+				PayCheckDialogActivity.sendBroadcast(c);
 				return;
 			}
 
@@ -869,7 +901,7 @@ public class EPPayHelper {
 		final Message msg = payHandler.obtainMessage();
 		if(c instanceof Activity){
 			final Activity activity =c;
-			payselect = EPPayHelper.Pay_WxWapSwiftPay;
+			payselect = EPPayHelper2.Pay_WxWapSwiftPay;
 			
 			final ProgressDialog progressDialog = new ProgressDialog(activity);;
 			progressDialog.setMessage("支付结果获取中...");
@@ -884,9 +916,10 @@ public class EPPayHelper {
 					msg.what = 4001; 
 					msg.obj = resultStatus;
 					msg.arg1 = params.getPrice();
-					msg.arg2 = EPPayHelper.Pay_WxWapSwiftPay;
+					msg.arg2 = EPPayHelper2.Pay_WxWapSwiftPay;
 					payHandler.sendMessage(msg);
 					progressDialog.dismiss();
+					PayCheckDialogActivity.sendBroadcast(c);
 					
 				}
 				
@@ -895,9 +928,10 @@ public class EPPayHelper {
 					HttpStatistics.statistics(activity,mUserOrderId,URLFlag.WxSwiftPayCancel,gameType,params);
 					msg.what = 4002; 
 					msg.obj = resultStatus;
-					msg.arg2 = EPPayHelper.Pay_WxWapSwiftPay;
+					msg.arg2 = EPPayHelper2.Pay_WxWapSwiftPay;
 					payHandler.sendMessage(msg);
 					progressDialog.dismiss();
+					PayCheckDialogActivity.sendBroadcast(c);
 				}
 			});
 			
@@ -914,26 +948,26 @@ public class EPPayHelper {
 	 * @param data
 	 */
 	public  void onActivityResult(int requestCode, int resultCode, Intent data){
-		if(payselect == EPPayHelper.Pay_UPPay){
+		if(payselect == EPPayHelper2.Pay_UPPay){
 			if(payUtil!=null){
 				payUtil.onActivityResult(requestCode, resultCode, data);
 			}
 		}
 		
-		if(payselect == EPPayHelper.Pay_WXPay){
+		if(payselect == EPPayHelper2.Pay_WXPay){
 			if(wxPayUtil!=null){
 				wxPayUtil.onActivityResult(requestCode, resultCode, data);
 			}
 		}
 		
-		if(payselect == EPPayHelper.Pay_WxWapPay){
+		if(payselect == EPPayHelper2.Pay_WxWapPay){
 			if(wxWapPayUtil!=null){
 				wxWapPayUtil.onActivityResult(requestCode, resultCode, data);
 			}
 		}
 		
 		//威富通微信支付
-		if(payselect == EPPayHelper.Pay_WxWapSwiftPay){
+		if(payselect == EPPayHelper2.Pay_WxWapSwiftPay){
 			if(wXSwiftPayUtil!=null){
 				wXSwiftPayUtil.onActivityResult(requestCode, resultCode, data);
 			}

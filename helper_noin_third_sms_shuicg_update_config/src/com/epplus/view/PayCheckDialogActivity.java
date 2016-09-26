@@ -10,13 +10,16 @@ import android.R.id;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -28,16 +31,21 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.epplus.publics.EPPayHelper;
+import com.epplus.publics.EPPayHelper2;
 import com.epplus.statistics.HttpStatistics;
 import com.epplus.statistics.JSON;
 import com.epplus.statistics.URLFlag;
 import com.epplus.utils.AssetsUtils;
 import com.epplus.utils.SDKUtils;
+import com.epplus.view.PayCheckDialog2.PayTypeBean;
 
 @SuppressLint("DefaultLocale") 
-public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
+public class PayCheckDialogActivity extends Activity implements OnItemClickListener {
 
+	
+	
+	public static final String CALLBACK = "com.epplus.view.PayCheckDialogActivity.CALLBACK";
+	
 	
 	private AssetsUtils assetsUtils;
 
@@ -68,67 +76,15 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private final String PayListViewItem = "pay_dialog_check_list_item";
 
 	
-	private EPPayHelper ep;
+	private EPPayHelper2 ep;
 	private Activity context;
 	
 	private HashMap<String, PayTypeBean> maps ;
 	
 	private HashMap<String, String> mShowFlags;
 	
-	private Handler payHandler;
-	private boolean isDispperforClick = false; //支付方式选择框的消失是否点击了其中的一种支付方式。(点返回键或者其他地方消失的时候false，否则为true)
-	 
 	
-	/**
-	 * 单机支付
-	 * @param context
-	 * @param showFlags
-	 * @param ep
-	 * @param money
-	 * @param note
-	 * @param userOrderId
-	 */
-	@SuppressLint("NewApi") 
-	public PayCheckDialog2(Activity context,HashMap<String, String> showFlags, EPPayHelper ep,String gameType,PayParams params,Handler payHandler) {
-		super(context);
-		this.assetsUtils = new AssetsUtils(context);
-		this.money =params.getPrice();
-		this.note = params.getProductName();
-		this.userOrderId = params.getCpOrderId();
-		this.ep = ep;
-        this.context =context;
-        this.mShowFlags = showFlags;
-        this.gameType = gameType;
-        if(this.mShowFlags.containsKey(ShowFlag.webOrderid)){
-   		 params.setWebOrderid(this.mShowFlags.get(ShowFlag.webOrderid));
-   	    }
-        this.mPayParams = params;
-		this.payHandler = payHandler;
-        init();
-	}
-	
-//	/**
-//	 * 网游支付
-//	 * @param context
-//	 * @param showFlags
-//	 * @param ep
-//	 * @param params
-//	 */
-//	public PayCheckDialog2(Activity context,HashMap<String, String> showFlags, EPPayHelper ep,String gameType,PayParams params){
-//		super(context);
-//		
-//		this.assetsUtils = new AssetsUtils(context);
-//		this.ep = ep;
-//        this.context =context;
-//        this.mShowFlags = showFlags;
-//        this.gameType = gameType;
-//        this.payParams = JSON.toJsonString(params);
-//		
-//        init();
-//	}  
-//	
-	
-	
+	private PayParams params;
 	
 	private void init(){
 		datas = new ArrayList<PayTypeBean>();
@@ -149,6 +105,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 		maps.put(ShowFlag.smspay, new PayTypeBean(imgs[4], texts[4], flags[4]));
 		maps.put(ShowFlag.wxWapPay, new PayTypeBean(imgs[5], texts[5], flags[5]));
 		maps.put(ShowFlag.wxSwiftPay, new PayTypeBean(imgs[6], texts[6], flags[6]));
+		
 
 		Iterator<String> it = mShowFlags.keySet().iterator();
 		while (it.hasNext()) {
@@ -215,23 +172,70 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		m_init();
+		
+		
+		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		rootView = assetsUtils.findViewByFileName(PayListView);
+  		rootView = assetsUtils.findViewByFileName(PayListView);
+  		
+
+  		
+  		getWindow().setBackgroundDrawable(new ColorDrawable(0));
+  		initView();
+  		pay_check_listview = (ListView) rootView.findViewWithTag("pay_check_listview");
+
+  		ColorDrawable pressed = new ColorDrawable(Color.parseColor("#E5E5E5"));
+  		StateListDrawable drawable = AssetsUtils.newSelector(null, pressed,null, null);
+  		pay_check_listview.setSelector(drawable);
+
+  		PayAdapter adapter = new PayAdapter();
+  		pay_check_listview.setAdapter(adapter);
+  		pay_check_listview.setOnItemClickListener(this);
+		
+		
 		super.setContentView(rootView);
-
-		getWindow().setBackgroundDrawable(new ColorDrawable(0));
-		initView();
-		pay_check_listview = (ListView) rootView.findViewWithTag("pay_check_listview");
-
-		ColorDrawable pressed = new ColorDrawable(Color.parseColor("#E5E5E5"));
-		StateListDrawable drawable = AssetsUtils.newSelector(null, pressed,null, null);
-		pay_check_listview.setSelector(drawable);
-
-		PayAdapter adapter = new PayAdapter();
-		pay_check_listview.setAdapter(adapter);
-		pay_check_listview.setOnItemClickListener(this);
-
+		
+		//setFinishOnTouchOutside(false); 
+		IntentFilter filter = new IntentFilter(CALLBACK);
+		registerReceiver(receiver, filter);
+		
 	}
+
+	@SuppressWarnings("unchecked")
+	private void m_init() {
+		
+		//params = (PayParams) getIntent().getSerializableExtra("params");
+		String jsonParams =  getIntent().getStringExtra("params");
+		params = JSON.parseObject(jsonParams, PayParams.class);
+		
+		
+		this.assetsUtils = new AssetsUtils(this);
+		this.money =params.getPrice();
+		this.note = params.getProductName();
+		this.userOrderId = params.getCpOrderId();
+		ep = EPPayHelper2.getInstance(this);
+        this.context =this;
+//        this.mShowFlags = showFlags;
+//        this.gameType = gameType;
+        
+        //this.mShowFlags = (HashMap<String, String>) getIntent().getSerializableExtra("mShowFlags");
+        String jsonShowFlags =  getIntent().getStringExtra("mShowFlags");
+        this.mShowFlags = (HashMap<String, String>) JSON.toJsonMap(jsonShowFlags);
+        
+        
+        this.gameType = getIntent().getStringExtra("gameType");
+        
+        
+        if(this.mShowFlags.containsKey(ShowFlag.webOrderid)){
+   		 params.setWebOrderid(this.mShowFlags.get(ShowFlag.webOrderid));
+   	    }
+        this.mPayParams = params;
+        //setCanceledOnTouchOutside(false);
+        init();
+	}
+
 
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
@@ -273,6 +277,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 
 	}
 	
+	
 	/**
 	 * SwiftPay
 	 */
@@ -281,6 +286,8 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 		ep.wxSwifPay(mPayParams);
 		dismiss();
 	}
+	
+	
 
 	/**
 	 * 微信wap支付
@@ -288,8 +295,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private void wxWapPay() {
 		HttpStatistics.statistics(context,userOrderId,URLFlag.WxWapClick,gameType,mPayParams);
 		ep.wxWapPay(mPayParams);
-		isDispperforClick = true;
-		dismiss();
+		//dismiss();
 		
 	}
 
@@ -299,7 +305,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private void smsPay() {
 		HttpStatistics.statistics(context,userOrderId,URLFlag.WxWapClick,gameType,mPayParams);
 		ep.smsPay(mPayParams, userOrderId);
-		dismiss();
+		//dismiss();
 	}
 
 	/**
@@ -308,8 +314,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private void weChatPay() {
 		HttpStatistics.statistics(context,userOrderId,URLFlag.WeChatPayClick,gameType,mPayParams);
 		ep.wxPay(mPayParams);
-		isDispperforClick = true;
-		dismiss();
+		//dismiss();
 	}
 
 	/**
@@ -318,8 +323,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private void baiduPay() {
 		HttpStatistics.statistics(context,userOrderId,URLFlag.BaidupayClick,gameType,mPayParams);
 		ep.baiduPay(mPayParams);
-		isDispperforClick = true;
-		dismiss();
+		//dismiss();
 	}
 
 	/**
@@ -328,8 +332,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private void unionPay() {
 		HttpStatistics.statistics(context,userOrderId,URLFlag.UnionpayClick,gameType,mPayParams);
 		ep.pluginPay(mPayParams);
-		isDispperforClick = true;
-		dismiss();
+		//dismiss();
 
 	}
 
@@ -339,8 +342,7 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	private void AlipayPay() {
 		HttpStatistics.statistics(context,userOrderId,URLFlag.AlipayClick,gameType,mPayParams);
 		ep.alipay(mPayParams);
-		isDispperforClick = true;
-		dismiss();
+		//dismiss();
 	}
 
 	@SuppressLint("NewApi")
@@ -378,6 +380,12 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 		
 	}
 	
+	
+	@Override
+	public void onBackPressed() {
+		dismiss();
+		context.finish();
+	}
 	
 	private String changePrice(){
 		float m = money/100.0f;
@@ -487,34 +495,48 @@ public class PayCheckDialog2 extends Dialog implements OnItemClickListener {
 	}
 	
 	
-	@Override
+	//@Override
 	public void dismiss() {
-		super.dismiss();
+		//super.dismiss();
 		if(datas.size()>0){
 		 HttpStatistics.statistics(context,userOrderId,URLFlag.PayGuiCancel,gameType,mPayParams);
 		}
-		if (!isDispperforClick) {
-			Message msg = payHandler.obtainMessage();
-			msg.what = 4003; 			
-			msg.obj = "非点击支付弹出框消失";
-			payHandler.sendMessage(msg);
-		}
 	}
+	
+	//@Override
+//	public void show() {
+//		//super.show();
+//		if(datas.size()<=0){
+//			dismiss();
+//		}else {
+//			HttpStatistics.statistics(context,userOrderId,URLFlag.PayGuiShow,gameType,mPayParams);
+//		}
+//	}
+	
 	
 	@Override
-	public void show() {
-		super.show();
-		if(datas.size()<=0){
-			dismiss();
-		}else {
-			HttpStatistics.statistics(context,userOrderId,URLFlag.PayGuiShow,gameType,mPayParams);
-		}
-		
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		EPPayHelper2.getInstance(this).onActivityResult(requestCode, resultCode, data);
+		super.onActivityResult(requestCode, resultCode, data);
 	}
 	
 	
+	BroadcastReceiver receiver = new BroadcastReceiver(){
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			dismiss();
+			finish();
+			unregisterReceiver(this);
+		}
+		
+	};
 	
-	
+	public static void sendBroadcast(Activity activity){
+		Intent intent = new Intent(CALLBACK);
+		activity.sendBroadcast(intent);
+		
+	}
 	
 	
 	

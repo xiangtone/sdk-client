@@ -170,6 +170,16 @@ public class URLUtils {
 		return url;
 	}
 	
+	/**
+	 * 获取威富通的签名url
+	 * @param c
+	 * @return
+	 */
+	public static String wxSwiftSignUrl(Context c){
+		String url  = getWEB_BASE_URL(c)+"WXSwiftPay";
+		return url;
+	}
+	
 	
 	/**
 	 * 百度回调url 

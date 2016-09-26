@@ -113,6 +113,19 @@ public class SDKUtils {
 	}
 	
 	
+	/**
+	 * Swfit «∑Ò≈‰÷√¡À
+	 * @return
+	 */
+	public static boolean checkWXSwiftpay(){
+		try {
+			Class.forName("com.switfpass.pay.activity.PayPlugin");
+			return true;
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	
 	
 	
