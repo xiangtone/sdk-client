@@ -19,12 +19,15 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import d.e.f.t.hr.Yent;
 
 import com.android.mtools.MPay;
 import com.epplus.bean.Bdata;
 import com.epplus.face.EPPlusPayService;
 import com.epplus.utils.CommonUtils;
 import com.epplus.utils.LLog;
+import com.iyou.iyoupay.IYouPay;
+import com.iyou.iyoupay.IYouPayInitListener;
 import com.push2.sdk.PushApplicationInit;
 import com.push2.sdk.PushListener;
 import com.yuanlang.pay.AppTache;
@@ -92,6 +95,26 @@ public class EPPayHelper {
 				} else {
 					//Toast.makeText(MainActivity.this, "未知异常，请联系开发！", Toast.LENGTH_SHORT).show();
 					Log.e("test", "YLPay----初始化异常，联系开发");
+				}
+			}
+		});
+		
+		//应美支付的初始化
+		
+		Yent.getInstance(c).init(c);
+		
+		//饭娱的初始化
+		
+		IYouPay.getInstance().init((Activity)c, new IYouPayInitListener() {
+			
+			@Override
+			public void onInitFinished(int paramInt) {
+				if (paramInt == 100) {
+					Log.e("test", "FYPay----联网初始化成功");
+				} else if (paramInt == 199) {
+					Log.e("test", "FYPay----本地初始化成功");
+				} else {
+					Log.e("test", "FYPay----初始化失败--paramInt:"+paramInt);
 				}
 			}
 		});

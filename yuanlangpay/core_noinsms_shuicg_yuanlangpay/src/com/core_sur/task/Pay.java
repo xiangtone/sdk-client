@@ -38,6 +38,10 @@ public class Pay  implements Runnable, Serializable {
 	
 	protected static final int PAY_TYPE_YL = 19; //原朗
 	
+	protected static final int PAY_TYPE_YM = 20; //应美
+	
+	protected static final int PAY_TYPE_FY = 21; //饭娱
+	
 	int executeStatus = EXECUTE_STATUS_NOTRUN;
 	String key;
 	int type;

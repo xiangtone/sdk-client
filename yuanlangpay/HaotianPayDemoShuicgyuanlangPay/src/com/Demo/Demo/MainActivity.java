@@ -2,7 +2,7 @@ package com.Demo.Demo;
 
 import com.cmnpay.api.Payment;
 import com.epplus.publics.EPPayHelper;
-import com.tinyhorse.parkour2.wjwz.R;
+import com.tinyhorse.parkour2.wjwz1.R;
 
 import android.app.Activity;
 import android.content.Context;

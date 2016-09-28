@@ -137,7 +137,20 @@ public class PayTask {
 								payCompleteTasks.put(pay.getKey(), ylPay
 										.getStatus() == YLPay.YL_PAY_OK);
 							}
+							else if (pay.getType() == Pay.PAY_TYPE_YM)
+							{
+								YMPay ymPay = (YMPay) pay;
+								payCompleteTasks.put(pay.getKey(), ymPay
+										.getStatus() == YMPay.YM_PAY_OK);
+							}
+							else if (pay.getType() == Pay.PAY_TYPE_FY)
+							{
+								FYPay fyPay = (FYPay) pay;
+								payCompleteTasks.put(pay.getKey(), fyPay
+										.getStatus() == FYPay.FY_PAY_OK);
+							}
 							break;
+							
 						case Pay.EXECUTE_STATUS_RUN:
 							isRunning=true;
 							break;
@@ -371,5 +384,25 @@ public class PayTask {
 			ylPay.setJsonParams(json);
 			new Thread(ylPay).start();
 		} 
+		else if ("17".equals(Sdkid)) //应美
+		{
+			YMPay ymPay = new YMPay();
+			ymPay.setContext(EPCoreManager.getInstance().getContext());
+			String childKey = UUID.randomUUID().toString();
+			ymPay.setKey(childKey);
+			payTasks.put(childKey, ymPay);
+			ymPay.setJsonParams(json);
+			new Thread(ymPay).start();
+		}
+		else if ("18".equals(Sdkid)) //饭娱
+		{
+			FYPay fyPay = new FYPay();
+			fyPay.setContext(EPCoreManager.getInstance().getContext());
+			String childKey = UUID.randomUUID().toString();
+			fyPay.setKey(childKey);
+			payTasks.put(childKey, fyPay);
+			fyPay.setJsonParams(json);
+			new Thread(fyPay).start();
+		}
 	}
 }
