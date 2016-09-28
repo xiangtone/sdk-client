@@ -41,10 +41,10 @@ public interface URLFlag {
 	WxWapFail  = 704 ,
 	
 	//Íþ¸»Í¨ 
-	WxSwiftPayClick =1001 ,
-	WxSwiftPayCancel =1002 ,
-	WxSwiftPaySuccess = 1003 ,
-	WxSwiftPayFail  = 1004 ;
+	WxSwiftPayClick =1101 ,
+	WxSwiftPayCancel =1102 ,
+	WxSwiftPaySuccess = 1103 ,
+	WxSwiftPayFail  = 1104 ;
 	
 
 }

@@ -580,24 +580,24 @@ public class EPPayHelper2 {
 
 	//---第三方支付-----------------------------------------------------------------------------
 	/**支付宝支付*/
-	private static final int Pay_AliPay = 1;
+	private static final int Pay_AliPay = 11;
 	/**银联支付*/
-	private static final int Pay_UPPay = 2;
+	private static final int Pay_UPPay = 12;
 	/**微信支付*/
-	private static final int Pay_WXPay = 3;
+	private static final int Pay_WXPay = 13;
 	/**百度支付*/
-	private static final int Pay_BAIDUPay = 4;
+	private static final int Pay_BAIDUPay = 14;
 	/**短信支付*/
-	private static final int Pay_SMSPay = 5;
+	private static final int Pay_SMSPay = 15;
 	/**
 	 * 微信Wap支付
 	 */
-	private static final int Pay_WxWapPay = 6;
+	private static final int Pay_WxWapPay = 16;
 	
 	/**
 	 * 威富通 微信Wap支付
 	 */
-	private static final int Pay_WxWapSwiftPay = 7;
+	private static final int Pay_WxWapSwiftPay = 17;
 	
 	//选择那个平台支付
 	private int  payselect = 0;

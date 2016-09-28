@@ -86,7 +86,7 @@ public class MainActivity extends Activity{
 			}
 			break;
 			
-			case R.id.button5:
+		case R.id.button5:
 				PayParams params = new PayParams(1, "12345", "苹果", "商品名称是苹果商品id为123456");
 				EPPayHelper2.getInstance(this).setPayListen(handler);
 				EPPayHelper2.getInstance(this).pay(params);

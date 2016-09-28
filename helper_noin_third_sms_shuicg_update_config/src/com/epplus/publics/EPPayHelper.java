@@ -97,7 +97,8 @@ public class EPPayHelper {
 		}else {
 			final ProgressDialog progressDialog = new ProgressDialog(c);
 			progressDialog.setMessage("支付获取中...");
-			progressDialog.setCancelable(false);
+			//progressDialog.setCancelable(false);
+			progressDialog.setCanceledOnTouchOutside(false);
 			progressDialog.show();
 			ConfigUtils.setShowPayChannel(c, new IHttpResult() {
 				@Override
@@ -136,7 +137,8 @@ public class EPPayHelper {
 			}else {
 				final ProgressDialog progressDialog = new ProgressDialog(c);
 				progressDialog.setMessage("支付获取中...");
-				progressDialog.setCancelable(false);
+				//progressDialog.setCancelable(false);
+				progressDialog.setCanceledOnTouchOutside(false);
 				progressDialog.show();
 				ConfigUtils.setShowPayChannel(c, new IHttpResult() {
 					@Override
@@ -808,8 +810,8 @@ public class EPPayHelper {
 			
 			final ProgressDialog progressDialog = new ProgressDialog(activity);;
 			progressDialog.setMessage("支付结果获取中...");
-			progressDialog.setCancelable(false);
-			
+			//progressDialog.setCancelable(false);
+			progressDialog.setCanceledOnTouchOutside(false);
 			
 			wxWapHandler = new WXWapPayUtil.WxWapHandler() {
 				
