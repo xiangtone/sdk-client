@@ -39,6 +39,12 @@ public class ConfigUtils {
 	
 	
 	/**
+	 * SwifPay 微信
+	 */
+	public static final String WXSwiftWAP = "wxSwiftWAP";
+	
+	
+	/**
 	 * 回调的数据
 	 * @param context
 	 * @param platform

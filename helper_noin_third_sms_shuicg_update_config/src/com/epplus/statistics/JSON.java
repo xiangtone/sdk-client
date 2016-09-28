@@ -5,7 +5,12 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,6 +20,52 @@ import com.epplus.utils.LogUtils;
 
 public class JSON {
 
+	
+	
+	
+	public static String toMapJson(Map<String,String> map){
+		JSONObject jsonObject = new JSONObject();
+		Set<Entry<String, String>> set=map.entrySet();
+		Iterator<Entry<String, String>>  iterator =  set.iterator();
+		while(iterator.hasNext()){
+			Entry<String, String> entry = iterator.next();
+			String key = entry.getKey();
+			String value = entry.getValue();
+			
+			try {
+				jsonObject.put(key, value);
+			} catch (JSONException e) {
+				e.printStackTrace();
+				return null;
+			}
+		}
+		
+		return jsonObject.toString();
+		
+	}
+	
+	public static Map<String,String> toJsonMap(String json){
+		Map<String,String> map = new HashMap<String, String>();
+		try {
+			JSONObject jsonObj = new JSONObject(json);
+			Iterator<String> iterator = jsonObj.keys();
+			while (iterator.hasNext()) {
+				String key =  iterator.next();
+				map.put(key, jsonObj.getString(key));
+			}
+			
+		} catch (JSONException e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+		
+		return map;
+		
+	}
+	
+	
 	
 	/**
 	 * 把一个Bean对象转变成json
