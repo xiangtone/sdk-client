@@ -23,13 +23,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity android:name="com.epplus.view.PayCheckDialogActivity"
+             android:screenOrientation="landscape"
+             android:theme="@android:style/Theme.Dialog"
+             android:configChanges="keyboardHidden|orientation|screenSize"
+            />
+        
          
         <!-- 第三方支付配置 -->
          <service  android:exported="false" android:name="com.epplus.face.EPPlusPayService"></service>
-        <!-- <meta-data
+        <meta-data
             android:name="EP_CHANNEL"
-            android:value="0" >
-        </meta-data> -->
+            android:value="a10000" >
+        </meta-data>
         <meta-data
             android:name="EP_APPKEY"
             android:value="f17d2fb4eff547c8bebc1e7cc4dcd43c"
