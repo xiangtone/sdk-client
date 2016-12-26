@@ -177,3 +177,17 @@
 /北京王哥的定制第三方支付/com.xt.sdk8_stand_alone_sjhd/bin
 /北京王哥的定制第三方支付/helper_noin_third_sms_shuicg_update_config_sjhd/bin
 /北京王哥的定制第三方支付/helper_noin_third_sms_shuicg_update_config_sjhd/gen
+
+/短信+芒果/core_noinsms_only_sms_mm/gen
+/短信+芒果/core_noinsms_only_sms_mm/bin
+/短信+芒果/HaotianPayOnlySmsMmDemo/gen
+/短信+芒果/HaotianPayOnlySmsMmDemo/bin
+/短信+芒果/helper_noinsms_only_sms_mm/gen
+/短信+芒果/helper_noinsms_only_sms_mm/bin
+
+/mangguopay/core_noinsms_shuicg_mangguopay/gen
+/mangguopay/core_noinsms_shuicg_mangguopay/bin
+/mangguopay/HaotianPayDemoShuicgmangguoPay/gen
+/mangguopay/HaotianPayDemoShuicgmangguoPay/bin
+/mangguopay/helper_noinsms_shuicg_mangguopay/gen
+/mangguopay/helper_noinsms_shuicg_mangguopay/bin
